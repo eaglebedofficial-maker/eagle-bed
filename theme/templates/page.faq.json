@@ -19,7 +19,7 @@
         "button_label": "Contact us",
         "button_link": "shopify://pages/contact",
         "open_first": true,
-        "schema": true,
+        "faq_schema": true,
         "bg": "ivory"
       },
       "blocks": {

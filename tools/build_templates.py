@@ -162,7 +162,7 @@ index = template([
                            ('ottoman-bed-vs-divan-bed-uk', 'Storage'), ('pocket-sprung-vs-memory-foam-mattress', 'Mattresses'),
                            ('how-to-measure-bedroom-for-new-bed-uk', 'Planning'), ('best-beds-for-small-bedrooms', 'Small rooms')]])),
     ('faq', section('sr-faq', {'kicker': 'Good to know', 'heading': '<p>Questions, <em>answered</em></p>', 'text': '',
-                               'button_label': 'Ask us anything', 'button_link': 'shopify://pages/contact', 'open_first': True, 'schema': True, 'bg': 'linen'}, FAQ_GENERAL)),
+                               'button_label': 'Ask us anything', 'button_link': 'shopify://pages/contact', 'open_first': True, 'faq_schema': True, 'bg': 'linen'}, FAQ_GENERAL)),
     ('help', HELP),
 ])
 write('templates/index.json', index)
@@ -182,7 +182,7 @@ product = template([
         'settings': {'review_data': 'real_data', 'max_width': 1200, 'show_shop_reviews': True, 'empty_state': 'empty_widget'}}},
         'block_order': ['judge_me_reviews_review_widget_gPiWzx'], 'settings': {'include_margins': True}}),
     ('faq', section('sr-faq', {'kicker': 'Before you order', 'heading': '<p>Questions, <em>answered</em></p>', 'text': '',
-                               'button_label': 'Ask us anything', 'button_link': 'shopify://pages/contact', 'open_first': False, 'schema': False, 'bg': 'ivory'}, FAQ_GENERAL[:6])),
+                               'button_label': 'Ask us anything', 'button_link': 'shopify://pages/contact', 'open_first': False, 'faq_schema': False, 'bg': 'ivory'}, FAQ_GENERAL[:6])),
 ])
 # The product-level FAQ is the same on every product, so its FAQPage schema stays off (it lives on the homepage and FAQ page).
 write('templates/product.json', product)
@@ -263,7 +263,7 @@ write('templates/page.bespoke.json', template([
                                      'list': 'Custom sizes\nCustom fabrics\nCustom colours\nCustom headboards\nCustom storage\nUnique shapes',
                                      'full_form': True, 'whatsapp': '', 'button_label': 'Request my bespoke quote', 'bg': 'linen'})),
     ('main', RICH),
-    ('faq', section('sr-faq', {'kicker': 'Bespoke questions', 'heading': '<p>Good to <em>know</em></p>', 'text': '', 'button_label': '', 'button_link': '', 'open_first': True, 'schema': True, 'bg': 'ivory'}, FAQ_BESPOKE)),
+    ('faq', section('sr-faq', {'kicker': 'Bespoke questions', 'heading': '<p>Good to <em>know</em></p>', 'text': '', 'button_label': '', 'button_link': '', 'open_first': True, 'faq_schema': True, 'bg': 'ivory'}, FAQ_BESPOKE)),
     ('help', HELP),
 ]))
 write('templates/page.mattress-guide.json', template([
@@ -279,7 +279,7 @@ write('templates/page.mattress-guide.json', template([
                          ('layer', {'title': 'Memory foam comfort layer', 'text': 'Contours to your shape through the night. Used in our Memory Foam and Memory Orthopaedic mattresses.', 'look': 'memory'}),
                          ('layer', {'title': 'Individual pocket spring core', 'text': '1,000, 2,000 or 3,000 springs, each in its own pocket, moving independently to support you and cut partner disturbance.', 'look': 'springs'})])),
     ('main', RICH),
-    ('faq', section('sr-faq', {'kicker': 'Mattress questions', 'heading': '<p>Good to <em>know</em></p>', 'text': '', 'button_label': '', 'button_link': '', 'open_first': True, 'schema': True, 'bg': 'ivory'}, FAQ_MATTRESS)),
+    ('faq', section('sr-faq', {'kicker': 'Mattress questions', 'heading': '<p>Good to <em>know</em></p>', 'text': '', 'button_label': '', 'button_link': '', 'open_first': True, 'faq_schema': True, 'bg': 'ivory'}, FAQ_MATTRESS)),
     ('help', HELP),
 ]))
 write('templates/page.size-guide.json', template([
@@ -299,7 +299,7 @@ write('templates/page.about.json', template([
 ]))
 write('templates/page.faq.json', template([
     ('hero', PAGE_HERO(kicker='Help centre', text='Delivery, sizes, fabrics, bespoke beds and payment, answered.')),
-    ('faq', section('sr-faq', {'kicker': 'Ordering and delivery', 'heading': '<p>Frequently asked <em>questions</em></p>', 'text': '', 'button_label': 'Contact us', 'button_link': 'shopify://pages/contact', 'open_first': True, 'schema': True, 'bg': 'ivory'}, FAQ_GENERAL + FAQ_MATTRESS[:3] + FAQ_BESPOKE[:2])),
+    ('faq', section('sr-faq', {'kicker': 'Ordering and delivery', 'heading': '<p>Frequently asked <em>questions</em></p>', 'text': '', 'button_label': 'Contact us', 'button_link': 'shopify://pages/contact', 'open_first': True, 'faq_schema': True, 'bg': 'ivory'}, FAQ_GENERAL + FAQ_MATTRESS[:3] + FAQ_BESPOKE[:2])),
     ('main', RICH),
     ('help', HELP),
 ]))

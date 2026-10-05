@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  {%- if section.settings.schema and faq_json != blank -%}
+  {%- if section.settings.faq_schema and faq_json != blank -%}
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_json }}]}</script>
   {%- endif -%}
 </section>
@@ -47,7 +47,7 @@
     { "type": "text", "id": "button_label", "label": "Button", "default": "Ask us anything" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true },
-    { "type": "checkbox", "id": "schema", "label": "Output FAQ structured data", "default": true, "info": "Only use one FAQ section with structured data per page." },
+    { "type": "checkbox", "id": "faq_schema", "label": "Output FAQ structured data", "default": true, "info": "Only use one FAQ section with structured data per page." },
     { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] }
   ],
   "blocks": [

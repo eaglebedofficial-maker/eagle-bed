@@ -165,7 +165,7 @@
         "button_label": "",
         "button_link": "",
         "open_first": true,
-        "schema": true,
+        "faq_schema": true,
         "bg": "ivory"
       },
       "blocks": {
