@@ -4,6 +4,7 @@
 {%- endcomment -%}
 {%- liquid
   assign org_id = shop.url | append: '/#organization'
+  assign search_tpl = shop.url | append: routes.search_url | append: '?q={search_term_string}'
   assign logo_url = ''
   if settings.logo != blank
     assign logo_url = settings.logo | image_url: width: 600 | prepend: 'https:'
@@ -35,7 +36,7 @@
       "name": {{ shop.name | json }},
       "publisher": { "@id": {{ org_id | json }} },
       "inLanguage": "en-GB",
-      "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }} }, "query-input": "required name=search_term_string" }
+      "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": {{ search_tpl | json }} }, "query-input": "required name=search_term_string" }
     }
   ]
 }
