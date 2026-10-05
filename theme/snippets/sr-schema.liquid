@@ -91,22 +91,22 @@
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}}
-    {%- if crumb_col -%},{"@type":"ListItem","position":2,"name":{{ crumb_col.title | json }},"item":{{ request.origin | append: crumb_col.url | json }}}{%- endif -%}
-    ,{"@type":"ListItem","position":{% if crumb_col %}3{% else %}2{% endif %},"name":{{ product.title | json }},"item":{{ request.origin | append: product.url | json }}}
+    {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }} }
+    {%- if crumb_col -%},{"@type":"ListItem","position":2,"name":{{ crumb_col.title | json }},"item":{{ request.origin | append: crumb_col.url | json }} }{%- endif -%}
+    ,{"@type":"ListItem","position":{% if crumb_col %}3{% else %}2{% endif %},"name":{{ product.title | json }},"item":{{ request.origin | append: product.url | json }} }
   ]}
   </script>
 {%- elsif request.page_type == 'collection' and collection.handle != blank -%}
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}},
-      {"@type":"ListItem","position":2,"name":{{ collection.title | json }},"item":{{ request.origin | append: collection.url | json }}}
+      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }} },
+      {"@type":"ListItem","position":2,"name":{{ collection.title | json }},"item":{{ request.origin | append: collection.url | json }} }
     ]},
     {"@type":"CollectionPage","name":{{ collection.title | json }},"url":{{ request.origin | append: collection.url | json }},
      {%- if collection.description != blank %}"description":{{ collection.description | strip_html | strip_newlines | truncate: 300 | json }},{% endif %}
      "mainEntity":{"@type":"ItemList","numberOfItems":{{ collection.products_count }},"itemListElement":[
-      {%- for p in collection.products limit: 24 -%}{"@type":"ListItem","position":{{ forloop.index }},"url":{{ request.origin | append: p.url | json }}}{% unless forloop.last %},{% endunless %}{%- endfor -%}
+      {%- for p in collection.products limit: 24 -%}{"@type":"ListItem","position":{{ forloop.index }},"url":{{ request.origin | append: p.url | json }} }{% unless forloop.last %},{% endunless %}{%- endfor -%}
      ]}}
   ]}
   </script>
@@ -118,14 +118,14 @@
      "datePublished":{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
      "dateModified":{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
      {%- if article.image %}"image":{{ article.image | image_url: width: 1600 | prepend: 'https:' | json }},{% endif %}
-     "author":{"@type":"Organization","name":{{ shop.name | json }},"url":{{ shop.url | json }}},
-     "publisher":{"@id":{{ org_id | json }}},
+     "author":{"@type":"Organization","name":{{ shop.name | json }},"url":{{ shop.url | json }} },
+     "publisher":{"@id":{{ org_id | json }} },
      "description":{{ article.excerpt_or_content | strip_html | strip_newlines | truncate: 200 | json }},
-     "mainEntityOfPage":{{ request.origin | append: article.url | json }}},
+     "mainEntityOfPage":{{ request.origin | append: article.url | json }} },
     {"@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}},
-      {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ request.origin | append: blog.url | json }}},
-      {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ request.origin | append: article.url | json }}}
+      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }} },
+      {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ request.origin | append: blog.url | json }} },
+      {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ request.origin | append: article.url | json }} }
     ]}
   ]}
   </script>

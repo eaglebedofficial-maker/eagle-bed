@@ -17,7 +17,7 @@
             {%- assign scope = block.settings.only_on | strip | downcase -%}
             {%- if scope == blank or scope contains handle -%}
               {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
-              {"@type":"Question","name":{{ block.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.a | json }}}}
+              {"@type":"Question","name":{{ block.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.a | json }} }}
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
