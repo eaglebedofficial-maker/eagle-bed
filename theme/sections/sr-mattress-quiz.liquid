@@ -1,0 +1,89 @@
+<script src="{{ 'sr-quiz.js' | asset_url }}" defer></script>
+<section class="sr sr-sec{% if section.settings.bg == 'linen' %} sr-sec--linen{% endif %}" id="mattress-finder" aria-labelledby="SrQuiz-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head sr-center" style="justify-content:center">
+      <div class="sr-head__t">
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrQuiz-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        <p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>
+      </div>
+    </div>
+
+    <div class="sr-quiz" data-sr-quiz data-sr-reveal>
+      <div class="sr-quiz__bar" aria-hidden="true"><i></i></div>
+      <div class="sr-quiz__in">
+        {%- capture q_size -%}single:Single:3FT · 90 × 190 cm:user,small:Small double:4FT · 120 × 190 cm:user,double:Double:4FT6 · 135 × 190 cm:users,king:King:5FT · 150 × 200 cm:users,superking:Super king:6FT · 180 × 200 cm:users{%- endcapture -%}
+        {%- capture q_firm -%}soft:Soft:Sink-in and cushioned:feather,medium:Medium:Balanced comfort:balance,mfirm:Medium firm:Supportive with some give:balance,firm:Firm:Solid and flat support:rock{%- endcapture -%}
+        {%- capture q_pos -%}side:On my side:Shoulders and hips need cushioning:side,back:On my back:Even support for the spine:back,front:On my front:Firmer to keep hips level:front,combo:I change position:A bit of everything:combo{%- endcapture -%}
+        {%- capture q_sup -%}soft:Softer support:Pressure relief comes first:feather,balanced:Somewhere in between:Not too soft or too firm:balance,firm:Firmer support:I like to feel held up:rock{%- endcapture -%}
+        {%- capture q_partner -%}one:Just me:I have the bed to myself:user,two:With a partner:We share the bed:users{%- endcapture -%}
+        {%- capture q_build -%}pocket:Pocket springs:Breathable and supportive:mattress,memory:Memory foam:Contours and absorbs movement:feather,hybrid:Hybrid / pillow top:Springs with a plush top:sparkle,any:No preference:Recommend the best fit:check{%- endcapture -%}
+        {%- assign qs = 'size|What size is your bed?|' | append: q_size | append: '~firm|What firmness do you prefer?|' | append: q_firm | append: '~pos|How do you usually sleep?|' | append: q_pos | append: '~support|Do you prefer softer or firmer support?|' | append: q_sup | append: '~partner|Do you sleep alone or with a partner?|' | append: q_partner | append: '~build|Memory foam, springs or hybrid?|' | append: q_build | split: '~' -%}
+        {%- for q in qs -%}
+          {%- assign parts = q | split: '|' -%}
+          <div class="sr-quiz__step{% if forloop.first %} is-on{% endif %}" data-q="{{ parts[0] }}" role="group" aria-labelledby="SrQ-{{ section.id }}-{{ forloop.index }}">
+            <span class="sr-quiz__count">Question {{ forloop.index }} of {{ qs.size }}</span>
+            <h3 class="sr-quiz__q" id="SrQ-{{ section.id }}-{{ forloop.index }}">{{ parts[1] }}</h3>
+            <div class="sr-quiz__opts">
+              {%- assign opts = parts[2] | split: ',' -%}
+              {%- for o in opts -%}{%- assign op = o | split: ':' -%}
+                <button type="button" class="sr-quiz__opt" data-v="{{ op[0] }}" aria-pressed="false"><span class="sr-quiz__ico">{% render 'sr-icon', icon: op[3] %}</span><span>{{ op[1] }}<small>{{ op[2] }}</small></span></button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+        <div class="sr-quiz__step" data-q="done" aria-live="polite">
+          <span class="sr-quiz__count">Your matches</span>
+          <h3 class="sr-quiz__q">We'd recommend</h3>
+          <div class="sr-quiz__res" data-sr-quiz-results></div>
+          <div class="sr-btns" style="margin-top:24px">
+            <a class="sr-btn" href="{{ section.settings.all_link | default: '/collections/mattresses' }}">Compare all mattresses</a>
+            <button type="button" class="sr-btn sr-btn--ghost" data-sr-quiz-restart>Start again</button>
+          </div>
+        </div>
+        <div class="sr-quiz__nav"><button type="button" class="sr-quiz__back" hidden>← Back</button><span class="sr-mute" style="font-size:13px">{{ section.settings.small | escape }}</span></div>
+      </div>
+      <script type="application/json" data-sr-quiz-data>
+        {
+          "fmt": {{ shop.money_format | strip_html | json }},
+          "items": [
+            {%- for block in section.blocks -%}{%- assign p = block.settings.product -%}{%- if p -%}
+            {
+              "title": {{ p.title | json }}, "url": {{ p.url | json }}, "price": {{ p.price | json }},
+              "img": {% if p.featured_media %}{{ p.featured_media.preview_image | image_url: width: 200 | json }}{% else %}""{% endif %},
+              "firm": {{ block.settings.firmness | json }}, "type": {{ block.settings.type | json }},
+              "pos": {{ block.settings.positions | split: ',' | json }}, "partner": {{ block.settings.partner | json }}, "note": {{ block.settings.note | json }},
+              "v": [{%- for v in p.variants -%}{"t": {{ v.title | json }}, "p": {{ v.price | json }}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]
+            }{% unless forloop.last %},{% endunless %}
+            {%- endif -%}{%- endfor -%}
+          ]
+        }
+      </script>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Mattress finder quiz",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Find your perfect mattress" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Six questions. <em>One better night.</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Tell us how you sleep and we'll match you with the mattress that suits you, priced in your size." },
+    { "type": "text", "id": "small", "label": "Small print", "default": "Takes about 30 seconds" },
+    { "type": "url", "id": "all_link", "label": "All mattresses link" },
+    { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] }
+  ],
+  "blocks": [
+    { "type": "mattress", "name": "Mattress", "settings": [
+      { "type": "product", "id": "product", "label": "Mattress" },
+      { "type": "range", "id": "firmness", "label": "Firmness (1 soft – 10 firm)", "min": 1, "max": 10, "step": 0.5, "default": 6 },
+      { "type": "select", "id": "type", "label": "Construction", "default": "pocket", "options": [{ "value": "pocket", "label": "Pocket sprung" }, { "value": "memory", "label": "Memory foam" }, { "value": "hybrid", "label": "Hybrid / pillow top" }] },
+      { "type": "text", "id": "positions", "label": "Best sleeping positions (comma separated: side, back, front, combo)", "default": "back,combo" },
+      { "type": "checkbox", "id": "partner", "label": "Good for couples (reduces partner disturbance)", "default": true },
+      { "type": "text", "id": "note", "label": "Fallback reason" }
+    ] }
+  ],
+  "presets": [{ "name": "Mattress finder quiz" }]
+}
+{% endschema %}

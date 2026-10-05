@@ -1,0 +1,27 @@
+{%- liquid
+  assign body = section.settings.content
+  if section.settings.use_page and page.content != blank
+    assign body = page.content
+  endif
+-%}
+{%- if body != blank -%}
+<section class="sr sr-sec{% if section.settings.bg == 'linen' %} sr-sec--linen{% endif %}"{% if section.settings.heading != blank %} aria-labelledby="SrRich-{{ section.id }}"{% endif %}>
+  <div class="sr-wrap">
+    {%- if section.settings.heading != blank -%}<h2 id="SrRich-{{ section.id }}" class="sr-h2" style="margin-bottom:24px" data-sr-reveal>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    <div class="sr-rte"{% if section.settings.center %} style="margin:0 auto"{% endif %}>{{ body }}</div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Showroom text",
+  "settings": [
+    { "type": "checkbox", "id": "use_page", "label": "Use the page's own content", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "content", "label": "Content (when not using page content)" },
+    { "type": "checkbox", "id": "center", "label": "Centre column", "default": false },
+    { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] }
+  ],
+  "presets": [{ "name": "Showroom text" }]
+}
+{% endschema %}

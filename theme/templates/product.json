@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "main": {
+      "type": "eb3d-product",
+      "settings": {
+        "swatch_link": "shopify://pages/request-a-swatch"
+      },
+      "blocks": {
+        "liquid_1": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<a class=\"sr sr-bespoke-cta\" href=\"/pages/bespoke-beds-uk#quote\" data-sr-bespoke-link data-title=\"{{ product.title | escape }}\" data-type=\"{{ product.type | escape }}\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15.5 4.5l4 4L8 20H4v-4z\"/><path d=\"M13.5 6.5l4 4\"/></svg><span>Request a bespoke version<small>Different size, fabric, headboard height or storage? Tell us and we'll quote.</small></span></a>"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_1"
+      ]
+    },
+    "extras": {
+      "type": "sr-pdp-extras",
+      "settings": {
+        "delivery_text": "Every bed is made to order, then delivered free to mainland UK addresses by our own team.",
+        "size_link": "shopify://pages/bed-size-guide",
+        "bespoke_link": "shopify://pages/bespoke-beds-uk",
+        "mattresses": "mattresses",
+        "bespoke_text": "Custom sizes, fabrics, colours, headboard heights and storage are often possible. Send us your idea for a quote.",
+        "complete_heading": "Add the mattress",
+        "complete_text": "Made in the UK in every standard size. Not sure which one? Try our mattress finder."
+      }
+    },
+    "reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_gPiWzx": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_gPiWzx"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "faq": {
+      "type": "sr-faq",
+      "settings": {
+        "kicker": "Before you order",
+        "heading": "<p>Questions, <em>answered</em></p>",
+        "text": "",
+        "button_label": "Ask us anything",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "schema": false,
+        "bg": "ivory"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is delivery really free?",
+            "a": "<p>Yes. Delivery is free to mainland UK addresses, and our own team brings your bed to your door. If you are outside mainland UK, please contact us before ordering and we will confirm the options.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "q": "How long will my bed take to arrive?",
+            "a": "<p>Every bed is made to order. Most orders are delivered within 3–5 working days. We will contact you to arrange a delivery day that suits you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you make a bed in a custom size, fabric or design?",
+            "a": "<p>Often, yes. Because we make every bed by hand, custom sizes, fabrics, colours, headboard heights and storage are usually possible. Send us a photo, sketch or description through our <a href=\"/pages/bespoke-beds-uk#quote\">bespoke quote form</a> and we will talk it through with you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I see the fabric before I order?",
+            "a": "<p>Yes. Colours look different on every screen, so we post free fabric swatches. <a href=\"/pages/request-a-swatch\">Request your swatches here</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "q": "What warranty do I get?",
+            "a": "<p>Our beds are built on solid wood frames and come with a 5-year warranty. See our <a href=\"/pages/warranty\">warranty page</a> for the details.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I spread the cost?",
+            "a": "<p>Yes. Klarna and Clearpay are available at checkout. See <a href=\"/pages/finance-options\">finance options</a>.</p>",
+            "only_on": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "extras",
+    "reviews",
+    "faq"
+  ]
+}

@@ -1,0 +1,46 @@
+{%- assign b = section.settings.blog | default: blogs.news -%}
+<section class="sr sr-sec" data-sr-rail aria-labelledby="SrGuides-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <div class="sr-head__t">
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrGuides-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      <a class="sr-link" href="{{ b.url }}">All buying guides{% render 'sr-icon', icon: 'arrow' %}</a>
+    </div>
+    <ul class="sr-rail" role="list" style="list-style:none;margin-top:0;margin-bottom:0" data-sr-stagger>
+      {%- assign shown = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- assign a = block.settings.article -%}
+        {%- if a != blank -%}{%- assign shown = shown | plus: 1 -%}
+          <li data-sr-reveal {{ block.shopify_attributes }}>{% render 'sr-guide-card', article: a, kicker: block.settings.kicker %}</li>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if shown == 0 -%}
+        {%- for a in b.articles limit: section.settings.limit -%}
+          <li data-sr-reveal>{% render 'sr-guide-card', article: a, kicker: 'Buying guide' %}</li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Buying guides",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Advice from the workshop" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Buying <em>guides</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Straight answers on sizes, storage, fabrics and mattresses, so you choose once and choose right." },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "limit", "label": "Latest articles (if no articles are picked)", "min": 3, "max": 12, "step": 1, "default": 6 }
+  ],
+  "blocks": [
+    { "type": "guide", "name": "Guide", "settings": [
+      { "type": "article", "id": "article", "label": "Article" },
+      { "type": "text", "id": "kicker", "label": "Label", "default": "Buying guide" }
+    ] }
+  ],
+  "presets": [{ "name": "Buying guides" }]
+}
+{% endschema %}

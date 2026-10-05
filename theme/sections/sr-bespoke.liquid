@@ -1,0 +1,105 @@
+{%- assign full = section.settings.full_form -%}
+<section class="sr sr-sec{% if section.settings.bg == 'linen' %} sr-sec--linen{% endif %}" id="quote" aria-labelledby="SrBes-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-bes">
+      <div>
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrBes-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        <p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>
+        <ul class="sr-bes__list" data-sr-stagger>
+          {%- assign items = section.settings.list | newline_to_br | split: '<br />' -%}
+          {%- for it in items -%}{%- assign t = it | strip -%}{%- if t != blank -%}<li data-sr-reveal>{% render 'sr-icon', icon: 'check' %}{{ t | escape }}</li>{%- endif -%}{%- endfor -%}
+        </ul>
+        {%- if section.settings.image != blank -%}
+          <div class="sr-bes__media" data-sr-reveal="clip">{{ section.settings.image | image_url: width: 1100 | image_tag: widths: '600,900,1100', sizes: '(min-width: 990px) 40vw, 100vw', loading: 'lazy', alt: section.settings.image.alt | default: 'A bespoke bed made by Eagle Bed' }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="sr-bes__card" data-sr-reveal>
+        {%- assign form_id = 'SrBespokeForm-' | append: section.id -%}
+        {%- form 'contact', id: form_id, class: 'sr-form', data-sr-bespoke-form: '' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="sr-alert sr-alert--ok" role="status" tabindex="-1">
+              <strong>Thank you, your request is with our workshop.</strong> We usually reply within one working day.
+            </div>
+            <p style="margin:0 0 10px;font-weight:700">Have a photo, sketch or screenshot?</p>
+            <div class="sr-bes__photos">
+              <a class="sr-btn sr-btn--plum" href="mailto:{{ shop.email }}?subject={{ 'Bespoke bed photos' | url_encode }}&body={{ 'Hi Eagle Bed, here are the photos for my bespoke request. My name is: ' | url_encode }}" data-sr-track="bespoke_photos" data-sr-label="email">{% render 'sr-icon', icon: 'mail' %}Email your photos</a>
+              {%- if settings.sr_whatsapp != blank or section.settings.whatsapp != blank -%}
+                {%- assign wa = section.settings.whatsapp | default: settings.sr_whatsapp | remove: ' ' | remove: '+' -%}
+                <a class="sr-btn sr-btn--ghost" href="https://wa.me/{{ wa }}?text={{ 'Hi Eagle Bed, I have just sent a bespoke request. Here are my photos.' | url_encode }}" target="_blank" rel="noopener" data-sr-track="bespoke_photos" data-sr-label="whatsapp">{% render 'sr-icon', icon: 'whatsapp' %}WhatsApp photos</a>
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            {%- if form.errors -%}<div class="sr-alert sr-alert--err" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+            <input type="hidden" name="contact[Enquiry]" value="Bespoke bed request">
+            <div class="sr-form__row">
+              <div class="sr-field"><label for="sb-name-{{ section.id }}">Name</label><input id="sb-name-{{ section.id }}" name="contact[name]" autocomplete="name" required value="{{ form.name }}"></div>
+              <div class="sr-field"><label for="sb-email-{{ section.id }}">Email</label><input id="sb-email-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" inputmode="email" required value="{{ form.email }}"></div>
+            </div>
+            <div class="sr-form__row">
+              <div class="sr-field"><label for="sb-phone-{{ section.id }}">Phone <small>(optional)</small></label><input id="sb-phone-{{ section.id }}" type="tel" name="contact[phone]" autocomplete="tel" inputmode="tel" value="{{ form.phone }}"></div>
+              <div class="sr-field"><label for="sb-size-{{ section.id }}">Size</label>
+                <select id="sb-size-{{ section.id }}" name="contact[Size]" data-sr-key="size">
+                  <option value="">Choose a size</option><option>Single (3FT)</option><option>Small Double (4FT)</option><option>Standard Double (4FT6)</option><option>King (5FT)</option><option>Super-King (6FT)</option><option>Custom size</option>
+                </select>
+              </div>
+            </div>
+            <div class="sr-form__row">
+              <div class="sr-field"><label for="sb-type-{{ section.id }}">Bed type</label>
+                <select id="sb-type-{{ section.id }}" name="contact[Bed type]" data-sr-key="type">
+                  <option value="">Choose a style</option><option>Wingback</option><option>Chesterfield</option><option>Panel</option><option>Modern</option><option>Traditional</option><option>Sleigh</option><option>Ottoman</option><option>Storage</option><option>TV bed</option><option>Luxury</option><option>Kids bed</option><option>Headboard only</option><option>Something else</option>
+                </select>
+              </div>
+              <div class="sr-field"><label for="sb-colour-{{ section.id }}">Colour</label><input id="sb-colour-{{ section.id }}" name="contact[Colour]" data-sr-key="colour" placeholder="e.g. Emerald green"></div>
+            </div>
+            {%- if full -%}
+              <div class="sr-form__row">
+                <div class="sr-field"><label for="sb-mat-{{ section.id }}">Material</label>
+                  <select id="sb-mat-{{ section.id }}" name="contact[Material]" data-sr-key="material"><option value="">Not sure yet</option><option>Plush velvet</option><option>Linen look</option><option>Chenille</option><option>Teddy bouclé</option><option>Woven fabric</option><option>Other</option></select>
+                </div>
+                <div class="sr-field"><label for="sb-head-{{ section.id }}">Headboard</label>
+                  <select id="sb-head-{{ section.id }}" name="contact[Headboard]" data-sr-key="headboard"><option value="">Not sure yet</option><option>24″</option><option>54″</option><option>Extra-tall bespoke</option><option>Floor-standing</option><option>No headboard</option></select>
+                </div>
+              </div>
+              <div class="sr-form__row">
+                <div class="sr-field"><label for="sb-sto-{{ section.id }}">Storage</label>
+                  <select id="sb-sto-{{ section.id }}" name="contact[Storage]" data-sr-key="storage"><option value="">Not sure yet</option><option>No storage</option><option>2 drawers</option><option>4 drawers</option><option>Gas-lift ottoman</option><option>Custom storage</option></select>
+                </div>
+                <div class="sr-field"><label for="sb-matt-{{ section.id }}">Mattress</label>
+                  <select id="sb-matt-{{ section.id }}" name="contact[Mattress]" data-sr-key="mattress"><option value="">Not sure yet</option><option>No mattress</option><option>1000 Pocket Sprung</option><option>2000 Pocket Sprung</option><option>3000 Pocket Sprung</option><option>Memory Foam</option><option>Memory Orthopaedic</option><option>Pillow Top</option></select>
+                </div>
+              </div>
+              <div class="sr-field"><label for="sb-budget-{{ section.id }}">Budget</label>
+                <select id="sb-budget-{{ section.id }}" name="contact[Budget]"><option value="">Prefer not to say</option><option>Under £400</option><option>£400 – £700</option><option>£700 – £1,000</option><option>£1,000 – £1,500</option><option>£1,500+</option></select>
+              </div>
+            {%- endif -%}
+            <div class="sr-field"><label for="sb-body-{{ section.id }}">Tell us about your bed</label>
+              <textarea id="sb-body-{{ section.id }}" name="contact[body]" data-sr-key="details" placeholder="Dimensions, the look you love, a link to a photo or Pinterest pin, access or delivery notes...">{{ form.body }}</textarea>
+            </div>
+            <div class="sr-bes__ref">{% render 'sr-icon', icon: 'upload' %}<span><b>Got a photo or sketch?</b> Send your request, then email or WhatsApp your images straight after. We'll match them to your enquiry.</span></div>
+            <button type="submit" class="sr-btn sr-btn--plum sr-btn--block">{{ section.settings.button_label | escape }}</button>
+            <p class="sr-form__note">We'll only use your details to reply to this request. <a href="{{ routes.root_url }}policies/privacy-policy">Privacy policy</a>.</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Bespoke quote",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Bespoke service" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Have your <em>own design?</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Send us a photo, a drawing, a screenshot or a bed you want recreated. We'll confirm the size, fabric and finish with you, then make it in our West Yorkshire workshop." },
+    { "type": "textarea", "id": "list", "label": "What we can make (one per line)", "default": "Custom sizes\nCustom fabrics\nCustom colours\nCustom headboards\nCustom storage\nUnique shapes" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "checkbox", "id": "full_form", "label": "Show the full specification form", "default": true },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp number for photos (international format, optional)", "info": "Leave blank to hide the WhatsApp button." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Request my bespoke quote" },
+    { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] }
+  ],
+  "presets": [{ "name": "Bespoke quote" }]
+}
+{% endschema %}

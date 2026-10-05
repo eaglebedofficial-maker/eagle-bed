@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Reviews",
+        "text": "Real reviews from real customers.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "reviews": {
+      "type": "sr-reviews",
+      "settings": {
+        "kicker": "Customer reviews",
+        "heading": "<p>What our customers <em>say</em></p>",
+        "link_label": "",
+        "link": ""
+      }
+    },
+    "gallery": {
+      "type": "sr-gallery",
+      "settings": {
+        "kicker": "Real homes. Real beds.",
+        "heading": "<p>Made by us, <em>loved at home</em></p>",
+        "text": "Photos shared by our customers.",
+        "link_label": "Follow on Instagram",
+        "link": "https://www.instagram.com/eaglebed.co.uk"
+      }
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "reviews",
+    "gallery",
+    "main"
+  ]
+}

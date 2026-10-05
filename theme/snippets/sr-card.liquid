@@ -1,0 +1,83 @@
+{%- comment -%}
+  Premium product card.
+  Params: product (required), swatches (optional "Name:#hex, ..."), eager (bool), index (int)
+{%- endcomment -%}
+{%- liquid
+  assign p = product
+  assign img = p.featured_media
+  assign alt_img = nil
+  for m in p.media
+    if forloop.index == 2 and m.media_type == 'image'
+      assign alt_img = m
+    endif
+  endfor
+  assign ptype = p.type | downcase
+  assign is_bed = false
+  if ptype contains 'bed' or ptype contains 'headboard' or ptype contains 'divan' or ptype contains 'ottoman'
+    assign is_bed = true
+  endif
+  assign rating = p.metafields.reviews.rating.value
+  assign rating_count = p.metafields.reviews.rating_count.value | default: 0
+  assign sizes = 0
+  for o in p.options_with_values
+    assign on = o.name | downcase
+    if on contains 'size'
+      assign sizes = o.values.size
+    endif
+  endfor
+  assign load = 'lazy'
+  if eager
+    assign load = 'eager'
+  endif
+-%}
+<article class="sr-card" data-sr-reveal style="--sr-i: {{ index | default: 0 | modulo: 8 }}">
+  <a class="sr-card__media" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+    {%- if img -%}
+      {%- liquid
+        assign main_class = 'sr-card__main'
+        if alt_img
+          assign main_class = 'sr-card__main has-alt'
+        endif
+      -%}
+      {{ img.preview_image | image_url: width: 900 | image_tag: widths: '360,540,720,900', sizes: '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw', loading: load, alt: '', class: main_class }}
+      {%- if alt_img -%}
+        {{ alt_img.preview_image | image_url: width: 900 | image_tag: widths: '360,540,720,900', sizes: '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw', loading: 'lazy', alt: '', class: 'sr-card__alt' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'sr-card__main' }}
+    {%- endif -%}
+  </a>
+  <div class="sr-card__badges">
+    {%- if p.available == false -%}<span class="sr-badge sr-badge--light">Made to order</span>{%- endif -%}
+    {%- if p.tags contains 'Best seller' or p.tags contains 'best-seller' -%}<span class="sr-badge">Best seller</span>{%- endif -%}
+    {%- if p.tags contains 'New' -%}<span class="sr-badge sr-badge--plum">New</span>{%- endif -%}
+  </div>
+  <button type="button" class="sr-card__wish" data-sr-wish="{{ p.handle }}" aria-pressed="false" aria-label="Save {{ p.title | escape }} to wishlist">{% render 'sr-icon', icon: 'heart' %}</button>
+  <div class="sr-card__quick">
+    <a href="{{ p.url }}" class="sr-btn sr-btn--light" tabindex="-1" data-sr-track="quick_view" data-sr-label="{{ p.title | escape }}">Choose size &amp; fabric</a>
+  </div>
+  <div class="sr-card__body">
+    {%- if p.type != blank -%}<p class="sr-card__type">{{ p.type | escape }}</p>{%- endif -%}
+    <h3 class="sr-card__t"><a href="{{ p.url }}">{{ p.title | escape }}</a></h3>
+    {%- if rating and rating_count > 0 -%}
+      {%- assign pct = rating.rating | divided_by: rating.scale_max | times: 100 | round -%}
+      <div class="sr-card__rating"><span class="sr-stars" style="--p: {{ pct }}%" role="img" aria-label="Rated {{ rating.rating | round: 1 }} out of {{ rating.scale_max }}"></span>({{ rating_count }})</div>
+    {%- endif -%}
+    <div class="sr-card__price">
+      {%- if p.price_varies -%}<small>From</small>{%- endif -%}
+      <b>{{ p.price | money }}</b>
+      {%- if p.compare_at_price > p.price -%}<s><span class="sr-visually-hidden">Was </span>{{ p.compare_at_price | money }}</s>{%- endif -%}
+    </div>
+    {%- if is_bed and swatches != blank -%}
+      {%- assign sw = swatches | split: ',' -%}
+      <div class="sr-card__sw" aria-label="Available in {{ sw.size }} colours">
+        {%- for s in sw limit: 6 -%}{%- assign pr = s | split: ':' -%}<i style="--c: {{ pr[1] | strip }}; --sr-i: {{ forloop.index }}" title="{{ pr[0] | strip | escape }}"></i>{%- endfor -%}
+        {%- if sw.size > 6 -%}<small class="sr-mute" style="font-size:12px;font-weight:700">+{{ sw.size | minus: 6 }}</small>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="sr-card__meta">
+      <span>{% render 'sr-icon', icon: 'truck' %}Free UK delivery</span>
+      {%- if sizes > 1 -%}<span style="color:var(--sr-mute)">{{ sizes }} sizes</span>{%- endif -%}
+    </div>
+  </div>
+</article>

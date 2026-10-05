@@ -1,0 +1,640 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-hero",
+      "settings": {
+        "fallback_collection": "wingback-beds",
+        "focal": "60% 50%",
+        "kicker": "Handmade in West Yorkshire",
+        "heading": "<p>Beds made <em>around you</em></p>",
+        "text": "Premium upholstered beds, mattresses and bespoke designs, made to order in your size, fabric and colour.",
+        "btn1_label": "Shop beds",
+        "btn1_link": "shopify://collections/upholstered-beds",
+        "btn2_label": "Shop mattresses",
+        "btn2_link": "shopify://collections/mattresses",
+        "bespoke_label": "Design your bespoke bed",
+        "bespoke_link": "shopify://pages/bespoke-beds-uk",
+        "card_title": "Have a design in mind?",
+        "card_text": "Send us a photo, a sketch or a Pinterest pin. We'll talk you through making it.",
+        "card_link_label": "Request a bespoke quote",
+        "card_link": "shopify://pages/bespoke-beds-uk"
+      },
+      "blocks": {
+        "chip_1": {
+          "type": "chip",
+          "settings": {
+            "text": "Free UK mainland delivery",
+            "icon": "truck"
+          }
+        },
+        "chip_2": {
+          "type": "chip",
+          "settings": {
+            "text": "Handmade to order",
+            "icon": "spool"
+          }
+        },
+        "chip_3": {
+          "type": "chip",
+          "settings": {
+            "text": "5-year warranty",
+            "icon": "shield"
+          }
+        },
+        "chip_4": {
+          "type": "chip",
+          "settings": {
+            "text": "Klarna & Clearpay",
+            "icon": "card"
+          }
+        }
+      },
+      "block_order": [
+        "chip_1",
+        "chip_2",
+        "chip_3",
+        "chip_4"
+      ]
+    },
+    "trust": {
+      "type": "sr-trust",
+      "settings": {
+        "label": "Why Eagle Bed",
+        "heading": "",
+        "style": "linen"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "spool",
+            "title": "Handmade to order",
+            "text": "Built in our West Yorkshire workshop"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free UK mainland delivery",
+            "text": "By our own team, usually 3–5 working days"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "5-year warranty",
+            "text": "Solid wood frames on every bed"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "card",
+            "title": "Pay in instalments",
+            "text": "Klarna and Clearpay at checkout"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ]
+    },
+    "categories": {
+      "type": "sr-categories",
+      "settings": {
+        "kicker": "Explore the showroom",
+        "heading": "<p>Find your <em>style</em></p>",
+        "text": "Every design is made to order in the size, fabric and colour you choose.",
+        "show_count": true,
+        "link_label": "See every upholstered bed",
+        "link": "shopify://collections/upholstered-beds"
+      },
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "collection": "wingback-beds",
+            "title": ""
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "collection": "chesterfield-beds",
+            "title": ""
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "collection": "ottoman-beds",
+            "title": ""
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "collection": "panel-beds",
+            "title": ""
+          }
+        },
+        "category_5": {
+          "type": "category",
+          "settings": {
+            "collection": "divan-beds",
+            "title": ""
+          }
+        },
+        "category_6": {
+          "type": "category",
+          "settings": {
+            "collection": "divan-ottoman-beds",
+            "title": "Divan ottomans"
+          }
+        },
+        "category_7": {
+          "type": "category",
+          "settings": {
+            "collection": "storage-beds-with-drawers",
+            "title": "Drawer storage beds"
+          }
+        },
+        "category_8": {
+          "type": "category",
+          "settings": {
+            "collection": "kids-beds",
+            "title": ""
+          }
+        },
+        "category_9": {
+          "type": "category",
+          "settings": {
+            "collection": "headboards",
+            "title": ""
+          }
+        },
+        "category_10": {
+          "type": "category",
+          "settings": {
+            "collection": "mattresses",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4",
+        "category_5",
+        "category_6",
+        "category_7",
+        "category_8",
+        "category_9",
+        "category_10"
+      ]
+    },
+    "configurator": {
+      "type": "sr-configurator",
+      "settings": {
+        "kicker": "Design your dream bed",
+        "heading": "<p>If you can imagine it, <em>talk to us about making it</em></p>",
+        "text": "Choose a size, style, fabric and colour and watch the bed change. Then shop beds like it, or send the design to our workshop for a bespoke quote.",
+        "colours": "Grey:#8a8d91, Cream:#e6dac2, Silver:#c0c2c5, Steel:#6b7682, White:#eeeeea, Royal Blue:#23407a, Sky Blue:#8fb5d6, Emerald Green:#1f5c45, Beige:#cdbb9c, Baby Pink:#e3b7bd, Black:#1c1c1e, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93",
+        "note": "Illustration only. Shapes and colours vary by screen, so we'll post free fabric swatches before you order.",
+        "url_default": "shopify://collections/upholstered-beds",
+        "url_modern": "shopify://collections/upholstered-beds",
+        "url_panel": "shopify://collections/panel-beds",
+        "url_chesterfield": "shopify://collections/chesterfield-beds",
+        "url_wingback": "shopify://collections/wingback-beds",
+        "url_ottoman": "shopify://collections/ottoman-beds",
+        "url_storage": "shopify://collections/storage-beds-with-drawers",
+        "url_bespoke": "shopify://pages/bespoke-beds-uk"
+      }
+    },
+    "best": {
+      "type": "sr-products",
+      "settings": {
+        "kicker": "Most ordered",
+        "heading": "<p>Best <em>sellers</em></p>",
+        "text": "The beds our customers order most, each one handmade to order.",
+        "collection": "best-sellers",
+        "limit": 12,
+        "layout": "rail",
+        "bg": "ivory",
+        "swatches": "Grey:#8a8d91, Cream:#e6dac2, Silver:#c0c2c5, Steel:#6b7682, White:#eeeeea, Royal Blue:#23407a, Sky Blue:#8fb5d6, Emerald Green:#1f5c45, Beige:#cdbb9c, Baby Pink:#e3b7bd, Black:#1c1c1e, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93",
+        "button_label": "View all best sellers"
+      }
+    },
+    "process": {
+      "type": "sr-process",
+      "settings": {
+        "kicker": "How bespoke works",
+        "heading": "<p>We make <em>your idea</em></p>",
+        "text": "From a photo on your phone to a finished bed in your bedroom. Five simple steps, one team.",
+        "button_label": "Start your bespoke bed",
+        "button_link": "shopify://pages/bespoke-beds-uk"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Your idea",
+            "text": "Send us a photo, drawing, screenshot or a bed you want recreated, or simply describe what you want."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "We discuss",
+            "text": "We confirm the dimensions, fabric, colour, headboard, storage and mattress with you, and send a clear quote."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "We create",
+            "text": "Your bed is made by hand in our West Yorkshire workshop to the exact specification we agreed."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "We deliver",
+            "text": "Our own team delivers it free to your door anywhere on mainland UK."
+          }
+        },
+        "step_5": {
+          "type": "step",
+          "settings": {
+            "title": "You enjoy",
+            "text": "The finished bed arrives ready for its new home, backed by our 5-year warranty."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5"
+      ]
+    },
+    "reels": {
+      "type": "eb3d-reels",
+      "settings": {
+        "kicker": "Watch",
+        "heading": "See the beds in motion",
+        "text": "Short films of our beds, made by hand in Dewsbury.",
+        "link_label": "",
+        "link": ""
+      },
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "title": "",
+            "product": "cloud-teddy-boucle-ottoman-gas-lift-storage-bed"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "title": "",
+            "product": "chesterfield-upholstered-bed-frame"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "title": "",
+            "product": "liberty-wingback-upholstered-bed-frame"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "title": "",
+            "product": "bumper-ottoman-gas-lift-divan-bed"
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4"
+      ]
+    },
+    "bespoke": {
+      "type": "sr-bespoke",
+      "settings": {
+        "kicker": "Bespoke service",
+        "heading": "<p>Have your <em>own design?</em></p>",
+        "text": "Send us a photo, a drawing, a screenshot or a bed you want recreated. We'll confirm the size, fabric and finish with you, then make it in our West Yorkshire workshop.",
+        "list": "Custom sizes\nCustom fabrics\nCustom colours\nCustom headboards\nCustom storage\nUnique shapes",
+        "full_form": false,
+        "whatsapp": "",
+        "button_label": "Request my bespoke quote",
+        "bg": "linen"
+      }
+    },
+    "quiz": {
+      "type": "sr-mattress-quiz",
+      "settings": {
+        "kicker": "Find your perfect mattress",
+        "heading": "<p>Six questions. <em>One better night.</em></p>",
+        "text": "Tell us how you sleep and we'll match you with the mattress that suits you, priced in your size.",
+        "small": "Takes about 30 seconds",
+        "all_link": "shopify://collections/mattresses",
+        "bg": "ivory"
+      },
+      "blocks": {
+        "mattress_1": {
+          "type": "mattress",
+          "settings": {
+            "product": "1000-pocket-sprung-mattress-uk",
+            "firmness": 6,
+            "type": "pocket",
+            "positions": "back,front,combo",
+            "partner": true,
+            "note": "Everyday pocket-spring support at our most affordable spring price."
+          }
+        },
+        "mattress_2": {
+          "type": "mattress",
+          "settings": {
+            "product": "2000-pocket-sprung-pillow-top-mattress-uk",
+            "firmness": 6.5,
+            "type": "hybrid",
+            "positions": "side,back,combo",
+            "partner": true,
+            "note": "Medium-firm springs with a plush pillow top."
+          }
+        },
+        "mattress_3": {
+          "type": "mattress",
+          "settings": {
+            "product": "3000-pocket-sprung-mattress-uk",
+            "firmness": 6,
+            "type": "pocket",
+            "positions": "side,back,combo",
+            "partner": true,
+            "note": "Our most supportive spring count for pressure relief."
+          }
+        },
+        "mattress_4": {
+          "type": "mattress",
+          "settings": {
+            "product": "memory-foam-mattress-uk",
+            "firmness": 4,
+            "type": "memory",
+            "positions": "side,combo",
+            "partner": true,
+            "note": "Contouring memory foam that cradles pressure points."
+          }
+        },
+        "mattress_5": {
+          "type": "mattress",
+          "settings": {
+            "product": "memory-orthopaedic-mattress-uk",
+            "firmness": 8,
+            "type": "memory",
+            "positions": "back,front",
+            "partner": true,
+            "note": "Firm orthopaedic support with a memory foam comfort layer."
+          }
+        },
+        "mattress_6": {
+          "type": "mattress",
+          "settings": {
+            "product": "pillow-top-mattress-uk",
+            "firmness": 5,
+            "type": "hybrid",
+            "positions": "side,combo",
+            "partner": true,
+            "note": "A soft, cushioned pillow top for a hotel feel."
+          }
+        }
+      },
+      "block_order": [
+        "mattress_1",
+        "mattress_2",
+        "mattress_3",
+        "mattress_4",
+        "mattress_5",
+        "mattress_6"
+      ]
+    },
+    "trending": {
+      "type": "sr-products",
+      "settings": {
+        "kicker": "Just added",
+        "heading": "<p>New &amp; <em>trending</em></p>",
+        "text": "Recently added designs and fabrics.",
+        "collection": "new-trending",
+        "limit": 12,
+        "layout": "rail",
+        "bg": "linen",
+        "swatches": "Grey:#8a8d91, Cream:#e6dac2, Silver:#c0c2c5, Steel:#6b7682, White:#eeeeea, Royal Blue:#23407a, Sky Blue:#8fb5d6, Emerald Green:#1f5c45, Beige:#cdbb9c, Baby Pink:#e3b7bd, Black:#1c1c1e, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93",
+        "button_label": "View all new beds"
+      }
+    },
+    "reviews": {
+      "type": "sr-reviews",
+      "settings": {
+        "kicker": "Customer reviews",
+        "heading": "<p>What our customers <em>say</em></p>",
+        "link_label": "",
+        "link": ""
+      }
+    },
+    "gallery": {
+      "type": "sr-gallery",
+      "settings": {
+        "kicker": "Real homes. Real beds.",
+        "heading": "<p>Made by us, <em>loved at home</em></p>",
+        "text": "Photos shared by our customers. Tag @eaglebed.co.uk to be featured.",
+        "link_label": "Follow on Instagram",
+        "link": "https://www.instagram.com/eaglebed.co.uk"
+      }
+    },
+    "guides": {
+      "type": "sr-guides",
+      "settings": {
+        "kicker": "Advice from the workshop",
+        "heading": "<p>Buying <em>guides</em></p>",
+        "text": "Straight answers on sizes, storage, fabrics and mattresses, so you choose once and choose right.",
+        "blog": "news",
+        "limit": 6
+      },
+      "blocks": {
+        "guide_1": {
+          "type": "guide",
+          "settings": {
+            "article": "news/how-to-choose-the-best-bed-in-the-uk-2026-buying-guide",
+            "kicker": "Start here"
+          }
+        },
+        "guide_2": {
+          "type": "guide",
+          "settings": {
+            "article": "news/uk-bed-size-guide",
+            "kicker": "Sizes"
+          }
+        },
+        "guide_3": {
+          "type": "guide",
+          "settings": {
+            "article": "news/ottoman-bed-vs-divan-bed-uk",
+            "kicker": "Storage"
+          }
+        },
+        "guide_4": {
+          "type": "guide",
+          "settings": {
+            "article": "news/pocket-sprung-vs-memory-foam-mattress",
+            "kicker": "Mattresses"
+          }
+        },
+        "guide_5": {
+          "type": "guide",
+          "settings": {
+            "article": "news/how-to-measure-bedroom-for-new-bed-uk",
+            "kicker": "Planning"
+          }
+        },
+        "guide_6": {
+          "type": "guide",
+          "settings": {
+            "article": "news/best-beds-for-small-bedrooms",
+            "kicker": "Small rooms"
+          }
+        }
+      },
+      "block_order": [
+        "guide_1",
+        "guide_2",
+        "guide_3",
+        "guide_4",
+        "guide_5",
+        "guide_6"
+      ]
+    },
+    "faq": {
+      "type": "sr-faq",
+      "settings": {
+        "kicker": "Good to know",
+        "heading": "<p>Questions, <em>answered</em></p>",
+        "text": "",
+        "button_label": "Ask us anything",
+        "button_link": "shopify://pages/contact",
+        "open_first": true,
+        "schema": true,
+        "bg": "linen"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is delivery really free?",
+            "a": "<p>Yes. Delivery is free to mainland UK addresses, and our own team brings your bed to your door. If you are outside mainland UK, please contact us before ordering and we will confirm the options.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "q": "How long will my bed take to arrive?",
+            "a": "<p>Every bed is made to order. Most orders are delivered within 3–5 working days. We will contact you to arrange a delivery day that suits you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you make a bed in a custom size, fabric or design?",
+            "a": "<p>Often, yes. Because we make every bed by hand, custom sizes, fabrics, colours, headboard heights and storage are usually possible. Send us a photo, sketch or description through our <a href=\"/pages/bespoke-beds-uk#quote\">bespoke quote form</a> and we will talk it through with you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I see the fabric before I order?",
+            "a": "<p>Yes. Colours look different on every screen, so we post free fabric swatches. <a href=\"/pages/request-a-swatch\">Request your swatches here</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "q": "What warranty do I get?",
+            "a": "<p>Our beds are built on solid wood frames and come with a 5-year warranty. See our <a href=\"/pages/warranty\">warranty page</a> for the details.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I spread the cost?",
+            "a": "<p>Yes. Klarna and Clearpay are available at checkout. See <a href=\"/pages/finance-options\">finance options</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "q": "Where are your beds made?",
+            "a": "<p>In our workshop on Pepproyd Street, Dewsbury, West Yorkshire. You are buying direct from the people who make the bed.</p>",
+            "only_on": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ]
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "categories",
+    "configurator",
+    "best",
+    "process",
+    "reels",
+    "bespoke",
+    "quiz",
+    "trending",
+    "reviews",
+    "gallery",
+    "guides",
+    "faq",
+    "help"
+  ]
+}

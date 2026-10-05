@@ -1,0 +1,37 @@
+<section class="sr sr-sec sr-sec--tight" aria-labelledby="SrHelp-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-help" data-sr-reveal="scale">
+      <div>
+        <p class="sr-kicker" style="color:#E3C595">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrHelp-{{ section.id }}" class="sr-h2">{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        <p class="sr-lead" style="color:rgba(247,243,238,.76)">{{ section.settings.text | escape }}</p>
+      </div>
+      <div class="sr-help__ways">
+        {%- if section.settings.phone != blank -%}
+          <a class="sr-way" href="tel:{{ section.settings.phone | remove: ' ' }}" data-sr-track="contact_click" data-sr-label="phone">{% render 'sr-icon', icon: 'phone' %}<span><b>Call the workshop</b><small>{{ section.settings.phone | escape }} · {{ section.settings.hours | escape }}</small></span></a>
+        {%- endif -%}
+        {%- if section.settings.whatsapp != blank -%}
+          <a class="sr-way" href="https://wa.me/{{ section.settings.whatsapp | remove: ' ' | remove: '+' }}" target="_blank" rel="noopener" data-sr-track="contact_click" data-sr-label="whatsapp">{% render 'sr-icon', icon: 'whatsapp' %}<span><b>WhatsApp us</b><small>Send photos of your room or idea</small></span></a>
+        {%- endif -%}
+        <a class="sr-way" href="{{ section.settings.form_link }}" data-sr-track="contact_click" data-sr-label="form">{% render 'sr-icon', icon: 'chat' %}<span><b>{{ section.settings.form_label | escape }}</b><small>We reply within one working day</small></span></a>
+        <a class="sr-way" href="mailto:{{ shop.email }}" data-sr-track="contact_click" data-sr-label="email">{% render 'sr-icon', icon: 'mail' %}<span><b>Email</b><small>{{ shop.email }}</small></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Expert help",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Free design consultation" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Not sure what to <em>choose?</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "07417 439197" },
+    { "type": "text", "id": "hours", "label": "Hours", "default": "Mon–Fri 9am–6pm" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp number (international format, optional)" },
+    { "type": "text", "id": "form_label", "label": "Form link label", "default": "Get expert help" },
+    { "type": "url", "id": "form_link", "label": "Form link" }
+  ],
+  "presets": [{ "name": "Expert help" }]
+}
+{% endschema %}

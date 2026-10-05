@@ -1,0 +1,234 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Mattress guide",
+        "text": "Firmness, support, materials and sizes explained in plain English, plus a 30-second quiz to find your match.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "quiz": {
+      "type": "sr-mattress-quiz",
+      "settings": {
+        "kicker": "Find your perfect mattress",
+        "heading": "<p>Six questions. <em>One better night.</em></p>",
+        "text": "Tell us how you sleep and we'll match you with the mattress that suits you, priced in your size.",
+        "small": "Takes about 30 seconds",
+        "all_link": "shopify://collections/mattresses",
+        "bg": "linen"
+      },
+      "blocks": {
+        "mattress_1": {
+          "type": "mattress",
+          "settings": {
+            "product": "1000-pocket-sprung-mattress-uk",
+            "firmness": 6,
+            "type": "pocket",
+            "positions": "back,front,combo",
+            "partner": true,
+            "note": "Everyday pocket-spring support at our most affordable spring price."
+          }
+        },
+        "mattress_2": {
+          "type": "mattress",
+          "settings": {
+            "product": "2000-pocket-sprung-pillow-top-mattress-uk",
+            "firmness": 6.5,
+            "type": "hybrid",
+            "positions": "side,back,combo",
+            "partner": true,
+            "note": "Medium-firm springs with a plush pillow top."
+          }
+        },
+        "mattress_3": {
+          "type": "mattress",
+          "settings": {
+            "product": "3000-pocket-sprung-mattress-uk",
+            "firmness": 6,
+            "type": "pocket",
+            "positions": "side,back,combo",
+            "partner": true,
+            "note": "Our most supportive spring count for pressure relief."
+          }
+        },
+        "mattress_4": {
+          "type": "mattress",
+          "settings": {
+            "product": "memory-foam-mattress-uk",
+            "firmness": 4,
+            "type": "memory",
+            "positions": "side,combo",
+            "partner": true,
+            "note": "Contouring memory foam that cradles pressure points."
+          }
+        },
+        "mattress_5": {
+          "type": "mattress",
+          "settings": {
+            "product": "memory-orthopaedic-mattress-uk",
+            "firmness": 8,
+            "type": "memory",
+            "positions": "back,front",
+            "partner": true,
+            "note": "Firm orthopaedic support with a memory foam comfort layer."
+          }
+        },
+        "mattress_6": {
+          "type": "mattress",
+          "settings": {
+            "product": "pillow-top-mattress-uk",
+            "firmness": 5,
+            "type": "hybrid",
+            "positions": "side,combo",
+            "partner": true,
+            "note": "A soft, cushioned pillow top for a hotel feel."
+          }
+        }
+      },
+      "block_order": [
+        "mattress_1",
+        "mattress_2",
+        "mattress_3",
+        "mattress_4",
+        "mattress_5",
+        "mattress_6"
+      ]
+    },
+    "anatomy": {
+      "type": "eb3d-anatomy",
+      "settings": {
+        "kicker": "Inside the mattress",
+        "heading": "Built layer by layer",
+        "text": "Scroll to take one apart. Layers vary by model, and every mattress is made in the UK, comes in all five UK sizes and carries a 5-year guarantee.",
+        "collection": "mattresses",
+        "button_label": "Shop mattresses"
+      },
+      "blocks": {
+        "layer_1": {
+          "type": "layer",
+          "settings": {
+            "title": "Hygienic cover",
+            "text": "A soft, easy-care outer cover that keeps the mattress fresh. Removable on our Memory Orthopaedic model.",
+            "look": "cover"
+          }
+        },
+        "layer_2": {
+          "type": "layer",
+          "settings": {
+            "title": "Pillow top comfort layer",
+            "text": "A plush, cushioned top for pressure relief, on our Pillow Top and 2000 Pocket Sprung mattresses.",
+            "look": "pillow"
+          }
+        },
+        "layer_3": {
+          "type": "layer",
+          "settings": {
+            "title": "Memory foam comfort layer",
+            "text": "Contours to your shape through the night. Used in our Memory Foam and Memory Orthopaedic mattresses.",
+            "look": "memory"
+          }
+        },
+        "layer_4": {
+          "type": "layer",
+          "settings": {
+            "title": "Individual pocket spring core",
+            "text": "1,000, 2,000 or 3,000 springs, each in its own pocket, moving independently to support you and cut partner disturbance.",
+            "look": "springs"
+          }
+        }
+      },
+      "block_order": [
+        "layer_1",
+        "layer_2",
+        "layer_3",
+        "layer_4"
+      ]
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    },
+    "faq": {
+      "type": "sr-faq",
+      "settings": {
+        "kicker": "Mattress questions",
+        "heading": "<p>Good to <em>know</em></p>",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": true,
+        "schema": true,
+        "bg": "ivory"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "q": "Which mattress is best for side sleepers?",
+            "a": "<p>Side sleepers usually prefer a softer or medium feel that lets the shoulders and hips sink in slightly, such as memory foam or a pillow top. Try our <a href=\"/pages/mattress-guide#mattress-finder\">mattress finder</a> for a personal match.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "q": "Pocket sprung or memory foam?",
+            "a": "<p>Pocket springs move independently, feel more breathable and bouncy, and limit partner disturbance. Memory foam contours to your body and absorbs movement. A pillow top adds a plush layer over springs. Read our <a href=\"/blogs/news/pocket-sprung-vs-memory-foam-mattress\">full comparison</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "q": "What sizes do your mattresses come in?",
+            "a": "<p>All five standard UK sizes: Single (90 × 190 cm), Small Double (120 × 190 cm), Double (135 × 190 cm), King (150 × 200 cm) and Super King (180 × 200 cm).</p>",
+            "only_on": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "q": "Is mattress delivery free?",
+            "a": "<p>Yes, delivery is free to mainland UK addresses, and it can come with your bed.</p>",
+            "only_on": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ]
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "quiz",
+    "anatomy",
+    "main",
+    "faq",
+    "help"
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Our story",
+        "text": "We believe your bedroom should be personal. So we make beds around you, not the other way round.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    },
+    "trust": {
+      "type": "sr-trust",
+      "settings": {
+        "label": "Our promise",
+        "heading": "",
+        "style": "night"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "spool",
+            "title": "Handmade to order",
+            "text": "Built in our West Yorkshire workshop"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free UK mainland delivery",
+            "text": "By our own team, usually 3–5 working days"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "5-year warranty",
+            "text": "Solid wood frames on every bed"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "card",
+            "title": "Pay in instalments",
+            "text": "Klarna and Clearpay at checkout"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ]
+    },
+    "process": {
+      "type": "sr-process",
+      "settings": {
+        "kicker": "How we work",
+        "heading": "<p>From your idea <em>to your bedroom</em></p>",
+        "text": "",
+        "button_label": "Start a bespoke bed",
+        "button_link": "shopify://pages/bespoke-beds-uk"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Your idea",
+            "text": "Send us a photo, drawing, screenshot or a bed you want recreated, or simply describe what you want."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "We discuss",
+            "text": "We confirm the dimensions, fabric, colour, headboard, storage and mattress with you, and send a clear quote."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "We create",
+            "text": "Your bed is made by hand in our West Yorkshire workshop to the exact specification we agreed."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "We deliver",
+            "text": "Our own team delivers it free to your door anywhere on mainland UK."
+          }
+        },
+        "step_5": {
+          "type": "step",
+          "settings": {
+            "title": "You enjoy",
+            "text": "The finished bed arrives ready for its new home, backed by our 5-year warranty."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5"
+      ]
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "trust",
+    "process",
+    "help"
+  ]
+}

@@ -1,0 +1,28 @@
+{%- liquid
+  assign title = section.settings.title | default: page.title | default: blog.title
+  assign img = section.settings.image
+-%}
+<section class="sr sr-phero{% if img != blank %} sr-phero--img{% endif %}">
+  {%- if img != blank -%}<div class="sr-phero__bg" aria-hidden="true">{{ img | image_url: width: 2000 | image_tag: widths: '750,1200,2000', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: '' }}</div>{%- endif -%}
+  <div class="sr-wrap">
+    <nav class="sr-phero__crumbs" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">{{ title | escape }}</span></nav>
+    {%- if section.settings.kicker != blank -%}<p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>{%- endif -%}
+    <h1 class="sr-h1" style="font-size:clamp(36px,6vw,68px);max-width:18ch" data-sr-reveal>{{ title | escape }}</h1>
+    {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+    {%- if section.settings.btn_label != blank -%}<div class="sr-btns" data-sr-reveal><a class="sr-btn{% if img != blank %} sr-btn--light{% endif %}" href="{{ section.settings.btn_link }}">{{ section.settings.btn_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a></div>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Page hero",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title override", "info": "Leave blank to use the page title (best for SEO)." },
+    { "type": "text", "id": "kicker", "label": "Kicker" },
+    { "type": "textarea", "id": "text", "label": "Intro" },
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "btn_label", "label": "Button" },
+    { "type": "url", "id": "btn_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Page hero" }]
+}
+{% endschema %}

@@ -1,0 +1,164 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Bespoke beds, made in West Yorkshire",
+        "text": "Have a design in mind? We can create bespoke beds tailored to your size, style and space.",
+        "btn_label": "Request a bespoke quote",
+        "btn_link": "shopify://pages/bespoke-beds-uk"
+      }
+    },
+    "process": {
+      "type": "sr-process",
+      "settings": {
+        "kicker": "How it works",
+        "heading": "<p>We make <em>your idea</em></p>",
+        "text": "Five simple steps, one team, from first message to finished bed.",
+        "button_label": "",
+        "button_link": ""
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Your idea",
+            "text": "Send us a photo, drawing, screenshot or a bed you want recreated, or simply describe what you want."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "We discuss",
+            "text": "We confirm the dimensions, fabric, colour, headboard, storage and mattress with you, and send a clear quote."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "We create",
+            "text": "Your bed is made by hand in our West Yorkshire workshop to the exact specification we agreed."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "We deliver",
+            "text": "Our own team delivers it free to your door anywhere on mainland UK."
+          }
+        },
+        "step_5": {
+          "type": "step",
+          "settings": {
+            "title": "You enjoy",
+            "text": "The finished bed arrives ready for its new home, backed by our 5-year warranty."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5"
+      ]
+    },
+    "quote": {
+      "type": "sr-bespoke",
+      "settings": {
+        "kicker": "Bespoke bed request",
+        "heading": "<p>Tell us about <em>your bed</em></p>",
+        "text": "The more detail the better: a photo, measurements, the fabric you love. We usually reply within one working day.",
+        "list": "Custom sizes\nCustom fabrics\nCustom colours\nCustom headboards\nCustom storage\nUnique shapes",
+        "full_form": true,
+        "whatsapp": "",
+        "button_label": "Request my bespoke quote",
+        "bg": "linen"
+      }
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    },
+    "faq": {
+      "type": "sr-faq",
+      "settings": {
+        "kicker": "Bespoke questions",
+        "heading": "<p>Good to <em>know</em></p>",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": true,
+        "schema": true,
+        "bg": "ivory"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "q": "What can you make?",
+            "a": "<p>Custom sizes, shapes, fabrics, colours, headboard heights and styles, storage (drawers or gas-lift ottoman), and matching headboards. If you have a photo of a bed you love, send it and we will tell you honestly what is possible.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "q": "How much does a bespoke bed cost?",
+            "a": "<p>It depends on the size, design and fabric. Most bespoke beds start from a similar price to the closest bed in our range. Send your idea and we will reply with a clear quote, usually within one working day.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I send my photos or drawings?",
+            "a": "<p>Fill in the quote form, then email your images straight after to eaglebedofficial@gmail.com with your name. We will match them to your request.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "q": "Is delivery free on bespoke beds?",
+            "a": "<p>Yes. Delivery is free to mainland UK addresses, just like the rest of our range.</p>",
+            "only_on": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ]
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "process",
+    "quote",
+    "main",
+    "faq",
+    "help"
+  ]
+}

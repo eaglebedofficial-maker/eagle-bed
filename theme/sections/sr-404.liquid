@@ -1,0 +1,24 @@
+<section class="sr sr-sec sr-404">
+  <div class="sr-wrap">
+    <p class="sr-kicker" style="justify-content:center">Page not found</p>
+    <h1 class="sr-h1"><span aria-hidden="true">404</span>This page has moved, but the beds haven't</h1>
+    <p class="sr-lead" style="margin-left:auto;margin-right:auto">Search the showroom or jump straight to a collection.</p>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="sr-search">
+      <label for="Sr404Search" class="sr-visually-hidden">Search</label>
+      <input id="Sr404Search" type="search" name="q" placeholder="Try “king size ottoman” or “velvet wingback”" autocomplete="off">
+      <input type="hidden" name="options[prefix]" value="last">
+      <button class="sr-btn" type="submit">Search</button>
+    </form>
+    <div class="sr-btns" style="justify-content:center">
+      {%- for link in linklists[section.settings.menu].links limit: 8 -%}
+        <a class="sr-chip" href="{{ link.url }}" style="text-decoration:none">{{ link.title | escape }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Showroom 404",
+  "settings": [{ "type": "link_list", "id": "menu", "label": "Quick links", "default": "footer" }]
+}
+{% endschema %}

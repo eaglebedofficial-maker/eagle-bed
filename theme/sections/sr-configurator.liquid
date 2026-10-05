@@ -1,0 +1,144 @@
+<script src="{{ 'sr-configurator.js' | asset_url }}" defer></script>
+{%- liquid
+  assign cols = section.settings.colours | split: ','
+  assign styles = 'modern:Modern,minimalist:Minimalist,traditional:Traditional,chesterfield:Chesterfield,wingback:Wingback,sleigh:Sleigh,panel:Panel,ottoman:Ottoman,storage:Storage,tv:TV bed,luxury:Luxury' | split: ','
+-%}
+<section class="sr sr-sec sr-sec--linen" id="design-your-bed" aria-labelledby="SrCfg-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <div class="sr-head__t">
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrCfg-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        <p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>
+      </div>
+    </div>
+
+    <div class="sr-cfg" data-sr-cfg
+      data-url-default="{{ section.settings.url_default }}"
+      data-url-modern="{{ section.settings.url_modern }}" data-url-minimalist="{{ section.settings.url_modern }}" data-url-traditional="{{ section.settings.url_panel }}"
+      data-url-chesterfield="{{ section.settings.url_chesterfield }}" data-url-wingback="{{ section.settings.url_wingback }}" data-url-sleigh="{{ section.settings.url_default }}"
+      data-url-panel="{{ section.settings.url_panel }}" data-url-ottoman="{{ section.settings.url_ottoman }}" data-url-storage="{{ section.settings.url_storage }}"
+      data-url-tv="{{ section.settings.url_bespoke }}" data-url-luxury="{{ section.settings.url_default }}">
+      <div class="sr-cfg__stage" data-sr-reveal="scale">
+        <div class="sr-cfg__room" data-room="day" aria-hidden="true"></div>
+        <div class="sr-cfg__lamp" aria-hidden="true"></div>
+        <svg class="sr-cfg__svg" viewBox="70 50 660 455" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Preview of your bed design"><title>Your bed design preview</title></svg>
+        <div class="sr-cfg__tag" data-sr-cfg-tags aria-hidden="true"></div>
+        <button type="button" class="sr-cfg__lift" data-sr-cfg-lift>Open / close storage</button>
+        <span class="sr-cfg__dim" data-sr-cfg-dim>150 × 200 cm</span>
+      </div>
+
+      <form class="sr-cfg__panel" data-sr-cfg-form onsubmit="return false" aria-label="Bed options">
+        <fieldset class="sr-cfg__group">
+          <legend>Size <output data-for="size" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            {%- assign sizes = 'single:Single:Single (3FT),small:Small double:Small Double (4FT),double:Double:Standard Double (4FT6),king:King:King (5FT),superking:Super king:Super-King (6FT),custom:Custom:Custom size' | split: ',' -%}
+            {%- for s in sizes -%}{%- assign p = s | split: ':' -%}
+              <label class="sr-opt"><input type="radio" name="size" value="{{ p[0] }}" data-label="{{ p[2] }}"{% if p[0] == 'king' %} checked{% endif %}><span>{{ p[1] }}</span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Style <output data-for="style" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            {%- for s in styles -%}{%- assign p = s | split: ':' -%}
+              <label class="sr-opt"><input type="radio" name="style" value="{{ p[0] }}" data-label="{{ p[1] }}"{% if p[0] == 'wingback' %} checked{% endif %}><span>{{ p[1] }}</span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Fabric <output data-for="fabric" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            {%- assign fabs = 'velvet:Plush velvet,linen:Linen look,chenille:Chenille,boucle:Teddy bouclé,woven:Woven fabric' | split: ',' -%}
+            {%- for f in fabs -%}{%- assign p = f | split: ':' -%}
+              <label class="sr-opt"><input type="radio" name="fabric" value="{{ p[0] }}" data-label="{{ p[1] }}"{% if forloop.first %} checked{% endif %}><span>{{ p[1] }}</span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Colour <output data-for="colour" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            {%- for c in cols -%}{%- assign p = c | split: ':' -%}{%- assign n = p[0] | strip -%}{%- assign h = p[1] | strip -%}
+              <label class="sr-opt sr-opt--sw" title="{{ n | escape }}"><input type="radio" name="colour" value="{{ n | escape }}" data-hex="{{ h }}" data-label="{{ n | escape }}"{% if forloop.index == 8 %} checked{% endif %} aria-label="{{ n | escape }}"><span style="--c: {{ h }}"></span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Headboard <output data-for="head" aria-live="polite"></output></legend>
+          <div class="sr-opts">
+            <label class="sr-opt"><input type="radio" name="head" value="24" data-label="24″"><span>24″ low</span></label>
+            <label class="sr-opt"><input type="radio" name="head" value="54" data-label="54″" checked><span>54″ tall</span></label>
+            <label class="sr-opt"><input type="radio" name="head" value="xl" data-label="Extra-tall bespoke"><span>Extra tall</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Storage <output data-for="storage" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            <label class="sr-opt"><input type="radio" name="storage" value="none" data-label="No storage"><span>None</span></label>
+            <label class="sr-opt"><input type="radio" name="storage" value="drawers2" data-label="2 drawers"><span>2 drawers</span></label>
+            <label class="sr-opt"><input type="radio" name="storage" value="drawers4" data-label="4 drawers"><span>4 drawers</span></label>
+            <label class="sr-opt"><input type="radio" name="storage" value="ottoman" data-label="Gas-lift ottoman" checked><span>Ottoman lift</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>Mattress <output data-for="mattress" aria-live="polite"></output></legend>
+          <div class="sr-opts sr-opts--scroll">
+            {%- assign mats = 'none:No mattress,p1000:1000 Pocket Sprung,p2000:2000 Pocket Sprung,p3000:3000 Pocket Sprung,memory:Memory Foam,ortho:Memory Orthopaedic,pillow:Pillow Top' | split: ',' -%}
+            {%- for m in mats -%}{%- assign p = m | split: ':' -%}
+              <label class="sr-opt"><input type="radio" name="mattress" value="{{ p[0] }}" data-label="{{ p[1] }}"{% if p[0] == 'p2000' %} checked{% endif %}><span>{{ p[1] }}</span></label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+
+        <fieldset class="sr-cfg__group">
+          <legend>See it in a room</legend>
+          <div class="sr-opts">
+            <label class="sr-opt"><input type="radio" name="room" value="day" checked><span>Daylight</span></label>
+            <label class="sr-opt"><input type="radio" name="room" value="hotel"><span>Hotel suite</span></label>
+            <label class="sr-opt"><input type="radio" name="room" value="night"><span>Evening</span></label>
+            <label class="sr-opt"><input type="radio" name="lamp" value="on" checked><span>Lamp on</span></label>
+            <label class="sr-opt"><input type="radio" name="lamp" value="off"><span>Lamp off</span></label>
+          </div>
+        </fieldset>
+
+        <div class="sr-cfg__sum">
+          <h3>Your bed</h3>
+          <p data-sr-cfg-summary aria-live="polite"></p>
+          <div class="sr-btns">
+            <a class="sr-btn sr-btn--light" href="{{ section.settings.url_default }}" data-sr-cfg-shop data-sr-track="configurator_shop">Shop beds like this</a>
+            <a class="sr-btn sr-btn--ghost-light" href="{{ section.settings.url_bespoke }}#quote" data-sr-cfg-quote>Send this design for a quote</a>
+          </div>
+          <p style="margin-top:14px;font-size:12.5px">{{ section.settings.note | escape }}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Design your dream bed",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Design your dream bed" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>If you can imagine it, <em>we can talk about making it</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Choose a size, style, fabric and colour and watch the bed change. Then shop beds like it, or send the design to our workshop for a bespoke quote." },
+    { "type": "textarea", "id": "colours", "label": "Colours (Name:#hex, comma separated)", "default": "Grey:#8a8d91, Cream:#e6dac2, Silver:#c0c2c5, Steel:#6b7682, White:#eeeeea, Royal Blue:#23407a, Sky Blue:#8fb5d6, Emerald Green:#1f5c45, Beige:#cdbb9c, Baby Pink:#e3b7bd, Black:#1c1c1e, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93" },
+    { "type": "text", "id": "note", "label": "Small print", "default": "Illustration only. Shapes and colours vary by screen, so we'll post free fabric swatches before you order." },
+    { "type": "header", "content": "Where each style links to" },
+    { "type": "url", "id": "url_default", "label": "All beds" },
+    { "type": "url", "id": "url_modern", "label": "Modern / minimalist" },
+    { "type": "url", "id": "url_panel", "label": "Panel / traditional" },
+    { "type": "url", "id": "url_chesterfield", "label": "Chesterfield" },
+    { "type": "url", "id": "url_wingback", "label": "Wingback" },
+    { "type": "url", "id": "url_ottoman", "label": "Ottoman" },
+    { "type": "url", "id": "url_storage", "label": "Storage (drawers)" },
+    { "type": "url", "id": "url_bespoke", "label": "Bespoke quote page" }
+  ],
+  "presets": [{ "name": "Design your dream bed" }]
+}
+{% endschema %}

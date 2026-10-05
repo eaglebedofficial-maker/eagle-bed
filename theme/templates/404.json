@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "sr-404",
+      "settings": {
+        "menu": "footer"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

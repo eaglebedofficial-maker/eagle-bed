@@ -1,0 +1,169 @@
+{
+  "sections": {
+    "main": {
+      "type": "eb3d-collection",
+      "settings": {
+        "show_description": true,
+        "stat_2": "Handmade in Dewsbury",
+        "stat_3": "Free mainland UK delivery",
+        "chips": [
+          "upholstered-beds",
+          "wingback-beds",
+          "chesterfield-beds",
+          "panel-beds",
+          "ottoman-beds",
+          "divan-beds",
+          "storage-beds",
+          "divan-ottoman-beds",
+          "kids-beds",
+          "headboards",
+          "mattresses"
+        ],
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "per_page": 24,
+        "show_about": true
+      }
+    },
+    "guide": {
+      "type": "sr-collection-guide",
+      "settings": {},
+      "blocks": {
+        "guide_1": {
+          "type": "guide",
+          "settings": {
+            "only_on": "ottoman-beds,divan-ottoman-beds",
+            "heading": "How to choose an ottoman bed",
+            "body": "<p>An ottoman bed lifts on gas struts to reveal the whole area under the mattress, which is the biggest storage space any bed can give you. It suits smaller bedrooms where there is no room for drawers to open, and it is ideal for duvets, suitcases and seasonal clothes.</p><h3>Frame or divan?</h3><p>An <strong>ottoman bed frame</strong> has an upholstered frame and headboard, so it looks like a statement bed. An <strong>ottoman divan</strong> is a lower-profile base with a separate headboard. Both are handmade to order in our workshop.</p><h3>What to check</h3><ul><li>Leave enough space at the foot (or side, on side-lift models) to lift the base.</li><li>Choose a mattress that suits the lift. Most of our mattresses are designed to sit well on gas-lift bases.</li><li>Order free swatches to see the fabric in your light.</li></ul>",
+            "links": "Ottoman vs divan: which is better?|/blogs/news/ottoman-bed-vs-divan-bed-uk\nHow do ottoman beds work?|/blogs/news/how-do-ottoman-beds-work\nHow much storage does a gas-lift bed give?|/blogs/news/ottoman-storage-beds-uk-how-much-storage-does-a-gas-lift-bed-give-you\nOttoman bed buying guide|/pages/ottoman-bed-frame-buying-guide"
+          }
+        },
+        "guide_2": {
+          "type": "guide",
+          "settings": {
+            "only_on": "divan-beds",
+            "heading": "How to choose a divan bed",
+            "body": "<p>A divan is a solid upholstered base that sits close to the floor and supports the mattress evenly across its whole surface. Divans are practical, quick to set up and work in any room.</p><h3>Storage options</h3><p>Choose a plain divan, a divan with drawers (2 or 4), or a gas-lift ottoman divan for maximum storage. Pair it with one of our upholstered headboards in a matching fabric.</p><h3>Sizes</h3><p>Every divan is available from Single (3FT) to Super King (6FT), and we can quote for custom sizes.</p>",
+            "links": "Divan bed vs bed frame|/blogs/news/divan-bed-vs-bed-frame-uk\nShop headboards|/collections/headboards\nUK bed size guide|/blogs/news/uk-bed-size-guide"
+          }
+        },
+        "guide_3": {
+          "type": "guide",
+          "settings": {
+            "only_on": "wingback-beds",
+            "heading": "How to choose a wingback bed",
+            "body": "<p>A wingback bed has a tall headboard with side \"wings\" that wrap around the pillows. It makes a strong focal point and feels sheltered and cosy, which is why it suits main bedrooms and larger rooms best.</p><h3>Room size</h3><p>The wings add width to the frame, so measure your wall and allow space for bedside tables. For a smaller room, choose a lower headboard or a slimmer wing.</p><h3>Fabric</h3><p>Plush velvet shows off the deep channels and curves of a wingback. Order free swatches to compare colours before you buy.</p>",
+            "links": "Wingback bed buying guide|/blogs/news/wingback-bed-buying-guide-uk\nVelvet bed style guide|/blogs/news/velvet-bed-frames-uk-style-guide\nHow to measure your bedroom|/blogs/news/how-to-measure-bedroom-for-new-bed-uk"
+          }
+        },
+        "guide_4": {
+          "type": "guide",
+          "settings": {
+            "only_on": "chesterfield-beds",
+            "heading": "How to choose a Chesterfield bed",
+            "body": "<p>Chesterfield beds take their look from the classic Chesterfield sofa: deep, hand-set buttons across the headboard in a diamond pattern. They suit traditional and modern rooms alike, depending on the fabric and colour.</p><h3>What makes a good Chesterfield</h3><ul><li>Even, deep buttoning set by hand.</li><li>A solid wood frame. Every Eagle Bed frame is solid wood and backed by a 5-year warranty.</li><li>Fabric that holds the buttoning well, such as plush velvet.</li></ul>",
+            "links": "How to choose a Chesterfield bed|/blogs/news/how-to-choose-a-chesterfield-bed\nChesterfield beds buying guide|/blogs/news/chesterfield-beds-uk-buying-guide"
+          }
+        },
+        "guide_5": {
+          "type": "guide",
+          "settings": {
+            "only_on": "kids-beds",
+            "heading": "Choosing a bed for your child",
+            "body": "<p>Our kids' beds have soft, padded upholstered frames with no hard edges, in sizes from Kids Single to Small Double. They are made to order in fun and calm colours alike.</p><h3>Tips</h3><ul><li>A Single (3FT) fits most children's rooms and lasts into the teenage years.</li><li>Choose a mattress with good support for growing backs.</li><li>Ask us about storage options to keep toys tidy.</li></ul>",
+            "links": "Kids upholstered beds guide|/blogs/news/kids-upholstered-beds-uk-guide\nShop mattresses|/collections/mattresses"
+          }
+        },
+        "guide_6": {
+          "type": "guide",
+          "settings": {
+            "only_on": "mattresses",
+            "heading": "How to choose a mattress",
+            "body": "<p>The right mattress depends on how you sleep, how firm you like it and whether you share the bed. All our mattresses come in the five standard UK sizes and are delivered free to mainland UK.</p><h3>Quick guide</h3><ul><li><strong>Side sleepers</strong>: softer or medium, such as memory foam or a pillow top.</li><li><strong>Back sleepers</strong>: medium to medium-firm pocket springs.</li><li><strong>Front sleepers</strong>: firmer support, such as our Memory Orthopaedic.</li><li><strong>Couples</strong>: pocket springs move independently, so you feel less movement.</li></ul><p>Not sure? <a href=\"/pages/mattress-guide#mattress-finder\">Take the 30-second mattress finder</a>.</p>",
+            "links": "Pocket sprung vs memory foam vs orthopaedic|/blogs/news/pocket-sprung-vs-memory-foam-mattress\nMattress finder quiz|/pages/mattress-guide\nCare guide|/blogs/news/how-to-care-for-an-upholstered-bed-and-mattress"
+          }
+        },
+        "guide_7": {
+          "type": "guide",
+          "settings": {
+            "only_on": "storage-beds,storage-beds-with-drawers",
+            "heading": "Ottoman or drawers?",
+            "body": "<p>Both keep your bedroom tidy. A <strong>gas-lift ottoman</strong> gives you the whole space under the mattress and needs no room at the sides. <strong>Drawers</strong> give you everyday access without lifting the mattress, but need around 50 cm of clear space to open.</p><p>Every storage bed is handmade to order in our workshop, in your choice of fabric, colour and size.</p>",
+            "links": "Storage bed for a small bedroom|/blogs/news/storage-bed-small-uk-bedroom-guide\nBest beds for small bedrooms|/blogs/news/best-beds-for-small-bedrooms\nShop ottoman beds|/collections/ottoman-beds"
+          }
+        },
+        "guide_8": {
+          "type": "guide",
+          "settings": {
+            "only_on": "upholstered-beds,best-sellers,new-trending,frontpage",
+            "heading": "How to choose an upholstered bed",
+            "body": "<p>An upholstered bed is padded and covered in fabric, so it feels soft to lean against and makes the bed the centrepiece of the room. Start with three decisions: the size your room can take, the headboard style you love, and whether you need storage.</p><h3>Our range</h3><p>Wingback, Chesterfield, panel, ottoman and divan designs, all handmade to order in West Yorkshire on solid wood frames, from Single to Super King, with free delivery to mainland UK.</p><p>Can't see exactly what you want? <a href=\"/pages/bespoke-beds-uk#quote\">Ask about a bespoke bed</a>.</p>",
+            "links": "How to choose an upholstered bed|/blogs/news/how-to-choose-upholstered-bed-uk\nHow to choose the best bed (2026 guide)|/blogs/news/how-to-choose-the-best-bed-in-the-uk-2026-buying-guide\nUK bed size guide|/blogs/news/uk-bed-size-guide"
+          }
+        },
+        "guide_9": {
+          "type": "guide",
+          "settings": {
+            "only_on": "panel-beds",
+            "heading": "How to choose a panel bed",
+            "body": "<p>Panel beds have a headboard made of upholstered panels: vertical channels, fans, fluting or gold trim. Vertical panels make a room feel taller, while wide horizontal panels feel calm and modern.</p><p>All our panel beds are handmade to order with a choice of storage, from Single to Super King.</p>",
+            "links": "Velvet bed colours guide|/blogs/news/best-velvet-bed-colours-2025\nHow to style a king size bed|/blogs/news/how-to-style-king-size-upholstered-bed-uk"
+          }
+        },
+        "guide_10": {
+          "type": "guide",
+          "settings": {
+            "only_on": "headboards",
+            "heading": "How to choose a headboard",
+            "body": "<p>Our upholstered headboards fit standard divan bases. The 24 inch headboard suits rooms with low windowsills or sloping ceilings. The 54 inch headboard is a full statement piece.</p><p>Match the fabric to your base, or choose a contrasting colour. Free swatches are available.</p>",
+            "links": "Shop divan beds|/collections/divan-beds\nRequest free swatches|/pages/request-a-swatch"
+          }
+        }
+      },
+      "block_order": [
+        "guide_1",
+        "guide_2",
+        "guide_3",
+        "guide_4",
+        "guide_5",
+        "guide_6",
+        "guide_7",
+        "guide_8",
+        "guide_9",
+        "guide_10"
+      ]
+    },
+    "bespoke": {
+      "type": "sr-bespoke",
+      "settings": {
+        "kicker": "Bespoke service",
+        "heading": "<p>Can't see <em>exactly</em> what you want?</p>",
+        "text": "We make every bed by hand, so custom sizes, fabrics, colours, headboards and storage are usually possible.",
+        "list": "Custom sizes\nCustom fabrics\nCustom headboards\nCustom storage",
+        "full_form": false,
+        "whatsapp": "",
+        "button_label": "Request my bespoke quote",
+        "bg": "ivory"
+      }
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "guide",
+    "bespoke",
+    "help"
+  ]
+}

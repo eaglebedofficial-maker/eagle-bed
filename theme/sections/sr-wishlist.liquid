@@ -1,0 +1,15 @@
+<section class="sr sr-sec" data-sr-wishlist aria-label="Your wishlist">
+  <div class="sr-wrap">
+    <ul class="sr-grid" role="list" style="list-style:none;margin:0;padding:0" aria-live="polite"></ul>
+    <div class="sr-empty" data-sr-wish-empty hidden>
+      <p style="margin:0 0 16px">Your wishlist is empty. Tap the heart on any bed to save it here. Your wishlist is kept on this device.</p>
+      <a class="sr-btn" href="{{ section.settings.link | default: routes.all_products_collection_url }}">Browse beds</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Wishlist",
+  "settings": [{ "type": "url", "id": "link", "label": "Browse link" }]
+}
+{% endschema %}

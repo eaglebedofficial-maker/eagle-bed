@@ -1,0 +1,92 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "sr_footer": {
+      "type": "sr-footer",
+      "settings": {
+        "logo_text": "Eagle Bed",
+        "about": "Handmade upholstered beds, headboards and mattresses, made to order in West Yorkshire and delivered free across mainland UK.",
+        "phone": "07417 439197",
+        "address": "Pepproyd Street, Dewsbury WF13 1PA",
+        "hours": "Mon–Fri 9am–6pm",
+        "instagram": "https://www.instagram.com/eaglebed.co.uk",
+        "tiktok": "https://www.tiktok.com/@eagle.bed",
+        "facebook": "https://www.facebook.com/share/1CRno6bbgH/?mibextid=wwXIfr",
+        "show_newsletter": true,
+        "news_heading": "New fabrics and offers, occasionally",
+        "news_text": "A short email when new designs land or a sale starts. No spam."
+      },
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "heading": "Shop",
+            "menu": "",
+            "links": "Beds|/collections/upholstered-beds\nOttoman beds|/collections/ottoman-beds\nDivan beds|/collections/divan-beds\nMattresses|/collections/mattresses\nHeadboards|/collections/headboards\nKids beds|/collections/kids-beds\nBespoke beds|/pages/bespoke-beds-uk"
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "heading": "Customer service",
+            "menu": "",
+            "links": "Contact|/pages/contact\nDelivery|/pages/delivery-information\nReturns|/pages/returns-policy\nWarranty|/pages/warranty\nFAQs|/pages/faq\nTrack order|/account\nFinance options|/pages/finance-options"
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "heading": "Information",
+            "menu": "",
+            "links": "About us|/pages/about-us\nBespoke service|/pages/bespoke-beds-uk\nBed size guide|/blogs/news/uk-bed-size-guide\nMattress guide|/blogs/news/pocket-sprung-vs-memory-foam-mattress\nBuying guides|/blogs/news\nFree swatches|/pages/request-a-swatch"
+          }
+        },
+        "column_4": {
+          "type": "column",
+          "settings": {
+            "heading": "Popular",
+            "menu": "",
+            "links": "Wingback beds|/collections/wingback-beds\nChesterfield beds|/collections/chesterfield-beds\nPanel beds|/collections/panel-beds\nStorage beds with drawers|/collections/storage-beds-with-drawers\nBest sellers|/collections/best-sellers\nNew & trending|/collections/new-trending"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3",
+        "column_4"
+      ]
+    },
+    "eb3d_footer": {
+      "type": "eb3d-footer",
+      "disabled": true,
+      "settings": {
+        "logo_text": "Eagle Bed",
+        "cta_kicker": "Made to order in West Yorkshire",
+        "cta_heading": "Need a size or fabric you can't see?",
+        "cta_text": "Talk to the workshop. We make every bed by hand, so custom sizes, fabrics and headboard heights are usually possible.",
+        "address": "Pepproyd Street, Dewsbury WF13 1PA",
+        "phone": "07417 439197",
+        "phone_link": "+447417439197",
+        "email": "eaglebedofficial@gmail.com",
+        "hours": "Mon - Fri 9 AM - 6 PM",
+        "facebook_url": "https://www.facebook.com/share/1CRno6bbgH/?mibextid=wwXIfr",
+        "instagram_url": "https://www.instagram.com/eaglebed.co.uk",
+        "tiktok_url": "https://www.tiktok.com/@eagle.bed",
+        "menu_1_heading": "Shop",
+        "menu_1": "footer",
+        "menu_2_heading": "Useful links",
+        "menu_2": "get-in-touch",
+        "show_newsletter": true,
+        "news_heading": "Offers and new fabrics",
+        "news_text": "Occasional emails when new designs land or a sale starts. No spam.",
+        "show_giant": false
+      }
+    }
+  },
+  "order": [
+    "sr_footer",
+    "eb3d_footer"
+  ]
+}

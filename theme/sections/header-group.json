@@ -1,0 +1,124 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "sr_announcement": {
+      "type": "sr-announcement",
+      "settings": {},
+      "blocks": {
+        "message_1": {
+          "type": "message",
+          "settings": {
+            "text": "Free delivery to mainland UK",
+            "link": "shopify://pages/delivery-information",
+            "icon": "truck"
+          }
+        },
+        "message_2": {
+          "type": "message",
+          "settings": {
+            "text": "Handmade to order in West Yorkshire",
+            "link": "shopify://pages/about-us",
+            "icon": "spool"
+          }
+        },
+        "message_3": {
+          "type": "message",
+          "settings": {
+            "text": "Bespoke sizes & fabrics, just ask",
+            "link": "shopify://pages/bespoke-beds-uk",
+            "icon": "pencil"
+          }
+        }
+      },
+      "block_order": [
+        "message_1",
+        "message_2",
+        "message_3"
+      ]
+    },
+    "eagle_countdown_QPQcWF": {
+      "type": "eagle-countdown",
+      "name": "Countdown Timer Bar",
+      "disabled": true,
+      "settings": {
+        "label": "TODAY'S SUMMER SALE — EXTRA 10% OFF — ENDS IN:",
+        "code_label": "Use code",
+        "code": "EAGLE10",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "gap": 20,
+        "gap_mobile": 8,
+        "font_size": 13,
+        "font_size_mobile": 11,
+        "pill_radius": 20,
+        "bg_color": "#7f285b",
+        "text_color": "#ffffff",
+        "code_bg_color": "#ffffff",
+        "code_text_color": "#7f285b"
+      }
+    },
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "disabled": true,
+      "blocks": {
+        "announcement_sale": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free delivery on all UK mainland orders",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_sale"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "color_scheme": "scheme-218d0db5-2b5e-4901-bd81-67093bad7b7c",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "eb3d_header": {
+      "type": "eb3d-header",
+      "settings": {
+        "logo_width": 140,
+        "logo_text": "Eagle Bed",
+        "menu": "main-menu",
+        "popular": "Ottoman, Wingback, Chesterfield, Super king, Velvet, Mattress",
+        "phone": "+447417439197"
+      }
+    },
+    "header": {
+      "type": "header",
+      "disabled": true,
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-5",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "sr_announcement",
+    "eagle_countdown_QPQcWF",
+    "announcement-bar",
+    "eb3d_header",
+    "header"
+  ]
+}

@@ -1,0 +1,89 @@
+{%- liquid
+  assign img = section.settings.image
+  if img == blank and section.settings.fallback_collection != blank
+    assign img = section.settings.fallback_collection.image
+  endif
+  assign mob = section.settings.image_mobile | default: img
+-%}
+<section class="sr sr-hero" data-sr-hero aria-labelledby="SrHero-{{ section.id }}" style="--sr-focal: {{ section.settings.focal | default: '60% 50%' }}">
+  <div class="sr-hero__media" aria-hidden="true">
+    {%- if img != blank -%}
+      <picture>
+        {%- if section.settings.image_mobile != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ mob | image_url: width: 750 }} 750w, {{ mob | image_url: width: 1100 }} 1100w" sizes="100vw">
+        {%- endif -%}
+        {{ img | image_url: width: 2400 | image_tag: widths: '750,1100,1500,1920,2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: '' }}
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+  <div class="sr-hero__shade" aria-hidden="true"></div>
+  <div class="sr-hero__light" aria-hidden="true"></div>
+  <div class="sr-hero__sweep" aria-hidden="true"></div>
+
+  <div class="sr-hero__in">
+    <div class="sr-hero__copy">
+      {%- if section.settings.kicker != blank -%}<p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>{%- endif -%}
+      <h1 id="SrHero-{{ section.id }}" class="sr-h1" data-sr-reveal>{{ section.settings.heading | remove: "<p>" | remove: "</p>" }}</h1>
+      {%- if section.settings.text != blank -%}<p class="sr-hero__sub" data-sr-reveal style="--sr-i:1">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <div class="sr-btns" data-sr-reveal style="--sr-i:2">
+        {%- if section.settings.btn1_label != blank -%}<a class="sr-btn sr-btn--light" href="{{ section.settings.btn1_link | default: routes.all_products_collection_url }}" data-sr-track="hero_cta">{{ section.settings.btn1_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a>{%- endif -%}
+        {%- if section.settings.btn2_label != blank -%}<a class="sr-btn sr-btn--ghost-light" href="{{ section.settings.btn2_link }}" data-sr-track="hero_cta">{{ section.settings.btn2_label | escape }}</a>{%- endif -%}
+      </div>
+      {%- if section.settings.bespoke_label != blank -%}
+        <a class="sr-hero__bespoke" href="{{ section.settings.bespoke_link }}" data-sr-reveal style="--sr-i:3" data-sr-track="bespoke_start" data-sr-label="hero">{% render 'sr-icon', icon: 'pencil' %}<span>{{ section.settings.bespoke_label | escape }}</span>{% render 'sr-icon', icon: 'arrow' %}</a>
+      {%- endif -%}
+    </div>
+    <div class="sr-hero__side">
+      {%- if section.settings.card_title != blank -%}
+        <div class="sr-hero__card" data-sr-reveal="scale" style="--sr-i:3">
+          <h3>{{ section.settings.card_title | escape }}</h3>
+          <p>{{ section.settings.card_text | escape }}</p>
+          {%- if section.settings.card_link != blank -%}<a class="sr-link" href="{{ section.settings.card_link }}">{{ section.settings.card_link_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    <ul class="sr-hero__chips" role="list" style="list-style:none;margin:0;padding:0;--sr-i:4" data-sr-reveal>
+      {%- for block in section.blocks -%}
+        <li class="sr-chip" {{ block.shopify_attributes }}>{% render 'sr-icon', icon: block.settings.icon %}{{ block.settings.text | escape }}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+  <span class="sr-hero__scroll" aria-hidden="true"></span>
+</section>
+{% schema %}
+{
+  "name": "Showroom hero",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Bedroom image", "info": "Landscape, at least 2400px wide. A styled bedroom works best." },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image (portrait, optional)" },
+    { "type": "collection", "id": "fallback_collection", "label": "Use this collection's image if no image is set" },
+    { "type": "text", "id": "focal", "label": "Image focal point (CSS object-position)", "default": "60% 50%" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Handmade in West Yorkshire" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Beds made <em>around you</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Subheading", "default": "Premium upholstered beds, mattresses and bespoke designs, made to order in your size, fabric and colour." },
+    { "type": "text", "id": "btn1_label", "label": "Primary button", "default": "Shop beds" },
+    { "type": "url", "id": "btn1_link", "label": "Primary link" },
+    { "type": "text", "id": "btn2_label", "label": "Secondary button", "default": "Shop mattresses" },
+    { "type": "url", "id": "btn2_link", "label": "Secondary link" },
+    { "type": "text", "id": "bespoke_label", "label": "Bespoke link label", "default": "Design your bespoke bed" },
+    { "type": "url", "id": "bespoke_link", "label": "Bespoke link" },
+    { "type": "header", "content": "Floating card (desktop)" },
+    { "type": "text", "id": "card_title", "label": "Title", "default": "Have a design in mind?" },
+    { "type": "textarea", "id": "card_text", "label": "Text", "default": "Send us a photo, a sketch or a Pinterest pin. We'll talk you through making it." },
+    { "type": "text", "id": "card_link_label", "label": "Link label", "default": "Request a bespoke quote" },
+    { "type": "url", "id": "card_link", "label": "Link" }
+  ],
+  "blocks": [
+    { "type": "chip", "name": "Trust chip", "settings": [
+      { "type": "text", "id": "text", "label": "Text", "default": "Free UK delivery" },
+      { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+        { "value": "truck", "label": "Truck" }, { "value": "spool", "label": "Handmade" }, { "value": "shield", "label": "Warranty" }, { "value": "card", "label": "Finance" }, { "value": "pencil", "label": "Bespoke" }, { "value": "star", "label": "Star" }
+      ] }
+    ] }
+  ],
+  "presets": [{ "name": "Showroom hero", "blocks": [{ "type": "chip" }] }]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+<section class="sr sr-sec sr-sec--night" data-sr-proc aria-labelledby="SrProc-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-procw">
+      <div>
+        <div class="sr-head" style="margin-bottom:48px">
+          <div class="sr-head__t">
+            <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+            <h2 id="SrProc-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+            {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+          </div>
+        </div>
+        <div class="sr-proc">
+          <span class="sr-proc__line" aria-hidden="true"><i></i></span>
+          <ol class="sr-proc__ol">
+          {%- for block in section.blocks -%}
+            <li class="sr-proc__s" {{ block.shopify_attributes }}>
+              <span class="sr-proc__n" aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>
+              <div class="sr-proc__b">
+                <h3><span class="sr-visually-hidden">Step {{ forloop.index }}: </span>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </div>
+            </li>
+          {%- endfor -%}
+          </ol>
+        </div>
+        {%- if section.settings.button_label != blank -%}
+          <div class="sr-btns"><a class="sr-btn sr-btn--light" href="{{ section.settings.button_link }}" data-sr-track="bespoke_start" data-sr-label="process">{{ section.settings.button_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a></div>
+        {%- endif -%}
+      </div>
+      <div class="sr-proc__media" aria-hidden="true">
+        <span class="sr-proc__ph">✦</span>
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 1100 | image_tag: widths: '600,900,1100', sizes: '45vw', loading: 'lazy', alt: '' }}{%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "We make your idea",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "How bespoke works" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>We make <em>your idea</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "From a photo on your phone to a finished bed in your bedroom. Five simple steps, one team." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Start your bespoke bed" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Your idea" },
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "image_picker", "id": "image", "label": "Image (desktop)" }
+    ] }
+  ],
+  "presets": [{ "name": "We make your idea", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }] }]
+}
+{% endschema %}

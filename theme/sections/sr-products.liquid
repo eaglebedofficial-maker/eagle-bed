@@ -1,0 +1,47 @@
+{%- assign c = section.settings.collection -%}
+<section class="sr sr-sec{% if section.settings.bg == 'linen' %} sr-sec--linen{% endif %}" data-sr-rail aria-labelledby="SrProd-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <div class="sr-head__t">
+        {%- if section.settings.kicker != blank -%}<p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>{%- endif -%}
+        <h2 id="SrProd-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.layout == 'rail' -%}
+        <div class="sr-arrows">
+          <button type="button" class="sr-arrow" data-sr-dir="-1" aria-label="Previous products">{% render 'sr-icon', icon: 'arrow-left' %}</button>
+          <button type="button" class="sr-arrow" data-sr-dir="1" aria-label="More products">{% render 'sr-icon', icon: 'arrow' %}</button>
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if c != blank and c.products_count > 0 -%}
+      <ul class="{% if section.settings.layout == 'rail' %}sr-rail{% else %}sr-grid{% endif %}" role="list" style="list-style:none;padding-left:{% if section.settings.layout == 'rail' %}var(--sr-gut){% else %}0{% endif %};margin-top:0;margin-bottom:0">
+        {%- for p in c.products limit: section.settings.limit -%}
+          <li>{% render 'sr-card', product: p, swatches: section.settings.swatches, index: forloop.index0 %}</li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <p class="sr-empty">Choose a collection for this section in the theme editor.</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank and c != blank -%}
+      <div class="sr-btns" style="margin-top:20px"><a class="sr-btn sr-btn--ghost" href="{{ c.url }}">{{ section.settings.button_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a></div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Showroom products",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Most ordered" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Best <em>sellers</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products", "min": 4, "max": 24, "step": 1, "default": 12 },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "rail", "options": [{ "value": "rail", "label": "Swipe rail" }, { "value": "grid", "label": "Grid" }] },
+    { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] },
+    { "type": "textarea", "id": "swatches", "label": "Card colour dots (Name:#hex)", "default": "Grey:#8a8d91, Cream:#e6dac2, Steel:#6b7682, Royal Blue:#23407a, Emerald Green:#1f5c45, Baby Pink:#e3b7bd, Black:#1c1c1e, Silver:#c0c2c5, White:#eeeeea, Sky Blue:#8fb5d6, Beige:#cdbb9c, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "View all" }
+  ],
+  "presets": [{ "name": "Showroom products" }]
+}
+{% endschema %}

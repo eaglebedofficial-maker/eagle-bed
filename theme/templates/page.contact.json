@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Contact",
+        "text": "Questions about a bed, a bespoke design or an order? Call, email or use the form and the workshop team will reply.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Send us a message",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "form",
+    "help"
+  ]
+}

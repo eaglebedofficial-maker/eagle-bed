@@ -1,0 +1,77 @@
+{%- liquid
+  assign ptype = product.type | downcase
+  assign is_mattress = false
+  if ptype contains 'mattress'
+    assign is_mattress = true
+  endif
+  assign mats = section.settings.mattresses
+-%}
+<section class="sr sr-sec sr-sec--linen" aria-label="Delivery, sizes and bespoke options">
+  <div class="sr-wrap">
+    <div class="sr-pdpx" data-sr-stagger>
+      <div class="sr-pdpx__c" data-sr-reveal>
+        <span class="sr-pdpx__ic">{% render 'sr-icon', icon: 'truck' %}</span>
+        <h3>When will it arrive?</h3>
+        <p>{{ section.settings.delivery_text | escape }}</p>
+        <p class="sr-eta" style="margin:0">{% render 'sr-icon', icon: 'check' %}<span data-sr-eta data-from="3" data-to="5">3–5 working days</span></p>
+      </div>
+      <div class="sr-pdpx__c" data-sr-reveal>
+        <span class="sr-pdpx__ic">{% render 'sr-icon', icon: 'ruler' %}</span>
+        <h3>Which size?</h3>
+        <div class="sr-table-w">
+          <table class="sr-table" style="box-shadow:none;font-size:13.5px">
+            <thead><tr><th scope="col">UK size</th><th scope="col">Mattress</th></tr></thead>
+            <tbody>
+              <tr><td>Single (3FT)</td><td>90 × 190 cm</td></tr>
+              <tr><td>Small Double (4FT)</td><td>120 × 190 cm</td></tr>
+              <tr><td>Double (4FT6)</td><td>135 × 190 cm</td></tr>
+              <tr><td>King (5FT)</td><td>150 × 200 cm</td></tr>
+              <tr><td>Super King (6FT)</td><td>180 × 200 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        {%- if section.settings.size_link != blank -%}<p style="margin:12px 0 0"><a class="sr-link" href="{{ section.settings.size_link }}">Full size guide{% render 'sr-icon', icon: 'arrow' %}</a></p>{%- endif -%}
+      </div>
+      <div class="sr-pdpx__c" data-sr-reveal>
+        <span class="sr-pdpx__ic">{% render 'sr-icon', icon: 'pencil' %}</span>
+        <h3>Want it made your way?</h3>
+        <p>{{ section.settings.bespoke_text | escape }}</p>
+        <a class="sr-btn sr-btn--plum" style="min-height:46px;font-size:12.5px" href="{{ section.settings.bespoke_link | default: '/pages/bespoke-beds-uk' }}#quote" data-sr-bespoke-link data-title="{{ product.title | escape }}" data-type="{{ product.type | escape }}">Request a bespoke quote</a>
+      </div>
+    </div>
+
+    {%- if is_mattress == false and mats != blank and mats.products_count > 0 -%}
+      <div data-sr-rail style="margin-top:72px">
+        <div class="sr-head">
+          <div class="sr-head__t">
+            <p class="sr-kicker">Complete your bed</p>
+            <h2 class="sr-h2">{{ section.settings.complete_heading | escape }}</h2>
+            <p class="sr-lead">{{ section.settings.complete_text | escape }}</p>
+          </div>
+          <div class="sr-arrows">
+            <button type="button" class="sr-arrow" data-sr-dir="-1" aria-label="Previous mattresses">{% render 'sr-icon', icon: 'arrow-left' %}</button>
+            <button type="button" class="sr-arrow" data-sr-dir="1" aria-label="More mattresses">{% render 'sr-icon', icon: 'arrow' %}</button>
+          </div>
+        </div>
+        <ul class="sr-rail" role="list" style="list-style:none;margin-top:0;margin-bottom:0">
+          {%- for p in mats.products limit: 8 -%}<li>{% render 'sr-card', product: p, index: forloop.index0 %}</li>{%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Product showroom extras",
+  "settings": [
+    { "type": "textarea", "id": "delivery_text", "label": "Delivery text", "default": "Every bed is made to order, then delivered free to mainland UK addresses by our own team." },
+    { "type": "url", "id": "size_link", "label": "Size guide link" },
+    { "type": "textarea", "id": "bespoke_text", "label": "Bespoke text", "default": "Custom sizes, fabrics, colours, headboard heights and storage are often possible. Send us your idea for a quote." },
+    { "type": "url", "id": "bespoke_link", "label": "Bespoke page" },
+    { "type": "collection", "id": "mattresses", "label": "Mattress collection" },
+    { "type": "text", "id": "complete_heading", "label": "Mattress heading", "default": "Add the mattress" },
+    { "type": "text", "id": "complete_text", "label": "Mattress text", "default": "Made in the UK in every standard size. Not sure which one? Try our mattress finder." }
+  ],
+  "presets": [{ "name": "Product showroom extras" }]
+}
+{% endschema %}

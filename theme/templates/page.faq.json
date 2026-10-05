@@ -1,0 +1,167 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Help centre",
+        "text": "Delivery, sizes, fabrics, bespoke beds and payment, answered.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "faq": {
+      "type": "sr-faq",
+      "settings": {
+        "kicker": "Ordering and delivery",
+        "heading": "<p>Frequently asked <em>questions</em></p>",
+        "text": "",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact",
+        "open_first": true,
+        "schema": true,
+        "bg": "ivory"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is delivery really free?",
+            "a": "<p>Yes. Delivery is free to mainland UK addresses, and our own team brings your bed to your door. If you are outside mainland UK, please contact us before ordering and we will confirm the options.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "q": "How long will my bed take to arrive?",
+            "a": "<p>Every bed is made to order. Most orders are delivered within 3–5 working days. We will contact you to arrange a delivery day that suits you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you make a bed in a custom size, fabric or design?",
+            "a": "<p>Often, yes. Because we make every bed by hand, custom sizes, fabrics, colours, headboard heights and storage are usually possible. Send us a photo, sketch or description through our <a href=\"/pages/bespoke-beds-uk#quote\">bespoke quote form</a> and we will talk it through with you.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I see the fabric before I order?",
+            "a": "<p>Yes. Colours look different on every screen, so we post free fabric swatches. <a href=\"/pages/request-a-swatch\">Request your swatches here</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "q": "What warranty do I get?",
+            "a": "<p>Our beds are built on solid wood frames and come with a 5-year warranty. See our <a href=\"/pages/warranty\">warranty page</a> for the details.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I spread the cost?",
+            "a": "<p>Yes. Klarna and Clearpay are available at checkout. See <a href=\"/pages/finance-options\">finance options</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "q": "Where are your beds made?",
+            "a": "<p>In our workshop on Pepproyd Street, Dewsbury, West Yorkshire. You are buying direct from the people who make the bed.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_8": {
+          "type": "faq",
+          "settings": {
+            "q": "Which mattress is best for side sleepers?",
+            "a": "<p>Side sleepers usually prefer a softer or medium feel that lets the shoulders and hips sink in slightly, such as memory foam or a pillow top. Try our <a href=\"/pages/mattress-guide#mattress-finder\">mattress finder</a> for a personal match.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_9": {
+          "type": "faq",
+          "settings": {
+            "q": "Pocket sprung or memory foam?",
+            "a": "<p>Pocket springs move independently, feel more breathable and bouncy, and limit partner disturbance. Memory foam contours to your body and absorbs movement. A pillow top adds a plush layer over springs. Read our <a href=\"/blogs/news/pocket-sprung-vs-memory-foam-mattress\">full comparison</a>.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_10": {
+          "type": "faq",
+          "settings": {
+            "q": "What sizes do your mattresses come in?",
+            "a": "<p>All five standard UK sizes: Single (90 × 190 cm), Small Double (120 × 190 cm), Double (135 × 190 cm), King (150 × 200 cm) and Super King (180 × 200 cm).</p>",
+            "only_on": ""
+          }
+        },
+        "faq_11": {
+          "type": "faq",
+          "settings": {
+            "q": "What can you make?",
+            "a": "<p>Custom sizes, shapes, fabrics, colours, headboard heights and styles, storage (drawers or gas-lift ottoman), and matching headboards. If you have a photo of a bed you love, send it and we will tell you honestly what is possible.</p>",
+            "only_on": ""
+          }
+        },
+        "faq_12": {
+          "type": "faq",
+          "settings": {
+            "q": "How much does a bespoke bed cost?",
+            "a": "<p>It depends on the size, design and fabric. Most bespoke beds start from a similar price to the closest bed in our range. Send your idea and we will reply with a clear quote, usually within one working day.</p>",
+            "only_on": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10",
+        "faq_11",
+        "faq_12"
+      ]
+    },
+    "main": {
+      "type": "sr-rich",
+      "settings": {
+        "use_page": true,
+        "heading": "",
+        "center": false,
+        "bg": "ivory"
+      }
+    },
+    "help": {
+      "type": "sr-help",
+      "settings": {
+        "kicker": "Free design consultation",
+        "heading": "<p>Not sure what to <em>choose?</em></p>",
+        "text": "Talk to the people who make the beds. We'll help with sizes, fabrics, storage and access, with no pressure.",
+        "phone": "07417 439197",
+        "hours": "Mon–Fri 9am–6pm",
+        "whatsapp": "",
+        "form_label": "Get expert help",
+        "form_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "faq",
+    "main",
+    "help"
+  ]
+}

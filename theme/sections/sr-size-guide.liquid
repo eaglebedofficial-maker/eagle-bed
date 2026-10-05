@@ -1,0 +1,41 @@
+<section class="sr sr-sec" aria-labelledby="SrSize-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head"><div class="sr-head__t">
+      <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+      <h2 id="SrSize-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | escape }}</h2>
+      <p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>
+    </div></div>
+    <div class="sr-sizes" data-sr-reveal="fade" data-sr-stagger aria-hidden="true">
+      {%- assign sz = 'Single:90:190:3FT,Small double:120:190:4FT,Double:135:190:4FT6,King:150:200:5FT,Super king:180:200:6FT' | split: ',' -%}
+      {%- for s in sz -%}{%- assign p = s | split: ':' -%}
+        <div class="sr-size" style="--w: {{ p[1] }}; --l: {{ p[2] }}; --sr-i: {{ forloop.index0 }}"><i></i>{{ p[0] }}<small>{{ p[3] }}</small></div>
+      {%- endfor -%}
+    </div>
+    <div class="sr-table-w" style="margin-top:32px" data-sr-reveal>
+      <table class="sr-table">
+        <caption class="sr-visually-hidden">UK bed and mattress sizes</caption>
+        <thead><tr><th scope="col">Size</th><th scope="col">Imperial</th><th scope="col">Mattress (cm)</th><th scope="col">Mattress (inches)</th><th scope="col">Best for</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Single</th><td>3FT</td><td>90 × 190</td><td>35.5 × 75</td><td>Children, guest rooms, one adult</td></tr>
+          <tr><th scope="row">Small Double</th><td>4FT</td><td>120 × 190</td><td>47 × 75</td><td>Teens, one adult, smaller rooms</td></tr>
+          <tr><th scope="row">Double</th><td>4FT6</td><td>135 × 190</td><td>53 × 75</td><td>Couples in standard UK bedrooms</td></tr>
+          <tr><th scope="row">King</th><td>5FT</td><td>150 × 200</td><td>59 × 78.5</td><td>Couples who want more room</td></tr>
+          <tr><th scope="row">Super King</th><td>6FT</td><td>180 × 200</td><td>71 × 78.5</td><td>Couples, families, large rooms</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sr-mute" style="font-size:14px;margin-top:16px">{{ section.settings.note | escape }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Bed size guide",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Size guide" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "UK bed sizes at a glance" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Standard UK mattress sizes. Bed frames are larger than the mattress, so allow extra room for the headboard and frame. Ask us for the exact external size of any bed." },
+    { "type": "textarea", "id": "note", "label": "Note", "default": "Need something in between? We can make beds to custom sizes. Request a bespoke quote." }
+  ],
+  "presets": [{ "name": "Bed size guide" }]
+}
+{% endschema %}

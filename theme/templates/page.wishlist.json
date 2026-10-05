@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sr-page-hero",
+      "settings": {
+        "title": "",
+        "kicker": "Saved for later",
+        "text": "The beds you have saved on this device.",
+        "btn_label": "",
+        "btn_link": ""
+      }
+    },
+    "main": {
+      "type": "sr-wishlist",
+      "settings": {
+        "link": "shopify://collections/upholstered-beds"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main"
+  ]
+}

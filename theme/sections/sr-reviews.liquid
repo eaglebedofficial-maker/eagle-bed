@@ -1,0 +1,95 @@
+{%- liquid
+  assign jm_count = shop.metafields.judgeme.all_reviews_count.value | default: shop.metafields.judgeme.all_reviews_count | plus: 0
+  assign jm_rating = shop.metafields.judgeme.all_reviews_rating.value | default: shop.metafields.judgeme.all_reviews_rating | times: 1.0
+  assign quotes = 0
+  assign apps = 0
+  for block in section.blocks
+    if block.type == 'review' and block.settings.text != blank
+      assign quotes = quotes | plus: 1
+    elsif block.type == '@app'
+      assign apps = apps | plus: 1
+    endif
+  endfor
+  assign has_content = false
+  if quotes > 0 or apps > 0 or jm_count > 0 or request.design_mode
+    assign has_content = true
+  endif
+-%}
+{%- if has_content -%}
+<section class="sr sr-sec sr-sec--linen" data-sr-rail aria-labelledby="SrRev-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <div class="sr-head__t">
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrRev-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if jm_count > 0 -%}
+          {%- assign pct = jm_rating | times: 20 | round -%}
+          <div class="sr-rev__sum" data-sr-reveal style="margin-top:18px">
+            <b>{{ jm_rating | round: 1 }}</b>
+            <span><span class="sr-stars" style="--p: {{ pct }}%" role="img" aria-label="Rated {{ jm_rating | round: 1 }} out of 5"></span><br><span class="sr-mute" style="font-size:14px">from {{ jm_count }} Judge.me reviews</span></span>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if quotes > 1 -%}
+        <div class="sr-arrows">
+          <button type="button" class="sr-arrow" data-sr-dir="-1" aria-label="Previous reviews">{% render 'sr-icon', icon: 'arrow-left' %}</button>
+          <button type="button" class="sr-arrow" data-sr-dir="1" aria-label="More reviews">{% render 'sr-icon', icon: 'arrow' %}</button>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if quotes > 0 -%}
+      <ul class="sr-rail" role="list" style="list-style:none;margin-top:0;margin-bottom:0" data-sr-stagger>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' and block.settings.text != blank -%}
+            <li data-sr-reveal {{ block.shopify_attributes }}>
+              <figure class="sr-quote" style="margin:0">
+                {%- if block.settings.photo != blank -%}{{ block.settings.photo | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.photo.alt | default: 'Customer bedroom photo' }}{%- endif -%}
+                <span class="sr-stars" style="--p: {{ block.settings.stars | times: 20 }}%" role="img" aria-label="{{ block.settings.stars }} out of 5 stars"></span>
+                <blockquote>“{{ block.settings.text | escape }}”</blockquote>
+                <footer>
+                  <b>{{ block.settings.name | escape }}</b>{%- if block.settings.product != blank -%} · <a href="{{ block.settings.product.url }}">{{ block.settings.product.title | escape }}</a>{%- endif -%}
+                  {%- if block.settings.verified -%}<br><span class="sr-quote__v">{% render 'sr-icon', icon: 'check' %}Verified purchase</span>{%- endif -%}
+                </footer>
+              </figure>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == '@app' -%}<div {{ block.shopify_attributes }}>{% render block %}</div>{%- endif -%}
+    {%- endfor -%}
+
+    {%- if quotes == 0 and request.design_mode -%}
+      <p class="sr-empty">Add the Judge.me “Reviews carousel” or “All reviews” app block here, or copy real reviews into review blocks. Never invent reviews.</p>
+    {%- endif -%}
+    {%- if section.settings.link_label != blank -%}<p style="margin:24px 0 0"><a class="sr-link" href="{{ section.settings.link }}">{{ section.settings.link_label | escape }}{% render 'sr-icon', icon: 'arrow' %}</a></p>{%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Customer reviews",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Customer reviews" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>What our customers <em>say</em></p>" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Read all reviews" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "review", "name": "Real review", "settings": [
+      { "type": "paragraph", "content": "Only copy genuine reviews from Judge.me, Google or Trustpilot." },
+      { "type": "textarea", "id": "text", "label": "Review" },
+      { "type": "text", "id": "name", "label": "Customer name (first name + initial)" },
+      { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+      { "type": "product", "id": "product", "label": "Product purchased" },
+      { "type": "image_picker", "id": "photo", "label": "Customer photo (with permission)" },
+      { "type": "checkbox", "id": "verified", "label": "Verified purchase", "default": false }
+    ] }
+  ],
+  "presets": [{ "name": "Customer reviews" }]
+}
+{% endschema %}

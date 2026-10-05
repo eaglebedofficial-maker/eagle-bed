@@ -1,0 +1,98 @@
+<footer class="sr sr-foot" aria-labelledby="SrFootTitle">
+  <h2 id="SrFootTitle" class="sr-visually-hidden">Site footer</h2>
+  <div class="sr-wrap">
+    {%- if section.settings.show_newsletter -%}
+      <div class="sr-foot__news">
+        <div>
+          <h2>{{ section.settings.news_heading | escape }}</h2>
+          <p style="margin:0">{{ section.settings.news_text | escape }}</p>
+        </div>
+        {%- form 'customer', id: 'SrFootNews', class: 'sr-foot__nf' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p role="status" style="margin:0;color:#E3C595;font-weight:700">Thanks for subscribing.</p>
+          {%- else -%}
+            <label for="SrFootEmail" class="sr-visually-hidden">Email address</label>
+            <input id="SrFootEmail" type="email" name="contact[email]" placeholder="Your email address" autocomplete="email" required>
+            <button type="submit" class="sr-btn sr-btn--light">Subscribe</button>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+
+    <div class="sr-foot__top" style="padding-top:48px">
+      <div class="sr-foot__brand">
+        <a href="{{ routes.root_url }}" class="sr-foot__logo" aria-label="{{ shop.name | escape }} home">
+          {%- if section.settings.logo != blank -%}{{ section.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: shop.name }}{%- else -%}{{ section.settings.logo_text | default: shop.name | escape }}{%- endif -%}
+        </a>
+        <p>{{ section.settings.about | escape }}</p>
+        <div class="sr-foot__contact">
+          {%- if section.settings.phone != blank -%}<a href="tel:{{ section.settings.phone | remove: ' ' }}">{% render 'sr-icon', icon: 'phone' %}{{ section.settings.phone | escape }}</a>{%- endif -%}
+          <a href="mailto:{{ shop.email }}">{% render 'sr-icon', icon: 'mail' %}{{ shop.email }}</a>
+          {%- if section.settings.address != blank -%}<span>{% render 'sr-icon', icon: 'pin' %}{{ section.settings.address | escape }}</span>{%- endif -%}
+          {%- if section.settings.hours != blank -%}<span>{% render 'sr-icon', icon: 'moon' %}{{ section.settings.hours | escape }}</span>{%- endif -%}
+        </div>
+        <div class="sr-foot__social">
+          {%- if section.settings.instagram != blank -%}<a href="{{ section.settings.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'sr-icon', icon: 'instagram' %}</a>{%- endif -%}
+          {%- if section.settings.tiktok != blank -%}<a href="{{ section.settings.tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">{% render 'sr-icon', icon: 'tiktok' %}</a>{%- endif -%}
+          {%- if section.settings.facebook != blank -%}<a href="{{ section.settings.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'sr-icon', icon: 'facebook' %}</a>{%- endif -%}
+        </div>
+      </div>
+      {%- for block in section.blocks -%}
+        <nav aria-label="{{ block.settings.heading | escape }}" {{ block.shopify_attributes }}>
+          <h2>{{ block.settings.heading | escape }}</h2>
+          <ul>
+            {%- if block.settings.menu != blank and linklists[block.settings.menu].links.size > 0 -%}
+              {%- for link in linklists[block.settings.menu].links -%}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- endfor -%}
+            {%- else -%}
+              {%- assign links = block.settings.links | newline_to_br | split: '<br />' -%}
+              {%- for l in links -%}{%- assign lp = l | strip | split: '|' -%}{%- if lp.size == 2 -%}<li><a href="{{ lp[1] | strip }}">{{ lp[0] | strip | escape }}</a></li>{%- endif -%}{%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </nav>
+      {%- endfor -%}
+    </div>
+
+    <div class="sr-foot__bot">
+      <div class="sr-foot__trust">
+        <span>{% render 'sr-icon', icon: 'truck' %}Free UK mainland delivery</span>
+        <span>{% render 'sr-icon', icon: 'lock' %}Secure checkout</span>
+        <span>{% render 'sr-icon', icon: 'shield' %}5-year warranty</span>
+      </div>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <ul class="sr-foot__pay" aria-label="Payment methods">
+          {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <p style="margin:0">© {{ 'now' | date: '%Y' }} {{ shop.name | escape }} · <a href="{{ routes.root_url }}policies/privacy-policy">Privacy</a> · <a href="{{ routes.root_url }}policies/terms-of-service">Terms</a> · <a href="{{ routes.root_url }}policies/refund-policy">Refunds</a></p>
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Showroom footer",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo (light version)" },
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Eagle Bed" },
+    { "type": "textarea", "id": "about", "label": "About", "default": "Handmade upholstered beds, headboards and mattresses, made to order in West Yorkshire and delivered free across mainland UK." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "07417 439197" },
+    { "type": "text", "id": "address", "label": "Address", "default": "Pepproyd Street, Dewsbury WF13 1PA" },
+    { "type": "text", "id": "hours", "label": "Hours", "default": "Mon–Fri 9am–6pm" },
+    { "type": "url", "id": "instagram", "label": "Instagram" },
+    { "type": "url", "id": "tiktok", "label": "TikTok" },
+    { "type": "url", "id": "facebook", "label": "Facebook" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter", "default": true },
+    { "type": "text", "id": "news_heading", "label": "Newsletter heading", "default": "New fabrics and offers, occasionally" },
+    { "type": "text", "id": "news_text", "label": "Newsletter text", "default": "A short email when new designs land or a sale starts. No spam." }
+  ],
+  "blocks": [
+    { "type": "column", "name": "Link column", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+      { "type": "link_list", "id": "menu", "label": "Menu (optional)" },
+      { "type": "textarea", "id": "links", "label": "Links if no menu (Label|/url, one per line)" }
+    ] }
+  ],
+  "presets": [{ "name": "Showroom footer" }]
+}
+{% endschema %}

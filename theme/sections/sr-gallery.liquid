@@ -1,0 +1,62 @@
+{%- liquid
+  assign count = 0
+  for block in section.blocks
+    if block.settings.image != blank
+      assign count = count | plus: 1
+    endif
+  endfor
+-%}
+{%- if count > 0 or request.design_mode -%}
+<section class="sr sr-sec" aria-labelledby="SrGal-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <div class="sr-head__t">
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrGal-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}<a class="sr-link" href="{{ section.settings.link }}" target="_blank" rel="noopener">{{ section.settings.link_label | escape }}{% render 'sr-icon', icon: 'instagram' %}</a>{%- endif -%}
+    </div>
+    {%- if count == 0 -%}
+      <p class="sr-empty">Add customer bedroom photos (with their permission) as blocks. This section stays hidden on the live store until you do.</p>
+    {%- else -%}
+      <div class="sr-gal" data-sr-stagger>
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image != blank -%}
+            {%- assign alt = block.settings.caption | default: block.settings.image.alt | default: 'Customer bedroom with an Eagle Bed' -%}
+            <figure class="sr-gal__i" data-sr-reveal {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.image | image_url: width: 1800 }}" data-sr-lightbox data-alt="{{ alt | escape }}" aria-label="View larger: {{ alt | escape }}">
+                {{ block.settings.image | image_url: width: 700 | image_tag: widths: '350,500,700', sizes: '(min-width: 990px) 25vw, 50vw', loading: 'lazy', alt: alt }}
+              </a>
+              {%- if block.settings.caption != blank or block.settings.product != blank -%}
+                <figcaption class="sr-gal__cap">{%- if block.settings.caption != blank -%}<b>{{ block.settings.caption | escape }}</b>{%- endif -%}{%- if block.settings.product != blank -%}<a href="{{ block.settings.product.url }}" style="color:#fff">{{ block.settings.product.title | escape }} →</a>{%- endif -%}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Real homes gallery",
+  "max_blocks": 24,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Real homes. Real beds." },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Made by us, <em>loved at home</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Photos shared by our customers. Tag @eaglebed.co.uk to be featured." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Follow on Instagram" },
+    { "type": "url", "id": "link", "label": "Link", "default": "https://www.instagram.com/eaglebed.co.uk" }
+  ],
+  "blocks": [
+    { "type": "photo", "name": "Customer photo", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Photo (shared with permission)" },
+      { "type": "text", "id": "caption", "label": "Caption (e.g. first name and town)" },
+      { "type": "product", "id": "product", "label": "Bed in the photo" }
+    ] }
+  ],
+  "presets": [{ "name": "Real homes gallery" }]
+}
+{% endschema %}

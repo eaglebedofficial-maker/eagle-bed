@@ -1,0 +1,62 @@
+{%- liquid
+  assign handle = collection.handle | default: product.type | default: page.handle | default: 'home' | handleize
+-%}
+<section class="sr sr-sec{% if section.settings.bg == 'linen' %} sr-sec--linen{% endif %}" aria-labelledby="SrFaq-{{ section.id }}">
+  <div class="sr-wrap">
+    <div class="sr-faqw">
+      <div>
+        <p class="sr-kicker" data-sr-reveal="fade">{{ section.settings.kicker | escape }}</p>
+        <h2 id="SrFaq-{{ section.id }}" class="sr-h2" data-sr-reveal>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if section.settings.text != blank -%}<p class="sr-lead" data-sr-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}<div class="sr-btns"><a class="sr-btn sr-btn--ghost" href="{{ section.settings.button_link }}">{{ section.settings.button_label | escape }}</a></div>{%- endif -%}
+      </div>
+      <div class="sr-acc" data-sr-reveal>
+        {%- capture faq_json -%}
+          {%- assign n = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- assign scope = block.settings.only_on | strip | downcase -%}
+            {%- if scope == blank or scope contains handle -%}
+              {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+              {"@type":"Question","name":{{ block.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.a | json }}}}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- for block in section.blocks -%}
+          {%- assign scope = block.settings.only_on | strip | downcase -%}
+          {%- if scope == blank or scope contains handle -%}
+            <details {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
+              <summary>{{ block.settings.q | escape }}<i aria-hidden="true"></i></summary>
+              <div class="sr-acc__a">{{ block.settings.a }}</div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  {%- if section.settings.schema and faq_json != blank -%}
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_json }}]}</script>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Good to know" },
+    { "type": "richtext", "id": "heading", "label": "Heading", "default": "<p>Questions, <em>answered</em></p>" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Ask us anything" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true },
+    { "type": "checkbox", "id": "schema", "label": "Output FAQ structured data", "default": true, "info": "Only use one FAQ section with structured data per page." },
+    { "type": "select", "id": "bg", "label": "Background", "default": "ivory", "options": [{ "value": "ivory", "label": "Ivory" }, { "value": "linen", "label": "Linen" }] }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "Question", "settings": [
+      { "type": "text", "id": "q", "label": "Question" },
+      { "type": "richtext", "id": "a", "label": "Answer" },
+      { "type": "text", "id": "only_on", "label": "Only show on (collection handle, product type or page handle, optional)", "info": "e.g. ottoman-beds. Leave blank to show everywhere." }
+    ] }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

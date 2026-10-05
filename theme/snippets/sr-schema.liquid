@@ -1,0 +1,132 @@
+{%- comment -%}
+  Structured data for every template. Rendered once from layout/theme.liquid.
+  Only real store data is used; ratings appear only when Judge.me has synced reviews.* metafields.
+{%- endcomment -%}
+{%- liquid
+  assign org_id = shop.url | append: '/#organization'
+  assign logo_url = ''
+  if settings.logo != blank
+    assign logo_url = settings.logo | image_url: width: 600 | prepend: 'https:'
+  endif
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "FurnitureStore"],
+      "@id": {{ org_id | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      {%- if logo_url != blank %}"logo": {{ logo_url | json }},{% endif %}
+      "description": "Handmade upholstered beds, headboards and mattresses made to order in West Yorkshire, with free delivery to mainland UK.",
+      "telephone": "+447417439197",
+      "email": {{ shop.email | json }},
+      "address": { "@type": "PostalAddress", "streetAddress": "Pepproyd Street", "addressLocality": "Dewsbury", "addressRegion": "West Yorkshire", "postalCode": "WF13 1PA", "addressCountry": "GB" },
+      "areaServed": { "@type": "Country", "name": "United Kingdom" },
+      "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" }],
+      "priceRange": "££",
+      "sameAs": ["https://www.instagram.com/eaglebed.co.uk", "https://www.tiktok.com/@eagle.bed", "https://www.facebook.com/share/1CRno6bbgH/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '/#website' | json }},
+      "url": {{ shop.url | json }},
+      "name": {{ shop.name | json }},
+      "publisher": { "@id": {{ org_id | json }} },
+      "inLanguage": "en-GB",
+      "potentialAction": { "@type": "SearchAction", "target": { "@type": "EntryPoint", "urlTemplate": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }} }, "query-input": "required name=search_term_string" }
+    }
+  ]
+}
+</script>
+{%- if request.page_type == 'product' -%}
+  {%- liquid
+    assign rating = product.metafields.reviews.rating.value
+    assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+    assign crumb_col = product.collections.first
+    if collection
+      assign crumb_col = collection
+    endif
+    assign valid_until = 'now' | date: '%s' | plus: 31536000 | date: '%Y-12-31'
+  -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": {{ request.origin | append: product.url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    "description": {{ product.description | strip_html | strip_newlines | truncate: 5000 | json }},
+    {%- if product.featured_media %}"image": [{% for m in product.media limit: 6 %}{% if m.media_type == 'image' %}{% unless forloop.first %},{% endunless %}{{ m.preview_image | image_url: width: 1600 | prepend: 'https:' | json }}{% endif %}{% endfor %}],{% endif %}
+    "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+    {%- if product.type != blank %}"category": {{ product.type | json }},{% endif %}
+    {%- if product.selected_or_first_available_variant.sku != blank %}"sku": {{ product.selected_or_first_available_variant.sku | json }},{% endif %}
+    {%- if rating and rating_count > 0 %}
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": {{ rating.rating | json }}, "bestRating": {{ rating.scale_max | json }}, "worstRating": {{ rating.scale_min | json }}, "reviewCount": {{ rating_count | json }} },
+    {%- endif %}
+    "offers": [
+      {%- for v in product.variants -%}
+      {
+        "@type": "Offer",
+        "name": {{ v.title | json }},
+        {%- if v.sku != blank %}"sku": {{ v.sku | json }},{% endif %}
+        "url": {{ request.origin | append: v.url | json }},
+        "price": {{ v.price | divided_by: 100.0 | json }},
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "priceValidUntil": {{ valid_until | json }},
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/{% if v.available %}InStock{% else %}PreOrder{% endif %}",
+        "seller": { "@id": {{ org_id | json }} },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": { "@type": "MonetaryAmount", "value": 0, "currency": "GBP" },
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "GB" },
+          "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 2, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 3, "unitCode": "DAY" } }
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}}
+    {%- if crumb_col -%},{"@type":"ListItem","position":2,"name":{{ crumb_col.title | json }},"item":{{ request.origin | append: crumb_col.url | json }}}{%- endif -%}
+    ,{"@type":"ListItem","position":{% if crumb_col %}3{% else %}2{% endif %},"name":{{ product.title | json }},"item":{{ request.origin | append: product.url | json }}}
+  ]}
+  </script>
+{%- elsif request.page_type == 'collection' and collection.handle != blank -%}
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}},
+      {"@type":"ListItem","position":2,"name":{{ collection.title | json }},"item":{{ request.origin | append: collection.url | json }}}
+    ]},
+    {"@type":"CollectionPage","name":{{ collection.title | json }},"url":{{ request.origin | append: collection.url | json }},
+     {%- if collection.description != blank %}"description":{{ collection.description | strip_html | strip_newlines | truncate: 300 | json }},{% endif %}
+     "mainEntity":{"@type":"ItemList","numberOfItems":{{ collection.products_count }},"itemListElement":[
+      {%- for p in collection.products limit: 24 -%}{"@type":"ListItem","position":{{ forloop.index }},"url":{{ request.origin | append: p.url | json }}}{% unless forloop.last %},{% endunless %}{%- endfor -%}
+     ]}}
+  ]}
+  </script>
+{%- elsif request.page_type == 'article' -%}
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"BlogPosting","headline":{{ article.title | truncate: 110 | json }},
+     "url":{{ request.origin | append: article.url | json }},
+     "datePublished":{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+     "dateModified":{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+     {%- if article.image %}"image":{{ article.image | image_url: width: 1600 | prepend: 'https:' | json }},{% endif %}
+     "author":{"@type":"Organization","name":{{ shop.name | json }},"url":{{ shop.url | json }}},
+     "publisher":{"@id":{{ org_id | json }}},
+     "description":{{ article.excerpt_or_content | strip_html | strip_newlines | truncate: 200 | json }},
+     "mainEntityOfPage":{{ request.origin | append: article.url | json }}},
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}},
+      {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ request.origin | append: blog.url | json }}},
+      {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ request.origin | append: article.url | json }}}
+    ]}
+  ]}
+  </script>
+{%- endif -%}

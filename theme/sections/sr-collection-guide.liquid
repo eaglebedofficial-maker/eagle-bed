@@ -1,0 +1,58 @@
+{%- liquid
+  assign handle = collection.handle
+  assign shown = 0
+  for block in section.blocks
+    assign scope = block.settings.only_on | strip | downcase | split: ','
+    for sc in scope
+      if sc == handle
+        assign shown = shown | plus: 1
+      endif
+    endfor
+  endfor
+-%}
+{%- if shown > 0 -%}
+<section class="sr sr-sec sr-sec--linen" aria-label="{{ collection.title | escape }} buying advice">
+  <div class="sr-wrap">
+    {%- for block in section.blocks -%}
+      {%- assign scope = block.settings.only_on | strip | downcase | split: ',' -%}
+      {%- assign match = false -%}
+      {%- for sc in scope -%}{%- if sc == handle -%}{%- assign match = true -%}{%- endif -%}{%- endfor -%}
+      {%- if match -%}
+        <div class="sr-faqw" style="margin-bottom:48px" {{ block.shopify_attributes }}>
+          <div>
+            <p class="sr-kicker" data-sr-reveal="fade">Buying advice</p>
+            <h2 class="sr-h2" data-sr-reveal>{{ block.settings.heading | escape }}</h2>
+            {%- assign links = block.settings.links | newline_to_br | split: '<br />' -%}
+            {%- if block.settings.links != blank -%}
+              <ul style="list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px">
+                {%- for l in links -%}{%- assign lp = l | strip | split: '|' -%}{%- if lp.size == 2 -%}
+                  <li><a class="sr-link" href="{{ lp[1] | strip }}">{{ lp[0] | strip | escape }}{% render 'sr-icon', icon: 'arrow' %}</a></li>
+                {%- endif -%}{%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          <div class="sr-rte" data-sr-reveal>{{ block.settings.body }}</div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Collection buying guide",
+  "max_blocks": 30,
+  "settings": [
+    { "type": "paragraph", "content": "Add one block per collection. Each block only shows on the collections you list, so every collection page gets unique, helpful content." }
+  ],
+  "blocks": [
+    { "type": "guide", "name": "Guide", "settings": [
+      { "type": "text", "id": "only_on", "label": "Collection handles (comma separated)", "default": "ottoman-beds" },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "How to choose" },
+      { "type": "richtext", "id": "body", "label": "Advice" },
+      { "type": "textarea", "id": "links", "label": "Related links (Label|/url, one per line)" }
+    ] }
+  ],
+  "presets": [{ "name": "Collection buying guide" }]
+}
+{% endschema %}
