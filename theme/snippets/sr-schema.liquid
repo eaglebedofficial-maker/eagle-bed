@@ -107,7 +107,7 @@
      {%- if collection.description != blank %}"description":{{ collection.description | strip_html | strip_newlines | truncate: 300 | json }},{% endif %}
      "mainEntity":{"@type":"ItemList","numberOfItems":{{ collection.products_count }},"itemListElement":[
       {%- for p in collection.products limit: 24 -%}{"@type":"ListItem","position":{{ forloop.index }},"url":{{ request.origin | append: p.url | json }} }{% unless forloop.last %},{% endunless %}{%- endfor -%}
-     ]}}
+     ]} }
   ]}
   </script>
 {%- elsif request.page_type == 'article' -%}

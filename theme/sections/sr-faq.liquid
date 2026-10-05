@@ -17,7 +17,7 @@
             {%- assign scope = block.settings.only_on | strip | downcase -%}
             {%- if scope == blank or scope contains handle -%}
               {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
-              {"@type":"Question","name":{{ block.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.a | json }} }}
+              {"@type":"Question","name":{{ block.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.a | json }} } }
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
@@ -54,7 +54,7 @@
     { "type": "faq", "name": "Question", "settings": [
       { "type": "text", "id": "q", "label": "Question" },
       { "type": "richtext", "id": "a", "label": "Answer" },
-      { "type": "text", "id": "only_on", "label": "Only show on (collection handle, product type or page handle, optional)", "info": "e.g. ottoman-beds. Leave blank to show everywhere." }
+      { "type": "text", "id": "only_on", "label": "Only show on (handle or product type, optional)", "info": "e.g. ottoman-beds. Leave blank to show everywhere." }
     ] }
   ],
   "presets": [{ "name": "FAQ" }]
