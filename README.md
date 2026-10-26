@@ -8,3 +8,10 @@ Source for the premium "digital showroom" redesign of the **ABBAS 3D** Shopify t
 - `docs/02-organic-growth-plan.md`: traffic diagnosis and the organic growth plan for the Eagle Bed HQ agents.
 
 Everything new is prefixed `sr-` (showroom). The original `eb3d-*` product, collection, header and cart sections are kept, because they work with the bcpo options app and Judge.me.
+
+## Trading agent (`.claude/`)
+
+- `.claude/skills/trader-*`: the 11 skills from [Jakeschincariol/day-trader-skill](https://github.com/Jakeschincariol/day-trader-skill) (MIT, see `.claude/skills/DAY-TRADER-LICENSE`).
+- `.claude/skills/trader-agent`: one front door. Upload a chart picture, type an instruction, or ask for signals: `/trader-agent`.
+- `.claude/agents/day-trader.md`: the same as a subagent ("use the day-trader agent").
+- Trading state (config, orders, fills) goes in `trader/`, which is git-ignored. Paper trading is the default. Not financial advice.
