@@ -56,6 +56,7 @@ beyond the command types below.
 | `signals/<date>-<SYMBOL>-<setup>` | you, app | the signal card (below). The app sets `status` to `approving` or `rejected` |
 | `activity/<id>` | you | `{t, agent, text}`: one short line per real step. Keep it under 30 lines per cycle |
 | `journal/<date>-<SYMBOL>-<n>` | you | `{date, symbol, setup, qty, entry, exit, pnl, r, reason, opened, closed}` |
+| `hq/portfolio` | you | the user's Trading 212 investments, read only: `{env, currency, cash: {free, total, invested, ppl}, items: [{t212, symbol, name, quantity, avg_price, current_price, value, ppl, fx_ppl, flags: ["earnings Thu", "8-K today", "Pelosi bought"]}], news: [{symbol, t, title, tag}], t}` |
 
 ### Rules → `trader/config.json`
 
@@ -86,7 +87,22 @@ tickers), `top` (`scan.py daily --limit 300`), `market` (the whole universe).
    environment's network settings". Do not invent data when a feed is blocked.
 2. If `APCA_PAPER` is "false" but `hq/rules.paper` is not false, or the other
    way round, set `checks.broker` to say so and place nothing.
-3. Write `hq/state` heartbeat, `hq/account`, `hq/positions`, then run a cycle.
+3. If `T212_API_KEY` is set, `t212.py status` → `checks.t212` ("ok" or the plain reason) and
+   `hq/portfolio`. If it is not set, leave `checks.t212` out: Trading 212 is optional.
+4. Write `hq/state` heartbeat, `hq/account`, `hq/positions`, then run a cycle.
+
+## Trading 212 (the user's investments, read only)
+
+`python3 "$T/trader-hq/t212.py" status` reads cash and holdings. It has no
+order commands, on purpose: never trade the Trading 212 account, never suggest
+the engine can. Refresh `hq/portfolio` in the pre-market cycle, every 30
+minutes in the market cycle, after the close-out, and on the `portfolio`
+command (Trading 212 rate-limits hard: one `status` call per refresh). For
+holdings with a Yahoo `symbol`: run `news.py` on them in the pre-market cycle
+and put the new items in `news`; add `flags` for earnings this week
+(trader-analyst), an 8-K today, or a Congress trade in that stock
+(trader-pelosi). Holdings outside the US and UK keep `symbol: null` and get no
+news. A big move or a flag also goes in activity as a `news` line.
 
 ## Every wake-up
 
@@ -155,6 +171,7 @@ Final sync and journal, cancel nothing that is protecting a position, delete
 | --- | --- |
 | `start`, `pause`, `stop` | acknowledge in activity; `start` runs the boot checks and a cycle. `stop` never closes positions: brackets stay at the broker |
 | `rules` | rewrite `trader/config.json` from `hq/rules` |
+| `portfolio` | refresh `hq/portfolio` from Trading 212 now, with news and flags |
 | `scan`, `briefing`, `sync` | run that part of the cycle now (scan is allowed while paused only if the user asked) |
 | `news`, `earnings`, `pelosi` | run trader-news / trader-analyst / trader-pelosi for `args.symbol` (or the watch list) and put the answer in that agent's `report` |
 | `analyze` | the full signal pipeline for `args.symbol`; `args.fromChart` holds a chart read from a screenshot: use its levels as the `--setup level` level or the plan's price stop and target, and say where live data disagrees |

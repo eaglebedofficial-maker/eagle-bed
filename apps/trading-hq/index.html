@@ -128,8 +128,8 @@ table.t td.num{text-align:right}
 .steps li{margin:4px 0}
 .ok{color:var(--up);font-weight:700} .bad{color:var(--down);font-weight:700}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--surface);border-top:1px solid var(--line);padding:0 max(0px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(0px,env(safe-area-inset-left,0px))}
-nav.tabs .in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
-nav.tabs button{background:none;border:0;padding:8px 2px 9px;font-size:11.5px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+nav.tabs .in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+nav.tabs button{background:none;border:0;padding:8px 1px 9px;font-size:11px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
 nav.tabs svg{width:21px;height:21px}
 nav.tabs button[aria-selected=true]{color:var(--accent);font-weight:700}
 nav.tabs .dot{position:absolute;top:5px;right:calc(50% - 16px);min-width:16px;height:16px;border-radius:99px;background:var(--down);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
@@ -212,6 +212,25 @@ details summary{cursor:pointer;font-weight:600}
   <div class="card"><h3>Equity curve</h3><p class="muted small" style="margin:0">Closed-trade P&amp;L added up, trade by trade.</p><div id="curve"></div></div>
   <div class="card scroll"><table class="t" id="jTbl"></table></div>
   <div class="row"><button class="btn ghost sm" id="btnCsv" type="button">Download journal (CSV)</button></div>
+</section>
+
+<!-- INVEST -->
+<section id="tab-invest" hidden>
+  <h2>My investments</h2>
+  <p class="muted small">Your Trading 212 holdings, read only. The desk watches the news, filings, earnings dates and Congress trades on what you own. It never buys or sells anything in this account.</p>
+  <div class="row spread"><span class="muted small" id="pfNote">Not connected yet.</span><button class="btn ghost sm" id="btnPf" type="button">Refresh</button></div>
+  <div class="kpis" id="pfKpis" style="margin-top:8px"></div>
+  <div class="card scroll"><table class="t" id="pfTbl"></table></div>
+  <div class="card"><h3>News on what you own</h3><ul class="feed" id="pfNews"><li><span class="t"></span><span class="muted">Headlines and filings on your holdings appear here.</span></li></ul></div>
+  <div class="card" id="pfSetup">
+    <h3>Connect Trading 212</h3>
+    <ol class="steps">
+      <li>In the Trading 212 app, choose your <strong>Invest</strong> or <strong>Stocks ISA</strong> account, then open <strong>Settings</strong>, then <strong>API (Beta)</strong>, and generate a key. Tick only the read permissions (account, portfolio, history, metadata). Leave order permissions unticked.</li>
+      <li>Copy the <strong>API key</strong> and the <strong>secret</strong>. The secret is shown once.</li>
+      <li>In the cloud environment settings (environment menu, Edit), add <span class="mono">T212_API_KEY</span>, <span class="mono">T212_API_SECRET</span> and <span class="mono">T212_ENV=live</span>, and allow the domain <span class="mono">live.trading212.com</span>. Never paste the key into a chat.</li>
+      <li>Press <strong>Restart engine</strong> on the Desk. This card shows <span class="ok">Connected</span> when it works. <span id="pfCheck"></span></li>
+    </ol>
+  </div>
 </section>
 
 <!-- CHART -->
@@ -300,6 +319,7 @@ details summary{cursor:pointer;font-weight:600}
   <button role="tab" data-tab="desk" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Desk</button>
   <button role="tab" data-tab="signals" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l5-6 4 3 7-9"/><path d="M15 5h4v4"/></svg>Signals<span class="dot" id="sigDot" hidden></span></button>
   <button role="tab" data-tab="trades" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Trades</button>
+  <button role="tab" data-tab="invest" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l6 4"/></svg>Invest</button>
   <button role="tab" data-tab="chart" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15l3-4 3 2 4-5"/></svg>Chart</button>
   <button role="tab" data-tab="chat" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</button>
   <button role="tab" data-tab="rules" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7z"/></svg>Rules</button>
@@ -378,10 +398,10 @@ var chat={messages:[]}, chatImg=null, proposals=[];
 
 // ---------- tabs ----------
 function showTab(name){document.querySelectorAll("nav.tabs button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===name?"true":"false");});
-  ["desk","signals","trades","chart","chat","rules"].forEach(function(t){$("tab-"+t).hidden=(t!==name);});
+  ["desk","signals","trades","invest","chart","chat","rules"].forEach(function(t){$("tab-"+t).hidden=(t!==name);});
   try{localStorage.setItem("thq_tab",name);}catch(e){} window.scrollTo(0,0);}
 document.querySelectorAll("nav.tabs button").forEach(function(b){b.addEventListener("click",function(){showTab(b.dataset.tab);});});
-(function(){var h=(location.hash||"").replace("#",""),t=null;try{t=localStorage.getItem("thq_tab");}catch(e){}var want=["desk","signals","trades","chart","chat","rules"].indexOf(h)>=0?h:t;if(want)showTab(want);})();
+(function(){var h=(location.hash||"").replace("#",""),t=null;try{t=localStorage.getItem("thq_tab");}catch(e){}var want=["desk","signals","trades","invest","chart","chat","rules"].indexOf(h)>=0?h:t;if(want)showTab(want);})();
 
 // ---------- engine (Claude Code cloud session) ----------
 function enginePrompt(cmdText){
@@ -620,6 +640,20 @@ $("btnCsv").addEventListener("click",async function(){if(!downloads){toast("Down
   var lines=[["date","symbol","setup","qty","entry","exit","pnl","r","reason"].join(",")].concat(S.journal.map(function(t){return [t.date,t.symbol,t.setup,t.qty,t.entry,t.exit,t.pnl,t.r,t.reason].map(function(v){v=v==null?"":String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}).join(",");}));
   try{await downloads.save({filename:"trading-journal.csv",data:new Blob([lines.join("\n")],{type:"text/csv"})});}catch(e){toast("Download cancelled.");}});
 
+// ---------- investments (Trading 212, read only) ----------
+function money(v,cur){var n=num(v);if(n==null)return "–";try{return new Intl.NumberFormat("en-GB",{style:"currency",currency:cur||"GBP"}).format(n);}catch(e){return n.toFixed(2);}}
+function renderPortfolio(){var p=S.portfolio,ck=(S.state&&S.state.checks)||{};
+  $("pfCheck").innerHTML=ck.t212==="ok"?'<span class="ok">Connected</span>':ck.t212?'<span class="bad">'+esc(ck.t212)+'</span>':"";
+  $("pfSetup").hidden=ck.t212==="ok";
+  if(!p){$("pfNote").textContent="Not connected yet. Follow the steps below.";$("pfKpis").innerHTML="";$("pfTbl").innerHTML='<tbody><tr><td class="muted">Your holdings appear here once Trading 212 is connected.</td></tr></tbody>';return;}
+  var cur=p.currency||"GBP",c=p.cash||{},items=p.items||[];
+  $("pfNote").textContent=(p.env==="demo"?"Practice account":"Live account")+" · "+items.length+" holdings · updated "+ago(p.t);
+  var k=[["Account value",money(c.total,cur),"cash "+money(c.free,cur)],["Invested",money(c.invested,cur),"what you paid"],["Profit / loss",'<span class="'+sign(c.ppl)+'">'+money(c.ppl,cur)+'</span>',"on open holdings"]];
+  $("pfKpis").innerHTML=k.map(function(x){return '<div class="kpi"><span>'+x[0]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></div>';}).join("");
+  $("pfTbl").innerHTML=items.length?'<thead><tr><th>Holding</th><th class="num">Shares</th><th class="num">Avg price</th><th class="num">Now</th><th class="num">P&amp;L</th><th>Watch</th></tr></thead><tbody>'+items.map(function(x){return '<tr><td><strong class="mono">'+esc(x.symbol||x.t212)+'</strong><br><span class="small muted">'+esc(x.name||"")+'</span></td><td class="num mono">'+esc(x.quantity)+'</td><td class="num mono">'+px(x.avg_price)+'</td><td class="num mono">'+px(x.current_price)+'</td><td class="num mono '+sign(x.ppl)+'">'+money(x.ppl,cur)+'</td><td class="small">'+((x.flags||[]).map(function(f){return '<span class="chip pending">'+esc(f)+'</span>';}).join(" ")||'<span class="muted">–</span>')+'</td></tr>';}).join("")+'</tbody>':'<tbody><tr><td class="muted">No holdings in this account.</td></tr></tbody>';
+  var nw=p.news||[];$("pfNews").innerHTML=nw.length?nw.slice(0,30).map(function(n){return '<li><span class="t">'+esc(hhmm(n.t))+'</span><span><span class="who mono">'+esc(n.symbol)+'</span> '+esc(n.title)+(n.tag?' <span class="chip">'+esc(n.tag)+'</span>':'')+'</span></li>';}).join(""):'<li><span class="t"></span><span class="muted">No new headlines on your holdings.</span></li>';}
+$("btnPf").addEventListener("click",function(){queue("portfolio",{},"Refreshing your Trading 212 holdings");});
+
 // ---------- rules ----------
 function rules(){return Object.assign({},DEFAULT_RULES,S.rules||{});}
 function fillRules(){var r=rules();
@@ -675,6 +709,7 @@ function deskSnapshot(){var r=rules();return {now_ny:session().clock+" "+session
   positions:((S.positions&&S.positions.items)||[]).map(function(p){return {symbol:p.symbol,qty:p.qty,entry:p.avg_entry_price,now:p.current_price,pl:p.unrealized_pl,stop:p.stop,target:p.target};}),
   pendingSignals:S.signals.filter(function(s){return s.status==="pending";}).map(function(s){return {id:s.id,symbol:s.symbol,setup:s.setup,entry:s.entry,stop:s.stop,target:s.target,qty:s.qty,maxLoss:s.maxLoss,odds:s.odds,verdict:s.verdict,news:s.news};}),
   watching:((S.watch&&S.watch.items)||[]).slice(0,15),recentActivity:S.activity.slice(0,15).map(function(a){return hhmm(a.t)+" "+a.agent+": "+a.text;}),
+  investments_trading212_readonly:S.portfolio?{currency:S.portfolio.currency,cash:S.portfolio.cash,holdings:(S.portfolio.items||[]).map(function(x){return {symbol:x.symbol||x.t212,qty:x.quantity,avg:x.avg_price,now:x.current_price,pl:x.ppl,flags:x.flags};})}:null,
   journal:{trades:S.journal.length,net:S.journal.reduce(function(s,t){return s+(num(t.pnl)||0);},0)}};}
 var CHAT_RULES="You are the Manager of Trading HQ, a day-trading desk with these agents: Chart Scanner, News Monitor, Entry Timer, Exit Planner, Time Machine (10,000 replays plus history), Budget Manager, Risk Manager, Order Executor (Alpaca), Price Alerts, Earnings Analyst (SEC filings), Pelosi Tracker (Congress trades). Speak plainly and briefly. Every price or number you state must come from the desk data or a tool result; never invent one. Not financial advice: say so once if the user asks what to buy. Long trades are what the pipeline places. To make the desk DO something (scan, news, analyse a ticker, earnings, Congress trades, a job for one agent), call run_desk_task. To trade, close, cancel or move a stop/target, call propose_trade_action: it shows the user a confirm button, and nothing happens unless they tap it; tell them to tap Confirm. Never say a trade was placed unless the desk data shows it. Use get_desk for current numbers.";
 var chatTools=[
@@ -708,7 +743,7 @@ async function sendChat(){var t=$("chatBox").value.trim();if(!t&&!chatImg)return
   finally{$("chatSend").disabled=false;renderChat();saveChat();}}
 
 // ---------- boot ----------
-function renderAll(){renderEngine();renderKpis();renderDesks();renderFeed();renderSignals();renderPositions();renderJournal();}
+function renderAll(){renderEngine();renderKpis();renderDesks();renderFeed();renderSignals();renderPositions();renderJournal();renderPortfolio();}
 fillRules();renderAll();renderChat();tickClock();setInterval(tickClock,15000);
 setInterval(function(){renderKpis();},60000);
 
@@ -724,12 +759,13 @@ setInterval(function(){renderKpis();},60000);
   $("chatAttachLbl").hidden=!canImages;
   if(!db){$("engineLine").textContent="Open this page in claude.ai, signed in, to run the desk.";return;}
   function onDoc(path,key,after){db.doc(path).onSnapshot(function(s){S[key]=s.exists?s.data():(key==="agents"?{}:key==="state"?{}:null);if(key==="rules")fillRules();after();},function(){});}
-  onDoc("hq/state","state",function(){renderEngine();renderKpis();renderSignals();});
+  onDoc("hq/state","state",function(){renderEngine();renderKpis();renderSignals();renderPortfolio();});
   onDoc("hq/rules","rules",function(){renderEngine();renderKpis();});
   onDoc("hq/account","account",function(){renderKpis();mmLine();});
   onDoc("hq/positions","positions",function(){renderPositions();renderKpis();});
   onDoc("hq/agents","agents",renderDesks);
   onDoc("hq/watch","watch",renderSignals);
+  onDoc("hq/portfolio","portfolio",renderPortfolio);
   function onCol(path,field,key,lim,after){db.collection(path).orderBy(field,"desc").limit(lim).onSnapshot(function(q){S[key]=q.docs.map(function(d){return Object.assign({id:d.id},d.data());});after();},function(){});}
   onCol("signals","created","signals",80,renderSignals);
   onCol("activity","t","activity",80,function(){renderFeed();});
