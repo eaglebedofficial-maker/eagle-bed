@@ -165,7 +165,9 @@ details summary{cursor:pointer;font-weight:600}
     <button class="btn ghost sm" id="btnSync" type="button">Refresh account</button>
     <button class="btn ghost sm" id="btnBrief" type="button">Morning briefing</button>
     <button class="btn ghost sm" id="btnPelosi" type="button">Congress trades</button>
+    <button class="btn ghost sm" id="btnRestart" type="button">Restart engine</button>
   </div>
+  <div id="restartConfirm"></div>
 
   <h2>Account</h2>
   <div class="kpis" id="kpis"></div>
@@ -434,6 +436,16 @@ $("btnScan").addEventListener("click",function(){queue("scan",{},"Scanning now")
 $("btnSync").addEventListener("click",function(){queue("sync",{},"Refreshing your account");});
 $("btnBrief").addEventListener("click",function(){queue("briefing",{},"Building the briefing");});
 $("btnPelosi").addEventListener("click",function(){queue("pelosi",{},"Checking Congress trades");});
+// Restart: a new cloud session picks up changed environment variables (new keys, APCA_PAPER). The old one is retired first so two engines never run at once.
+$("btnRestart").addEventListener("click",function(){$("restartConfirm").innerHTML='<div class="confirm"><strong>Restart the engine?</strong><p class="small" style="margin:4px 0 8px">Use this after you change your keys or switch between paper and live. The old engine is switched off and a new one starts with your new settings. Open positions keep their stops and targets at the broker.</p><div class="row"><button class="btn sm" id="rsYes" type="button">Restart</button><button class="btn ghost sm" id="rsNo" type="button">Cancel</button></div></div>';
+  $("rsNo").onclick=function(){$("restartConfirm").innerHTML="";};
+  $("rsYes").onclick=async function(){$("restartConfirm").innerHTML="";if(!mcp){toast(mcpWhy({code:"not_granted"}));return;}var st=S.state||{};
+    try{if(st.triggerId)await mcp.callTool(CCR,"update_trigger",{trigger_id:st.triggerId,enabled:false});}catch(e){addLocalActivity("manager","Could not switch off the old daily start: "+mcpWhy(e));}
+    try{if(st.engineSession)await mcp.callTool(CCR,"archive_session",{session_id:st.engineSession});}catch(e){addLocalActivity("manager","Could not switch off the old engine: "+mcpWhy(e));}
+    var keep=Object.assign({},st);delete keep.engineSession;delete keep.triggerId;delete keep.checks;keep.status="running";keep.since=Date.now();S.state=keep;
+    try{await db.doc("hq/state").set(keep);}catch(e){}
+    addLocalActivity("manager","Restarting the engine with the current settings");
+    await queue("start",{},"Restarting the engine");};});
 
 function renderEngine(){
   var st=S.state||{}, pill=$("enginePill"), status=st.status||"off", beat=st.heartbeat||0, stale=beat&&(Date.now()-beat>20*60*1000);
