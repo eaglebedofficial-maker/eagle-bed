@@ -15,3 +15,9 @@ Everything new is prefixed `sr-` (showroom). The original `eb3d-*` product, coll
 - `.claude/skills/trader-agent`: one front door. Upload a chart picture, type an instruction, or ask for signals: `/trader-agent`.
 - `.claude/agents/day-trader.md`: the same as a subagent ("use the day-trader agent").
 - Trading state (config, orders, fills) goes in `trader/`, which is git-ignored. Paper trading is the default. Not financial advice.
+
+## Trading HQ app (`apps/trading-hq/`)
+
+- The app: https://claude.ai/artifact/HvGS44nRXudsBLsmoVgGzn (source `apps/trading-hq/index.html`). Desk with Start / Pause / Stop, signals to approve, positions with close / cancel / move stop and target, chart reader, chat with the Manager, journal, money-management rules.
+- The engine: `.claude/skills/trader-hq/` runs in a Claude Code cloud session the app starts. It drives the 11 `trader-*` skills, writes results to the app's database, and places only orders you approve in the app, through `alpaca.py` (Alpaca REST, paper by default).
+- Setup: Alpaca keys as environment variables `APCA_API_KEY_ID`, `APCA_API_SECRET_KEY`, `APCA_PAPER=true`, plus `SEC_USER_AGENT`; allow the Alpaca, Yahoo, Nasdaq Trader, SEC and House Clerk domains in the environment's network settings.

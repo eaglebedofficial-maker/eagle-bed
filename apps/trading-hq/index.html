@@ -1,0 +1,728 @@
+<title>Trading HQ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a trading desk. Sticky session bar on top, one working column, tab bar at the bottom like a phone app. */
+:root{
+  --bg:#EEF1F5; --surface:#FFFFFF; --surface2:#E4E9F0; --ink:#0E1726; --muted:#586577; --line:rgba(14,23,38,.12);
+  --accent:#2F5BEA; --accent-ink:#FFFFFF; --up:#0F7A57; --down:#C2352B; --warn:#A86200; --wait:#6B4FD8;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A0F17; --surface:#111925; --surface2:#192331; --ink:#E5EBF3; --muted:#93A0B2; --line:rgba(229,235,243,.11);
+  --accent:#7D9BFF; --accent-ink:#0A0F17; --up:#3ACB8E; --down:#FF6E61; --warn:#F2AA3C; --wait:#A891FF; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0A0F17; --surface:#111925; --surface2:#192331; --ink:#E5EBF3; --muted:#93A0B2; --line:rgba(229,235,243,.11);
+  --accent:#7D9BFF; --accent-ink:#0A0F17; --up:#3ACB8E; --down:#FF6E61; --warn:#F2AA3C; --wait:#A891FF; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--accent)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;letter-spacing:-.01em;margin:0}
+h2{font-size:22px;margin:22px 0 4px}
+h3{font-size:16px}
+.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)} .small{font-size:13px} .up{color:var(--up)} .down{color:var(--down)}
+.wrap{max-width:1000px;margin:0 auto;padding-block:0 150px}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px))}
+header.bar .in{max-width:1000px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mark{width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center;flex:none}
+.mark svg{width:22px;height:22px}
+.brand{min-width:0}
+.brand h1{font-size:19px;line-height:1.1}
+.brand p{margin:0;font-size:12.5px;color:var(--muted)}
+.pills{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;font-family:var(--mono)}
+.pill.paper{color:var(--wait);border-color:color-mix(in srgb,var(--wait) 45%,transparent)}
+.pill.live{color:#fff;background:var(--down);border-color:var(--down)}
+.pill.on{color:var(--up);border-color:color-mix(in srgb,var(--up) 50%,transparent)}
+.pill.off{color:var(--down);border-color:color-mix(in srgb,var(--down) 45%,transparent)}
+.pill.pause{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.session{max-width:1000px;margin:8px auto 0;display:flex;align-items:center;gap:10px;font-size:12.5px}
+.session .track{flex:1;height:6px;border-radius:99px;background:var(--surface2);position:relative;overflow:hidden;min-width:60px}
+.session .track i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:99px}
+.session b{font-family:var(--mono);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.spread{justify-content:space-between}
+.btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.go{background:var(--up);color:#fff}
+.btn.stop{background:var(--down);color:#fff}
+.btn.warn{background:var(--warn);color:#fff}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input[type=text],input[type=number],select,textarea{width:100%;background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:9px 11px}
+textarea{resize:vertical}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+label.f input,label.f select{color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:720px){.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:720px){.kpis{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.kpi span{display:block;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kpi b{display:block;font-family:var(--mono);font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi small{font-size:12px;color:var(--muted)}
+.meter{height:6px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--up)}
+.meter i.hot{background:var(--warn)} .meter i.full{background:var(--down)}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.controls .btn{padding:14px 8px;font-size:15px}
+.desks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:560px){.desks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:860px){.desks{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.desk{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;grid-template-columns:40px 1fr;gap:9px;align-items:start;text-align:left;cursor:pointer;min-width:0}
+.desk.mgr{grid-column:1/-1;border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.desk svg{width:40px;height:40px}
+.desk .nm{font-weight:700;font-size:13.5px;line-height:1.2}
+.desk .ln{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desk.working{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+.desk.working .eye{animation:blink 1.1s steps(2) infinite}
+.desk.alert{border-color:var(--warn)}
+@keyframes blink{50%{opacity:.25}}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--surface2);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.chip.working{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.chip.done,.chip.PASS,.chip.placed,.chip.filled{background:color-mix(in srgb,var(--up) 18%,transparent);color:var(--up)}
+.chip.alert,.chip.BLOCK,.chip.blocked,.chip.failed,.chip.rejected{background:color-mix(in srgb,var(--down) 16%,transparent);color:var(--down)}
+.chip.pending,.chip.approving,.chip.queued{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.chip.LONG{background:color-mix(in srgb,var(--up) 18%,transparent);color:var(--up)}
+.chip.SHORT{background:color-mix(in srgb,var(--down) 16%,transparent);color:var(--down)}
+.chip.WAIT{background:color-mix(in srgb,var(--wait) 18%,transparent);color:var(--wait)}
+.feed{list-style:none;margin:0;padding:0;font-size:13.5px}
+.feed li{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
+.feed li:first-child{border-top:0}
+.feed .t{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.feed .who{font-weight:700}
+.empty{color:var(--muted);text-align:center;padding:18px 8px;font-size:14px}
+.sig{border-left:4px solid var(--warn)}
+.sig.placed,.sig.filled{border-left-color:var(--up)} .sig.rejected,.sig.blocked,.sig.expired,.sig.failed{border-left-color:var(--line)}
+.sig h3{font-size:18px}
+.ticket{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:14px;margin:10px 0}
+.ticket dt{color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.ticket dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
+.odds{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--surface2);margin:4px 0}
+.odds i:nth-child(1){background:var(--up)} .odds i:nth-child(2){background:var(--down)} .odds i:nth-child(3){background:var(--muted);opacity:.45}
+.confirm{background:color-mix(in srgb,var(--warn) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:10px;padding:10px;margin-top:8px}
+.scroll{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px}
+table.t th,table.t td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
+table.t th{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+table.t td.num{text-align:right}
+.msgs{display:flex;flex-direction:column;gap:8px}
+.msg{max-width:88%;padding:9px 12px;border-radius:12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14.5px}
+.msg.me{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:3px}
+.msg.ai{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:3px}
+.drop{border:2px dashed var(--line);border-radius:14px;padding:22px 14px;text-align:center;cursor:pointer;position:relative}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop img{max-height:320px;border-radius:10px;margin:0 auto;display:block}
+.steps{margin:6px 0 0;padding-left:20px;font-size:14px}
+.steps li{margin:4px 0}
+.ok{color:var(--up);font-weight:700} .bad{color:var(--down);font-weight:700}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--surface);border-top:1px solid var(--line);padding:0 max(0px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(0px,env(safe-area-inset-left,0px))}
+nav.tabs .in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+nav.tabs button{background:none;border:0;padding:8px 2px 9px;font-size:11.5px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+nav.tabs svg{width:21px;height:21px}
+nav.tabs button[aria-selected=true]{color:var(--accent);font-weight:700}
+nav.tabs .dot{position:absolute;top:5px;right:calc(50% - 16px);min-width:16px;height:16px;border-radius:99px;background:var(--down);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:10px;font-size:14px;z-index:30;max-width:90vw}
+.curve{width:100%;height:150px;display:block}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center}
+.sheet .pane{background:var(--surface);width:100%;max-width:1000px;max-height:88%;overflow:auto;border-radius:18px 18px 0 0;padding:16px max(16px,env(safe-area-inset-left,0px)) calc(22px + env(safe-area-inset-bottom,0px))}
+details summary{cursor:pointer;font-weight:600}
+@media (prefers-reduced-motion: reduce){.desk.working .eye{animation:none}}
+</style>
+
+<header class="bar"><div class="in">
+  <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3v18M6 7h-2v8h2M12 6v14M12 9h-2v5h2M18 2v18M18 5h2v9h-2"/></svg></div>
+  <div class="brand"><h1>Trading HQ</h1><p>Your AI trading desk: 12 agents, one yes from you per trade</p></div>
+  <div class="pills"><span class="pill paper" id="modePill">PAPER</span><span class="pill off" id="enginePill">Engine off</span></div>
+</div>
+<div class="session" aria-live="polite"><b id="nyClock">--:-- ET</b><span id="sessName" class="muted">Loading the NYSE calendar</span><span class="track"><i id="sessTrack" style="width:0"></i></span><span id="sessLeft" class="muted mono"></span></div>
+</header>
+
+<main class="wrap">
+
+<!-- DESK -->
+<section id="tab-desk">
+  <h2>Desk</h2>
+  <p class="muted small" id="engineLine">The engine is not running yet. Press Start: the agents scan the market, find setups, and ask you before any trade.</p>
+  <div class="controls">
+    <button class="btn go" id="btnStart" type="button">Start</button>
+    <button class="btn warn" id="btnPause" type="button">Pause</button>
+    <button class="btn stop" id="btnStop" type="button">Stop</button>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <button class="btn ghost sm" id="btnScan" type="button">Scan now</button>
+    <button class="btn ghost sm" id="btnSync" type="button">Refresh account</button>
+    <button class="btn ghost sm" id="btnBrief" type="button">Morning briefing</button>
+    <button class="btn ghost sm" id="btnPelosi" type="button">Congress trades</button>
+  </div>
+
+  <h2>Account</h2>
+  <div class="kpis" id="kpis"></div>
+  <p class="muted small" id="acctNote">No account data yet. It appears after the engine connects to your broker.</p>
+
+  <div class="card" id="setupCard">
+    <div class="row spread"><h3>Connect your broker</h3><span class="chip" id="setupChip">Setup</span></div>
+    <ol class="steps" id="setupSteps"></ol>
+  </div>
+
+  <h2>The trading floor</h2>
+  <p class="muted small">Tap an agent to see its last report or give it a job.</p>
+  <div class="desks" id="desks"></div>
+
+  <div class="card">
+    <div class="row spread"><h3>Live activity</h3><span class="muted small mono" id="beat"></span></div>
+    <ul class="feed" id="feed"><li><span class="t"></span><span class="muted">Everything the agents do shows here as it happens.</span></li></ul>
+  </div>
+</section>
+
+<!-- SIGNALS -->
+<section id="tab-signals" hidden>
+  <h2>Signals</h2>
+  <p class="muted small">A signal is a setup that triggered on real bars, with a stop, a target, a size and the odds from 10,000 replays. Nothing is placed until you approve it here.</p>
+  <div id="sigPending"></div>
+  <h2>Watching</h2>
+  <p class="muted small">Setups that have not triggered yet, and how far away they are.</p>
+  <div class="card scroll"><table class="t" id="watchTbl"></table></div>
+  <details class="card"><summary>Earlier signals</summary><div id="sigDone" style="margin-top:8px"></div></details>
+</section>
+
+<!-- TRADES -->
+<section id="tab-trades" hidden>
+  <h2>Open positions</h2>
+  <div class="row spread"><span class="muted small" id="posNote">No positions.</span><button class="btn stop sm" id="btnFlatAll" type="button">Close everything</button></div>
+  <div id="flatConfirm"></div>
+  <div id="positions"></div>
+  <h2>Working orders</h2>
+  <div class="card scroll"><table class="t" id="ordTbl"></table></div>
+  <h2>Journal</h2>
+  <div class="kpis" id="jKpis"></div>
+  <div class="card"><h3>Equity curve</h3><p class="muted small" style="margin:0">Closed-trade P&amp;L added up, trade by trade.</p><div id="curve"></div></div>
+  <div class="card scroll"><table class="t" id="jTbl"></table></div>
+  <div class="row"><button class="btn ghost sm" id="btnCsv" type="button">Download journal (CSV)</button></div>
+</section>
+
+<!-- CHART -->
+<section id="tab-chart" hidden>
+  <h2>Chart reader</h2>
+  <p class="muted small">Upload a screenshot from TradingView, your broker or your phone. The analyst reads the trend, levels and pattern, and gives LONG, SHORT or WAIT with an entry, stop and target, sized to your rules.</p>
+  <div class="drop" id="drop"><input type="file" id="chartFile" accept="image/png,image/jpeg,image/webp,image/gif" aria-label="Upload a chart screenshot"><div id="dropInner"><strong>Tap to upload a chart</strong><br><span class="muted small">PNG, JPG or WebP</span></div></div>
+  <label class="f" style="margin-top:10px">Anything to add (optional)<input type="text" id="chartNote" placeholder="e.g. AAPL 5-minute, I'm thinking of buying the breakout"></label>
+  <div class="row" style="margin-top:10px"><button class="btn" id="btnRead" type="button" disabled>Read this chart</button><span class="muted small" id="readNote"></span></div>
+  <div id="chartOut"></div>
+</section>
+
+<!-- CHAT -->
+<section id="tab-chat" hidden>
+  <h2>Talk to the Manager</h2>
+  <p class="muted small">Ask anything, give orders in plain words, or attach a chart. The Manager can run any agent. Trades, closes and cancels always come back to you as a button to confirm.</p>
+  <div class="msgs" id="msgs"></div>
+  <div id="proposals"></div>
+  <div class="card">
+    <textarea id="chatBox" rows="3" placeholder="e.g. Give me signals. Or: move my TSLA stop to break-even. Or: what is Pelosi buying?"></textarea>
+    <div class="row" style="margin-top:8px">
+      <button class="btn" id="chatSend" type="button">Send</button>
+      <label class="btn ghost sm" style="position:relative;overflow:hidden" id="chatAttachLbl">Attach chart<input type="file" id="chatFile" accept="image/png,image/jpeg,image/webp,image/gif" style="position:absolute;inset:0;opacity:0;cursor:pointer"></label>
+      <button class="btn ghost sm" id="chatNew" type="button">New chat</button>
+      <span class="muted small" id="chatNote"></span>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="tab-rules" hidden>
+  <h2>Money management</h2>
+  <p class="muted small">The rules every trade must pass. The Risk Manager blocks anything over them, and the Budget Manager sizes each trade so a stop-out costs no more than your risk per trade.</p>
+  <div class="card">
+    <h3>Account and risk</h3>
+    <div class="grid3" style="margin-top:8px">
+      <label class="f">Account size ($)<input type="number" id="r_budget" min="100" step="100"></label>
+      <label class="f">Risk per trade (% of account)<input type="number" id="r_riskPct" min="0.1" max="5" step="0.1"></label>
+      <label class="f">Max loss per day (% of account)<input type="number" id="r_dayPct" min="0.5" max="10" step="0.5"></label>
+      <label class="f">Max trades per day<input type="number" id="r_trades" min="1" max="20" step="1"></label>
+      <label class="f">Minimum reward : risk<input type="number" id="r_rr" min="1" max="5" step="0.5"></label>
+      <label class="f">Stop for the day after this many losses in a row<input type="number" id="r_streak" min="1" max="10" step="1"></label>
+      <label class="f">Biggest position (% of account)<input type="number" id="r_pos" min="5" max="100" step="5"></label>
+      <label class="f">Always keep in cash (%)<input type="number" id="r_cash" min="0" max="90" step="5"></label>
+      <label class="f">Only signals whose target-first odds beat (%)<input type="number" id="r_odds" min="0" max="90" step="1"></label>
+    </div>
+    <p class="small" id="mmLine" style="margin:10px 0 0"></p>
+  </div>
+  <div class="card">
+    <h3>Timing (New York time)</h3>
+    <div class="grid3" style="margin-top:8px">
+      <label class="f">No entries before<input type="text" id="r_from" placeholder="09:45"></label>
+      <label class="f">No entries after<input type="text" id="r_to" placeholder="15:30"></label>
+      <label class="f">Close every day trade by<input type="text" id="r_flat" placeholder="15:55"></label>
+    </div>
+  </div>
+  <div class="card">
+    <h3>What to trade</h3>
+    <div class="grid2" style="margin-top:8px">
+      <label class="f">Scan<select id="r_scope"><option value="watchlist">My watchlist only (fastest)</option><option value="top">The 300 most traded US stocks</option><option value="market">The whole US market (about 5,900 stocks)</option></select></label>
+      <label class="f">Default stop<select id="r_stop"><option value="or-mid">Opening-range midpoint</option><option value="or-low">Opening-range low</option><option value="atr:1.5">1.5 x ATR</option><option value="pct:1">1% below entry</option></select></label>
+      <label class="f">Default target<select id="r_target"><option value="2R">2R (twice the risk)</option><option value="1.5R">1.5R</option><option value="1R">1R</option><option value="3R">3R</option></select></label>
+      <label class="f">Minimum price ($)<input type="number" id="r_minPrice" min="1" step="1"></label>
+    </div>
+    <label class="f" style="margin-top:10px">My watchlist (tickers, comma separated)<input type="text" id="r_watch" placeholder="TSLA, NVDA, AMD, AAPL, META"></label>
+    <label class="f" style="margin-top:10px">Never trade<input type="text" id="r_block" placeholder="e.g. GME, AMC"></label>
+    <div class="row" style="margin-top:10px;gap:14px" id="setupBoxes"></div>
+  </div>
+  <div class="card">
+    <h3>Managing open trades</h3>
+    <label class="row small" style="gap:10px;margin-top:6px"><input type="checkbox" id="r_be" style="width:20px;height:20px"> Move the stop to break-even once a trade is up 1R (reduces risk; never adds any)</label>
+    <label class="row small" style="gap:10px;margin-top:6px"><input type="checkbox" id="r_autoFlat" style="width:20px;height:20px"> Close open day trades at the "close by" time</label>
+    <p class="muted small" style="margin:8px 0 0">Every new trade still needs your approval. These two only ever reduce risk on trades you already approved.</p>
+  </div>
+  <div class="card">
+    <h3>Account mode</h3>
+    <p class="small" style="margin:4px 0 8px" id="modeLine"></p>
+    <div class="row"><button class="btn ghost sm" id="btnPaper" type="button">Use paper trading</button><button class="btn stop sm" id="btnLive" type="button">Switch to live money</button></div>
+    <div id="liveConfirm"></div>
+  </div>
+  <div class="row"><button class="btn" id="btnSaveRules" type="button">Save rules</button><span class="muted small" id="rulesNote"></span></div>
+</section>
+</main>
+
+<nav class="tabs" aria-label="Sections"><div class="in" role="tablist">
+  <button role="tab" data-tab="desk" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Desk</button>
+  <button role="tab" data-tab="signals" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l5-6 4 3 7-9"/><path d="M15 5h4v4"/></svg>Signals<span class="dot" id="sigDot" hidden></span></button>
+  <button role="tab" data-tab="trades" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Trades</button>
+  <button role="tab" data-tab="chart" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15l3-4 3 2 4-5"/></svg>Chart</button>
+  <button role="tab" data-tab="chat" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</button>
+  <button role="tab" data-tab="rules" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7z"/></svg>Rules</button>
+</div></nav>
+<div class="toast" id="toast" role="status" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden><div class="pane">
+  <div class="row spread"><h2 id="shTitle" style="margin:0">Agent</h2><button class="btn ghost sm" id="shClose" type="button">Close</button></div>
+  <p class="muted small" id="shRole"></p>
+  <div id="shBody"></div>
+  <label class="f" style="margin-top:12px">Give it a job<textarea id="jobBox" rows="2" placeholder="What should this agent do?"></textarea></label>
+  <div class="row" style="margin-top:8px"><button class="btn" id="jobSend" type="button">Send to the agent</button><span class="muted small" id="jobNote"></span></div>
+</div></div>
+
+<script>
+(function(){
+"use strict";
+// ---------- fixed settings ----------
+var APP_URL="https://claude.ai/artifact/HvGS44nRXudsBLsmoVgGzn";
+var REPO="https://github.com/eaglebedofficial-maker/eagle-bed", BRANCH="claude/day-trader-skill-agent-sauvy6", ENV_ID="env_01VKWEmLeRe1xctRyw5PyUry";
+var CCR="Claude Code Remote";
+var HOLI={"2026-01-01":1,"2026-01-19":1,"2026-02-16":1,"2026-04-03":1,"2026-05-25":1,"2026-06-19":1,"2026-07-03":1,"2026-09-07":1,"2026-11-26":1,"2026-12-25":1,"2027-01-01":1,"2027-01-18":1,"2027-02-15":1,"2027-03-26":1,"2027-05-31":1,"2027-06-18":1,"2027-07-05":1,"2027-09-06":1,"2027-11-25":1,"2027-12-24":1};
+var EARLY={"2026-11-27":1,"2026-12-24":1,"2027-11-26":1};
+var SETUPS=[["orb","Opening-range breakout"],["breakout_20d","20-day breakout"],["bull_flag","Bull flag"],["reclaim_ma20","Reclaimed 20-day average"],["oversold_bounce","Oversold bounce"]];
+var DEFAULT_RULES={budget:5000,riskPct:1,dayPct:3,trades:3,rr:2,streak:2,pos:50,cash:10,odds:30,from:"09:45",to:"15:30",flat:"15:55",scope:"watchlist",stop:"or-mid",target:"2R",minPrice:5,watch:"TSLA, NVDA, AMD, AAPL, META, AMZN, MSFT, PLTR",block:"",setups:["orb","breakout_20d","bull_flag","reclaim_ma20","oversold_bounce"],breakEven:true,autoFlat:true,paper:true};
+var AGENTS=[
+ {id:"manager",name:"Manager",c:"#2F5BEA",role:"Runs the desk. Reads your rules, sends work to each agent, checks every signal, and asks you before any trade."},
+ {id:"scanner",name:"Chart Scanner",c:"#0F7A57",skill:"trader-scanner",role:"Scans the market for opening-range breakouts, 20-day breakouts, bull flags and oversold bounces."},
+ {id:"news",name:"News Monitor",c:"#B4561E",skill:"trader-news",role:"Reads Yahoo headlines and SEC 8-Ks on every stock you watch and flags earnings, halts and deals."},
+ {id:"entry",name:"Entry Timer",c:"#6B4FD8",skill:"trader-entry",role:"Watches each setup bar by bar and calls the entry on the first close above the level."},
+ {id:"exit",name:"Exit Planner",c:"#C2352B",skill:"trader-exit",role:"Sets the stop-loss and take-profit before you buy, and the time to be flat."},
+ {id:"timemachine",name:"Time Machine",c:"#0E7490",skill:"trader-timemachine",role:"Replays the rest of the day 10,000 times and checks every past time the setup fired."},
+ {id:"budget",name:"Budget Manager",c:"#7A6A12",skill:"trader-budget",role:"Sizes each trade so a stop-out costs no more than your risk per trade."},
+ {id:"risk",name:"Risk Manager",c:"#9F1239",skill:"trader-risk",role:"Checks every order against your limits: PASS or BLOCK, with the reason."},
+ {id:"broker",name:"Order Executor",c:"#334155",skill:"trader-broker",role:"Sends the orders you approve to your broker, closes, cancels and moves stops and targets."},
+ {id:"alerts",name:"Price Alerts",c:"#A16207",skill:"trader-alerts",role:"Watches stops, targets, the opening bell and the close-by time."},
+ {id:"analyst",name:"Earnings Analyst",c:"#4D7C0F",skill:"trader-analyst",role:"Reads SEC filings and tells you what changed and whether earnings fall inside a trade."},
+ {id:"pelosi",name:"Pelosi Tracker",c:"#5B21B6",skill:"trader-pelosi",role:"Reads Congress's stock-trade disclosures the day they are filed."}
+];
+
+// ---------- helpers ----------
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+function num(v){var n=Number(v);return isFinite(n)?n:null;}
+function usd(v,dp){var n=num(v);if(n==null)return "–";return (n<0?"-$":"$")+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:dp==null?2:dp,maximumFractionDigits:dp==null?2:dp});}
+function px(v){var n=num(v);return n==null?"–":n.toFixed(2);}
+function pct(v,dp){var n=num(v);return n==null?"–":n.toFixed(dp==null?1:dp)+"%";}
+function sign(v){var n=num(v);return n==null?"":(n>=0?"up":"down");}
+function toast(m){var t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(function(){t.hidden=true;},3600);}
+function nyParts(d){var f=new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,weekday:"short"});var o={};f.formatToParts(d).forEach(function(p){o[p.type]=p.value;});o.date=o.year+"-"+o.month+"-"+o.day;o.mins=(+o.hour%24)*60+(+o.minute);return o;}
+function hhmm(ms){if(!ms)return "";return new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"}).format(new Date(ms));}
+function ago(ms){if(!ms)return "never";var s=Math.round((Date.now()-ms)/1000);if(s<60)return s+"s ago";if(s<3600)return Math.round(s/60)+" min ago";if(s<86400)return Math.round(s/3600)+" h ago";return Math.round(s/86400)+" d ago";}
+function toMin(s,def){var m=/^(\d{1,2}):(\d{2})$/.exec(String(s||"").trim());return m?(+m[1])*60+(+m[2]):def;}
+function idsFrom(payload,re){var s;try{s=typeof payload==="string"?payload:JSON.stringify(payload);}catch(e){s="";}var m=re.exec(s||"");return m?m[0]:null;}
+
+// ---------- NYSE session ----------
+function session(){
+  var p=nyParts(new Date()), wd=p.weekday, closed=(wd==="Sat"||wd==="Sun"||HOLI[p.date]);
+  var close=EARLY[p.date]?13*60:16*60, open=9*60+30, m=p.mins;
+  var r={clock:p.hour+":"+p.minute+" ET",date:p.date,mins:m,open:false};
+  if(closed){r.name=HOLI[p.date]?"NYSE holiday, market closed":"Weekend, market closed";r.frac=0;r.left="";}
+  else if(m<4*60){r.name="Overnight, market closed";r.frac=0;r.left="";}
+  else if(m<open){r.name="Pre-market";r.frac=0;r.left="opens in "+dur(open-m);}
+  else if(m<close){r.name=EARLY[p.date]?"Market open (early close 1:00 PM)":"Market open";r.open=true;r.frac=(m-open)/(close-open);r.left="closes in "+dur(close-m);}
+  else if(m<20*60){r.name="After-hours, regular session closed";r.frac=1;r.left="";}
+  else {r.name="Market closed";r.frac=1;r.left="";}
+  return r;
+}
+function dur(m){var h=Math.floor(m/60),mm=m%60;return (h?h+"h ":"")+mm+"m";}
+function tickClock(){var s=session();$("nyClock").textContent=s.clock;$("sessName").textContent=s.name;$("sessTrack").style.width=Math.round(s.frac*100)+"%";$("sessLeft").textContent=s.left;renderEngine();}
+
+// ---------- state ----------
+var db=null,sample=null,mcp=null,downloads=null,user=null,uid=null,canTools=false,canImages=false;
+var S={state:{},rules:null,account:null,positions:null,agents:{},watch:null,signals:[],commands:[],activity:[],journal:[]};
+var confirmOpen={};
+var chat={messages:[]}, chatImg=null, proposals=[];
+
+// ---------- tabs ----------
+function showTab(name){document.querySelectorAll("nav.tabs button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===name?"true":"false");});
+  ["desk","signals","trades","chart","chat","rules"].forEach(function(t){$("tab-"+t).hidden=(t!==name);});
+  try{localStorage.setItem("thq_tab",name);}catch(e){} window.scrollTo(0,0);}
+document.querySelectorAll("nav.tabs button").forEach(function(b){b.addEventListener("click",function(){showTab(b.dataset.tab);});});
+(function(){var h=(location.hash||"").replace("#",""),t=null;try{t=localStorage.getItem("thq_tab");}catch(e){}var want=["desk","signals","trades","chart","chat","rules"].indexOf(h)>=0?h:t;if(want)showTab(want);})();
+
+// ---------- engine (Claude Code cloud session) ----------
+function enginePrompt(cmdText){
+  return "You are the Trading HQ engine. Read .claude/skills/trader-hq/SKILL.md first and follow it exactly.\n"+
+    "App (artifact database): "+APP_URL+"\n"+cmdText;
+}
+function mcpWhy(e){var c=e&&e.code;
+  if(c==="server_not_connected")return "Claude Code isn't connected for this page. Open the page in claude.ai while signed in.";
+  if(c==="needs_reauth")return "Sign in to Claude Code again in claude.ai Settings, then try again.";
+  if(c==="not_in_manifest"||c==="not_granted")return "This page isn't allowed to start the engine. Allow Claude Code in the page's Permissions menu.";
+  if(c==="approval_required")return "Approve the request to start the engine, then press the button again.";
+  if(c==="tool_error")return "The engine reported: "+String(e.message||"an error").slice(0,180);
+  return "The engine didn't answer just now ("+(c||"error")+"). Try again in a minute.";}
+async function ensureEngine(){
+  if(S.state.engineSession) return S.state.engineSession;
+  if(!mcp) throw {code:"not_granted"};
+  var r=await mcp.callTool(CCR,"create_session",{environment_id:ENV_ID,source_url:REPO,source_revision:BRANCH,title:"Trading HQ engine",permission_mode:"auto",prompt:enginePrompt("Boot: run the boot checks, then the first cycle.")});
+  var sid=idsFrom(r.payload!==undefined?r.payload:r,/session_[A-Za-z0-9]+/);
+  if(!sid) throw {code:"tool_error",message:"no session id came back"};
+  await saveState({engineSession:sid,engineCreated:Date.now()});
+  addLocalActivity("manager","Started the engine in the cloud ("+sid.slice(0,16)+"...)");
+  try{
+    var t=await mcp.callTool(CCR,"create_trigger",{name:"Trading HQ pre-market start",cron_expression:"CRON_TZ=America/New_York 4 9 * * 1-5",persistent_session_id:sid,initiation:"human_request",prompt:"Pre-market start for Trading HQ. Re-read .claude/skills/trader-hq/SKILL.md and run the pre-market cycle, then keep cycling through the session. App: "+APP_URL});
+    var tid=idsFrom(t.payload!==undefined?t.payload:t,/trig_[A-Za-z0-9]+/);
+    if(tid) await saveState({triggerId:tid});
+  }catch(e){addLocalActivity("manager","Could not schedule the daily 9:04 AM ET start: "+mcpWhy(e));}
+  return null; // the boot prompt already carries the first instruction
+}
+async function poke(text){
+  try{
+    var had=S.state.engineSession, sid=await ensureEngine();
+    if(sid && had) await mcp.callTool(CCR,"send_message",{session_id:sid,message:enginePrompt(text)});
+    return true;
+  }catch(e){toast(mcpWhy(e));addLocalActivity("manager",mcpWhy(e));return false;}
+}
+async function queue(type,args,label){
+  if(!db){toast("Saving isn't available on this view. Open the page in claude.ai.");return null;}
+  var ref;
+  try{ref=await db.collection("commands").add({type:type,args:args||{},status:"queued",created:Date.now(),by:uid||"owner"});}
+  catch(e){toast(e&&e.code==="invalid_argument"?"Only the owner can control this desk.":"Couldn't save that ("+(e&&e.code)+").");return null;}
+  await poke("New command "+ref.id+" ("+type+"). Process the command queue now.");
+  toast(label||"Sent to the desk");
+  return ref.id;
+}
+async function saveState(patch){ if(!db)return; var cur=Object.assign({},S.state,patch); S.state=cur; try{await db.doc("hq/state").set(cur);}catch(e){} renderEngine(); }
+function addLocalActivity(agent,text){ if(!db)return; db.collection("activity").add({t:Date.now(),agent:agent,text:text,src:"app"}).catch(function(){}); }
+
+$("btnStart").addEventListener("click",async function(){await saveState({status:"running",since:Date.now()});await queue("start",{},"Starting the desk");});
+$("btnPause").addEventListener("click",async function(){await saveState({status:"paused",since:Date.now()});await queue("pause",{},"Paused: no new signals, open trades still managed");});
+$("btnStop").addEventListener("click",async function(){await saveState({status:"stopped",since:Date.now()});await queue("stop",{},"Stopped. Stops and targets stay at your broker.");});
+$("btnScan").addEventListener("click",function(){queue("scan",{},"Scanning now");});
+$("btnSync").addEventListener("click",function(){queue("sync",{},"Refreshing your account");});
+$("btnBrief").addEventListener("click",function(){queue("briefing",{},"Building the briefing");});
+$("btnPelosi").addEventListener("click",function(){queue("pelosi",{},"Checking Congress trades");});
+
+function renderEngine(){
+  var st=S.state||{}, pill=$("enginePill"), status=st.status||"off", beat=st.heartbeat||0, stale=beat&&(Date.now()-beat>20*60*1000);
+  var label={running:"Running",paused:"Paused",stopped:"Stopped",off:"Engine off"}[status]||status;
+  pill.textContent=label+(beat?" · "+ago(beat):"");
+  pill.className="pill "+(status==="running"&&!stale?"on":status==="paused"?"pause":"off");
+  var line;
+  if(!st.engineSession) line="The engine is not running yet. Press Start: the agents scan the market, find setups, and ask you before any trade.";
+  else if(status==="running") line=(st.phase?st.phase+". ":"")+(st.message||"Working.")+(st.next?" Next check "+hhmm(st.next)+" ET.":"");
+  else if(status==="paused") line="Paused. No new signals; open trades keep their stops and targets"+(st.message?". "+st.message:".");
+  else line="Stopped. Press Start to resume. Stops and targets you already placed stay at your broker.";
+  $("engineLine").textContent=line;
+  $("beat").textContent=beat?"last heartbeat "+ago(beat):"";
+  var paper=(S.rules?S.rules.paper!==false:true);
+  $("modePill").textContent=paper?"PAPER":"LIVE";$("modePill").className="pill "+(paper?"paper":"live");
+  renderSetup();
+}
+function renderSetup(){
+  var ck=(S.state&&S.state.checks)||{};
+  function mark(k){return ck[k]==="ok"?'<span class="ok">Done</span>':ck[k]?'<span class="bad">'+esc(ck[k])+'</span>':'<span class="muted">Not checked yet</span>';}
+  var steps=[
+    ["Open a free Alpaca account at alpaca.markets and create <strong>paper trading</strong> API keys (Paper account, API keys, Generate).", ""],
+    ["In Claude Code, open the cloud environment menu in a session's title bar, choose <strong>Edit</strong>, and add these environment variables: <span class=\"mono\">APCA_API_KEY_ID</span> and <span class=\"mono\">APCA_API_SECRET_KEY</span> (your keys), <span class=\"mono\">APCA_PAPER=true</span>, and <span class=\"mono\">SEC_USER_AGENT</span> set to your name and email (SEC filings need it). Never paste keys into a chat.", "keys"],
+    ["In the same settings, under Network access, allow these domains: <span class=\"mono\">paper-api.alpaca.markets, api.alpaca.markets, query1.finance.yahoo.com, query2.finance.yahoo.com, feeds.finance.yahoo.com, www.nasdaqtrader.com, data.sec.gov, www.sec.gov, disclosures-clerk.house.gov, stooq.com</span>.", "data"],
+    ["Press <strong>Start</strong>. The engine checks the broker and the data feeds and ticks these off.", "broker"]
+  ];
+  $("setupSteps").innerHTML=steps.map(function(s){return "<li>"+s[0]+(s[1]?" "+mark(s[1]):"")+"</li>";}).join("");
+  var allOk=ck.keys==="ok"&&ck.data==="ok"&&ck.broker==="ok";
+  $("setupChip").textContent=allOk?"Connected":"Setup";$("setupChip").className="chip "+(allOk?"done":"pending");
+  $("setupCard").querySelector("ol").hidden=false;
+}
+
+// ---------- desks ----------
+function robot(c){return '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="9" width="28" height="22" rx="7" fill="'+c+'"/><rect x="11" y="14" width="18" height="10" rx="4" fill="#0B1220" opacity=".85"/><circle class="eye" cx="16" cy="19" r="2" fill="#9EF0C6"/><circle class="eye" cx="24" cy="19" r="2" fill="#9EF0C6"/><rect x="19" y="3" width="2" height="6" fill="'+c+'"/><circle cx="20" cy="3" r="2" fill="'+c+'"/><rect x="12" y="33" width="16" height="4" rx="2" fill="'+c+'" opacity=".55"/></svg>';}
+function renderDesks(){
+  $("desks").innerHTML=AGENTS.map(function(a){var g=S.agents[a.id]||{},st=g.status||"idle";
+    return '<button type="button" class="desk '+(a.id==="manager"?"mgr ":"")+esc(st)+'" data-agent="'+a.id+'">'+robot(a.c)+'<span style="min-width:0"><span class="nm">'+esc(a.name)+'</span> <span class="chip '+esc(st)+'">'+esc(st)+'</span><span class="ln">'+esc(g.line||a.role)+'</span></span></button>';}).join("");
+}
+$("desks").addEventListener("click",function(e){var b=e.target.closest(".desk");if(!b)return;openAgent(b.dataset.agent);});
+var sheetAgent=null;
+function openAgent(id){var a=AGENTS.filter(function(x){return x.id===id;})[0];if(!a)return;sheetAgent=a;var g=S.agents[id]||{};
+  $("shTitle").textContent=a.name;$("shRole").textContent=a.role+(a.skill?" (skill: "+a.skill+")":"");
+  var acts=S.activity.filter(function(x){return x.agent===id;}).slice(0,12);
+  $("shBody").innerHTML=(g.report?'<div class="card" style="white-space:pre-wrap;font-size:14px">'+esc(g.report)+'</div>':'<p class="muted small">No report yet.</p>')+
+    (acts.length?'<ul class="feed">'+acts.map(function(x){return '<li><span class="t">'+esc(hhmm(x.t))+'</span><span>'+esc(x.text)+'</span></li>';}).join("")+'</ul>':"");
+  $("jobNote").textContent="";$("sheet").hidden=false;}
+$("shClose").addEventListener("click",function(){$("sheet").hidden=true;});
+$("sheet").addEventListener("click",function(e){if(e.target===$("sheet"))$("sheet").hidden=true;});
+$("jobSend").addEventListener("click",async function(){var t=$("jobBox").value.trim();if(!t||!sheetAgent)return;var id=await queue("job",{agent:sheetAgent.id,skill:sheetAgent.skill||null,text:t},"Sent to "+sheetAgent.name);if(id){$("jobBox").value="";$("jobNote").textContent="Sent. The answer appears in this agent's report.";}});
+
+// ---------- feed ----------
+function renderFeed(){var a=S.activity;
+  if(!a.length){$("feed").innerHTML='<li><span class="t"></span><span class="muted">Everything the agents do shows here as it happens.</span></li>';return;}
+  var names={};AGENTS.forEach(function(x){names[x.id]=x.name;});
+  $("feed").innerHTML=a.slice(0,40).map(function(x){return '<li><span class="t">'+esc(hhmm(x.t))+'</span><span><span class="who">'+esc(names[x.agent]||x.agent||"Desk")+'</span> '+esc(x.text)+'</span></li>';}).join("");}
+
+// ---------- account ----------
+function riskToday(){var j=S.journal,d=nyParts(new Date()).date,loss=0,count=0;
+  j.forEach(function(t){if(t.date===d){count++;if(num(t.pnl)<0)loss+=-num(t.pnl);}});
+  S.signals.forEach(function(s){if((s.status==="placed"||s.status==="filled")&&s.date===d&&!s.closed){count+=0;}});
+  return {loss:loss,count:count};}
+function renderKpis(){var a=S.account,r=rules(),eq=a?num(a.equity):null,last=a?num(a.last_equity):null,day=(eq!=null&&last!=null)?eq-last:null;
+  var dayLimit=(eq||r.budget)*r.dayPct/100, rt=riskToday(), usedPct=dayLimit?Math.min(100,rt.loss/dayLimit*100):0;
+  var trades=(S.state&&S.state.tradesToday!=null)?S.state.tradesToday:rt.count;
+  var html=[
+    ['Equity',usd(eq),a?(a.paper===false?"live account":"paper account"):"waiting for broker"],
+    ['Today',(day==null?"–":'<span class="'+sign(day)+'">'+usd(day)+'</span>'),last?pct(day/last*100,2)+" vs yesterday":""],
+    ['Buying power',usd(a&&a.buying_power),"cash "+usd(a&&a.cash,0)],
+    ['Loss limit used',usd(rt.loss,0)+' / '+usd(dayLimit,0),'<span class="meter"><i class="'+(usedPct>=100?"full":usedPct>=60?"hot":"")+'" style="width:'+usedPct.toFixed(0)+'%"></i></span>'],
+    ['Trades today',trades+" / "+r.trades,(S.positions&&S.positions.items?S.positions.items.length:0)+" open"]
+  ];
+  $("kpis").innerHTML=html.map(function(k){return '<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b><small>'+k[2]+'</small></div>';}).join("");
+  $("acctNote").textContent=a?("Updated "+ago(a.t)+(a.status&&a.status!=="ACTIVE"?" · account status "+a.status:"")):"No account data yet. It appears after the engine connects to your broker.";
+}
+
+// ---------- signals ----------
+function oddsBar(o){if(!o)return "";var t=num(o.target)||0,s=num(o.stop)||0,n=Math.max(0,100-t-s);return '<div class="odds" role="img" aria-label="target first '+t+'%, stop first '+s+'%, neither '+n.toFixed(1)+'%"><i style="width:'+t+'%"></i><i style="width:'+s+'%"></i><i style="width:'+n+'%"></i></div><span class="small"><span class="up">target first '+pct(t)+'</span> · <span class="down">stop first '+pct(s)+'</span> · <span class="muted">neither '+pct(n)+'</span></span>';}
+function sigCard(s,live){
+  var st=s.status||"pending", c=confirmOpen[s.id];
+  var risk=(num(s.entry)!=null&&num(s.stop)!=null)?num(s.entry)-num(s.stop):null;
+  var h='<div class="card sig '+esc(st)+'" data-sig="'+esc(s.id)+'"><div class="row spread"><h3><span class="mono">'+esc(s.symbol)+'</span> <span class="chip '+esc(s.side==="sell"?"SHORT":"LONG")+'">'+(s.side==="sell"?"SHORT":"LONG")+'</span></h3><span class="chip '+esc(st)+'">'+esc(st)+'</span></div>'+
+    '<p class="muted small" style="margin:2px 0 0">'+esc(s.setup||"")+(s.time?" · triggered "+esc(s.time)+" ET":"")+'</p>'+
+    '<dl class="ticket"><dt>Entry</dt><dd>'+px(s.entry)+(s.entryNote?' <span class="muted">('+esc(s.entryNote)+')</span>':'')+'</dd>'+
+    '<dt>Stop</dt><dd class="down">'+px(s.stop)+(risk!=null?' <span class="muted">risk '+px(risk)+' / share</span>':'')+'</dd>'+
+    '<dt>Target</dt><dd class="up">'+px(s.target)+(s.rr?' <span class="muted">'+esc(s.rr)+'R</span>':'')+'</dd>'+
+    '<dt>Size</dt><dd>'+(s.qty?esc(s.qty)+' shares ('+usd(s.cost)+')':'–')+(s.maxLoss!=null?' · max loss <span class="down">'+usd(s.maxLoss)+'</span>':'')+'</dd>'+
+    '<dt>Flat by</dt><dd>'+esc(s.flatBy||rules().flat)+' ET</dd>'+
+    (s.risk?'<dt>Risk check</dt><dd><span class="chip '+esc(s.risk)+'">'+esc(s.risk)+'</span> '+esc(s.riskWhy||"")+'</dd>':'')+
+    '</dl>'+(s.odds?oddsBar(s.odds):"")+
+    (s.history?'<p class="small muted" style="margin:4px 0 0">History: '+esc(s.history)+'</p>':"")+
+    (s.verdict?'<p class="small" style="margin:6px 0 0"><strong>Verdict:</strong> '+esc(s.verdict)+'</p>':"")+
+    (s.news?'<p class="small" style="margin:4px 0 0"><strong>News:</strong> '+esc(s.news)+'</p>':"")+
+    (s.result?'<p class="small muted" style="margin:6px 0 0">'+esc(s.result)+'</p>':"");
+  if(live&&st==="pending"){
+    if(!c) h+='<div class="row" style="margin-top:10px"><button class="btn go" data-act="approve" type="button">Approve and place</button><button class="btn ghost" data-act="edit" type="button">Change stop / target</button><button class="btn ghost" data-act="reject" type="button">Skip</button></div>';
+    else if(c==="edit") h+='<div class="confirm"><div class="grid2"><label class="f">Stop<input type="number" step="0.01" id="es_'+esc(s.id)+'" value="'+esc(px(s.stop))+'"></label><label class="f">Target<input type="number" step="0.01" id="et_'+esc(s.id)+'" value="'+esc(px(s.target))+'"></label></div><p class="small muted" style="margin:6px 0">The engine re-plans, re-sizes and re-runs the risk check, then asks you again.</p><div class="row"><button class="btn" data-act="saveEdit" type="button">Re-plan</button><button class="btn ghost" data-act="cancelC" type="button">Back</button></div></div>';
+    else h+='<div class="confirm"><strong>Place this order'+(rules().paper===false?' with REAL money':' on your paper account')+'?</strong><p class="small" style="margin:4px 0 8px">Buy '+esc(s.qty||"?")+' '+esc(s.symbol)+' at market, stop-loss '+px(s.stop)+', take-profit '+px(s.target)+'. If the stop fills at its price you lose about '+usd(s.maxLoss)+'.</p><div class="row"><button class="btn go" data-act="yes" type="button">Yes, place it</button><button class="btn ghost" data-act="cancelC" type="button">No</button></div></div>';
+  }
+  return h+'</div>';
+}
+function renderSignals(){
+  var today=nyParts(new Date()).date, pend=S.signals.filter(function(s){return (s.status==="pending"||s.status==="approving")&&s.date===today;});
+  var done=S.signals.filter(function(s){return pend.indexOf(s)<0;});
+  $("sigPending").innerHTML=pend.length?pend.map(function(s){return sigCard(s,true);}).join(""):'<div class="card empty">No signals waiting for you. '+(S.state.status==="running"?"The agents are watching; a card appears here the moment a setup triggers.":"Press Start on the Desk to begin.")+'</div>';
+  $("sigDone").innerHTML=done.length?done.slice(0,30).map(function(s){return sigCard(s,false);}).join(""):'<p class="muted small">None yet.</p>';
+  var dot=$("sigDot"),n=pend.filter(function(s){return s.status==="pending";}).length;dot.hidden=!n;dot.textContent=n;
+  var w=(S.watch&&S.watch.items)||[];
+  $("watchTbl").innerHTML=w.length?'<thead><tr><th>Ticker</th><th>Setup</th><th class="num">Last</th><th class="num">Level</th><th class="num">Away</th><th>Note</th></tr></thead><tbody>'+w.map(function(x){return '<tr><td class="mono"><strong>'+esc(x.symbol)+'</strong></td><td>'+esc(x.setup||"")+'</td><td class="num mono">'+px(x.last)+'</td><td class="num mono">'+px(x.level)+'</td><td class="num mono">'+(x.awayPct!=null?pct(x.awayPct,2):"–")+'</td><td class="small muted">'+esc(x.note||"")+'</td></tr>';}).join("")+'</tbody>':'<tbody><tr><td class="muted">Nothing on the watch list yet'+(S.watch&&S.watch.t?" (updated "+ago(S.watch.t)+")":"")+'.</td></tr></tbody>';
+}
+$("sigPending").addEventListener("click",async function(e){var b=e.target.closest("button[data-act]");if(!b)return;var card=b.closest("[data-sig]"),id=card.dataset.sig,s=S.signals.filter(function(x){return x.id===id;})[0];if(!s)return;var act=b.dataset.act;
+  if(act==="approve"){confirmOpen[id]="yes";renderSignals();return;}
+  if(act==="edit"){confirmOpen[id]="edit";renderSignals();return;}
+  if(act==="cancelC"){delete confirmOpen[id];renderSignals();return;}
+  if(act==="reject"){delete confirmOpen[id];try{await db.doc("signals/"+id).update({status:"rejected",decided:Date.now()});}catch(err){}queue("reject",{signalId:id},"Skipped "+s.symbol);return;}
+  if(act==="saveEdit"){var ns=num($("es_"+id).value),nt=num($("et_"+id).value);if(ns==null||nt==null||!(ns<num(s.entry)&&nt>num(s.entry))){toast("For a long trade the stop must be below the entry and the target above it.");return;}delete confirmOpen[id];try{await db.doc("signals/"+id).update({status:"approving",decided:Date.now()});}catch(err){}queue("replan",{signalId:id,symbol:s.symbol,stop:ns,target:nt},"Re-planning "+s.symbol);return;}
+  if(act==="yes"){delete confirmOpen[id];try{await db.doc("signals/"+id).update({status:"approving",decided:Date.now(),approvedBy:uid||"owner"});}catch(err){toast("Only the owner can approve trades.");return;}
+    queue("approve",{signalId:id,symbol:s.symbol,qty:s.qty,entry:s.entry,stop:s.stop,target:s.target,fingerprint:s.fingerprint||null,orderIndex:s.orderIndex||1,reply:"Yes, place it (Trading HQ app)"},"Approved. Placing "+s.symbol);}
+});
+
+// ---------- positions & orders ----------
+function renderPositions(){
+  var p=(S.positions&&S.positions.items)||[], o=(S.positions&&S.positions.orders)||[];
+  $("posNote").textContent=p.length?(p.length+" open · updated "+ago(S.positions.t)):"No open positions"+(S.positions&&S.positions.t?" · updated "+ago(S.positions.t):"")+".";
+  $("btnFlatAll").disabled=!p.length&&!o.length;
+  $("positions").innerHTML=p.map(function(x){var c=confirmOpen["pos_"+x.symbol];var pl=num(x.unrealized_pl);
+    var h='<div class="card" data-pos="'+esc(x.symbol)+'"><div class="row spread"><h3 class="mono">'+esc(x.symbol)+' <span class="chip '+(x.side==="short"?"SHORT":"LONG")+'">'+esc(x.qty)+' sh</span></h3><b class="mono '+sign(pl)+'">'+usd(pl)+' ('+pct(num(x.unrealized_plpc)*100,2)+')</b></div>'+
+      '<dl class="ticket"><dt>Entry</dt><dd>'+px(x.avg_entry_price)+'</dd><dt>Now</dt><dd>'+px(x.current_price)+'</dd><dt>Stop</dt><dd class="down">'+px(x.stop)+'</dd><dt>Target</dt><dd class="up">'+px(x.target)+'</dd>'+(x.r!=null?'<dt>Open R</dt><dd>'+esc(Number(x.r).toFixed(2))+'R</dd>':'')+'</dl>';
+    if(!c) h+='<div class="row"><button class="btn stop sm" data-act="close" type="button">Close</button><button class="btn ghost sm" data-act="sl" type="button">Move stop</button><button class="btn ghost sm" data-act="tp" type="button">Move target</button><button class="btn ghost sm" data-act="be" type="button">Stop to break-even</button></div>';
+    else if(c==="close") h+='<div class="confirm"><strong>Close '+esc(x.qty)+' '+esc(x.symbol)+' at market now?</strong> Its stop and target orders are cancelled first.<div class="row" style="margin-top:8px"><button class="btn stop sm" data-act="closeYes" type="button">Yes, close it</button><button class="btn ghost sm" data-act="back" type="button">No</button></div></div>';
+    else h+='<div class="confirm"><label class="f">New '+(c==="sl"?"stop":"target")+' price<input type="number" step="0.01" id="mv_'+esc(x.symbol)+'" value="'+esc(px(c==="sl"?(x.stop||x.avg_entry_price):x.target))+'"></label><div class="row" style="margin-top:8px"><button class="btn sm" data-act="'+(c==="sl"?"slYes":"tpYes")+'" type="button">Move it</button><button class="btn ghost sm" data-act="back" type="button">Back</button></div></div>';
+    return h+'</div>';}).join("");
+  $("ordTbl").innerHTML=o.length?'<thead><tr><th>Ticker</th><th>Side</th><th>Type</th><th class="num">Qty</th><th class="num">Price</th><th>Status</th><th></th></tr></thead><tbody>'+o.map(function(x){var c=confirmOpen["ord_"+x.id];return '<tr data-ord="'+esc(x.id)+'"><td class="mono"><strong>'+esc(x.symbol)+'</strong></td><td>'+esc(x.side)+'</td><td>'+esc(x.type)+(x.leg?" ("+esc(x.leg)+")":"")+'</td><td class="num mono">'+esc(x.qty)+'</td><td class="num mono">'+px(x.stop_price||x.limit_price)+'</td><td><span class="chip">'+esc(x.status)+'</span></td><td>'+(c?'<button class="btn stop sm" data-act="cancelYes" type="button">Confirm cancel</button> <button class="btn ghost sm" data-act="back" type="button">No</button>':'<button class="btn ghost sm" data-act="cancel" type="button">Cancel</button>')+'</td></tr>';}).join("")+'</tbody>':'<tbody><tr><td class="muted">No working orders.</td></tr></tbody>';
+}
+$("positions").addEventListener("click",function(e){var b=e.target.closest("button[data-act]");if(!b)return;var sym=b.closest("[data-pos]").dataset.pos,k="pos_"+sym,act=b.dataset.act,x=((S.positions&&S.positions.items)||[]).filter(function(p){return p.symbol===sym;})[0];
+  if(act==="close"||act==="sl"||act==="tp"){confirmOpen[k]=act;renderPositions();return;}
+  if(act==="back"){delete confirmOpen[k];renderPositions();return;}
+  if(act==="closeYes"){delete confirmOpen[k];queue("close",{symbol:sym,qty:x&&x.qty},"Closing "+sym);renderPositions();return;}
+  if(act==="be"){if(!x)return;queue("move_stop",{symbol:sym,stop:num(x.avg_entry_price)},"Moving "+sym+" stop to break-even");return;}
+  if(act==="slYes"||act==="tpYes"){var v=num($("mv_"+sym).value),cur=num(x&&x.current_price);if(v==null){toast("Enter a price.");return;}
+    if(act==="slYes"&&cur!=null&&v>=cur){toast("A stop must sit below the current price ("+px(cur)+").");return;}
+    if(act==="tpYes"&&cur!=null&&v<=cur){toast("A target must sit above the current price ("+px(cur)+").");return;}
+    delete confirmOpen[k];queue(act==="slYes"?"move_stop":"move_target",act==="slYes"?{symbol:sym,stop:v}:{symbol:sym,target:v},"Moving "+sym+(act==="slYes"?" stop":" target")+" to "+px(v));renderPositions();}
+});
+$("ordTbl").addEventListener("click",function(e){var b=e.target.closest("button[data-act]");if(!b)return;var id=b.closest("[data-ord]").dataset.ord,act=b.dataset.act;
+  if(act==="cancel"){confirmOpen["ord_"+id]=1;renderPositions();return;}
+  if(act==="back"){delete confirmOpen["ord_"+id];renderPositions();return;}
+  if(act==="cancelYes"){delete confirmOpen["ord_"+id];queue("cancel",{orderId:id},"Cancelling the order");renderPositions();}
+});
+$("btnFlatAll").addEventListener("click",function(){$("flatConfirm").innerHTML='<div class="confirm"><strong>Close every position and cancel every order now?</strong><div class="row" style="margin-top:8px"><button class="btn stop sm" id="flatYes" type="button">Yes, close everything</button><button class="btn ghost sm" id="flatNo" type="button">No</button></div></div>';
+  $("flatYes").onclick=function(){$("flatConfirm").innerHTML="";queue("flatten_all",{},"Closing everything");};$("flatNo").onclick=function(){$("flatConfirm").innerHTML="";};});
+
+// ---------- journal ----------
+function renderJournal(){
+  var j=S.journal.slice().sort(function(a,b){return (a.closed||0)-(b.closed||0);});
+  var wins=j.filter(function(t){return num(t.pnl)>0;}),losses=j.filter(function(t){return num(t.pnl)<0;});
+  var gw=wins.reduce(function(s,t){return s+num(t.pnl);},0),gl=-losses.reduce(function(s,t){return s+num(t.pnl);},0),tot=gw-gl;
+  var rs=j.filter(function(t){return num(t.r)!=null;}),avgR=rs.length?rs.reduce(function(s,t){return s+num(t.r);},0)/rs.length:null;
+  var k=[["Net P&L",'<span class="'+sign(tot)+'">'+usd(tot)+'</span>',j.length+" closed trades"],["Win rate",j.length?pct(wins.length/j.length*100,0):"–",wins.length+" won / "+losses.length+" lost"],["Profit factor",gl?(gw/gl).toFixed(2):(gw?"∞":"–"),"gross won ÷ gross lost"],["Expectancy",j.length?usd(tot/j.length):"–","per trade"],["Average R",avgR==null?"–":avgR.toFixed(2)+"R","per trade"]];
+  $("jKpis").innerHTML=k.map(function(x){return '<div class="kpi"><span>'+x[0]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></div>';}).join("");
+  // equity curve
+  if(j.length<2){$("curve").innerHTML='<p class="muted small">The curve appears after two closed trades.</p>';}
+  else{var W=600,H=150,P=28,cum=[0];j.forEach(function(t){cum.push(cum[cum.length-1]+num(t.pnl));});
+    var mn=Math.min.apply(null,cum),mx=Math.max.apply(null,cum);if(mx===mn){mx+=1;mn-=1;}
+    function X(i){return P+(W-P-8)*i/(cum.length-1);}function Y(v){return 8+(H-26)*(1-(v-mn)/(mx-mn));}
+    var pts=cum.map(function(v,i){return X(i).toFixed(1)+","+Y(v).toFixed(1);}).join(" ");
+    var last=cum[cum.length-1];
+    $("curve").innerHTML='<svg class="curve" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Equity curve, net '+esc(usd(last))+'"><line x1="'+P+'" x2="'+(W-8)+'" y1="'+Y(0).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'" stroke="var(--line)" stroke-width="1"/><text x="2" y="'+(Y(mx)+4).toFixed(1)+'" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono,monospace">'+esc(usd(mx,0))+'</text><text x="2" y="'+(Y(mn)+4).toFixed(1)+'" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono,monospace">'+esc(usd(mn,0))+'</text><polygon points="'+X(0).toFixed(1)+','+Y(0).toFixed(1)+' '+pts+' '+X(cum.length-1).toFixed(1)+','+Y(0).toFixed(1)+'" fill="var(--accent)" opacity=".12"/><polyline points="'+pts+'" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><circle cx="'+X(cum.length-1).toFixed(1)+'" cy="'+Y(last).toFixed(1)+'" r="4" fill="'+(last>=0?"var(--up)":"var(--down)")+'"/></svg>';}
+  var rows=j.slice().reverse().slice(0,200);
+  $("jTbl").innerHTML=rows.length?'<thead><tr><th>Date</th><th>Ticker</th><th>Setup</th><th class="num">Qty</th><th class="num">Entry</th><th class="num">Exit</th><th class="num">P&amp;L</th><th class="num">R</th><th>Exit reason</th></tr></thead><tbody>'+rows.map(function(t){return '<tr><td class="mono">'+esc(t.date||"")+'</td><td class="mono"><strong>'+esc(t.symbol)+'</strong></td><td>'+esc(t.setup||"")+'</td><td class="num mono">'+esc(t.qty)+'</td><td class="num mono">'+px(t.entry)+'</td><td class="num mono">'+px(t.exit)+'</td><td class="num mono '+sign(t.pnl)+'">'+usd(t.pnl)+'</td><td class="num mono">'+(num(t.r)==null?"–":Number(t.r).toFixed(2))+'</td><td class="small">'+esc(t.reason||"")+'</td></tr>';}).join("")+'</tbody>':'<tbody><tr><td class="muted">Closed trades are logged here with their P&amp;L and R.</td></tr></tbody>';
+}
+$("btnCsv").addEventListener("click",async function(){if(!downloads){toast("Downloads aren't available on this view.");return;}
+  var lines=[["date","symbol","setup","qty","entry","exit","pnl","r","reason"].join(",")].concat(S.journal.map(function(t){return [t.date,t.symbol,t.setup,t.qty,t.entry,t.exit,t.pnl,t.r,t.reason].map(function(v){v=v==null?"":String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}).join(",");}));
+  try{await downloads.save({filename:"trading-journal.csv",data:new Blob([lines.join("\n")],{type:"text/csv"})});}catch(e){toast("Download cancelled.");}});
+
+// ---------- rules ----------
+function rules(){return Object.assign({},DEFAULT_RULES,S.rules||{});}
+function fillRules(){var r=rules();
+  [["budget","budget"],["riskPct","riskPct"],["dayPct","dayPct"],["trades","trades"],["rr","rr"],["streak","streak"],["pos","pos"],["cash","cash"],["odds","odds"],["from","from"],["to","to"],["flat","flat"],["scope","scope"],["stop","stop"],["target","target"],["minPrice","minPrice"],["watch","watch"],["block","block"]].forEach(function(p){var el=$("r_"+p[0]);if(el&&document.activeElement!==el)el.value=r[p[1]];});
+  $("r_be").checked=!!r.breakEven;$("r_autoFlat").checked=!!r.autoFlat;
+  $("setupBoxes").innerHTML=SETUPS.map(function(s){return '<label class="row small" style="gap:6px"><input type="checkbox" id="su_'+s[0]+'" '+(r.setups.indexOf(s[0])>=0?"checked":"")+' style="width:18px;height:18px"> '+esc(s[1])+'</label>';}).join("");
+  $("modeLine").innerHTML=r.paper!==false?'<span class="ok">Paper trading.</span> Orders go to Alpaca\'s paper account with pretend money. Use it until you have watched the desk work for a few weeks.':'<span class="bad">Live money.</span> Approved orders go to your real Alpaca account. The engine also needs <span class="mono">APCA_PAPER=false</span> in the environment, or it refuses.';
+  mmLine();}
+function readRules(){var r=rules(),g=function(id){return $("r_"+id).value;};
+  r.budget=num(g("budget"))||r.budget;r.riskPct=num(g("riskPct"))||r.riskPct;r.dayPct=num(g("dayPct"))||r.dayPct;r.trades=Math.round(num(g("trades"))||r.trades);r.rr=num(g("rr"))||r.rr;r.streak=Math.round(num(g("streak"))||r.streak);r.pos=num(g("pos"))||r.pos;r.cash=num(g("cash"));if(r.cash==null)r.cash=10;r.odds=num(g("odds"));if(r.odds==null)r.odds=0;
+  r.from=g("from")||"09:45";r.to=g("to")||"15:30";r.flat=g("flat")||"15:55";r.scope=g("scope");r.stop=g("stop");r.target=g("target");r.minPrice=num(g("minPrice"))||5;r.watch=g("watch");r.block=g("block");
+  r.breakEven=$("r_be").checked;r.autoFlat=$("r_autoFlat").checked;r.setups=SETUPS.map(function(s){return s[0];}).filter(function(k){var el=$("su_"+k);return el&&el.checked;});return r;}
+function mmLine(){var r=readRules(),eq=(S.account&&num(S.account.equity))||r.budget,risk=eq*r.riskPct/100,day=eq*r.dayPct/100;
+  $("mmLine").innerHTML='On '+usd(eq,0)+' you risk <strong>'+usd(risk)+'</strong> a trade and stop for the day after losing <strong>'+usd(day)+'</strong> (about '+Math.max(1,Math.floor(day/risk))+' full stop-outs). Example: a stop 2.00 below the entry buys '+Math.floor(risk/2)+' shares; every target is at least '+r.rr+'R, so one win at '+r.rr+'R covers '+r.rr+' losses.';}
+document.querySelectorAll("#tab-rules input,#tab-rules select").forEach(function(el){el.addEventListener("input",mmLine);});
+function validRules(r){if(toMin(r.from,-1)<0||toMin(r.to,-1)<0||toMin(r.flat,-1)<0)return "Times must look like 09:45.";if(toMin(r.from)>=toMin(r.to))return "\"No entries before\" must be earlier than \"No entries after\".";if(toMin(r.to)>=toMin(r.flat))return "Entries must stop before the close-by time.";if(r.riskPct>5)return "Risk per trade above 5% is not allowed.";if(r.dayPct<r.riskPct)return "The daily loss limit must be at least one trade's risk.";if(!r.setups.length)return "Pick at least one setup.";return null;}
+$("btnSaveRules").addEventListener("click",async function(){var r=readRules(),bad=validRules(r);if(bad){$("rulesNote").textContent=bad;return;}r.t=Date.now();
+  try{await db.doc("hq/rules").set(r);$("rulesNote").textContent="Saved. The engine uses these from its next check.";queue("rules",{},"Rules saved");}catch(e){$("rulesNote").textContent=e&&e.code==="invalid_argument"?"Only the owner can change the rules.":"Couldn't save ("+(e&&e.code)+").";}});
+$("btnPaper").addEventListener("click",async function(){var r=readRules();r.paper=true;r.t=Date.now();try{await db.doc("hq/rules").set(r);toast("Paper trading on");queue("rules",{},"");}catch(e){}});
+$("btnLive").addEventListener("click",function(){$("liveConfirm").innerHTML='<div class="confirm"><strong>Trade real money?</strong><p class="small" style="margin:4px 0 8px">Most people who day trade lose money. Type <span class="mono">LIVE</span> to confirm. You will still approve every single trade.</p><input type="text" id="liveWord" autocomplete="off" aria-label="Type LIVE to confirm"><div class="row" style="margin-top:8px"><button class="btn stop sm" id="liveYes" type="button">Switch to live</button><button class="btn ghost sm" id="liveNo" type="button">Cancel</button></div></div>';
+  $("liveNo").onclick=function(){$("liveConfirm").innerHTML="";};
+  $("liveYes").onclick=async function(){if($("liveWord").value.trim()!=="LIVE"){toast("Type LIVE in capitals to confirm.");return;}var r=readRules();r.paper=false;r.t=Date.now();try{await db.doc("hq/rules").set(r);$("liveConfirm").innerHTML="";toast("Live mode saved");queue("rules",{},"");}catch(e){toast("Only the owner can switch to live.");}};});
+
+// ---------- chart reader ----------
+var chartBlob=null;
+$("chartFile").addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;chartBlob=f;var u=URL.createObjectURL(f);$("dropInner").innerHTML='<img src="'+u+'" alt="Your chart">';$("btnRead").disabled=!sample||!canImages;if(!canImages)$("readNote").textContent="Reading images isn't available on this view.";});
+var CHART_SCHEMA='{"ticker":string|null,"exchange":string|null,"timeframe":string|null,"lastPrice":number|null,"assetClass":"us_stock"|"crypto"|"forex"|"futures"|"other","trend":string,"levels":[{"price":number,"kind":"support"|"resistance","why":string}],"pattern":string,"indicators":string,"call":"LONG"|"SHORT"|"WAIT","trigger":string,"entry":number|null,"stop":number|null,"target":number|null,"cancelIf":string,"confidence":"low"|"medium"|"high","confidenceWhy":string,"notVisible":string}';
+function chartPrompt(note){var r=rules();return "You are the chart analyst on a day-trading desk. Read the attached chart screenshot. Rules: never guess a number you cannot read on the price axis; put what you cannot see in notVisible. Name a pattern only if it is clearly there, else \"no clean pattern\". Read only indicators that are drawn. WAIT is a real answer when price is mid-range, the stop would be too wide, or the picture is unclear. For LONG the stop is below the entry and the target above; for SHORT the reverse. Aim the target at the next level and at least "+r.rr+"R if the chart allows. The trader's note: "+(note||"none")+".\nReturn only JSON in this shape: "+CHART_SCHEMA;}
+$("btnRead").addEventListener("click",async function(){if(!chartBlob||!sample)return;var b=this;b.disabled=true;$("readNote").textContent="Reading the chart…";$("chartOut").innerHTML="";
+  try{var res=await sample.json(chartPrompt($("chartNote").value.trim()),{images:[chartBlob],modelTier:"complex"});renderChart(res);$("readNote").textContent="";}
+  catch(e){$("readNote").textContent=sampleWhy(e);}finally{b.disabled=false;}});
+function sizeFor(entry,stop){var r=rules(),eq=(S.account&&num(S.account.equity))||r.budget,risk=eq*r.riskPct/100,per=Math.abs(entry-stop);if(!per)return null;var q=Math.floor(risk/per);var capQ=Math.floor(eq*r.pos/100/entry);q=Math.min(q,capQ);return {qty:q,maxLoss:q*per,cost:q*entry,risk:risk};}
+var lastChart=null;
+function renderChart(c){lastChart=c;if(!c||typeof c!=="object"){$("chartOut").innerHTML='<div class="card">The analyst could not read that chart. Try a clearer screenshot with the price axis visible.</div>';return;}
+  var e=num(c.entry),s=num(c.stop),t=num(c.target),rr=(e!=null&&s!=null&&t!=null&&e!==s)?Math.abs(t-e)/Math.abs(e-s):null,sz=(e!=null&&s!=null)?sizeFor(e,s):null;
+  var h='<div class="card"><div class="row spread"><h3><span class="mono">'+esc(c.ticker||"Ticker not visible")+'</span> <span class="muted small">'+esc(c.timeframe||"")+'</span></h3><span class="chip '+esc(c.call)+'">'+esc(c.call)+'</span></div>'+
+   '<dl class="ticket"><dt>Trend</dt><dd style="font-family:var(--body)">'+esc(c.trend)+'</dd><dt>Pattern</dt><dd style="font-family:var(--body)">'+esc(c.pattern)+'</dd><dt>Indicators</dt><dd style="font-family:var(--body)">'+esc(c.indicators||"none drawn")+'</dd>'+
+   '<dt>Levels</dt><dd>'+((c.levels||[]).map(function(l){return '<span class="'+(l.kind==="support"?"up":"down")+'">'+px(l.price)+'</span> <span class="muted" style="font-family:var(--body)">'+esc(l.kind)+(l.why?", "+esc(l.why):"")+'</span>';}).join("<br>")||"–")+'</dd>'+
+   (c.call!=="WAIT"?'<dt>Trigger</dt><dd style="font-family:var(--body)">'+esc(c.trigger)+'</dd><dt>Entry</dt><dd>'+px(e)+'</dd><dt>Stop</dt><dd class="down">'+px(s)+'</dd><dt>Target</dt><dd class="up">'+px(t)+(rr?' <span class="muted">'+rr.toFixed(1)+'R</span>':'')+'</dd>':'<dt>Wait for</dt><dd style="font-family:var(--body)">'+esc(c.trigger)+'</dd>')+
+   '<dt>Cancel if</dt><dd style="font-family:var(--body)">'+esc(c.cancelIf)+'</dd><dt>Confidence</dt><dd style="font-family:var(--body)">'+esc(c.confidence)+' · '+esc(c.confidenceWhy)+'</dd>'+(c.notVisible?'<dt>Not visible</dt><dd style="font-family:var(--body)">'+esc(c.notVisible)+'</dd>':'')+'</dl>';
+  if(sz&&c.call!=="WAIT") h+='<p class="small"><strong>Sized to your rules:</strong> '+sz.qty+' shares ('+usd(sz.cost)+'), about '+usd(sz.maxLoss)+' lost if the stop fills, inside your '+usd(sz.risk)+' risk per trade.'+(rr!=null&&rr<rules().rr?' <span class="bad">Reward : risk '+rr.toFixed(1)+' is below your minimum of '+rules().rr+'.</span>':'')+'</p>';
+  h+='<p class="muted small">A picture is a snapshot: it cannot see news, earnings dates or what happened after it was taken.</p>';
+  if(c.ticker&&(c.assetClass==="us_stock"||!c.assetClass)) h+='<div class="row"><button class="btn" id="chartLive" type="button">Check '+esc(c.ticker)+' with live data and make a signal</button></div>';
+  else h+='<p class="small muted">Live checks and the Time Machine cover US stocks. For '+esc(c.assetClass||"this market")+' the read and the sizing above are all the desk can do.</p>';
+  $("chartOut").innerHTML=h+'</div>';
+  var bl=$("chartLive");if(bl)bl.onclick=function(){queue("analyze",{symbol:String(c.ticker).toUpperCase().replace(/[^A-Z.]/g,""),fromChart:{call:c.call,entry:e,stop:s,target:t,trigger:c.trigger,timeframe:c.timeframe}},"Checking "+c.ticker+" live");showTab("desk");};
+}
+function sampleWhy(e){var c=e&&e.code;if(c==="rate_limited")return "Your Claude usage limit was reached. Try again later.";if(c==="not_granted"||c==="sampling_disabled")return "Claude isn't allowed for this page yet. Allow it from the page's Permissions menu.";if(c==="images_unavailable"||c==="image_rejected")return "That image couldn't be sent. Use a PNG, JPG or WebP under the size limit.";if(c==="invalid_json")return "The answer came back in the wrong shape. Try again.";return "Claude couldn't finish ("+(c||"error")+"). Try again.";}
+
+// ---------- chat ----------
+function deskSnapshot(){var r=rules();return {now_ny:session().clock+" "+session().date,market:session().name,engine:{status:S.state.status||"off",phase:S.state.phase||"",message:S.state.message||"",heartbeat:S.state.heartbeat?ago(S.state.heartbeat):"never"},rules:{account:r.budget,riskPctPerTrade:r.riskPct,maxDailyLossPct:r.dayPct,maxTradesPerDay:r.trades,minRR:r.rr,stopAfterLosses:r.streak,paper:r.paper!==false,entryWindow:r.from+"-"+r.to,flatBy:r.flat,watchlist:r.watch},
+  account:S.account?{equity:S.account.equity,cash:S.account.cash,buying_power:S.account.buying_power,last_equity:S.account.last_equity}:null,
+  positions:((S.positions&&S.positions.items)||[]).map(function(p){return {symbol:p.symbol,qty:p.qty,entry:p.avg_entry_price,now:p.current_price,pl:p.unrealized_pl,stop:p.stop,target:p.target};}),
+  pendingSignals:S.signals.filter(function(s){return s.status==="pending";}).map(function(s){return {id:s.id,symbol:s.symbol,setup:s.setup,entry:s.entry,stop:s.stop,target:s.target,qty:s.qty,maxLoss:s.maxLoss,odds:s.odds,verdict:s.verdict,news:s.news};}),
+  watching:((S.watch&&S.watch.items)||[]).slice(0,15),recentActivity:S.activity.slice(0,15).map(function(a){return hhmm(a.t)+" "+a.agent+": "+a.text;}),
+  journal:{trades:S.journal.length,net:S.journal.reduce(function(s,t){return s+(num(t.pnl)||0);},0)}};}
+var CHAT_RULES="You are the Manager of Trading HQ, a day-trading desk with these agents: Chart Scanner, News Monitor, Entry Timer, Exit Planner, Time Machine (10,000 replays plus history), Budget Manager, Risk Manager, Order Executor (Alpaca), Price Alerts, Earnings Analyst (SEC filings), Pelosi Tracker (Congress trades). Speak plainly and briefly. Every price or number you state must come from the desk data or a tool result; never invent one. Not financial advice: say so once if the user asks what to buy. Long trades are what the pipeline places. To make the desk DO something (scan, news, analyse a ticker, earnings, Congress trades, a job for one agent), call run_desk_task. To trade, close, cancel or move a stop/target, call propose_trade_action: it shows the user a confirm button, and nothing happens unless they tap it; tell them to tap Confirm. Never say a trade was placed unless the desk data shows it. Use get_desk for current numbers.";
+var chatTools=[
+ {name:"get_desk",description:"Current desk state: engine, rules, account, positions, pending signals, watch list, recent activity, journal totals.",inputSchema:{type:"object",properties:{}},execute:function(){return deskSnapshot();}},
+ {name:"run_desk_task",description:"Queue a read-only task for the engine. kind: scan | news | analyze | earnings | pelosi | briefing | sync | job. symbol for news/analyze/earnings. text for job (plain instructions) with agent id.",inputSchema:{type:"object",properties:{kind:{type:"string",enum:["scan","news","analyze","earnings","pelosi","briefing","sync","job"]},symbol:{type:"string"},agent:{type:"string"},text:{type:"string"}},required:["kind"]},execute:async function(i){var id=await queue(i.kind,{symbol:i.symbol?String(i.symbol).toUpperCase():undefined,agent:i.agent,text:i.text},"Desk task: "+i.kind);return id?{queued:true,id:id,note:"Results appear on the Desk and in the agent's report within a few minutes."}:{queued:false};}},
+ {name:"propose_trade_action",description:"Show the user a confirm button for a trading action. type: approve_signal (signalId) | close (symbol) | cancel (orderId) | move_stop (symbol, price) | move_target (symbol, price) | flatten_all. Include a one-line summary with the numbers.",inputSchema:{type:"object",properties:{type:{type:"string",enum:["approve_signal","close","cancel","move_stop","move_target","flatten_all"]},signalId:{type:"string"},symbol:{type:"string"},orderId:{type:"string"},price:{type:"number"},summary:{type:"string"}},required:["type","summary"]},execute:function(i){proposals.push(Object.assign({pid:Date.now().toString(36)+Math.random().toString(36).slice(2,5)},i));renderProposals();return {shown:true,note:"A Confirm button is on screen. Nothing happens unless the user taps it."};}}
+];
+function renderProposals(){$("proposals").innerHTML=proposals.map(function(p){return '<div class="confirm" data-pid="'+esc(p.pid)+'"><strong>'+esc(p.summary)+'</strong><div class="row" style="margin-top:8px"><button class="btn go sm" data-act="ok" type="button">Confirm</button><button class="btn ghost sm" data-act="no" type="button">Dismiss</button></div></div>';}).join("");}
+$("proposals").addEventListener("click",async function(e){var b=e.target.closest("button[data-act]");if(!b)return;var pid=b.closest("[data-pid]").dataset.pid,p=proposals.filter(function(x){return x.pid===pid;})[0];proposals=proposals.filter(function(x){return x.pid!==pid;});renderProposals();if(!p||b.dataset.act!=="ok")return;
+  if(p.type==="approve_signal"){var s=S.signals.filter(function(x){return x.id===p.signalId;})[0];if(!s||s.status!=="pending"){toast("That signal is no longer waiting.");return;}try{await db.doc("signals/"+s.id).update({status:"approving",decided:Date.now(),approvedBy:uid||"owner"});}catch(err){}queue("approve",{signalId:s.id,symbol:s.symbol,qty:s.qty,entry:s.entry,stop:s.stop,target:s.target,fingerprint:s.fingerprint||null,orderIndex:s.orderIndex||1,reply:"Confirm (Trading HQ chat)"},"Approved. Placing "+s.symbol);}
+  else if(p.type==="close")queue("close",{symbol:String(p.symbol||"").toUpperCase()},"Closing "+p.symbol);
+  else if(p.type==="cancel")queue("cancel",{orderId:p.orderId},"Cancelling the order");
+  else if(p.type==="move_stop")queue("move_stop",{symbol:String(p.symbol||"").toUpperCase(),stop:p.price},"Moving the stop");
+  else if(p.type==="move_target")queue("move_target",{symbol:String(p.symbol||"").toUpperCase(),target:p.price},"Moving the target");
+  else if(p.type==="flatten_all")queue("flatten_all",{},"Closing everything");});
+function renderChat(){var m=chat.messages;$("msgs").innerHTML=m.length?m.map(function(x){return '<div class="msg '+(x.role==="user"?"me":"ai")+'">'+esc(x.content)+(x.img?'\n[chart attached]':'')+'</div>';}).join(""):'<div class="msg ai">Hi, I run the desk. Ask me for signals, tell me your budget and risk, attach a chart, or ask what Congress is buying. I always ask you before any trade.</div>';}
+async function saveChat(){if(!db||!uid)return;try{await db.doc("data/users/"+uid+"/chat").set({messages:chat.messages.slice(-40),t:Date.now()});}catch(e){}}
+$("chatFile").addEventListener("change",function(){var f=this.files&&this.files[0];chatImg=f||null;$("chatNote").textContent=f?("Chart attached: "+f.name):"";});
+$("chatNew").addEventListener("click",function(){chat.messages=[];proposals=[];renderProposals();renderChat();saveChat();});
+$("chatSend").addEventListener("click",sendChat);
+$("chatBox").addEventListener("keydown",function(e){if(e.key==="Enter"&&(e.metaKey||e.ctrlKey))sendChat();});
+async function sendChat(){var t=$("chatBox").value.trim();if(!t&&!chatImg)return;if(!sample){$("chatNote").textContent="Claude isn't available on this view.";return;}
+  var img=chatImg;chatImg=null;$("chatFile").value="";$("chatBox").value="";chat.messages.push({role:"user",content:t||"(chart attached)",img:!!img});renderChat();
+  var hist=chat.messages.slice(-12).map(function(x){return {role:x.role,content:x.content};});
+  hist[hist.length-1]={role:"user",content:CHAT_RULES+"\n\nDesk data now: "+JSON.stringify(deskSnapshot()).slice(0,9000)+(img?"\n\nThe user attached a chart screenshot: read it as the chart analyst would (trend, levels with prices, pattern, LONG/SHORT/WAIT with entry, stop, target; never guess unreadable numbers).":"")+"\n\nUser: "+(t||"Read this chart.")};
+  if(hist.length>1&&hist[0].role!=="user")hist.shift();
+  var bubble={role:"assistant",content:"Thinking…"};chat.messages.push(bubble);renderChat();$("chatSend").disabled=true;
+  try{var opts={onText:function(o){bubble.content=o.text||"Thinking…";renderChat();},cache:false};if(canTools)opts.tools=chatTools;if(img&&canImages)opts.images=[img];
+    var r=await sample(hist,opts);bubble.content=r.text||bubble.content;}
+  catch(e){bubble.content=sampleWhy(e);}
+  finally{$("chatSend").disabled=false;renderChat();saveChat();}}
+
+// ---------- boot ----------
+function renderAll(){renderEngine();renderKpis();renderDesks();renderFeed();renderSignals();renderPositions();renderJournal();}
+fillRules();renderAll();renderChat();tickClock();setInterval(tickClock,15000);
+setInterval(function(){renderKpis();},60000);
+
+(async function(){
+  db=await claude.use("db");
+  user=await claude.use("user");
+  sample=await claude.use("sample");
+  mcp=await claude.use("mcp");
+  downloads=await claude.use("downloads");
+  if(user){try{uid=await user.id();}catch(e){uid=null;}}
+  if(sample){try{var lim=await sample.limits();canImages=!!(lim&&lim.images);canTools=!!(lim&&lim.tools);}catch(e){}}
+  $("btnRead").disabled=!(chartBlob&&sample&&canImages);
+  $("chatAttachLbl").hidden=!canImages;
+  if(!db){$("engineLine").textContent="Open this page in claude.ai, signed in, to run the desk.";return;}
+  function onDoc(path,key,after){db.doc(path).onSnapshot(function(s){S[key]=s.exists?s.data():(key==="agents"?{}:key==="state"?{}:null);if(key==="rules")fillRules();after();},function(){});}
+  onDoc("hq/state","state",function(){renderEngine();renderKpis();renderSignals();});
+  onDoc("hq/rules","rules",function(){renderEngine();renderKpis();});
+  onDoc("hq/account","account",function(){renderKpis();mmLine();});
+  onDoc("hq/positions","positions",function(){renderPositions();renderKpis();});
+  onDoc("hq/agents","agents",renderDesks);
+  onDoc("hq/watch","watch",renderSignals);
+  function onCol(path,field,key,lim,after){db.collection(path).orderBy(field,"desc").limit(lim).onSnapshot(function(q){S[key]=q.docs.map(function(d){return Object.assign({id:d.id},d.data());});after();},function(){});}
+  onCol("signals","created","signals",80,renderSignals);
+  onCol("activity","t","activity",80,function(){renderFeed();});
+  onCol("journal","closed","journal",500,function(){renderJournal();renderKpis();});
+  if(uid){try{var c=await db.doc("data/users/"+uid+"/chat").get();if(c.exists){chat.messages=(c.data().messages||[]).slice(-40);renderChat();}}catch(e){}}
+})();
+})();
+</script>
