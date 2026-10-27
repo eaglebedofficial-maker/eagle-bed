@@ -19,6 +19,7 @@
   --accent:#7D9BFF; --accent-ink:#0A0F17; --up:#3ACB8E; --down:#FF6E61; --warn:#F2AA3C; --wait:#A891FF; color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
 body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
@@ -75,8 +76,11 @@ label.f input,label.f select{color:var(--ink)}
 .meter{height:6px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:6px}
 .meter i{display:block;height:100%;background:var(--up)}
 .meter i.hot{background:var(--warn)} .meter i.full{background:var(--down)}
-.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.controls .btn{padding:14px 8px;font-size:15px}
+.btn.big{width:100%;padding:16px;font-size:17px;border-radius:12px}
+.reasons{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.reasons button{border:1px solid var(--line);background:var(--surface2);border-radius:99px;padding:5px 11px;font-size:13px;cursor:pointer}
+.reasons button[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
+.banner{border:1px solid color-mix(in srgb,var(--down) 45%,transparent);background:color-mix(in srgb,var(--down) 10%,var(--surface));border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14px}
 .desks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 @media(min-width:560px){.desks{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(min-width:860px){.desks{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -154,20 +158,24 @@ details summary{cursor:pointer;font-weight:600}
 <!-- DESK -->
 <section id="tab-desk">
   <h2>Desk</h2>
-  <p class="muted small" id="engineLine">The engine is not running yet. Press Start: the agents scan the market, find setups, and ask you before any trade.</p>
-  <div class="controls">
-    <button class="btn go" id="btnStart" type="button">Start</button>
-    <button class="btn warn" id="btnPause" type="button">Pause</button>
-    <button class="btn stop" id="btnStop" type="button">Stop</button>
+  <p class="muted small" id="engineLine">Checking the engine…</p>
+  <div id="offline"></div>
+  <button class="btn go big" id="btnToggle" type="button">Start trading</button>
+  <div id="stopSheet"></div>
+  <div id="stopReport"></div>
+
+  <div class="card">
+    <h3>Tell the desk</h3>
+    <p class="muted small" style="margin:2px 0 8px">Plain words, like you'd tell a trader: "only trade NVDA and AMD today", "close my TSLA", "move my stop to break-even", "what's moving pre-market?". New buys still come back to you as a signal to approve.</p>
+    <textarea id="instrBox" rows="2" placeholder="Type an instruction for the desk"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn" id="instrSend" type="button">Send to the desk</button>
+      <button class="btn ghost sm" id="btnScan" type="button">Scan now</button>
+      <button class="btn ghost sm" id="btnSync" type="button">Refresh account</button>
+      <button class="btn ghost sm" id="btnBrief" type="button">Briefing</button>
+      <button class="btn ghost sm" id="btnPelosi" type="button">Congress trades</button>
+      <button class="btn ghost sm" id="btnRestart" type="button">Restart engine</button></div>
+    <ul class="feed" id="cmdList" style="margin-top:10px"></ul>
   </div>
-  <div class="row" style="margin-top:8px">
-    <button class="btn ghost sm" id="btnScan" type="button">Scan now</button>
-    <button class="btn ghost sm" id="btnSync" type="button">Refresh account</button>
-    <button class="btn ghost sm" id="btnBrief" type="button">Morning briefing</button>
-    <button class="btn ghost sm" id="btnPelosi" type="button">Congress trades</button>
-    <button class="btn ghost sm" id="btnRestart" type="button">Restart engine</button>
-  </div>
-  <div id="restartConfirm"></div>
 
   <h2>Account</h2>
   <div class="kpis" id="kpis"></div>
@@ -294,6 +302,7 @@ details summary{cursor:pointer;font-weight:600}
       <label class="f">Default stop<select id="r_stop"><option value="or-mid">Opening-range midpoint</option><option value="or-low">Opening-range low</option><option value="atr:1.5">1.5 x ATR</option><option value="pct:1">1% below entry</option></select></label>
       <label class="f">Default target<select id="r_target"><option value="2R">2R (twice the risk)</option><option value="1.5R">1.5R</option><option value="1R">1R</option><option value="3R">3R</option></select></label>
       <label class="f">Minimum price ($)<input type="number" id="r_minPrice" min="1" step="1"></label>
+      <label class="f">Broker for day trades<select id="r_broker"><option value="trading212">Trading 212</option><option value="alpaca">Alpaca</option></select></label>
     </div>
     <label class="f" style="margin-top:10px">My watchlist (tickers, comma separated)<input type="text" id="r_watch" placeholder="TSLA, NVDA, AMD, AAPL, META"></label>
     <label class="f" style="margin-top:10px">Never trade<input type="text" id="r_block" placeholder="e.g. GME, AMC"></label>
@@ -338,12 +347,10 @@ details summary{cursor:pointer;font-weight:600}
 "use strict";
 // ---------- fixed settings ----------
 var APP_URL="https://claude.ai/artifact/HvGS44nRXudsBLsmoVgGzn";
-var REPO="https://github.com/eaglebedofficial-maker/eagle-bed", BRANCH="claude/day-trader-skill-agent-sauvy6", ENV_ID="env_01VKWEmLeRe1xctRyw5PyUry";
-var CCR="Claude Code Remote";
 var HOLI={"2026-01-01":1,"2026-01-19":1,"2026-02-16":1,"2026-04-03":1,"2026-05-25":1,"2026-06-19":1,"2026-07-03":1,"2026-09-07":1,"2026-11-26":1,"2026-12-25":1,"2027-01-01":1,"2027-01-18":1,"2027-02-15":1,"2027-03-26":1,"2027-05-31":1,"2027-06-18":1,"2027-07-05":1,"2027-09-06":1,"2027-11-25":1,"2027-12-24":1};
 var EARLY={"2026-11-27":1,"2026-12-24":1,"2027-11-26":1};
 var SETUPS=[["orb","Opening-range breakout"],["breakout_20d","20-day breakout"],["bull_flag","Bull flag"],["reclaim_ma20","Reclaimed 20-day average"],["oversold_bounce","Oversold bounce"]];
-var DEFAULT_RULES={budget:5000,riskPct:1,dayPct:3,trades:3,rr:2,streak:2,pos:50,cash:10,odds:30,from:"09:45",to:"15:30",flat:"15:55",scope:"watchlist",stop:"or-mid",target:"2R",minPrice:5,watch:"TSLA, NVDA, AMD, AAPL, META, AMZN, MSFT, PLTR",block:"",setups:["orb","breakout_20d","bull_flag","reclaim_ma20","oversold_bounce"],breakEven:true,autoFlat:true,paper:true};
+var DEFAULT_RULES={budget:5000,riskPct:1,dayPct:3,trades:3,rr:2,streak:2,pos:50,cash:10,odds:30,from:"09:45",to:"15:30",flat:"15:55",scope:"watchlist",stop:"or-mid",target:"2R",minPrice:5,watch:"TSLA, NVDA, AMD, AAPL, META, AMZN, MSFT, PLTR",block:"",setups:["orb","breakout_20d","bull_flag","reclaim_ma20","oversold_bounce"],breakEven:true,autoFlat:true,paper:true,broker:"trading212"};
 var AGENTS=[
  {id:"manager",name:"Manager",c:"#2F5BEA",role:"Runs the desk. Reads your rules, sends work to each agent, checks every signal, and asks you before any trade."},
  {id:"scanner",name:"Chart Scanner",c:"#0F7A57",skill:"trader-scanner",role:"Scans the market for opening-range breakouts, 20-day breakouts, bull flags and oversold bounces."},
@@ -403,99 +410,89 @@ function showTab(name){document.querySelectorAll("nav.tabs button").forEach(func
 document.querySelectorAll("nav.tabs button").forEach(function(b){b.addEventListener("click",function(){showTab(b.dataset.tab);});});
 (function(){var h=(location.hash||"").replace("#",""),t=null;try{t=localStorage.getItem("thq_tab");}catch(e){}var want=["desk","signals","trades","invest","chart","chat","rules"].indexOf(h)>=0?h:t;if(want)showTab(want);})();
 
-// ---------- engine (Claude Code cloud session) ----------
-function enginePrompt(cmdText){
-  return "You are the Trading HQ engine. Read .claude/skills/trader-hq/SKILL.md first and follow it exactly.\n"+
-    "App (artifact database): "+APP_URL+"\n"+cmdText;
-}
-function mcpWhy(e){var c=e&&e.code;
-  if(c==="server_not_connected")return "Claude Code isn't connected for this page. Open the page in claude.ai while signed in.";
-  if(c==="needs_reauth")return "Sign in to Claude Code again in claude.ai Settings, then try again.";
-  if(c==="not_in_manifest"||c==="not_granted")return "This page isn't allowed to start the engine. Allow Claude Code in the page's Permissions menu.";
-  if(c==="approval_required")return "Approve the request to start the engine, then press the button again.";
-  if(c==="tool_error")return "The engine reported: "+String(e.message||"an error").slice(0,180);
-  return "The engine didn't answer just now ("+(c||"error")+"). Try again in a minute.";}
-async function ensureEngine(){
-  if(S.state.engineSession) return S.state.engineSession;
-  if(!mcp) throw {code:"not_granted"};
-  var r=await mcp.callTool(CCR,"create_session",{environment_id:ENV_ID,source_url:REPO,source_revision:BRANCH,title:"Trading HQ engine",permission_mode:"auto",prompt:enginePrompt("Boot: run the boot checks, then the first cycle.")});
-  var sid=idsFrom(r.payload!==undefined?r.payload:r,/session_[A-Za-z0-9]+/);
-  if(!sid) throw {code:"tool_error",message:"no session id came back"};
-  await saveState({engineSession:sid,engineCreated:Date.now()});
-  addLocalActivity("manager","Started the engine in the cloud ("+sid.slice(0,16)+"...)");
-  try{
-    var t=await mcp.callTool(CCR,"create_trigger",{name:"Trading HQ pre-market start",cron_expression:"CRON_TZ=America/New_York 4 9 * * 1-5",persistent_session_id:sid,initiation:"human_request",prompt:"Pre-market start for Trading HQ. Re-read .claude/skills/trader-hq/SKILL.md and run the pre-market cycle, then keep cycling through the session. App: "+APP_URL});
-    var tid=idsFrom(t.payload!==undefined?t.payload:t,/trig_[A-Za-z0-9]+/);
-    if(tid) await saveState({triggerId:tid});
-  }catch(e){addLocalActivity("manager","Could not schedule the daily 9:04 AM ET start: "+mcpWhy(e));}
-  return null; // the boot prompt already carries the first instruction
-}
-async function poke(text){
-  try{
-    var had=S.state.engineSession, sid=await ensureEngine();
-    if(sid && had) await mcp.callTool(CCR,"send_message",{session_id:sid,message:enginePrompt(text)});
-    return true;
-  }catch(e){toast(mcpWhy(e));addLocalActivity("manager",mcpWhy(e));return false;}
-}
+// ---------- engine ----------
+// The engine is a Claude Code cloud session. claude.ai does not let a page reach a session, so the
+// page only writes commands to the database and the engine collects them on its own timer.
 async function queue(type,args,label){
   if(!db){toast("Saving isn't available on this view. Open the page in claude.ai.");return null;}
   var ref;
   try{ref=await db.collection("commands").add({type:type,args:args||{},status:"queued",created:Date.now(),by:uid||"owner"});}
   catch(e){toast(e&&e.code==="invalid_argument"?"Only the owner can control this desk.":"Couldn't save that ("+(e&&e.code)+").");return null;}
-  await poke("New command "+ref.id+" ("+type+"). Process the command queue now.");
-  toast(label||"Sent to the desk");
+  toast((label||"Sent to the desk")+". The engine picks it up within "+cadence()+" min.");
   return ref.id;
 }
-async function saveState(patch){ if(!db)return; var cur=Object.assign({},S.state,patch); S.state=cur; try{await db.doc("hq/state").set(cur);}catch(e){} renderEngine(); }
-function addLocalActivity(agent,text){ if(!db)return; db.collection("activity").add({t:Date.now(),agent:agent,text:text,src:"app"}).catch(function(){}); }
+function cadence(){var c=num(S.state&&S.state.cadence);return c||10;}
+function engineAlive(){var b=S.state&&S.state.heartbeat;return !!b&&(Date.now()-b)<(cadence()*2+6)*60000;}
+async function saveState(patch){ if(!db)return; var cur=Object.assign({},S.state,patch); S.state=cur; try{await db.doc("hq/state").update(patch);}catch(e){try{await db.doc("hq/state").set(cur);}catch(e2){}} renderEngine(); }
 
-$("btnStart").addEventListener("click",async function(){await saveState({status:"running",since:Date.now()});await queue("start",{},"Starting the desk");});
-$("btnPause").addEventListener("click",async function(){await saveState({status:"paused",since:Date.now()});await queue("pause",{},"Paused: no new signals, open trades still managed");});
-$("btnStop").addEventListener("click",async function(){await saveState({status:"stopped",since:Date.now()});await queue("stop",{},"Stopped. Stops and targets stay at your broker.");});
-$("btnScan").addEventListener("click",function(){queue("scan",{},"Scanning now");});
-$("btnSync").addEventListener("click",function(){queue("sync",{},"Refreshing your account");});
-$("btnBrief").addEventListener("click",function(){queue("briefing",{},"Building the briefing");});
-$("btnPelosi").addEventListener("click",function(){queue("pelosi",{},"Checking Congress trades");});
-// Restart: a new cloud session picks up changed environment variables (new keys, APCA_PAPER). The old one is retired first so two engines never run at once.
-$("btnRestart").addEventListener("click",function(){$("restartConfirm").innerHTML='<div class="confirm"><strong>Restart the engine?</strong><p class="small" style="margin:4px 0 8px">Use this after you change your keys or switch between paper and live. The old engine is switched off and a new one starts with your new settings. Open positions keep their stops and targets at the broker.</p><div class="row"><button class="btn sm" id="rsYes" type="button">Restart</button><button class="btn ghost sm" id="rsNo" type="button">Cancel</button></div></div>';
-  $("rsNo").onclick=function(){$("restartConfirm").innerHTML="";};
-  $("rsYes").onclick=async function(){$("restartConfirm").innerHTML="";if(!mcp){toast(mcpWhy({code:"not_granted"}));return;}var st=S.state||{};
-    try{if(st.triggerId)await mcp.callTool(CCR,"update_trigger",{trigger_id:st.triggerId,enabled:false});}catch(e){addLocalActivity("manager","Could not switch off the old daily start: "+mcpWhy(e));}
-    try{if(st.engineSession)await mcp.callTool(CCR,"archive_session",{session_id:st.engineSession});}catch(e){addLocalActivity("manager","Could not switch off the old engine: "+mcpWhy(e));}
-    var keep=Object.assign({},st);delete keep.engineSession;delete keep.triggerId;delete keep.checks;keep.status="running";keep.since=Date.now();S.state=keep;
-    try{await db.doc("hq/state").set(keep);}catch(e){}
-    addLocalActivity("manager","Restarting the engine with the current settings");
-    await queue("start",{},"Restarting the engine");};});
+// one button: Start trading / Stop trading
+var stopReason="";
+$("btnToggle").addEventListener("click",async function(){
+  if((S.state.status||"stopped")!=="running"){await saveState({status:"running",since:Date.now(),stopReport:null});await queue("start",{},"Starting the desk");return;}
+  var open=((S.positions&&S.positions.items)||[]).length;
+  $("stopSheet").innerHTML='<div class="confirm"><strong>Stop trading?</strong><p class="small" style="margin:4px 0 6px">Why are you stopping? It goes in the stop report.</p>'+
+    '<div class="reasons" id="reasonChips">'+["End of my day","Market looks too risky","Losing too much today","Something looks wrong","Taking a break"].map(function(r){return '<button type="button" aria-pressed="false">'+esc(r)+'</button>';}).join("")+'</div>'+
+    '<input type="text" id="stopWhy" placeholder="Or type your own reason" aria-label="Reason for stopping">'+
+    '<label class="row small" style="gap:8px;margin-top:8px"><input type="checkbox" id="stopClose" checked style="width:20px;height:20px"> Close all the desk\'s open trades now'+(open?' ('+open+' open)':'')+' and cancel its orders. Your own Trading 212 investments are never touched.</label>'+
+    '<div class="row" style="margin-top:10px"><button class="btn stop" id="stopYes" type="button">Stop trading</button><button class="btn ghost" id="stopNo" type="button">Keep running</button></div></div>';
+  $("reasonChips").onclick=function(e){var b=e.target.closest("button");if(!b)return;this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});$("stopWhy").value=b.textContent;};
+  $("stopNo").onclick=function(){$("stopSheet").innerHTML="";};
+  $("stopYes").onclick=async function(){var why=$("stopWhy").value.trim()||"No reason given",close=$("stopClose").checked;$("stopSheet").innerHTML="";
+    await saveState({status:"stopped",since:Date.now(),stopReport:{t:Date.now(),reason:why,closeAll:close,pending:true}});
+    await queue("stop",{closeAll:close,reason:why},close?"Stopping and closing the desk's trades":"Stopping; open trades stay protected");};
+});
+$("instrSend").addEventListener("click",async function(){var t=$("instrBox").value.trim();if(!t)return;var id=await queue("instruction",{text:t},"Sent to the desk");if(id)$("instrBox").value="";});
+$("instrBox").addEventListener("keydown",function(e){if(e.key==="Enter"&&(e.metaKey||e.ctrlKey))$("instrSend").click();});
+$("btnScan").addEventListener("click",function(){queue("scan",{},"Scan requested");});
+$("btnSync").addEventListener("click",function(){queue("sync",{},"Account refresh requested");});
+$("btnBrief").addEventListener("click",function(){queue("briefing",{},"Briefing requested");});
+$("btnPelosi").addEventListener("click",function(){queue("pelosi",{},"Congress trades requested");});
+$("btnRestart").addEventListener("click",function(){queue("restart",{},"Restart requested: a fresh engine starts with your new settings");});
+
+var CMD_LABEL={start:"Start trading",stop:"Stop trading",instruction:"Instruction",scan:"Scan",sync:"Refresh account",briefing:"Briefing",pelosi:"Congress trades",restart:"Restart engine",approve:"Approve trade",reject:"Skip signal",replan:"Change stop / target",close:"Close trade",cancel:"Cancel order",move_stop:"Move stop",move_target:"Move target",flatten_all:"Close everything",rules:"Rules saved",portfolio:"Refresh investments",analyze:"Analyse",news:"News",earnings:"Earnings",job:"Agent job"};
+function renderCommands(){var c=S.commands.slice(0,8);
+  $("cmdList").innerHTML=c.length?c.map(function(x){var st=x.status||"queued",what=CMD_LABEL[x.type]||x.type,extra=x.type==="instruction"&&x.args&&x.args.text?': "'+x.args.text+'"':"";
+    var res=st==="queued"?(engineAlive()?"waiting for the engine (checks every "+cadence()+" min)":"waiting: the engine is offline"):(x.result||st);
+    return '<li><span class="t">'+esc(hhmm(x.created))+'</span><span><span class="chip '+esc(st)+'">'+esc(st)+'</span> <strong>'+esc(what)+'</strong>'+esc(extra)+'<br><span class="small muted">'+esc(res)+'</span></span></li>';}).join(""):'<li><span class="t"></span><span class="muted">What you ask the desk shows here, with the engine\'s answer.</span></li>';}
 
 function renderEngine(){
-  var st=S.state||{}, pill=$("enginePill"), status=st.status||"off", beat=st.heartbeat||0, stale=beat&&(Date.now()-beat>20*60*1000);
-  var label={running:"Running",paused:"Paused",stopped:"Stopped",off:"Engine off"}[status]||status;
-  pill.textContent=label+(beat?" · "+ago(beat):"");
-  pill.className="pill "+(status==="running"&&!stale?"on":status==="paused"?"pause":"off");
+  var st=S.state||{}, pill=$("enginePill"), running=(st.status==="running"), alive=engineAlive(), beat=st.heartbeat||0;
+  pill.textContent=!alive?"Engine offline":(running?"Trading":"Stopped")+" · "+ago(beat);
+  pill.className="pill "+(!alive?"off":running?"on":"pause");
+  var tg=$("btnToggle");tg.textContent=running?"Stop trading":"Start trading";tg.className="btn big "+(running?"stop":"go");
   var line;
-  if(!st.engineSession) line="The engine is not running yet. Press Start: the agents scan the market, find setups, and ask you before any trade.";
-  else if(status==="running") line=(st.phase?st.phase+". ":"")+(st.message||"Working.")+(st.next?" Next check "+hhmm(st.next)+" ET.":"");
-  else if(status==="paused") line="Paused. No new signals; open trades keep their stops and targets"+(st.message?". "+st.message:".");
-  else line="Stopped. Press Start to resume. Stops and targets you already placed stay at your broker.";
+  if(!alive) line=running?"You pressed Start. Waiting for the engine to check in.":"Press Start trading: the agents scan the market, find setups, and ask you before any trade.";
+  else if(running) line=(st.phase?st.phase+". ":"")+(st.message||"Working.")+(st.next?" Next check "+hhmm(st.next)+" ET.":"");
+  else line="Stopped. Press Start trading to resume."+(st.message?" "+st.message:"");
   $("engineLine").textContent=line;
-  $("beat").textContent=beat?"last heartbeat "+ago(beat):"";
+  $("offline").innerHTML=alive?"":'<div class="banner"><strong>The engine is offline.</strong> '+(beat?"Its last check-in was "+ago(beat)+".":"It has not checked in yet.")+' Your buttons are saved and run as soon as it checks in. If this lasts more than 15 minutes, tell Claude in your Claude Code chat: "start the Trading HQ engine".</div>';
+  $("beat").textContent=beat?"last check-in "+ago(beat)+" · every "+cadence()+" min":"";
   var paper=(S.rules?S.rules.paper!==false:true);
   $("modePill").textContent=paper?"PAPER":"LIVE";$("modePill").className="pill "+(paper?"paper":"live");
-  renderSetup();
+  var sr=st.stopReport;
+  $("stopReport").innerHTML=sr&&!running?'<div class="card"><div class="row spread"><h3>Stop report</h3><span class="muted small">'+esc(hhmm(sr.t))+' ET</span></div><p class="small" style="margin:4px 0"><strong>Reason:</strong> '+esc(sr.reason||"")+'</p>'+
+    (sr.pending?'<p class="small muted">'+(sr.closeAll?"Closing the desk's trades":"Stopping")+' as soon as the engine checks in.</p>':
+     ((sr.closed&&sr.closed.length)?'<ul class="feed">'+sr.closed.map(function(c){return '<li><span class="t mono">'+esc(c.symbol)+'</span><span>Sold '+esc(c.qty)+(c.exit!=null?' at '+px(c.exit):'')+(c.pnl!=null?' · <span class="'+sign(c.pnl)+'">'+usd(c.pnl)+'</span>':'')+'</span></li>';}).join("")+'</ul>':'<p class="small">No desk trades were open.</p>')+
+     ((sr.left&&sr.left.length)?'<p class="small">Still open: '+esc(sr.left.map(function(l){return l.symbol||l;}).join(", "))+'</p>':'')+(sr.note?'<p class="small muted">'+esc(sr.note)+'</p>':''))+'</div>':"";
+  renderSetup();renderCommands();
 }
 function renderSetup(){
-  var ck=(S.state&&S.state.checks)||{};
+  var ck=(S.state&&S.state.checks)||{},r=rules(),t212=r.broker!=="alpaca";
   function mark(k){return ck[k]==="ok"?'<span class="ok">Done</span>':ck[k]?'<span class="bad">'+esc(ck[k])+'</span>':'<span class="muted">Not checked yet</span>';}
-  var steps=[
-    ["Open a free Alpaca account at alpaca.markets and create <strong>paper trading</strong> API keys (Paper account, API keys, Generate).", ""],
-    ["In Claude Code, open the cloud environment menu in a session's title bar, choose <strong>Edit</strong>, and add these environment variables: <span class=\"mono\">APCA_API_KEY_ID</span> and <span class=\"mono\">APCA_API_SECRET_KEY</span> (your keys), <span class=\"mono\">APCA_PAPER=true</span>, and <span class=\"mono\">SEC_USER_AGENT</span> set to your name and email (SEC filings need it). Never paste keys into a chat.", "keys"],
-    ["In the same settings, under Network access, allow these domains: <span class=\"mono\">paper-api.alpaca.markets, api.alpaca.markets, query1.finance.yahoo.com, query2.finance.yahoo.com, feeds.finance.yahoo.com, www.nasdaqtrader.com, data.sec.gov, www.sec.gov, disclosures-clerk.house.gov, stooq.com</span>.", "data"],
-    ["Press <strong>Start</strong>. The engine checks the broker and the data feeds and ticks these off.", "broker"]
-  ];
+  var dom="query1.finance.yahoo.com, query2.finance.yahoo.com, feeds.finance.yahoo.com, www.nasdaqtrader.com, data.sec.gov, www.sec.gov, disclosures-clerk.house.gov, stooq.com";
+  var steps=t212?[
+    ["In Trading 212 (Invest or Stocks ISA), go to <strong>Settings → API (Beta)</strong> and generate a key. To let the desk trade, tick the <strong>orders</strong> permissions as well as account, portfolio, history and metadata. Trading 212 shows two different codes: the key and the secret.","t212"],
+    ["In Claude Code: environment menu → <strong>Edit</strong> → Environment variables: <span class=\"mono\">T212_API_KEY</span>, <span class=\"mono\">T212_API_SECRET</span>, <span class=\"mono\">T212_ENV</span> (<span class=\"mono\">demo</span> for a Practice account, <span class=\"mono\">live</span> for real money) and <span class=\"mono\">SEC_USER_AGENT</span> (your name and email). Never paste keys into a chat.","sec"],
+    ["Same settings, Network access → Allowed domains: <span class=\"mono\">live.trading212.com, demo.trading212.com, "+dom+"</span>.","data"],
+    ["Press <strong>Restart engine</strong> below. These steps tick off when the engine has checked them.","broker"]]:[
+    ["Open a free Alpaca account at alpaca.markets and create <strong>paper trading</strong> API keys.",""],
+    ["In Claude Code: environment menu → <strong>Edit</strong> → Environment variables: <span class=\"mono\">APCA_API_KEY_ID</span>, <span class=\"mono\">APCA_API_SECRET_KEY</span>, <span class=\"mono\">APCA_PAPER=true</span> and <span class=\"mono\">SEC_USER_AGENT</span>. Never paste keys into a chat.","keys"],
+    ["Same settings, Network access → Allowed domains: <span class=\"mono\">paper-api.alpaca.markets, api.alpaca.markets, "+dom+"</span>.","data"],
+    ["Press <strong>Restart engine</strong> below. These steps tick off when the engine has checked them.","broker"]];
   $("setupSteps").innerHTML=steps.map(function(s){return "<li>"+s[0]+(s[1]?" "+mark(s[1]):"")+"</li>";}).join("");
-  var allOk=ck.keys==="ok"&&ck.data==="ok"&&ck.broker==="ok";
+  var allOk=(t212?ck.t212==="ok":ck.keys==="ok")&&ck.data==="ok"&&ck.broker==="ok";
   $("setupChip").textContent=allOk?"Connected":"Setup";$("setupChip").className="chip "+(allOk?"done":"pending");
-  $("setupCard").querySelector("ol").hidden=false;
+  $("setupCard").querySelector("h3").textContent=t212?"Connect Trading 212":"Connect Alpaca";
 }
 
 // ---------- desks ----------
@@ -531,9 +528,9 @@ function renderKpis(){var a=S.account,r=rules(),eq=a?num(a.equity):null,last=a?n
   var dayLimit=(eq||r.budget)*r.dayPct/100, rt=riskToday(), usedPct=dayLimit?Math.min(100,rt.loss/dayLimit*100):0;
   var trades=(S.state&&S.state.tradesToday!=null)?S.state.tradesToday:rt.count;
   var html=[
-    ['Equity',usd(eq),a?(a.paper===false?"live account":"paper account"):"waiting for broker"],
-    ['Today',(day==null?"–":'<span class="'+sign(day)+'">'+usd(day)+'</span>'),last?pct(day/last*100,2)+" vs yesterday":""],
-    ['Buying power',usd(a&&a.buying_power),"cash "+usd(a&&a.cash,0)],
+    ['Equity',money(eq,a&&a.currency||"USD"),a?((a.broker==="trading212"?"Trading 212 ":"Alpaca ")+(a.env==="live"||a.paper===false?"live":"practice")):"waiting for broker"],
+    ['Today',(day==null?"–":'<span class="'+sign(day)+'">'+money(day,a&&a.currency||"USD")+'</span>'),last?pct(day/last*100,2)+" vs yesterday":""],
+    ['Buying power',money(a&&(a.buying_power!=null?a.buying_power:a.cash),a&&a.currency||"USD"),"cash "+money(a&&a.cash,a&&a.currency||"USD")],
     ['Loss limit used',usd(rt.loss,0)+' / '+usd(dayLimit,0),'<span class="meter"><i class="'+(usedPct>=100?"full":usedPct>=60?"hot":"")+'" style="width:'+usedPct.toFixed(0)+'%"></i></span>'],
     ['Trades today',trades+" / "+r.trades,(S.positions&&S.positions.items?S.positions.items.length:0)+" open"]
   ];
@@ -562,7 +559,7 @@ function sigCard(s,live){
   if(live&&st==="pending"){
     if(!c) h+='<div class="row" style="margin-top:10px"><button class="btn go" data-act="approve" type="button">Approve and place</button><button class="btn ghost" data-act="edit" type="button">Change stop / target</button><button class="btn ghost" data-act="reject" type="button">Skip</button></div>';
     else if(c==="edit") h+='<div class="confirm"><div class="grid2"><label class="f">Stop<input type="number" step="0.01" id="es_'+esc(s.id)+'" value="'+esc(px(s.stop))+'"></label><label class="f">Target<input type="number" step="0.01" id="et_'+esc(s.id)+'" value="'+esc(px(s.target))+'"></label></div><p class="small muted" style="margin:6px 0">The engine re-plans, re-sizes and re-runs the risk check, then asks you again.</p><div class="row"><button class="btn" data-act="saveEdit" type="button">Re-plan</button><button class="btn ghost" data-act="cancelC" type="button">Back</button></div></div>';
-    else h+='<div class="confirm"><strong>Place this order'+(rules().paper===false?' with REAL money':' on your paper account')+'?</strong><p class="small" style="margin:4px 0 8px">Buy '+esc(s.qty||"?")+' '+esc(s.symbol)+' at market, stop-loss '+px(s.stop)+', take-profit '+px(s.target)+'. If the stop fills at its price you lose about '+usd(s.maxLoss)+'.</p><div class="row"><button class="btn go" data-act="yes" type="button">Yes, place it</button><button class="btn ghost" data-act="cancelC" type="button">No</button></div></div>';
+    else h+='<div class="confirm"><strong>Place this order'+(rules().paper===false?' with REAL money':' on your practice account')+(s.broker==="trading212"?' at Trading 212':'')+'?</strong><p class="small" style="margin:4px 0 8px">Buy '+esc(s.qty||"?")+' '+esc(s.symbol)+' at market, stop-loss '+px(s.stop)+', take-profit '+px(s.target)+'. If the stop fills at its price you lose about '+usd(s.maxLoss)+'.'+(s.broker==="trading212"||s.managedStop?' Trading 212 cannot hold a stop, so the engine sells when the price reaches it; between its checks a fast drop can go past the stop.':'')+'</p><div class="row"><button class="btn go" data-act="yes" type="button">Yes, place it</button><button class="btn ghost" data-act="cancelC" type="button">No</button></div></div>';
   }
   return h+'</div>';
 }
@@ -657,14 +654,14 @@ $("btnPf").addEventListener("click",function(){queue("portfolio",{},"Refreshing 
 // ---------- rules ----------
 function rules(){return Object.assign({},DEFAULT_RULES,S.rules||{});}
 function fillRules(){var r=rules();
-  [["budget","budget"],["riskPct","riskPct"],["dayPct","dayPct"],["trades","trades"],["rr","rr"],["streak","streak"],["pos","pos"],["cash","cash"],["odds","odds"],["from","from"],["to","to"],["flat","flat"],["scope","scope"],["stop","stop"],["target","target"],["minPrice","minPrice"],["watch","watch"],["block","block"]].forEach(function(p){var el=$("r_"+p[0]);if(el&&document.activeElement!==el)el.value=r[p[1]];});
+  [["budget","budget"],["riskPct","riskPct"],["dayPct","dayPct"],["trades","trades"],["rr","rr"],["streak","streak"],["pos","pos"],["cash","cash"],["odds","odds"],["from","from"],["to","to"],["flat","flat"],["scope","scope"],["stop","stop"],["target","target"],["minPrice","minPrice"],["broker","broker"],["watch","watch"],["block","block"]].forEach(function(p){var el=$("r_"+p[0]);if(el&&document.activeElement!==el)el.value=r[p[1]];});
   $("r_be").checked=!!r.breakEven;$("r_autoFlat").checked=!!r.autoFlat;
   $("setupBoxes").innerHTML=SETUPS.map(function(s){return '<label class="row small" style="gap:6px"><input type="checkbox" id="su_'+s[0]+'" '+(r.setups.indexOf(s[0])>=0?"checked":"")+' style="width:18px;height:18px"> '+esc(s[1])+'</label>';}).join("");
-  $("modeLine").innerHTML=r.paper!==false?'<span class="ok">Paper trading.</span> Orders go to Alpaca\'s paper account with pretend money. Use it until you have watched the desk work for a few weeks.':'<span class="bad">Live money.</span> Approved orders go to your real Alpaca account. The engine also needs <span class="mono">APCA_PAPER=false</span> in the environment, or it refuses.';
+  $("modeLine").innerHTML=r.paper!==false?'<span class="ok">Practice mode.</span> Orders go only to a practice account with pretend money: Trading 212 with <span class="mono">T212_ENV=demo</span>, or Alpaca paper. A live key is refused until you switch to live here.':'<span class="bad">Live money.</span> Approved orders go to your real account. The environment must also say live (<span class="mono">T212_ENV=live</span> or <span class="mono">APCA_PAPER=false</span>), or the engine refuses.';
   mmLine();}
 function readRules(){var r=rules(),g=function(id){return $("r_"+id).value;};
   r.budget=num(g("budget"))||r.budget;r.riskPct=num(g("riskPct"))||r.riskPct;r.dayPct=num(g("dayPct"))||r.dayPct;r.trades=Math.round(num(g("trades"))||r.trades);r.rr=num(g("rr"))||r.rr;r.streak=Math.round(num(g("streak"))||r.streak);r.pos=num(g("pos"))||r.pos;r.cash=num(g("cash"));if(r.cash==null)r.cash=10;r.odds=num(g("odds"));if(r.odds==null)r.odds=0;
-  r.from=g("from")||"09:45";r.to=g("to")||"15:30";r.flat=g("flat")||"15:55";r.scope=g("scope");r.stop=g("stop");r.target=g("target");r.minPrice=num(g("minPrice"))||5;r.watch=g("watch");r.block=g("block");
+  r.from=g("from")||"09:45";r.to=g("to")||"15:30";r.flat=g("flat")||"15:55";r.scope=g("scope");r.stop=g("stop");r.target=g("target");r.minPrice=num(g("minPrice"))||5;r.broker=g("broker")||"trading212";r.watch=g("watch");r.block=g("block");
   r.breakEven=$("r_be").checked;r.autoFlat=$("r_autoFlat").checked;r.setups=SETUPS.map(function(s){return s[0];}).filter(function(k){var el=$("su_"+k);return el&&el.checked;});return r;}
 function mmLine(){var r=readRules(),eq=(S.account&&num(S.account.equity))||r.budget,risk=eq*r.riskPct/100,day=eq*r.dayPct/100;
   $("mmLine").innerHTML='On '+usd(eq,0)+' you risk <strong>'+usd(risk)+'</strong> a trade and stop for the day after losing <strong>'+usd(day)+'</strong> (about '+Math.max(1,Math.floor(day/risk))+' full stop-outs). Example: a stop 2.00 below the entry buys '+Math.floor(risk/2)+' shares; every target is at least '+r.rr+'R, so one win at '+r.rr+'R covers '+r.rr+' losses.';}
@@ -711,7 +708,7 @@ function deskSnapshot(){var r=rules();return {now_ny:session().clock+" "+session
   watching:((S.watch&&S.watch.items)||[]).slice(0,15),recentActivity:S.activity.slice(0,15).map(function(a){return hhmm(a.t)+" "+a.agent+": "+a.text;}),
   investments_trading212_readonly:S.portfolio?{currency:S.portfolio.currency,cash:S.portfolio.cash,holdings:(S.portfolio.items||[]).map(function(x){return {symbol:x.symbol||x.t212,qty:x.quantity,avg:x.avg_price,now:x.current_price,pl:x.ppl,flags:x.flags};})}:null,
   journal:{trades:S.journal.length,net:S.journal.reduce(function(s,t){return s+(num(t.pnl)||0);},0)}};}
-var CHAT_RULES="You are the Manager of Trading HQ, a day-trading desk with these agents: Chart Scanner, News Monitor, Entry Timer, Exit Planner, Time Machine (10,000 replays plus history), Budget Manager, Risk Manager, Order Executor (Alpaca), Price Alerts, Earnings Analyst (SEC filings), Pelosi Tracker (Congress trades). Speak plainly and briefly. Every price or number you state must come from the desk data or a tool result; never invent one. Not financial advice: say so once if the user asks what to buy. Long trades are what the pipeline places. To make the desk DO something (scan, news, analyse a ticker, earnings, Congress trades, a job for one agent), call run_desk_task. To trade, close, cancel or move a stop/target, call propose_trade_action: it shows the user a confirm button, and nothing happens unless they tap it; tell them to tap Confirm. Never say a trade was placed unless the desk data shows it. Use get_desk for current numbers.";
+var CHAT_RULES="You are the Manager of Trading HQ, a day-trading desk with these agents: Chart Scanner, News Monitor, Entry Timer, Exit Planner, Time Machine (10,000 replays plus history), Budget Manager, Risk Manager, Order Executor (Trading 212 or Alpaca; on Trading 212 the engine enforces stops itself because the broker cannot hold them), Price Alerts, Earnings Analyst (SEC filings), Pelosi Tracker (Congress trades). Speak plainly and briefly. Every price or number you state must come from the desk data or a tool result; never invent one. Not financial advice: say so once if the user asks what to buy. Long trades are what the pipeline places. To make the desk DO something (scan, news, analyse a ticker, earnings, Congress trades, a job for one agent), call run_desk_task. To trade, close, cancel or move a stop/target, call propose_trade_action: it shows the user a confirm button, and nothing happens unless they tap it; tell them to tap Confirm. Never say a trade was placed unless the desk data shows it. Use get_desk for current numbers.";
 var chatTools=[
  {name:"get_desk",description:"Current desk state: engine, rules, account, positions, pending signals, watch list, recent activity, journal totals.",inputSchema:{type:"object",properties:{}},execute:function(){return deskSnapshot();}},
  {name:"run_desk_task",description:"Queue a read-only task for the engine. kind: scan | news | analyze | earnings | pelosi | briefing | sync | job. symbol for news/analyze/earnings. text for job (plain instructions) with agent id.",inputSchema:{type:"object",properties:{kind:{type:"string",enum:["scan","news","analyze","earnings","pelosi","briefing","sync","job"]},symbol:{type:"string"},agent:{type:"string"},text:{type:"string"}},required:["kind"]},execute:async function(i){var id=await queue(i.kind,{symbol:i.symbol?String(i.symbol).toUpperCase():undefined,agent:i.agent,text:i.text},"Desk task: "+i.kind);return id?{queued:true,id:id,note:"Results appear on the Desk and in the agent's report within a few minutes."}:{queued:false};}},
@@ -748,10 +745,10 @@ fillRules();renderAll();renderChat();tickClock();setInterval(tickClock,15000);
 setInterval(function(){renderKpis();},60000);
 
 (async function(){
+  if(!window.claude||!window.claude.use){$("engineLine").textContent="Open this page in claude.ai, signed in, to run the desk.";return;}
   db=await claude.use("db");
   user=await claude.use("user");
   sample=await claude.use("sample");
-  mcp=await claude.use("mcp");
   downloads=await claude.use("downloads");
   if(user){try{uid=await user.id();}catch(e){uid=null;}}
   if(sample){try{var lim=await sample.limits();canImages=!!(lim&&lim.images);canTools=!!(lim&&lim.tools);}catch(e){}}
@@ -768,6 +765,7 @@ setInterval(function(){renderKpis();},60000);
   onDoc("hq/portfolio","portfolio",renderPortfolio);
   function onCol(path,field,key,lim,after){db.collection(path).orderBy(field,"desc").limit(lim).onSnapshot(function(q){S[key]=q.docs.map(function(d){return Object.assign({id:d.id},d.data());});after();},function(){});}
   onCol("signals","created","signals",80,renderSignals);
+  onCol("commands","created","commands",20,renderCommands);
   onCol("activity","t","activity",80,function(){renderFeed();});
   onCol("journal","closed","journal",500,function(){renderJournal();renderKpis();});
   if(uid){try{var c=await db.doc("data/users/"+uid+"/chat").get();if(c.exists){chat.messages=(c.data().messages||[]).slice(-40);renderChat();}}catch(e){}}
