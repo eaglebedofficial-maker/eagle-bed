@@ -2,7 +2,8 @@
   "enabledPlugins": {
     "bitwize-music@bitwize-music": true,
     "claude-seo@agricidaniel-claude-seo": true,
-    "instagram-agent@instagram-agent-skill": true
+    "instagram-agent@instagram-agent-skill": true,
+    "youtube-agent@youtube-agent-skill": true
   },
   "extraKnownMarketplaces": {
     "bitwize-music": {
@@ -21,6 +22,12 @@
       "source": {
         "source": "github",
         "repo": "Jakeschincariol/instagram-agent-skill"
+      }
+    },
+    "youtube-agent-skill": {
+      "source": {
+        "source": "github",
+        "repo": "Jakeschincariol/youtube-agent-skill"
       }
     }
   }
