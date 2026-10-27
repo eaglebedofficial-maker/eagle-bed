@@ -5,9 +5,16 @@
         "source": "github",
         "repo": "bitwize-music-studio/claude-ai-music-skills"
       }
+    },
+    "agricidaniel-claude-seo": {
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/claude-seo"
+      }
     }
   },
   "enabledPlugins": {
-    "bitwize-music@bitwize-music": true
+    "bitwize-music@bitwize-music": true,
+    "claude-seo@agricidaniel-claude-seo": true
   }
 }
