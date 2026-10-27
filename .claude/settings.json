@@ -1,4 +1,9 @@
 {
+  "enabledPlugins": {
+    "bitwize-music@bitwize-music": true,
+    "claude-seo@agricidaniel-claude-seo": true,
+    "instagram-agent@instagram-agent-skill": true
+  },
   "extraKnownMarketplaces": {
     "bitwize-music": {
       "source": {
@@ -11,10 +16,12 @@
         "source": "github",
         "repo": "AgriciDaniel/claude-seo"
       }
+    },
+    "instagram-agent-skill": {
+      "source": {
+        "source": "github",
+        "repo": "Jakeschincariol/instagram-agent-skill"
+      }
     }
-  },
-  "enabledPlugins": {
-    "bitwize-music@bitwize-music": true,
-    "claude-seo@agricidaniel-claude-seo": true
   }
 }
