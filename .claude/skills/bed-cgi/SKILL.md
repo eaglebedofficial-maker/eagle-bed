@@ -1,56 +1,63 @@
 ---
 name: bed-cgi
-description: Generate high-quality, photorealistic CGI lifestyle and product images of Eagle Bed beds and mattresses from reference photos, using the connected Canva image generator. Use when the user asks for CGI images, room scenes, lifestyle shots, product renders, new backgrounds, Instagram/website visuals, or "make images from this photo" for a bed, headboard, ottoman or mattress.
+description: Generate ultra-realistic, branded CGI views of Eagle Bed products (foot end, left side, right side, headboard close-up, ottoman open) from the product's own photos and add them to the Shopify product before the fabric guide. Use for CGI images, multi-angle product images, room scenes, lifestyle shots, "make images for every product", or when the Daily Autopilot / Eagle Bed HQ asks for the next CGI batch.
 ---
 
 # Bed CGI
 
-Turn a real product photo into photorealistic CGI scenes while keeping the bed itself faithful to the reference. Generation runs on Canva's image model through the Canva connector, so it works from the cloud with no GPU or API key.
+Every live upholstered product (not mattresses, not drafts) gets a set of CGI views that keep the bed identical to its real photos, styled in a realistic UK bedroom, branded Eagle Bed, and placed in the gallery **before** the Eagle Bed fabric guide, which always stays the last image.
 
-## Tools
+## Engines
 
-Load these with ToolSearch before the first call:
-`mcp__Shopify__search_products`, `mcp__Canva__upload-asset-from-url`, `mcp__Canva__create-upload-url`, `mcp__Canva__generate-image`, `mcp__Canva__get-generate-image-job`.
+Pick the first that is available:
 
-If the Canva tools are missing, tell the user the Canva connector is not connected and stop; do not invent images.
+1. **Gemini** (`GEMINI_API_KEY` set in the environment): fast, full resolution, local branding. Paid per image (check Google's pricing page), so only use it when the owner has added the key.
+2. **Canva** (connected Canva account, free within the owner's Canva Pro AI allowance): one image at a time; on `quota_cooldown` stop the batch, record progress and resume next run. Never retry in a loop.
 
-## Workflow
+If neither works, report it and stop. Never fake or reuse another product's images.
 
-1. **Get the reference image(s).**
-   - Product named or "one of my beds": find it with `mcp__Shopify__search_products` and use `featuredMedia.preview.image.url`.
-   - Public image URL: use it as given.
-   - Chat attachment or local file: `create-upload-url`, then POST the raw bytes with `Content-Type: application/octet-stream`.
-   Import URLs with `upload-asset-from-url` (name it `Eagle Bed - <product> (reference)`) and keep each returned media id. Use several angles of the same bed as separate references when available — fidelity improves.
+## Views per product
 
-2. **Pick the scene.** If the user gave none, default to set A below. For a batch, generate up to 4 different scenes, one job per scene.
+Generate in this order (skip a view the product already has as a good real photo):
 
-3. **Write the prompt** from the template, filling in the product's real details (headboard style, fabric, colour, size) from the Shopify description:
+| Key | View | Aspect |
+|---|---|---|
+| `foot` | Straight on from the foot end, centred, eye level | 1:1 |
+| `left` | Three-quarter from the left, full side profile | 1:1 |
+| `right` | Three-quarter from the right, full side profile | 1:1 |
+| `head` | Headboard close-up showing stitching and fabric texture | 1:1 |
+| `open` | Ottoman beds only: base lifted open showing storage | 1:1 |
 
-   > Photorealistic high-end CGI interior render of the exact bed shown in the reference image, keeping its headboard design, stitching/panel details, fabric texture and colour, proportions and legs identical. Place it in {SCENE}. {LIGHT}. Shot at eye level, {LENS}, magazine-quality product photography, ultra detailed, realistic materials and soft shadows, no text, no logos, no people.
+Prompt template (fill `{VIEW}` from the table and `{DETAILS}` with the real headboard style, fabric, colour, footboard, legs and trims from the product title and description):
 
-   Fidelity rules: always say "the exact bed shown in the reference image"; never ask for a different colour or design unless the user wants a variant; keep bedding neutral so the frame stays the hero.
+> Ultra-realistic high-end CGI interior photograph of the exact bed shown in the reference images, {VIEW}. Keep the bed identical to the references: {DETAILS}, same fabric texture, colour, proportions and legs. Luxurious modern UK master bedroom, warm greige walls, light oak floor, matching bedside tables with brass lamps, crisp white bedding with a soft throw, soft natural window light, realistic soft shadows. Magazine-quality interior photography, 35mm lens (85mm for close-ups), perfectly sharp, no text, no logos, no people.
 
-4. **Generate** with `generate-image` (`imageReferences` = one MEDIA entry per reference). Aspect ratio by use:
-   - Website product/collection: `SQUARE_1_1` or `LANDSCAPE_4_3`
-   - Instagram feed: `PORTRAIT_4_5`; Reels/Stories/TikTok: `PORTRAIT_9_16`
-   - Website hero / YouTube thumbnail: `LANDSCAPE_16_9`
+Kids beds: bright child's bedroom, soft pastel walls, tidy toys. Keep bedding neutral so the frame stays the hero. Use up to 3 of the product's existing photos as references (front first) for fidelity.
 
-5. **Collect results.** If no widget is shown, poll `get-generate-image-job` until SUCCESS or FAILURE. Show every image with its "Open generated image" link. On FAILURE report `failureType`/`failureMessage`; on a quota error, say the Canva AI allowance is used up.
+## Workflow for one product
 
-6. **Check fidelity** before handing over: compare each result to the reference. Flag any image where the headboard shape, fabric colour, legs or details changed, and offer to regenerate it; never present a changed bed as the real product.
+1. Read the product (`mcp__Shopify__graphql_query`): title, description, productType, media (ids, urls, alt). Skip mattresses and drafts.
+2. References: import 2–3 product photo URLs into the engine (Canva: `upload-asset-from-url`).
+3. Generate each view (Canva: `generate-image` with `imageReferences`, then `get-generate-image-job`).
+4. **Fidelity check** (mandatory): compare each result with the reference photos. Reject and regenerate once if the headboard shape, panel/pleat pattern, colour, footboard, trims or legs changed. If it fails twice, skip that view and log it. Never publish a render that misrepresents the product.
+5. **Brand**: Gemini path — run `python3 tools/brand_image.py <in> <out>` (adds a small "EAGLE BED" corner mark and © Eagle Bed copyright metadata). Canva path — add the same corner mark as text in the export design before exporting. Never put marks on the first (main) product image: Google Shopping disapproves watermarked main images.
+6. **Upload to Shopify** (full resolution only, never the chat preview):
+   - local file: `stagedUploadsCreate` (IMAGE, POST) → `curl -F` each parameter then `file=@<path>` to the target → `fileCreate` with `originalSource` = `resourceUrl`;
+   - public export URL (Canva): `fileCreate` with `originalSource` = that URL.
+   Alt text: `<Product name> in <colour>, <view> view, Eagle Bed handmade upholstered bed`. Filename: `<handle>-<view>.jpg`.
+7. Attach with `fileUpdate` `referencesToAdd: [productId]`, then `productReorderMedia` so the fabric guide (`gid://shopify/MediaImage/75026432098635`) is last again.
+8. Log the product in `brand/cgi-progress.json` (`done`, `views`, `skipped`, `date`) and commit.
 
-## Scene presets
+## Batches
 
-- **A — Luxury UK master bedroom:** warm neutral walls, oak floor, bedside tables with brass lamps, white bedding and a textured throw; soft natural morning light; 35mm lens, shallow depth of field.
-- **B — Studio cut-out:** seamless light-grey studio backdrop, soft box lighting, gentle floor shadow; 50mm lens. Good for marketplace listings.
-- **C — Modern grey apartment:** charcoal panelled wall, concrete-look floor, minimalist decor, large window with city view at dusk; warm lamp light.
-- **D — Cosy Scandinavian:** white walls, light wood, linen bedding, plants, wool rug; bright overcast daylight.
-- **E — Boutique hotel suite:** dark moody walls, statement pendant lights, velvet accents, evening ambient light; 24mm wide lens.
-- **F — Kids/guest room** (single and small double): soft pastel walls, playful but tidy decor, daylight.
-- **G — Ottoman reveal** (storage beds): same as A, with the base lifted open showing the storage space.
+Work through `brand/cgi-progress.json` in order, best sellers first. Canva: as many as the allowance gives per run (stop at the first cooldown). Gemini: up to 10 products per run. Report each batch to the owner with one image per product and the product links.
 
-## Notes
+## Fabric guide
 
-- Canva AI generation uses the connected Canva account's AI allowance; it is not unlimited.
-- Generated images are saved in the user's Canva uploads, ready for designs, Instagram posts or Shopify.
-- Do not upload generated images to Shopify products unless the user explicitly asks; CGI must not replace real product photos without approval.
+`brand/eagle-bed-fabric-guide.jpg` (made by `tools/make_fabric_chart.py` from `brand/fabrics.json`) is Shopify file `gid://shopify/MediaImage/75026432098635`. New upholstered products get it with one `fileUpdate referencesToAdd`. If the fabrics change, edit `fabrics.json`, rerun the script and replace the file with `fileUpdate originalSource` so every product updates at once.
+
+## Rules
+
+- Only real facts about the bed; CGI must match the real product.
+- Do not delete or reorder the owner's existing photos except to keep the fabric guide last.
+- Ask the owner before removing images or changing the main image.
