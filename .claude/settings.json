@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "bitwize-music": {
+      "source": {
+        "source": "github",
+        "repo": "bitwize-music-studio/claude-ai-music-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "bitwize-music@bitwize-music": true
+  }
+}
