@@ -11,6 +11,7 @@ Usage (from the repo root):
     python3 cgi-studio/run.py cgi-studio/fluted-velvet-bed --max 1    # just the next shot
     python3 cgi-studio/run.py cgi-studio/fluted-velvet-bed --only 01-front --redo
     python3 cgi-studio/run.py cgi-studio/fluted-velvet-bed --status
+    python3 cgi-studio/run.py cgi-studio/fluted-velvet-bed --engine pollinations   # free models
 """
 
 import argparse
@@ -23,7 +24,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 SKILL = Path(".agents/skills/nano-banana-2/scripts/generate_image.py")
-STOP_WORDS = ("quota", "429", "resource_exhausted", "billing", "api key not valid", "permission_denied")
+POLLINATIONS = Path(".agents/skills/pollinations-image-gen/scripts/generate.mjs")
+ENGINE_KEYS = {"gemini": "GEMINI_API_KEY", "pollinations": "POLLINATIONS_API_KEY"}
+STOP_WORDS = ("quota", "429", "402", "resource_exhausted", "billing", "api key not valid",
+              "permission_denied", "insufficient", "pollen", "401")
+# Pollinations takes width x height rather than an aspect ratio.
+SIZES = {"1:1": (1024, 1024), "4:3": (1344, 1008), "16:9": (1536, 864)}
 
 
 def now():
@@ -56,6 +62,9 @@ def main():
     parser.add_argument("--redo", action="store_true", help="Regenerate jobs even if already done")
     parser.add_argument("--resolution", default="2K", choices=["512px", "1K", "2K", "4K"])
     parser.add_argument("--status", action="store_true", help="Show progress and exit")
+    parser.add_argument("--engine", default="gemini", choices=list(ENGINE_KEYS),
+                        help="gemini (paid unless on a free-tier key) or pollinations (free models)")
+    parser.add_argument("--model", default="klein-large", help="Pollinations model (free: klein, klein-large, gptimage)")
     args = parser.parse_args()
 
     spec = json.loads((args.folder / "jobs.json").read_text())
@@ -68,8 +77,9 @@ def main():
             print(f"{job['id']:24} {entry.get('status', 'pending'):8} {entry.get('file', '')}")
         return
 
-    if not os.environ.get("GEMINI_API_KEY"):
-        sys.exit("GEMINI_API_KEY is not set. Add it in the environment settings and start a new session.")
+    key_name = ENGINE_KEYS[args.engine]
+    if not os.environ.get(key_name):
+        sys.exit(f"{key_name} is not set. Add it in the environment settings and start a new session.")
 
     fetch_references(args.folder, spec["references"])
     (args.folder / "output").mkdir(exist_ok=True)
@@ -83,20 +93,29 @@ def main():
         if args.max and made >= args.max:
             break
 
-        out = args.folder / "output" / f"{job['id']}.png"
-        cmd = ["uv", "run", str(SKILL), "--prompt", f"{spec['style']} {job['prompt']}",
-               "--filename", str(out), "--resolution", args.resolution]
-        if job.get("aspect"):
-            cmd += ["--aspect-ratio", job["aspect"]]
-        for ref in job["refs"]:
-            cmd += ["--input-image", str(args.folder / spec["references"][ref]["file"])]
+        prompt = f"{spec['style']} {job['prompt']}"
+        if args.engine == "pollinations":
+            out = args.folder / "output" / args.model / f"{job['id']}.jpg"
+            width, height = SIZES.get(job.get("aspect"), (1024, 1024))
+            refs = "|".join(spec["references"][ref]["url"] for ref in job["refs"])
+            cmd = ["node", str(POLLINATIONS), "--prompt", prompt, "--model", args.model,
+                   "--image", refs, "--width", str(width), "--height", str(height), "--output", str(out)]
+        else:
+            out = args.folder / "output" / f"{job['id']}.png"
+            cmd = ["uv", "run", str(SKILL), "--prompt", prompt,
+                   "--filename", str(out), "--resolution", args.resolution]
+            if job.get("aspect"):
+                cmd += ["--aspect-ratio", job["aspect"]]
+            for ref in job["refs"]:
+                cmd += ["--input-image", str(args.folder / spec["references"][ref]["file"])]
 
         print(f"\n=== {job['id']} ===")
         result = subprocess.run(cmd, capture_output=True, text=True)
         print(result.stdout.strip())
 
         if result.returncode == 0 and out.exists():
-            progress[job["id"]] = {"status": "done", "file": str(out), "resolution": args.resolution, "at": now()}
+            setting = args.model if args.engine == "pollinations" else args.resolution
+            progress[job["id"]] = {"status": "done", "file": str(out), "engine": args.engine, "setting": setting, "at": now()}
             save_progress(progress_path, progress)
             made += 1
             continue
