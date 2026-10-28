@@ -1,0 +1,24 @@
+{
+  "product": "Fluted Velvet Bed – Vertical Fluted Upholstered Bed Frame",
+  "shopify_id": "gid://shopify/Product/15948340330827",
+  "references": {
+    "main": {
+      "file": "reference/main.png",
+      "url": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/29.png?v=1787571391"
+    },
+    "fabric": {
+      "file": "reference/fabric-guide.jpg",
+      "url": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/eagle-bed-fabric-guide.jpg?v=1793123468"
+    }
+  },
+  "style": "Ultra-realistic luxury CGI product render of the EXACT bed in the reference photo: keep the same headboard shape, number and width of vertical flutes, fabric colour and sheen, footboard, legs and proportions. Do not redesign, add or remove any part of the bed. Premium furniture-catalogue look, soft natural daylight with gentle shadows, crisp focus, rich velvet texture, warm neutral palette with subtle champagne-gold accents. Clean, uncluttered, no people, no other text or logos except a small elegant 'EAGLE BED' wordmark in the bottom-right corner.",
+  "jobs": [
+    {"id": "01-front", "refs": ["main"], "aspect": "4:3", "prompt": "Straight-on front view at mattress height, bed centred and symmetrical, plain warm-grey studio backdrop."},
+    {"id": "02-front-left-34", "refs": ["main"], "aspect": "4:3", "prompt": "Three-quarter view from the front-left corner, showing the headboard fluting and the left side rail, plain warm-grey studio backdrop."},
+    {"id": "03-front-right-34", "refs": ["main"], "aspect": "4:3", "prompt": "Three-quarter view from the front-right corner, showing the headboard fluting and the right side rail, plain warm-grey studio backdrop."},
+    {"id": "04-left-side", "refs": ["main"], "aspect": "4:3", "prompt": "True side profile from the left, showing headboard height, side rail and footboard depth, plain warm-grey studio backdrop."},
+    {"id": "05-right-side", "refs": ["main"], "aspect": "4:3", "prompt": "True side profile from the right, showing headboard height, side rail and footboard depth, plain warm-grey studio backdrop."},
+    {"id": "06-fabric-closeup", "refs": ["main", "fabric"], "aspect": "1:1", "prompt": "Macro close-up of the fluted velvet headboard showing the fabric pile, stitching and the depth of each flute, with a fan of Eagle Bed fabric swatches from the second reference image laid neatly at the bottom edge."},
+    {"id": "07-lifestyle-hero", "refs": ["main"], "aspect": "16:9", "prompt": "Wide hero shot of the bed styled in a high-end UK master bedroom: neutral linen bedding, bedside tables with brass lamps, large window with soft morning light, oak floor."}
+  ]
+}
