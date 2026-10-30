@@ -315,6 +315,35 @@ nav.tabs button[aria-selected=true]{text-shadow:0 0 10px var(--glow)}
 .sk b{color:var(--gold);font-weight:700} .sk em{font-style:normal;display:inline-block;font-size:10.5px;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-left:4px}
 .sk p{margin:3px 0 0;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){.term .cur{animation:none}#matrix{display:none}}
+/* ===== hacker crew ===== */
+.bot svg{filter:drop-shadow(0 8px 10px rgba(0,0,0,.6))}
+.office .floor .bot.working svg,.office .mgr .bot.working svg{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--cyan) 55%,transparent))}
+.office .floor .bot.help svg{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--bad) 60%,transparent))}
+.bot .nm{font-family:var(--head);font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px}
+.bot .nm::before{content:"@";color:var(--gold);opacity:.7}
+.bubble{font-size:11px}
+.bubble::before{content:"> ";color:var(--gold)}
+.office{background:linear-gradient(180deg,var(--bg) 0,var(--bg) 104px,var(--line) 104px,var(--line) 106px,transparent 106px),linear-gradient(180deg,var(--panel2),var(--bg))!important}
+.office::before{background-image:linear-gradient(color-mix(in srgb,var(--gold) 22%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--gold) 22%,transparent) 1px,transparent 1px);opacity:.5}
+.decor .win{background:repeating-linear-gradient(180deg,color-mix(in srgb,var(--gold) 55%,transparent) 0 2px,transparent 2px 7px),#02100A!important;background-size:60% 100%,100% 100%!important;background-repeat:no-repeat!important;animation:codeScroll 3s linear infinite;box-shadow:0 0 18px var(--glow)}
+.decor .win::after{display:none}
+@keyframes codeScroll{to{background-position:0 28px,0 0}}
+.decor .rack{background:#050B0D;border:1px solid var(--line)}
+.decor .rack i{background:#0B171B}
+.decor .plant{font-size:9.5px;letter-spacing:.14em;color:var(--muted);bottom:8px;font-family:var(--head)}
+.office .floor .dept{background:var(--bg);border-style:solid;border-color:var(--line);border-radius:3px}
+.office .floor .dept b{font-weight:400;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}
+.office .floor .dept b::before{content:"// "}
+.st{border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-size:10px}
+.badge{border-radius:3px}
+.sheet .pane{border:1px solid var(--line);border-bottom:0;box-shadow:0 -10px 40px rgba(0,0,0,.6),0 0 24px var(--glow)}
+#shTitle::before{content:"agent://";color:var(--muted);font-size:13px;margin-right:6px;text-transform:none;letter-spacing:0}
+.brand h1{position:relative}
+.brand h1::after{content:"_";color:var(--gold);animation:blink 1s steps(2) infinite}
+.brand h1{animation:glitch 6s infinite steps(1)}
+@keyframes glitch{0%,96%,100%{text-shadow:0 0 12px var(--glow)}97%{text-shadow:-2px 0 var(--bad),2px 0 var(--cyan)}98%{text-shadow:2px 0 var(--bad),-2px 0 var(--cyan)}}
+::selection{background:var(--gold);color:var(--gold-ink)}
+@media (prefers-reduced-motion: reduce){.decor .win,.brand h1,.brand h1::after{animation:none}}
 </style></head><body>
 <canvas id="matrix" aria-hidden="true"></canvas>
 <header class="top"><div class="in">
@@ -372,7 +401,7 @@ nav.tabs button[aria-selected=true]{text-shadow:0 0 10px var(--glow)}
   <h2>The office</h2>
   <p class="sub" id="officeSum">Tap any robot to see its report, watch it work, or give it a job.</p>
   <div class="office">
-    <div class="decor" aria-hidden="true"><div class="win w1"></div><div class="win w2"></div><div class="rack"><i></i><i></i><i></i><i></i><i></i></div><div class="clock" id="officeClock">--:--</div><div class="wb" id="whiteboard">No order on the board</div><div class="rug"></div><span class="plant p1">🪴</span><span class="plant p2">🪴</span></div>
+    <div class="decor" aria-hidden="true"><div class="win w1"></div><div class="win w2"></div><div class="rack"><i></i><i></i><i></i><i></i><i></i></div><div class="clock" id="officeClock">--:--</div><div class="wb" id="whiteboard">No order on the board</div><div class="rug"></div><span class="plant p1">SRV-01 · UK</span><span class="plant p2">NODE: DEWSBURY</span></div>
     <svg class="wires" id="wires" aria-hidden="true"></svg>
     <div class="mgr" id="mgrSpot"></div>
     <div class="floor" id="floor"></div>
@@ -743,27 +772,34 @@ function parseDirective(text){
 function deptRules(a){var s=(a.sec||[]).map(function(n){return dirSections[n]||"";}).filter(Boolean).join("\n\n");return s.slice(0,9000);}
 // ---------- robots ----------
 function robot(c,state,big){
+  var E={working:"#4FD8FF",review:"#B48CFF",done:"#3DF5A0",help:"#FF5C7A",paused:"#FFB547",idle:"#3E8F6C"}[state]||"#3E8F6C";
   var eyes;
-  if(state==="idle"||state==="paused") eyes='<path d="M48 37h9M63 37h9" stroke="#7FE3FF" stroke-width="3" stroke-linecap="round"/>';
-  else if(state==="done") eyes='<path d="M47 38q5-6 10 0M63 38q5-6 10 0" stroke="#7FE3FF" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M52 45q8 6 16 0" stroke="#7FE3FF" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
-  else if(state==="help") eyes='<circle cx="52" cy="37" r="4.5" fill="#FF8A8A"/><circle cx="68" cy="37" r="4.5" fill="#FF8A8A"/><path d="M53 47q7-4 14 0" stroke="#FF8A8A" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
-  else eyes='<circle cx="52" cy="37" r="5" fill="#7FE3FF"/><circle cx="68" cy="37" r="5" fill="#7FE3FF"/><circle cx="53.5" cy="35.5" r="1.6" fill="#fff"/><circle cx="69.5" cy="35.5" r="1.6" fill="#fff"/>';
-  var extra="";
-  if(state==="idle"||state==="paused") extra='<text class="zz" x="86" y="20" font-size="11" font-weight="700" fill="currentColor" opacity=".6">z z</text>';
-  if(state==="review") extra='<g class="lens"><circle cx="40" cy="66" r="7" fill="none" stroke="#b48cff" stroke-width="3"/><path d="M45 71l6 6" stroke="#b48cff" stroke-width="3" stroke-linecap="round"/></g>';
-  var scr=state==="working"||state==="review"?"#9FE8FF":"#C9D3DD";
+  if(state==="done") eyes='<path d="M49 43q4-4 8 0M63 43q4-4 8 0" stroke="'+E+'" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+  else if(state==="help") eyes='<path d="M49 39l7 7M56 39l-7 7M64 39l7 7M71 39l-7 7" stroke="'+E+'" stroke-width="2.4" stroke-linecap="round"/>';
+  else if(state==="idle"||state==="paused") eyes='<path d="M49 43h8M63 43h8" stroke="'+E+'" stroke-width="2.6" stroke-linecap="round"/>';
+  else eyes='<circle cx="53" cy="42" r="6" fill="'+E+'" opacity=".22"/><circle cx="67" cy="42" r="6" fill="'+E+'" opacity=".22"/><rect x="49.5" y="40" width="7" height="4" rx="1.5" fill="'+E+'"/><rect x="63.5" y="40" width="7" height="4" rx="1.5" fill="'+E+'"/>';
+  var holo;
+  if(state==="working") holo='<g class="scr"><rect x="95" y="25" width="15" height="2.4" fill="'+E+'"/><rect x="95" y="30" width="10" height="2.4" fill="'+E+'"/><rect x="99" y="35" width="11" height="2.4" fill="'+E+'"/><rect x="95" y="40" width="7" height="2.4" fill="'+E+'"/><rect x="95" y="45" width="13" height="2.4" fill="'+E+'"/></g>';
+  else if(state==="review") holo='<rect x="95" y="27" width="15" height="2" fill="'+E+'" opacity=".5"/><rect x="95" y="33" width="15" height="2" fill="'+E+'" opacity=".5"/><rect x="95" y="39" width="15" height="2" fill="'+E+'" opacity=".5"/><g class="lens"><circle cx="99" cy="36" r="5" fill="none" stroke="'+E+'" stroke-width="2"/><path d="M102.5 39.5l3.5 3.5" stroke="'+E+'" stroke-width="2" stroke-linecap="round"/></g>';
+  else if(state==="done") holo='<path d="M96 37l5 5 9-11" stroke="'+E+'" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  else if(state==="help") holo='<text x="102.5" y="44" text-anchor="middle" font-family="monospace" font-weight="700" font-size="17" fill="'+E+'" class="ant">!</text>';
+  else if(state==="paused") holo='<rect x="97" y="29" width="4" height="15" fill="'+E+'"/><rect x="104" y="29" width="4" height="15" fill="'+E+'"/>';
+  else holo='<text class="zz" x="96" y="44" font-family="monospace" font-size="13" fill="'+E+'">_</text>';
   return '<svg viewBox="0 0 120 112" aria-hidden="true">'+
-   '<defs><linearGradient id="g'+c.slice(1)+'" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="'+c+'"/><stop offset="1" stop-color="'+c+'" stop-opacity=".72"/></linearGradient></defs>'+
-   '<ellipse cx="60" cy="106" rx="44" ry="5" fill="#000" opacity=".18"/>'+
-   '<g class="head">'+
-   '<line class="ant" x1="60" y1="6" x2="60" y2="15" stroke="'+c+'" stroke-width="3"/><circle class="ant" cx="60" cy="5" r="4" fill="'+c+'"/>'+
-   '<rect x="34" y="14" width="52" height="40" rx="13" fill="#F3F6F9" stroke="'+c+'" stroke-width="4"/>'+
-   '<rect x="40" y="21" width="40" height="27" rx="9" fill="#1B2633"/>'+eyes+'</g>'+
-   '<path d="M38 60q22-8 44 0l6 26H32z" fill="url(#g'+c.slice(1)+')"/>'+
-   '<rect class="arm l" x="30" y="62" width="9" height="20" rx="4.5" fill="'+c+'"/><rect class="arm r" x="81" y="62" width="9" height="20" rx="4.5" fill="'+c+'"/>'+
-   '<path d="M44 70h32l4 16H40z" fill="#D7DEE6"/><rect class="scr" x="47" y="72" width="26" height="9" rx="2" fill="'+scr+'"/><circle cx="60" cy="83" r="1.6" fill="#8896A5"/>'+
-   '<rect x="12" y="86" width="96" height="7" rx="3" fill="#A07A4E"/><rect x="18" y="93" width="6" height="12" rx="2" fill="#8A6640"/><rect x="96" y="93" width="6" height="12" rx="2" fill="#8A6640"/>'+
-   extra+'</svg>';
+   '<ellipse cx="60" cy="107" rx="46" ry="4" fill="#000" opacity=".5"/>'+
+   '<rect x="91" y="20" width="23" height="32" rx="2" fill="'+E+'" fill-opacity=".07" stroke="'+E+'" stroke-opacity=".7" stroke-width="1.2"/><path d="M91 52l-5 8" stroke="'+E+'" stroke-opacity=".4" stroke-width="1"/>'+holo+
+   '<path d="M20 106q2-34 40-37q38 3 40 37z" fill="#081215" stroke="'+c+'" stroke-width="2.4"/>'+
+   '<path d="M47 72l13 14 13-14" fill="none" stroke="'+c+'" stroke-opacity=".55" stroke-width="1.6"/>'+
+   '<g class="head"><path d="M33 70q-5-56 27-58q32 2 27 58q-27 7-54 0z" fill="#0A161A" stroke="'+c+'" stroke-width="2.6"/>'+
+   '<circle class="ant" cx="60" cy="13" r="2.4" fill="'+E+'"/>'+
+   '<path d="M41 47q0-24 19-26q19 2 19 26q-19 9-38 0z" fill="#010304"/>'+eyes+
+   '<path d="M47 55h26" stroke="'+E+'" stroke-opacity=".25" stroke-width="1"/></g>'+
+   '<rect class="arm l" x="26" y="84" width="11" height="9" rx="4" fill="#0A161A" stroke="'+c+'" stroke-width="2"/>'+
+   '<rect class="arm r" x="83" y="84" width="11" height="9" rx="4" fill="#0A161A" stroke="'+c+'" stroke-width="2"/>'+
+   '<path d="M35 77h50l-3 18H38z" fill="#0F1D22" stroke="'+E+'" stroke-opacity=".6" stroke-width="1.4"/>'+
+   '<text x="60" y="90" text-anchor="middle" font-family="monospace" font-weight="700" font-size="8" fill="'+E+'" opacity=".9">EB_</text>'+
+   '<path d="M28 95h64l5 7H23z" fill="#13252B" stroke="'+E+'" stroke-opacity=".35" stroke-width="1"/>'+
+   '</svg>';
 }
 function stateOf(t){
   if(!t) return "idle";
@@ -903,7 +939,7 @@ function drawWires(){
   });
 }
 window.addEventListener("resize",function(){var svg=$("wires");if(svg)svg.querySelectorAll("g").forEach(function(g){g.setAttribute("data-d","");});drawWires();});
-function tickClock(){var c=$("officeClock");if(c)c.textContent="🕒 "+londonHM(new Date())+" UK";}
+function tickClock(){var c=$("officeClock");if(c)c.textContent="SYS "+londonHM(new Date())+" UK";}
 setInterval(tickClock,20000);tickClock();
 
 // ---------- tabs ----------
@@ -929,14 +965,14 @@ function renderOffice(){
   order.forEach(function(a){
     if(a.dept){h+='<div class="dept"><b>'+esc(a.dept.name)+'</b><span>'+esc(a.dept.goal)+'</span></div>';return;}
     var t=taskFor(a.id), s=agentOff(a.id)&&!(t&&(t.status==="working"||t.status==="review"))?"off":stateOf(t), live=t&&runner.live[t.id];
-    var bub=t?(s==="done"?(t.headline||t.title):runner.helping===a.id?"📡 Getting help from the Manager…":live?live.slice(-90):s==="working"?"📡 Receiving brief from the Manager…":s==="review"?"📤 Sending report back to the Manager…":t.title):a.role;
+    var bub=t?(s==="done"?(t.headline||t.title):runner.helping===a.id?"Patching in the Manager for help…":live?live.slice(-90):s==="working"?"Downloading brief from the Manager…":s==="review"?"Uploading report to the Manager…":t.title):a.role;
     var badge=s==="off"?'<span class="badge paused">⏻</span>':s==="done"?'<span class="badge done">✓</span>':s==="help"?'<span class="badge help">!</span>':s==="paused"?'<span class="badge paused">❚❚</span>':"";
     h+='<button class="bot '+s+'" data-a="'+a.id+'">'+badge+robot(a.c,s==="off"?"paused":s)+'<span class="nm">'+esc(a.name)+'</span><span class="st '+s+'">'+ST_LABEL[s]+'</span><span class="bubble">'+esc(bub)+'</span></button>';
   });
   $("floor").innerHTML=h;
   document.querySelectorAll(".office .bot").forEach(function(b){b.onclick=function(){openAgent(b.dataset.a);};});
   var c={done:0,working:0,waiting:0,help:0};tasks.forEach(function(t){var s=stateOf(t);if(s==="done")c.done++;else if(s==="working"||s==="review")c.working++;else if(s==="help")c.help++;else c.waiting++;});
-  var wb=$("whiteboard");if(wb){var dn=tasks.filter(function(t){return t.status==="done"||t.status==="blocked";}).length;wb.innerHTML=run?'📋 '+esc(run.order.slice(0,70))+'<div class="pg"><i style="width:'+(tasks.length?Math.round(dn/tasks.length*100):0)+'%"></i></div>':'📋 No order on the board';}
+  var wb=$("whiteboard");if(wb){var dn=tasks.filter(function(t){return t.status==="done"||t.status==="blocked";}).length;wb.innerHTML=run?'&gt; '+esc(run.order.slice(0,70))+'<div class="pg"><i style="width:'+(tasks.length?Math.round(dn/tasks.length*100):0)+'%"></i></div>':'&gt; no order on the board';}
   requestAnimationFrame(drawWires);
   renderCmd();
   $("officeSum").textContent=tasks.length?("✅ "+c.done+" done · ⚙️ "+c.working+" working · 💤 "+c.waiting+" waiting"+(c.help?" · ❗ "+c.help+" need help":"")):"Tap any robot to see its report, watch it work, or give it a job.";
@@ -2029,15 +2065,19 @@ function renderCmd(){
   var stuck=tasks.filter(function(t){return (t.status==="blocked"&&t.verdict!=="REASSIGNED"&&!/switched this agent off/.test(t.helpNote||""))||t.status==="failed"||t.status==="needs_help";}).length;
   var rb=$("ccRescue");rb.textContent=stuck?"Unstick "+stuck+" blocked job"+(stuck>1?"s":""):"Unstick blocked agents";rb.disabled=!stuck;
 }
-var _ccTerm=0;
+var _ccTerm=0,_boot=null;
+(function(){var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var L=["EAGLE BED HQ // secure shell v4.7","establishing link to eaglebed.co.uk ........ OK","loading agent roster ...................... "+(AGENTS.length+1)+" agents","mounting skills: claude-seo · the-agency · rea · graphify · ecc · cgi-studio","handshake: shopify · google-ads · search-console · ga4 · openrush","manager online. awaiting orders."];
+  if(reduce){_boot=L;return;}_boot=[];var i=0;var iv=setInterval(function(){_boot.push(L[i++]);renderCmdTerm();if(i>=L.length)clearInterval(iv);},260);})();
 function renderCmdTerm(){
   var el=$("ccTerm");if(!el)return;
   var lines=acts.map(function(a){var mk=a.state==="run"?'<span class="w">… running</span>':a.state==="ok"?'<span class="ok">✓ done</span>':'<span class="er">✗ failed</span>';
     return {at:a.state==="run"?a.at:(a.end||a.at),h:'<span class="t">['+ccTime(a.state==="run"?a.at:(a.end||a.at))+']</span> '+esc(a.label)+' '+mk+(a.detail?' <span class="t">'+esc(a.detail)+'</span>':'')};});
+  var bootH=(_boot||[]).map(function(x){return '<span class="ok">[boot]</span> '+esc(x);}).join("\n");
   ((run&&run.log)||[]).forEach(function(l){lines.push({at:l.at,h:'<span class="t">['+ccTime(l.at)+']</span> <span class="who">'+esc(String(l.who).toLowerCase().replace(/[^a-z0-9]+/g,"-"))+'&gt;</span> '+esc(l.text)});});
   lines.sort(function(x,y){return x.at-y.at;});
   var near=el.scrollHeight-el.scrollTop-el.clientHeight<40;
-  el.innerHTML=(lines.length?lines.slice(-70).map(function(l){return l.h;}).join("\n"):'<span class="t">Waiting for the team. Give the Manager an order in Chat, or tap a job below.</span>')+'\n<span class="who">root@eaglebed:~$</span> <span class="cur">█</span>';
+  el.innerHTML=(bootH?bootH+"\n":"")+(lines.length?lines.slice(-70).map(function(l){return l.h;}).join("\n"):'<span class="t">Waiting for the team. Give the Manager an order in Chat, or tap a job below.</span>')+'\n<span class="who">root@eaglebed:~$</span> <span class="cur">█</span>';
   if(near||!_ccTerm){el.scrollTop=el.scrollHeight;_ccTerm=1;}
 }
 function renderSkills(){var el=$("skList");if(!el)return;el.innerHTML=SKILLS.map(function(k){return '<div><b>'+esc(k[0])+'</b><em>'+esc(k[1])+'</em><p>'+esc(k[2])+'</p></div>';}).join("");}
