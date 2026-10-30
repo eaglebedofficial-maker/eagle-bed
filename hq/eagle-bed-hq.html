@@ -1824,7 +1824,7 @@ async function publishPost(p,manual){
   await db.doc("posts/"+p.id).update({status:"posting",error:""});
   var hp=act((manual?"":"Autopilot: ")+"Posting "+p.slot+" post ("+p.product+") to Facebook and Instagram");
   var errs=[],fb=!!p.fb,ig=!!p.ig;
-  if(!fb){try{await call("Zapier","execute_zapier_write_action",{action:"page_stream",selected_api:"FacebookV2CLIAPI",tool_name:"facebook_pages_create_page_post",params:{page:FB_PAGE,message:p.caption+"\n\nShop now: "+p.url,source:[p.image]}});fb=true;}catch(e){errs.push("Facebook: "+(e&&e.code?mcpMsg(e,"Zapier"):String(e.message||e)));}}
+  if(!fb){try{await call("Zapier","execute_zapier_write_action",{action:"page_stream",selected_api:"FacebookV2CLIAPI",tool_name:"facebook_pages_create_page_post",params:{page:FB_PAGE,message:p.caption+"\n\nShop now: "+withUtm(p.url,"facebook","social","hq_post_"+p.slot.replace(":","")),source:[p.image]}});fb=true;}catch(e){errs.push("Facebook: "+(e&&e.code?mcpMsg(e,"Zapier"):String(e.message||e)));}}
   if(!ig){try{await call("Zapier","execute_zapier_write_action",{action:"publish_media_v2",selected_api:"InstagramBusinessCLIAPI",tool_name:"instagram_for_business_publish_photo_s",params:{instagramPageId:IG_ACCOUNT,media:[p.image],caption:p.caption}});ig=true;}catch(e){errs.push("Instagram: "+(e&&e.code?mcpMsg(e,"Zapier"):String(e.message||e)));}}
   var data={fb:fb,ig:ig};
   if(fb&&ig){data.status="posted";data.postedAt=Date.now();}else{data.status="failed";data.error=errs.join(" · ")+" Check the page before retrying so nothing posts twice.";}
@@ -1995,7 +1995,9 @@ async function makePhotoVideo(o){
     iv=setInterval(tick,1000/30);
   });
 }
-function vmCaption(title,url){return title+" 🛏️ Handmade to order in our Dewsbury workshop. Free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Pay with Klarna, Clearpay or cash on delivery. Shop: "+(url||SITE)+" #eaglebed #bedroomideas #handmadeinbritain #ukbeds";}
+// Tag every link HQ posts so GA4 and Shopify credit the sale to the right channel instead of a bare referral.
+function withUtm(url,source,medium,campaign){try{var u=new URL(url||SITE);u.searchParams.set("utm_source",source);u.searchParams.set("utm_medium",medium);u.searchParams.set("utm_campaign",campaign);return u.toString();}catch(e){return url||SITE;}}
+function vmCaption(title,url){return title+" 🛏️ Handmade to order in our Dewsbury workshop. Free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Pay with Klarna, Clearpay or cash on delivery. Shop: "+withUtm(url||SITE,"eaglebed_video","social","hq_daily_video")+" #eaglebed #bedroomideas #handmadeinbritain #ukbeds";}
 async function productPhotos(handle){
   var p=await call("Shopify","graphql_query",{query:"query($q:String!){products(first:1,query:$q){edges{node{title handle media(first:12){nodes{... on MediaImage{image{url}}}}}}}}",variables:{q:"handle:"+String(handle).replace(/[^a-z0-9-]/gi,"")}});
   var n=p&&p.data&&p.data.products&&p.data.products.edges&&p.data.products.edges[0]&&p.data.products.edges[0].node;if(!n)throw new Error("Couldn't find that bed's photos.");
