@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Eagle Bed HQ",
+    "slug": "eagle-bed-hq",
+    "scheme": "eaglebedhq",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#04090B",
+    "ios": {
+      "bundleIdentifier": "uk.co.eaglebed.hq",
+      "buildNumber": "1",
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "uk.co.eaglebed.hq",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#04090B",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#04090B"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
