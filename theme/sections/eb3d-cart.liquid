@@ -1,0 +1,112 @@
+{{ 'eb3d.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'eb3d.js' | asset_url }}" defer></script>
+<style>
+  .ebc-trust{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:13px;line-height:1.35}
+  .ebc-trust li{display:flex;gap:8px;align-items:flex-start}
+  .ebc-trust svg{flex:0 0 16px;width:16px;height:16px;margin-top:1px;color:#1f7a4d}
+  .ebc-bar{display:none}
+  .ebc-bar__short{display:none}
+  @media (max-width:749px){
+    .eb3d-cart--ebc{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+    /* The right 124px stay clear for the Shopify Inbox chat bubble (112px wide), so a tap on the button always starts checkout. */
+    .ebc-bar{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid rgba(0,0,0,.12);box-shadow:0 -4px 16px rgba(0,0,0,.08);padding:10px calc(124px + env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) 16px}
+    .ebc-bar__tot{display:flex;flex-direction:column;line-height:1.2;font-size:12px;white-space:nowrap}
+    .ebc-bar__tot strong{font-size:17px}
+    .ebc-bar .eb3d-btn{flex:1;width:auto;min-height:48px;margin:0;padding-left:10px;padding-right:10px;white-space:nowrap}
+  }
+  @media (max-width:359px){
+    .ebc-bar{gap:8px;padding-left:12px}
+    .ebc-bar__tot span{display:none}
+    .ebc-bar__long{display:none}
+    .ebc-bar__short{display:inline}
+  }
+</style>
+<div class="eb3d eb3d-cart eb3d-cart--ebc" data-cart>
+  <div class="eb3d-wrap">
+    <h1 class="eb3d-h2">Your basket</h1>
+    <ol class="eb3d-steps" aria-label="Checkout progress">
+      <li class="is-now" aria-current="step">Basket</li>
+      <li>Delivery details</li>
+      <li>Payment</li>
+    </ol>
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="eb3d-cart__grid" id="eb3d-cart-form">
+        <div class="eb3d-lines">
+          {%- for item in cart.items -%}
+            <article class="eb3d-line">
+              <a class="eb3d-line__img" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+                {%- if item.image -%}{{ item.image | image_url: width: 320 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+              </a>
+              <div>
+                <a class="eb3d-line__title" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+                <p class="eb3d-line__meta">
+                  {%- unless item.product.has_only_default_variant -%}{{ item.variant.title | escape }}<br>{%- endunless -%}
+                  {%- for p in item.properties -%}
+                    {%- assign k = p.first | slice: 0 -%}
+                    {%- unless p.last == blank or k == '_' -%}{{ p.first | escape }}: {{ p.last | escape }}<br>{%- endunless -%}
+                  {%- endfor -%}
+                  {{ item.final_price | money }} each
+                </p>
+                <div class="eb3d-line__row">
+                  <div class="eb3d-qty" data-qty>
+                    <button type="button" data-step="-1" aria-label="Decrease quantity of {{ item.product.title | escape }}">−</button>
+                    <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-line-qty aria-label="Quantity of {{ item.product.title | escape }}">
+                    <button type="button" data-step="1" aria-label="Increase quantity of {{ item.product.title | escape }}">+</button>
+                  </div>
+                  <a class="eb3d-remove" href="{{ item.url_to_remove }}" data-remove>Remove</a>
+                </div>
+              </div>
+              <div class="eb3d-line__total">
+                {{ item.final_line_price | money }}
+                {%- if item.original_line_price > item.final_line_price -%}<br><s class="eb3d-remove">{{ item.original_line_price | money }}</s>{%- endif -%}
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+        <aside class="eb3d-summary" aria-label="Order summary">
+          <h2>Order summary</h2>
+          <div class="eb3d-sumrow"><span>Subtotal</span><span>{{ cart.items_subtotal_price | money }}</span></div>
+          {%- for d in cart.cart_level_discount_applications -%}
+            <div class="eb3d-sumrow"><span>{{ d.title | escape }}</span><span>−{{ d.total_allocated_amount | money }}</span></div>
+          {%- endfor -%}
+          <div class="eb3d-sumrow"><span>Delivery</span><span>{{ section.settings.delivery_label | escape }}</span></div>
+          <div class="eb3d-sumrow eb3d-sumrow--total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
+          <button type="submit" name="checkout" class="eb3d-btn eb3d-btn--brass">Checkout securely</button>
+          {%- if additional_checkout_buttons -%}<div class="eb3d-dynamic" style="margin-top:10px">{{ content_for_additional_checkout_buttons }}</div>{%- endif -%}
+          <ul class="ebc-trust" aria-label="Why order with Eagle Bed">
+            <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.5"/></svg><span>Handmade to order in Dewsbury, West Yorkshire</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.5"/></svg><span>Free delivery across Great Britain (Northern Ireland £90)</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.5"/></svg><span>14-day free returns</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.5"/></svg><span>5-year frame warranty</span></li>
+            <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.5"/></svg><span>Pay in 3 with Klarna or Clearpay</span></li>
+          </ul>
+          {%- if section.settings.note != blank -%}<p class="eb3d-summary__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+          <label for="eb3d-note" style="margin-top:16px;display:block">Delivery notes</label>
+          <textarea id="eb3d-note" name="note" placeholder="Stairs, parking or access details for our delivery team">{{ cart.note }}</textarea>
+          <div class="eb3d-pay">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag }}{%- endfor -%}</div>
+        </aside>
+        <div class="ebc-bar">
+          <div class="ebc-bar__tot"><span>Order total</span><strong>{{ cart.total_price | money }}</strong></div>
+          <button type="submit" name="checkout" class="eb3d-btn eb3d-btn--brass" aria-label="Checkout securely"><span class="ebc-bar__long">Checkout securely</span><span class="ebc-bar__short" aria-hidden="true">Checkout</span></button>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="eb3d-empty">
+        <h2 class="eb3d-h2">Your basket is empty</h2>
+        <p>Pick a bed style to get started. Every bed is made to order in our Dewsbury workshop.</p>
+        <a class="eb3d-btn eb3d-btn--ink" href="{{ section.settings.empty_link | default: routes.all_products_collection_url }}">Browse beds</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "3D basket",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "delivery_label", "label": "Delivery line", "default": "Free mainland UK" },
+    { "type": "text", "id": "note", "label": "Note under checkout button", "default": "Klarna and Clearpay available at checkout. Delivered by our own team, typically within 3–5 working days." },
+    { "type": "url", "id": "empty_link", "label": "Empty basket button link" }
+  ]
+}
+{% endschema %}
