@@ -6,3 +6,5 @@
 - HQ videos: 2026-11-08..11 video days created (waiting for phone photos).
 - Publer TikTok: 5 Nov 13:00 Oxford Panel Storage Bed; 6 Nov 09:00 Side Lift Ottoman Storage Base.
 - ops/ files rebuilt in the repo (AUTOPILOT_REGISTRY, BRIEF, QUEUE, CHANGELOG).
+## 5 Nov 2026
+- FB/IG: posted 5 Nov 09:00 Florida Panel Bed carousel (IG 18144878680719401; FB 466446689880866_122226548456559693); HQ post marked posted.
