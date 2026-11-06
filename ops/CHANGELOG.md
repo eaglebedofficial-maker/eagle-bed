@@ -8,3 +8,6 @@
 - ops/ files rebuilt in the repo (AUTOPILOT_REGISTRY, BRIEF, QUEUE, CHANGELOG).
 ## 5 Nov 2026
 - FB/IG: posted 5 Nov 09:00 Florida Panel Bed carousel (IG 18144878680719401; FB 466446689880866_122226548456559693); HQ post marked posted.
+## 6 Nov 2026
+- ECC 2.2 (Everything Claude Code, full profile) installed into .claude/ (71 agents, 314 skills, 98 commands, rules, hooks).
+- HQ v27–v29: ECC skills distilled into every HQ agent; 11 new agents (Workshop Planner, Materials & Demand, Quality Control, Delivery & Returns, Brand Voice, Market Research, Decision Council, Site Health Watch, Profit & Cash, Customer Care, Seasons & Promotions) = 57 agents; lessons learned (memory/lessons); Monday CEO review on autopilot; full ECC catalogue in Memory; Claude Code queue (collection codequeue) on the Board, run daily per AUTOPILOT_REGISTRY.
