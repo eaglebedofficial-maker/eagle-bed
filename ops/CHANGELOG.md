@@ -8,3 +8,5 @@
 - ops/ files rebuilt in the repo (AUTOPILOT_REGISTRY, BRIEF, QUEUE, CHANGELOG).
 ## 5 Nov 2026
 - FB/IG: posted 5 Nov 09:00 Florida Panel Bed carousel (IG 18144878680719401; FB 466446689880866_122226548456559693); HQ post marked posted.
+## 6 Nov 2026 (Cinema Studio)
+- OpenHiggsfield installed (Next.js studio, pnpm; 38 models). HQ v31: Cinema Studio card in Social, new agent Cinematic AI Director (Social & Video), skill open-higgsfield in the Claude Code queue, db collection `cinema`.
