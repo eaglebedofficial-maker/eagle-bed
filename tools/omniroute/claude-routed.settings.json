@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "eb-medium",
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:20128",
+    "ANTHROPIC_MODEL": "eb-medium",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "eb-simple",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "eb-medium",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "eb-complex",
+    "ANTHROPIC_SMALL_FAST_MODEL": "eb-simple",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "180000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+  }
+}

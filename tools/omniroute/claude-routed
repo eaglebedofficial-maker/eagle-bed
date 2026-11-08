@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Launch Claude Code through the local OmniRoute router (tiered, quota-aware routing).
+# Plain `claude` is untouched and keeps using your normal Claude login.
+set -euo pipefail
+OMNI_HOME="${OMNIROUTE_HOME:-$HOME/.omniroute}"
+KEY_FILE="$OMNI_HOME/claude-code.key"
+SETTINGS="$OMNI_HOME/claude-routed.settings.json"
+URL="http://127.0.0.1:20128"
+
+[ -r "$KEY_FILE" ] || { echo "claude-routed: $KEY_FILE missing; run tools/omniroute/install.sh" >&2; exit 1; }
+if ! curl -fsS -m 3 "$URL/api/health" >/dev/null 2>&1; then
+  omniroute serve --daemon --no-open --no-tray >/dev/null 2>&1
+  for _ in $(seq 1 60); do curl -fsS -m 2 "$URL/api/health" >/dev/null 2>&1 && break; sleep 1; done
+fi
+export ANTHROPIC_BASE_URL="$URL"
+ANTHROPIC_AUTH_TOKEN="$(cat "$KEY_FILE")"
+export ANTHROPIC_AUTH_TOKEN
+unset ANTHROPIC_API_KEY
+exec claude --settings "$SETTINGS" "$@"
