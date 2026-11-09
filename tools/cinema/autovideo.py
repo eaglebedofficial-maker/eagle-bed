@@ -361,7 +361,7 @@ def main():
     os.makedirs(base, exist_ok=True)
     log("product:", p["title"], p["product_type"])
     refs = []
-    for im in p["images"][:2]:
+    for im in p["images"][:3]:
         try:
             refs.append(http_get(im["src"].split("?")[0] + "?width=1600"))
         except Exception as e:
@@ -374,7 +374,7 @@ def main():
         if a.reuse and os.path.exists(sp):
             scenes.append(sp)
             continue
-        scenes.append(gemini_image(refs[:1] if i != 1 else refs, pr, sp))
+        scenes.append(gemini_image(refs, pr, sp))  # every scene sees up to 3 real website photos of this product
     price = min(float(v["price"]) for v in p["variants"])
     name = short_name(p["title"])
     t_lines = wrap(name, SERIF, 170, 1850)
