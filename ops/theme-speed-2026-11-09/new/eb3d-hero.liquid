@@ -36,7 +36,7 @@
   <div class="eb3d-hero__stage" data-bed-stage tabindex="0" aria-label="3D bed preview. Drag, or use the left and right arrow keys, to turn it.">
     <canvas aria-hidden="true"></canvas>
     <div class="eb3d-hero__fallback">
-      {%- if first_col.image -%}{{ first_col.image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '480,600,900,1200,1400', sizes: '(min-width: 901px) 58vw, 100vw', alt: first_col.title }}{%- endif -%}
+      {%- if first_col.image -%}{{ first_col.image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '480,600,720,900,1200,1400', sizes: '(min-width: 901px) 58vw, 100vw', alt: first_col.title }}{%- endif -%}
     </div>
     {%- if section.settings.badge_title != blank -%}
       <div class="eb3d-hero__badge"><strong>{{ section.settings.badge_title | escape }}</strong>{{ section.settings.badge_text | escape }}</div>

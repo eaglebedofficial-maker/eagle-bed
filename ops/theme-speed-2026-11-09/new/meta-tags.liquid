@@ -23,7 +23,7 @@
 {%- if template.name == 'index' -%}
   {%- assign eb_hero = collections['wingback-beds'].image -%}
   {%- if eb_hero -%}
-    <link rel="preload" as="image" fetchpriority="high" href="{{ eb_hero | image_url: width: 1400 }}" imagesrcset="{{ eb_hero | image_url: width: 480 }} 480w, {{ eb_hero | image_url: width: 600 }} 600w, {{ eb_hero | image_url: width: 900 }} 900w, {{ eb_hero | image_url: width: 1200 }} 1200w, {{ eb_hero | image_url: width: 1400 }} 1400w" imagesizes="(min-width: 901px) 58vw, 100vw">
+    <link rel="preload" as="image" fetchpriority="high" href="{{ eb_hero | image_url: width: 1400 }}" imagesrcset="{{ eb_hero | image_url: width: 480 }} 480w, {{ eb_hero | image_url: width: 600 }} 600w, {{ eb_hero | image_url: width: 720 }} 720w, {{ eb_hero | image_url: width: 900 }} 900w, {{ eb_hero | image_url: width: 1200 }} 1200w, {{ eb_hero | image_url: width: 1400 }} 1400w" imagesizes="(min-width: 901px) 58vw, 100vw">
   {%- endif -%}
 {%- endif -%}
 {%- liquid
