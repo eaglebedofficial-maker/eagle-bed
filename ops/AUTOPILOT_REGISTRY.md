@@ -15,6 +15,7 @@ Eagle Bed HQ artifact (memory/business notes) and in git history. Keep this file
 - 27 Oct–4 Nov: HQ v16–v18 (agents, switches, photo Video Maker with phone photos); social posts planned to 21 Nov.
 
 ## PREPARED (waiting for owner yes)
+- 9 Nov: theme "Eagle Bed PageSpeed fix 9 Nov - PUBLISH" (212291486027) ready to publish; after publish re-run PageSpeed and test a product with Easify options + checkout on a phone. If the homepage banner collection changes, update the preload handle in snippets/meta-tags.liquid.
 - Single Beds (3ft) collection like king/double (new live URL).
 - Colour as a real Shopify variant option (same price).
 - Facebook page text fix.

@@ -11,3 +11,7 @@
 ## 6 Nov 2026 (Cinema Studio)
 - OpenHiggsfield installed (Next.js studio, pnpm; 38 models). HQ v31: Cinema Studio card in Social, new agent Cinematic AI Director (Social & Video), skill open-higgsfield in the Claude Code queue, db collection `cinema`.
 - HQ v32: Higgsfield AI Studio agent (plans weekly films and image sets into `cinema`), Facebook video platform, multi-photo start frame + reference images from the website, image mode (8 image models), highest-resolution default (Kling 3.0 4K).
+## 9 Nov 2026 (PageSpeed + HQ progress memory)
+- PageSpeed: unpublished theme copy "Eagle Bed PageSpeed fix 9 Nov - PUBLISH" (212291486027) made from live 210754699595. Changed: assets/eb3d-bed.js (lazy three.js, no 3D on software GPUs, tap-to-3D on phones, render loop stops when idle, lighter shadows), sections/eb3d-hero.liquid (photo visible at once, fetchpriority high, no three.js tag), sections/eb3d-studio.liquid (no three.js tag), snippets/meta-tags.liquid (preload home banner photo, wingback-beds collection image), config/settings_data.json (Easify embed page_paths "/products\n/cart"). Backups + files: ops/theme-speed-2026-11-09. Lighthouse mobile real-throttled LCP 7.5 s -> 4.2 s; home HTML 1.0 MB -> 341 KB. NOT published: owner publishes.
+- HQ v33: progress memory (db memory/progress). Manager planning, chat and every agent read WORK ALREADY DONE + AGREED NEXT STEPS; the Manager writes done/next after every order in the same call as lessons. Seeded with Cinema Studio (6 Nov) and PageSpeed (9 Nov).
+
