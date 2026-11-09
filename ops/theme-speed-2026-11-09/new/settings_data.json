@@ -213,7 +213,7 @@
         "disabled": false,
         "settings": {
           "path_loading_mode": "include",
-          "page_paths": "/products/*\n/cart"
+          "page_paths": "/products\n/cart"
         }
       }
     },
