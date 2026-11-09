@@ -20,6 +20,17 @@
   /* Sections far below the first screen are rendered only when the shopper scrolls near them. */
   #MainContent > .shopify-section:nth-child(n+4):not([id*="cinema"]):not([id*="anatomy"]):not([id*="product"]) { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 </style>
+{%- comment -%} Speed (10 Nov 2026): the main photo of collection and product pages also starts downloading straight away.
+  widths/sizes match sections/eb3d-collection.liquid (collection hero) and sections/eb3d-product.liquid (first gallery photo). {%- endcomment -%}
+{%- if request.page_type == 'collection' and collection.image -%}
+  <link rel="preload" as="image" fetchpriority="high" href="{{ collection.image | image_url: width: 1100 }}" imagesrcset="{{ collection.image | image_url: width: 500 }} 500w, {{ collection.image | image_url: width: 800 }} 800w, {{ collection.image | image_url: width: 1100 }} 1100w" imagesizes="(min-width: 900px) 40vw, 90vw">
+{%- endif -%}
+{%- if request.page_type == 'product' -%}
+  {%- assign eb_pm = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+  {%- if eb_pm -%}
+    <link rel="preload" as="image" fetchpriority="high" href="{{ eb_pm.preview_image | image_url: width: 1400 }}" imagesrcset="{{ eb_pm.preview_image | image_url: width: 600 }} 600w, {{ eb_pm.preview_image | image_url: width: 900 }} 900w, {{ eb_pm.preview_image | image_url: width: 1200 }} 1200w, {{ eb_pm.preview_image | image_url: width: 1400 }} 1400w" imagesizes="(min-width: 990px) 55vw, 100vw">
+  {%- endif -%}
+{%- endif -%}
 {%- if template.name == 'index' -%}
   {%- assign eb_hero = collections['wingback-beds'].image -%}
   {%- if eb_hero -%}
