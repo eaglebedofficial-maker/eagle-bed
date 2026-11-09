@@ -17,3 +17,10 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Step 6: photo posts at 09:00/18:00 may be status "replaced" (correct). Only 13:00 photo post is expected.
 - Zapier limit failures are reported by the cinema task; no second reminder.
 - PageSpeed theme copy "Eagle Bed PageSpeed fix 9 Nov - PUBLISH" waits for the owner to publish.
+
+## Zapier budget (owner update relayed 10 Nov 2026)
+- 750 Zapier tasks/month (settings/main.zapierCap). Every Zapier execute = 1 task (inspect is free).
+- After each execute: HQ ArtifactData usage/zapier-YYYY-MM (UK month): count +1, days.<date> +1, kinds.<post|publer|ads|video|other> +1 (read first, pin if_version; set if missing).
+- Google Ads numbers: OpenRush get_ad_performance only. Zapier Google Ads only for owner-approved changes.
+- No more Publer TikTok photo top-ups (cinema task posts TikTok/YouTube).
+- Plan: videos ~240, 1pm photo ~60, rest owner jobs/retries. If usage >80% of cap before the 20th: tell owner once, skip optional work.
