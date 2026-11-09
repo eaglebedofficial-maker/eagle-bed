@@ -1,5 +1,5 @@
 {{ 'eb3d.css' | asset_url | stylesheet_tag }}
-<style>.eb3d-hero__fallback{opacity:1}.eb3d-hero.is-3d .eb3d-hero__fallback{opacity:0}.eb3d-hero:not(.is-3d) canvas{visibility:hidden}</style>
+<style>.eb3d-hero .eb3d-hero__fallback{opacity:1;transition:opacity .6s}.eb3d-hero.is-3d .eb3d-hero__fallback{opacity:0}.eb3d-hero:not(.is-3d) canvas{visibility:hidden}</style>
 {%- comment -%} Speed (9 Nov 2026): three.js is no longer loaded here. eb3d-bed.js loads it only when the 3D bed is actually started, so the photo is the first thing shoppers and Google see. {%- endcomment -%}
 <script src="{{ 'eb3d-bed.js' | asset_url }}" defer></script>
 {%- assign first_col = section.blocks.first.settings.collection -%}
