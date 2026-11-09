@@ -10,3 +10,10 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Always back up before changing and log every change in ops/CHANGELOG.md.
 - Google Ads account 1980382450, max £30/day total. Publer (Zapier) connection 02b20c7b-e221-87ad-adf1-90582cc221b7, workspace 6ada6085da10209b235463d7: TikTok 6ada61643266bfdcc843c976, YouTube 6ada6553da10209b23547110, Google 6ada657f13d9c2097b68f4e3; free plan max 10 scheduled per account; upload_media one at a time.
 - Videos: original royalty-free music only (HQ music.js). The Claude app blocks website photos inside HQ and this container cannot download cdn.shopify.com — never work around either; owner picks photos from phone in HQ → Social.
+
+## Update 9 Nov 2026 (relayed from the owner's HQ session)
+- Cinema task "Eagle Bed cinematic 4K videos 9am & 6pm" now makes/posts 2 videos a day (runbook ops/cinema/RUNBOOK.md on branch claude/brave-hawking-hauac3).
+- Daily step 6b: no more "waiting" phone-photo video days and no owner reminders to pick photos. Only schedule owner-made videos (Publer 12:00).
+- Step 6: photo posts at 09:00/18:00 may be status "replaced" (correct). Only 13:00 photo post is expected.
+- Zapier limit failures are reported by the cinema task; no second reminder.
+- PageSpeed theme copy "Eagle Bed PageSpeed fix 9 Nov - PUBLISH" waits for the owner to publish.
