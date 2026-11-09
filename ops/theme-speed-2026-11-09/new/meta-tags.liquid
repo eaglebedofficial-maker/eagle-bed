@@ -3,6 +3,23 @@
   downloading before the rest of the page. It must match the first banner's collection in the
   "3D bed hero" section (currently Wingback Beds). If you change that banner, change the handle here.
 {%- endcomment -%}
+{%- comment -%} Speed (10 Nov 2026): fonts and the main 3D stylesheet start downloading from the head instead of
+  being discovered late (the fonts used to be an @import inside eb3d.css). Fonts never block the first paint. {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="{{ 'eb3d.css' | asset_url }}">
+<link rel="preload" as="style" href="{{ 'eb3d-chrome.css' | asset_url }}">
+<style>
+  /* Phones: glass blur effects are expensive to paint on mobile CPUs; plain translucent panels look almost the same. */
+  @media (max-width: 900px) {
+    [class*="eb3d"] { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+    .eb3d-hero:before { filter: none !important; opacity: .35 !important; }
+  }
+  /* Sections far below the first screen are rendered only when the shopper scrolls near them. */
+  #MainContent > .shopify-section:nth-child(n+4):not([id*="cinema"]):not([id*="anatomy"]):not([id*="product"]) { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+</style>
 {%- if template.name == 'index' -%}
   {%- assign eb_hero = collections['wingback-beds'].image -%}
   {%- if eb_hero -%}
