@@ -4,6 +4,11 @@ import type { BusinessBrief, ChatMsg, Proposal, Run } from "@/lib/types";
 
 export interface AppState {
   email: string;
+  billing: {
+    status: string; plan?: "monthly" | "yearly"; currentPeriodEnd?: string; enabled: boolean;
+    access: { ok: boolean; why: string }; trialEndsAt: string;
+    plans: Record<"monthly" | "yearly", { label: string; pence: number; interval: string }>;
+  };
   brief: BusinessBrief | null;
   connections: Record<string, { status: string; meta: Record<string, string>; checkedAt?: string; note?: string }>;
   agentsOff: string[];

@@ -8,9 +8,9 @@ import { CONNECTIONS } from "@/catalog/connections";
 import playbooks from "@/catalog/playbooks.json";
 import { briefText, fill, memoryText } from "./brief";
 import { capabilities, isConnected, mcpServers, secretOf } from "./connections";
-import { runTool } from "./tools";
-import { toolsFor } from "./tools";
+import { applyToolsFor, runTool, toolsFor } from "./tools";
 import { newId } from "./crypto";
+import { access } from "./billing";
 import { getWorkspace, updateWorkspace } from "./store";
 import type { Proposal, Run, RunLog, Workspace } from "./types";
 
@@ -90,6 +90,8 @@ export interface StartOpts {
 export async function startRun(wsId: string, o: StartOpts): Promise<string> {
   const ws = await getWorkspace(wsId);
   if (!ws) throw new Error("Workspace missing");
+  const acc = access(ws);
+  if (!acc.ok) throw new Error(acc.why);
   clientFor(ws); // fail fast without a key
   const action = o.actionId ? actionById(o.actionId) : undefined;
   if (o.actionId && !action) throw new Error("Unknown action");
@@ -252,20 +254,37 @@ Expected current value:\n${from}\n
 New value:\n${to}\n
 Steps: 1) Read the current value with the ${p.system} tools. 2) If it clearly differs from the expected current value, change nothing and report CONFLICT. 3) Otherwise make exactly this change and nothing else. Never publish a theme, never change a price or a budget unless that is exactly this change. 4) Reply with one line starting APPLIED or CONFLICT or FAILED, then the evidence.`;
   const client = clientFor(ws);
-  const servers = mcpServers(ws);
-  if (!servers.some((s) => s.name === p.system)) {
-    await setStatus(wsId, id, "failed", `${p.system} is not connected through an MCP server, so it can't be applied automatically. Apply it by hand, then mark it applied.`);
+  const servers = mcpServers(ws).filter((x) => x.name === p.system);
+  const direct = applyToolsFor(ws, p.system);
+  if (!servers.length && !direct.length) {
+    await setStatus(wsId, id, "failed", `${p.system} is not connected in a way the team can write to, so it can't be applied automatically. Apply it by hand, then press "I applied it myself".`);
     return "failed";
   }
-  const msg = await client.beta.messages.stream({
-    model: MODEL, max_tokens: 16000, betas: BETAS, fallbacks: "default",
-    thinking: { type: "adaptive" }, output_config: { effort: "medium" },
-    system: [{ type: "text", text: CORE_RULES.replace(/7\. APPROVAL POLICY[^\n]*\n/, "") + "\n\nYou are applying one owner-approved change. Be exact." }],
-    mcp_servers: servers.filter((s) => s.name === p.system),
-    tools: [{ type: "mcp_toolset", mcp_server_name: p.system }],
-    messages: [{ role: "user", content: order }],
-  }).finalMessage();
-  const text = msg.content.filter((b) => b.type === "text").map((b) => (b as { text: string }).text).join("\n").trim();
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [{ role: "user", content: order }];
+  let text = "";
+  for (let turn = 0; turn < 12; turn++) {
+    const msg = await client.beta.messages.stream({
+      model: MODEL, max_tokens: 16000, betas: BETAS, fallbacks: "default",
+      thinking: { type: "adaptive" }, output_config: { effort: "medium" },
+      system: [{ type: "text", text: CORE_RULES.replace(/7\. APPROVAL POLICY[^\n]*\n/, "") + "\n\nYou are applying one owner-approved change. Be exact." }],
+      ...(servers.length ? { mcp_servers: servers } : {}),
+      tools: [...direct, ...servers.map((x) => ({ type: "mcp_toolset" as const, mcp_server_name: x.name }))],
+      messages,
+    }).finalMessage();
+    text = msg.content.filter((b) => b.type === "text").map((b) => (b as { text: string }).text).join("\n").trim() || text;
+    if (msg.stop_reason === "pause_turn") { messages.push({ role: "assistant", content: msg.content }); continue; }
+    const uses = msg.content.filter((b): b is Anthropic.Beta.Messages.BetaToolUseBlock => b.type === "tool_use");
+    if (msg.stop_reason !== "tool_use" || !uses.length) break;
+    messages.push({ role: "assistant", content: msg.content });
+    const results = await Promise.all(uses.map(async (u): Promise<Anthropic.Beta.Messages.BetaToolResultBlockParam> => {
+      try {
+        return { type: "tool_result", tool_use_id: u.id, content: await runTool(u.name, (u.input || {}) as Record<string, unknown>, { ws, runId: "apply", onBoard: () => undefined, allowWrites: true }) };
+      } catch (e) {
+        return { type: "tool_result", tool_use_id: u.id, content: errText(e), is_error: true };
+      }
+    }));
+    messages.push({ role: "user", content: results });
+  }
   const status = /^APPLIED/m.test(text) ? (mode === "apply" ? "applied" : "undone") : "failed";
   await setStatus(wsId, id, status, text.slice(0, 2000));
   return status;

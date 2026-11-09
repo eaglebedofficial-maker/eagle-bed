@@ -45,7 +45,8 @@ interface OAuthToken {
 export async function oauthToken(ws: Workspace, id: string): Promise<string> {
   const raw = secretOf(ws, id);
   if (!raw) throw new Error(`${id} is not connected.`);
-  const tok = JSON.parse(raw) as OAuthToken;
+  let tok: OAuthToken;
+  try { tok = JSON.parse(raw) as OAuthToken; } catch { return raw; } // pasted long-lived token
   if (!tok.expires_at || tok.expires_at - 60_000 > Date.now() || !tok.refresh_token) return tok.access_token;
   const def = connectionById(id)!;
   const p = def.oauth!.envPrefix;

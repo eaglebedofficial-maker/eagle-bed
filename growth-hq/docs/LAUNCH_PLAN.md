@@ -39,11 +39,13 @@ Until those are approved, customers can connect through **Zapier** or **Publer**
 
 ## Before charging customers (to do)
 - Postgres instead of JSON files; backups; per-workspace rate limits.
-- MCP OAuth flow for Shopify, Canva and the other MCP servers (today the customer pastes a token or server URL).
+- Shopify and Meta work today with a pasted token (Shopify custom-app Admin token; long-lived Meta Page token). Still to do: MCP OAuth flow for Canva and the other MCP servers (today the customer pastes a token or server URL).
 - Confirm each default MCP server URL in `src/catalog/connections.ts` against the vendor's current docs.
-- Billing (Stripe), terms of service, privacy policy, GDPR data export and delete.
+- Terms of service, privacy policy, GDPR data export and delete.
 - Email/push notifications; password reset; team members per workspace.
 - The Eagle Bed HQ browser features that need porting: the in-browser video maker (photos + music → MP4) and Cinema Studio generation calls. The app plans these today; generating the media is the next step.
 
-## Pricing idea
-Free tier (Office, brief, 3 actions a month), then about £29, £79 and £199 a month by number of autopilot jobs and connected channels. Claude usage is billed to the customer's own key.
+## Pricing (built in)
+One Business plan with everything: **£100 a month**, or **£1,080 a year** (10% off, £120 saved). New accounts get a free trial (`TRIAL_DAYS`, default 7; set 0 for none). Payment is by Stripe Checkout; customers manage, switch or cancel in Stripe's customer portal. Stripe's webhook (`/api/billing/webhook`) keeps each workspace's status in sync. Accounts listed in `OWNER_EMAILS` never pay. Without `STRIPE_SECRET_KEY`, everything is free (for testing). Claude usage is billed to the customer's own key.
+
+Stripe setup: create an account, then copy the secret key into `STRIPE_SECRET_KEY`. Add a webhook endpoint at `APP_URL/api/billing/webhook` for `checkout.session.completed` and `customer.subscription.*`, and copy its signing secret into `STRIPE_WEBHOOK_SECRET`. Turn on the customer portal in Stripe settings.

@@ -1,4 +1,5 @@
 import { handle, requireWorkspace } from "@/lib/session";
+import { access, billingEnabled, PLANS, trialEndsAt } from "@/lib/billing";
 
 // Everything the UI needs, without secrets.
 export const GET = handle(async () => {
@@ -8,6 +9,7 @@ export const GET = handle(async () => {
   );
   return Response.json({
     email: user.email,
+    billing: { ...(ws.billing || { status: "none" }), enabled: billingEnabled(), access: access(ws), trialEndsAt: trialEndsAt(ws).toISOString(), plans: PLANS },
     brief: ws.brief,
     connections,
     agentsOff: ws.agentsOff,

@@ -95,8 +95,17 @@ export interface ChatMsg {
   runId?: string;
 }
 
+export interface Billing {
+  status: "none" | "active" | "trialing" | "past_due" | "canceled";
+  plan?: "monthly" | "yearly";
+  customerId?: string;
+  subscriptionId?: string;
+  currentPeriodEnd?: string;
+}
+
 export interface Workspace {
   id: string;
+  billing?: Billing;
   createdAt: string;
   brief: BusinessBrief | null;
   connections: Record<string, StoredConnection>;

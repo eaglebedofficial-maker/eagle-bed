@@ -31,17 +31,21 @@ function Conn({ c }: { c: ConnectionDef }) {
       <p className="muted small" style={{ margin: 0 }}>{c.what}</p>
       <div className="row">
         {c.kind === "oauth" ? (
-          <a className={`btn sm ${on ? "ghost" : ""}`} href={`/api/oauth/${c.id}/start`}>{on ? "Reconnect" : "Connect"}</a>
+          <>
+            <a className={`btn sm ${on ? "ghost" : ""}`} href={`/api/oauth/${c.id}/start`}>{on ? "Reconnect" : "Connect"}</a>
+            {c.pasteToken && <button className="btn ghost sm" onClick={() => setOpen(!open)}>Paste a token</button>}
+          </>
         ) : (
           <button className={`btn sm ${on ? "ghost" : ""}`} onClick={() => setOpen(!open)}>{on ? "Change" : "Connect"}</button>
         )}
         {on && <button className="btn ghost sm" onClick={async () => { await api(`/api/connections/${c.id}`, undefined, "DELETE"); await refresh(); }}>Disconnect</button>}
         {c.inEagleBed && <span className="pill info" title="Eagle Bed HQ uses this">Used by Eagle Bed</span>}
       </div>
-      {open && c.kind !== "oauth" && (
+      {open && c.kind === "oauth" && c.pasteToken && <p className="muted small" style={{ margin: 0 }}>{c.pasteToken}</p>}
+      {open && (
         <div className="stack" style={{ gap: 8 }}>
           <input type="password" autoComplete="off" placeholder={c.id === "anthropic" ? "sk-ant-…" : c.kind === "mcp" ? "Access token for this MCP server" : "API key"} value={secret} onChange={(e) => setSecret(e.target.value)} aria-label="Key" />
-          {c.id !== "anthropic" && <input type="text" placeholder={c.kind === "mcp" ? `MCP server URL (default ${c.mcpUrl || "none"})` : "Account / store ID (optional)"} value={extra} onChange={(e) => setExtra(e.target.value)} aria-label="Extra setting" />}
+          {c.id !== "anthropic" && c.kind !== "oauth" && <input type="text" placeholder={c.id === "shopify" ? "yourstore.myshopify.com" : c.kind === "mcp" ? `MCP server URL (default ${c.mcpUrl || "none"})` : "Account / store ID (optional)"} value={extra} onChange={(e) => setExtra(e.target.value)} aria-label="Extra setting" />}
           <div className="row"><button className="btn sm" disabled={busy || !secret} onClick={save}>{busy ? <span className="spin" /> : "Save"}</button><span className="muted small">Stored encrypted. Never shown again.</span></div>
         </div>
       )}

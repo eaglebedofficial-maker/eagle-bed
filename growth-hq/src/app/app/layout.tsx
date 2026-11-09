@@ -15,6 +15,7 @@ const NAV: [string, string, IconName][] = [
   ["/app/connect", "Connections", "connect"],
   ["/app/brief", "Business brief", "brief"],
   ["/app/memory", "Memory", "memory"],
+  ["/app/billing", "Plan & billing", "card"],
 ];
 const MOBILE = ["/app", "/app/actions", "/app/chat", "/app/board", "/app/connect"];
 
@@ -34,7 +35,14 @@ function Shell({ children }: { children: React.ReactNode }) {
         </nav>
         <div className="foot">{s?.email}<br /><button className="btn ghost sm" style={{ marginTop: 6 }} onClick={async () => { await fetch("/api/auth/logout", { method: "POST" }); location.href = "/"; }}>Log out</button></div>
       </aside>
-      <main className="page">{children}</main>
+      <main className="page">
+        {s && s.billing.enabled && !path.startsWith("/app/billing") && (!s.billing.access.ok || s.billing.status === "none") && (
+          <Link href="/app/billing" className={`banner ${s.billing.access.ok ? "" : "bad"}`}>
+            {s.billing.access.ok ? `Free trial until ${new Date(s.billing.trialEndsAt).toLocaleDateString()} · Choose a plan →` : s.billing.access.why}
+          </Link>
+        )}
+        {children}
+      </main>
       <nav className="tabbar" aria-label="Main">
         {NAV.filter(([h]) => MOBILE.includes(h)).map(([h, l, i]) => (
           <Link key={h} href={h} aria-current={cur(h)}><Icon name={i} />{l}{h === "/app/board" && pending > 0 ? ` (${pending})` : ""}</Link>

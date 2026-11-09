@@ -21,6 +21,8 @@ export interface ConnectionDef {
   oauth?: { authorizeUrl: string; tokenUrl: string; scopes: string[]; envPrefix: string };
   what: string;
   required?: boolean;
+  /** OAuth connections that also accept a pasted long-lived token (for testing or self-serve). */
+  pasteToken?: string;
   /** Used by Eagle Bed HQ today. */
   inEagleBed: boolean;
 }
@@ -31,9 +33,8 @@ export const CONNECTIONS: ConnectionDef[] = [
     what: "Your own Claude account runs every agent, so usage is billed to you, not to anyone else. Create a key at console.anthropic.com → API keys. (A Claude Pro/Max chat subscription cannot be connected to other apps; an API key is the official way.)",
   },
   {
-    id: "shopify", name: "Shopify", group: "Store & website", kind: "mcp", provides: ["store"], inEagleBed: true,
-    mcpUrl: "https://mcp.shopify.com/mcp",
-    what: "Products, collections, orders, customers, analytics, SEO fields, drafts. Changes go to the approval Board first.",
+    id: "shopify", name: "Shopify", group: "Store & website", kind: "key", provides: ["store"], inEagleBed: true,
+    what: "Products, collections, orders, customers, SEO fields, drafts. In Shopify admin: Settings → Apps and sales channels → Develop apps → Create an app → Admin API scopes (read/write products, content, orders read) → Install → copy the Admin API access token (shpat_…). Put your store address (yourstore.myshopify.com) in the second box.",
   },
   {
     id: "woocommerce", name: "WooCommerce", group: "Store & website", kind: "key", provides: ["store"], inEagleBed: false,
@@ -73,6 +74,7 @@ export const CONNECTIONS: ConnectionDef[] = [
     id: "meta", name: "Facebook & Instagram (Meta)", group: "Social", kind: "oauth", provides: ["social_publish", "meta_ads"], inEagleBed: true,
     oauth: { authorizeUrl: "https://www.facebook.com/v21.0/dialog/oauth", tokenUrl: "https://graph.facebook.com/v21.0/oauth/access_token", scopes: ["pages_show_list", "pages_manage_posts", "pages_read_engagement", "instagram_basic", "instagram_content_publish", "ads_read"], envPrefix: "META" },
     what: "Post to your Facebook Page and Instagram business account; read Meta Ads results.",
+    pasteToken: "Or paste a long-lived Page access token (Meta Graph API Explorer → your Page → generate, then extend it).",
   },
   {
     id: "publer", name: "Publer (TikTok, YouTube, Google posts)", group: "Social", kind: "key", provides: ["social_publish"], inEagleBed: true,

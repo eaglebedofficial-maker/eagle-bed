@@ -4,7 +4,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import type { Proposal, Workspace } from "./types";
 import { newId } from "./crypto";
 import { updateWorkspace } from "./store";
-import { isConnected, oauthToken } from "./connections";
+import { isConnected, oauthToken, secretOf } from "./connections";
 
 type Tool = Anthropic.Beta.Messages.BetaTool;
 
@@ -47,10 +47,17 @@ const GOOGLE_TOOLS: Record<string, Tool> = {
   google_ads: T("google_ads_query", "Read Google Ads with a GAQL query (read-only). Never changes anything.", {
     customerId: { ...str, description: "10 digits, no dashes" }, query: str,
   }, ["customerId", "query"]),
+  shopify: T("shopify_admin_graphql", "Shopify Admin GraphQL API for the connected store (products, collections, orders, pages, articles, SEO fields, analytics via shopifyqlQuery). Queries only, unless you are applying an owner-approved change.", {
+    query: str, variables: { type: "object", description: "GraphQL variables (optional)" },
+  }, ["query"]),
   meta: T("meta_graph_get", "Read from the Meta Graph API (pages, Instagram media and insights, ad insights). GET only.", {
     path: { ...str, description: "e.g. me/accounts or <ig-user-id>/media" }, fields: str,
   }, ["path"]),
 };
+
+const META_POST = T("meta_graph_post", "POST to the Meta Graph API (publish a Page post, create Instagram media and publish it). Only for applying an owner-approved change.", {
+  path: str, params: { type: "object", description: "Form fields, e.g. {message, link} or {image_url, caption}" },
+}, ["path", "params"]);
 
 export function toolsFor(ws: Workspace): Anthropic.Beta.Messages.BetaToolUnion[] {
   const tools: Anthropic.Beta.Messages.BetaToolUnion[] = [...BOARD_TOOLS];
@@ -64,15 +71,24 @@ function need(input: Record<string, unknown>, keys: string[]) {
   for (const k of keys) if (input[k] === undefined || input[k] === null || input[k] === "") throw new Error(`Missing field: ${k}`);
 }
 
+/** Tools for applying one approved change through a directly connected service. */
+export function applyToolsFor(ws: Workspace, system: string): Tool[] {
+  if (system === "shopify" && isConnected(ws, "shopify")) return [GOOGLE_TOOLS.shopify];
+  if (system === "meta" && isConnected(ws, "meta")) return [GOOGLE_TOOLS.meta, META_POST];
+  return [];
+}
+
 export interface ToolCtx {
   ws: Workspace;
   runId: string;
   onBoard: (p: Proposal) => void;
+  /** True only while applying an owner-approved Board item. */
+  allowWrites?: boolean;
 }
 
 /** Run one custom tool. Returns text for the tool_result. Throws → is_error result. */
 export async function runTool(name: string, input: Record<string, unknown>, ctx: ToolCtx): Promise<string> {
-  const def = BOARD_TOOLS.find((t) => t.name === name) || Object.values(GOOGLE_TOOLS).find((t) => t.name === name);
+  const def = [...BOARD_TOOLS, ...Object.values(GOOGLE_TOOLS), META_POST].find((t) => t.name === name);
   if (!def) throw new Error(`Unknown tool ${name}`);
   need(input, (def.input_schema.required as string[]) || []);
   const s = (k: string) => String(input[k] ?? "");
@@ -121,6 +137,26 @@ export async function runTool(name: string, input: Record<string, unknown>, ctx:
       const login = ctx.ws.connections.google_ads?.meta?.loginCustomerId;
       if (login) extra["login-customer-id"] = login;
       return api(`https://googleads.googleapis.com/${v}/customers/${s("customerId").replace(/-/g, "")}/googleAds:search`, tok, { query: s("query") }, extra);
+    }
+    case "shopify_admin_graphql": {
+      const q = s("query");
+      if (/^\s*mutation\b/i.test(q) && !ctx.allowWrites) throw new Error("Changes must go to the Board with propose_change; mutations run only after the owner approves.");
+      const shop = (ctx.ws.connections.shopify?.meta?.account || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+      if (!/^[a-z0-9-]+\.myshopify\.com$/i.test(shop)) throw new Error("Set the store address (yourstore.myshopify.com) in Connections → Shopify.");
+      const v = process.env.SHOPIFY_API_VERSION || "2025-10";
+      const r = await fetch(`https://${shop}/admin/api/${v}/graphql.json`, {
+        method: "POST",
+        headers: { "x-shopify-access-token": secretOf(ctx.ws, "shopify") || "", "content-type": "application/json" },
+        body: JSON.stringify({ query: q, variables: input.variables || {} }),
+      });
+      return clip(await r.text(), r.ok);
+    }
+    case "meta_graph_post": {
+      if (!ctx.allowWrites) throw new Error("Posting runs only after the owner approves it on the Board.");
+      const tok = await oauthToken(ctx.ws, "meta");
+      const body = new URLSearchParams(Object.entries((input.params || {}) as Record<string, unknown>).map(([k, v]) => [k, String(v)]));
+      const r = await fetch(`https://graph.facebook.com/v21.0/${s("path").replace(/^\//, "")}`, { method: "POST", headers: { authorization: `Bearer ${tok}` }, body });
+      return clip(await r.text(), r.ok);
     }
     case "meta_graph_get": {
       const tok = await oauthToken(ctx.ws, "meta");
