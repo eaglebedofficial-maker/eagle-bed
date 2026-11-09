@@ -1,0 +1,69 @@
+{{ 'eb3d.css' | asset_url | stylesheet_tag }}
+{{ 'eb3d-luxe.css' | asset_url | stylesheet_tag }}
+{%- comment -%} Speed (9 Nov 2026): three.js is loaded by eb3d-bed.js only when the 3D bed starts. {%- endcomment -%}
+<script src="{{ 'eb3d-bed.js' | asset_url }}" defer></script>
+<script src="{{ 'eb3d-luxe.js' | asset_url }}" defer></script>
+{%- assign s = section.settings -%}
+{%- assign styles = 'wingback,chesterfield,ottoman' | split: ',' -%}
+<section class="eb3d eb3d-cfg" data-eb3d-hero data-cfg data-autoplay="86400" aria-label="Fabric colour preview">
+  <div class="eb3d-wrap">
+    <div class="eb3d-cfg__head">
+      {%- if s.kicker != blank -%}<p class="eb3d-kicker">{{ s.kicker | escape }}</p>{%- endif -%}
+      <h2 class="eb3d-h2">{{ s.heading | escape }}</h2>
+      {%- if s.text != blank -%}<p class="eb3d-lede">{{ s.text | escape }}</p>{%- endif -%}
+    </div>
+    <div class="eb3d-cfg__stage" data-bed-stage tabindex="0" aria-label="3D bed shown in the selected colour. Drag, or use the left and right arrow keys, to turn it.">
+      <canvas aria-hidden="true"></canvas>
+      <div class="eb3d-cfg__fallback">
+        {%- if s.wingback.image -%}{{ s.wingback.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '700,1000,1400', sizes: '80vw', alt: s.wingback.title }}{%- endif -%}
+      </div>
+      <div class="eb3d-cfg__label" aria-live="polite">
+        {%- for block in section.blocks -%}
+          <p class="eb3d-cfg__name{% if forloop.first %} is-active{% endif %}" data-slide data-color="{{ block.settings.hex }}" data-style="wingback" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}<span>{{ s.fabric_label | escape }}</span></p>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="eb3d-cfg__bar">
+      <div class="eb3d-cfg__styles" role="group" aria-label="Bed style">
+        {%- for st in styles -%}
+          {%- assign sc = s[st] -%}
+          <button type="button" class="eb3d-cfg__style" data-cfg-style="{{ st }}" data-url="{% if sc != blank %}{{ sc.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" data-label="Shop {{ st | capitalize }} beds" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ st | capitalize }}</button>
+        {%- endfor -%}
+      </div>
+      <div class="eb3d-cfg__swatches" role="tablist" aria-label="Fabric colour">
+        {%- for block in section.blocks -%}
+          <button type="button" role="tab" class="eb3d-cfg__sw{% if forloop.first %} is-active{% endif %}" data-slide-tab aria-label="{{ block.settings.name | escape }}" title="{{ block.settings.name | escape }}" style="--sw: {{ block.settings.hex }}"><span class="eb3d-swatch"></span></button>
+        {%- endfor -%}
+      </div>
+      <div class="eb3d-cfg__ctas">
+        <a class="eb3d-btn eb3d-btn--brass" data-cfg-cta href="{% if s.wingback != blank %}{{ s.wingback.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">Shop Wingback beds</a>
+        {%- if s.swatch_link != blank -%}<a class="eb3d-btn eb3d-btn--ghost" href="{{ s.swatch_link }}">{{ s.swatch_label | escape }}</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "3D fabric studio",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Small line", "default": "Fabric studio" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See it in your colour" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "fabric_label", "label": "Line under colour name", "default": "Colour preview" },
+    { "type": "collection", "id": "wingback", "label": "Wingback collection" },
+    { "type": "collection", "id": "chesterfield", "label": "Chesterfield collection" },
+    { "type": "collection", "id": "ottoman", "label": "Ottoman collection" },
+    { "type": "text", "id": "swatch_label", "label": "Swatch button label", "default": "Order free swatches" },
+    { "type": "url", "id": "swatch_link", "label": "Swatch button link" }
+  ],
+  "blocks": [
+    { "type": "colour", "name": "Colour", "settings": [
+      { "type": "text", "id": "name", "label": "Name", "default": "Grey" },
+      { "type": "color", "id": "hex", "label": "3D colour", "default": "#8a8d91" }
+    ] }
+  ],
+  "max_blocks": 20,
+  "presets": [ { "name": "3D fabric studio", "blocks": [ { "type": "colour" } ] } ]
+}
+{% endschema %}

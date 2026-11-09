@@ -1,0 +1,85 @@
+{{ 'eb3d.css' | asset_url | stylesheet_tag }}
+<style>.eb3d-hero__fallback{opacity:1}.eb3d-hero.is-3d .eb3d-hero__fallback{opacity:0}.eb3d-hero:not(.is-3d) canvas{visibility:hidden}</style>
+{%- comment -%} Speed (9 Nov 2026): three.js is no longer loaded here. eb3d-bed.js loads it only when the 3D bed is actually started, so the photo is the first thing shoppers and Google see. {%- endcomment -%}
+<script src="{{ 'eb3d-bed.js' | asset_url }}" defer></script>
+{%- assign first_col = section.blocks.first.settings.collection -%}
+<div class="eb3d eb3d-hero" data-eb3d-hero data-autoplay="{{ section.settings.autoplay }}" aria-roledescription="carousel" aria-label="Featured beds">
+  <div class="eb3d-hero__copy">
+    {%- if request.page_type == 'index' and section.settings.h1_text != blank -%}
+      <h1 class="eb3d-slide__kicker" style="margin:0 0 10px">{{ section.settings.h1_text | escape }}</h1>
+    {%- endif -%}
+    <div class="eb3d-hero__slides">
+      {%- for block in section.blocks -%}
+        <div class="eb3d-slide{% if forloop.first %} is-active{% endif %}" id="eb3d-slide-{{ block.id }}" role="tabpanel" data-slide data-color="{{ block.settings.fabric }}" data-style="{{ block.settings.style }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.kicker != blank -%}<p class="eb3d-slide__kicker">{{ block.settings.kicker | escape }}</p>{%- endif -%}
+          <h2 class="eb3d-slide__title">{{ block.settings.heading | escape }}</h2>
+          {%- if block.settings.text != blank -%}<p class="eb3d-slide__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+          <div class="eb3d-slide__ctas">
+            {%- if block.settings.collection != blank -%}
+              <a class="eb3d-btn eb3d-btn--brass" href="{{ block.settings.collection.url }}">{{ block.settings.button_label | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.secondary_label != blank -%}
+              <a class="eb3d-btn eb3d-btn--ghost" href="{{ section.settings.secondary_link | default: routes.all_products_collection_url }}">{{ section.settings.secondary_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.blocks.size > 1 -%}
+      <div class="eb3d-hero__tabs" role="tablist" aria-label="Choose a bed style">
+        {%- for block in section.blocks -%}
+          <button type="button" class="eb3d-tab{% if forloop.first %} is-active{% endif %}" role="tab" aria-controls="eb3d-slide-{{ block.id }}" data-slide-tab>{{ block.settings.tab | default: block.settings.heading | escape }}</button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="eb3d-hero__stage" data-bed-stage tabindex="0" aria-label="3D bed preview. Drag, or use the left and right arrow keys, to turn it.">
+    <canvas aria-hidden="true"></canvas>
+    <div class="eb3d-hero__fallback">
+      {%- if first_col.image -%}{{ first_col.image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '480,600,900,1200,1400', sizes: '(min-width: 901px) 58vw, 100vw', alt: first_col.title }}{%- endif -%}
+    </div>
+    {%- if section.settings.badge_title != blank -%}
+      <div class="eb3d-hero__badge"><strong>{{ section.settings.badge_title | escape }}</strong>{{ section.settings.badge_text | escape }}</div>
+    {%- endif -%}
+    <div class="eb3d-hero__hint" aria-hidden="true">
+      <svg viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1 7h32M5 3L1 7l4 4M29 3l4 4-4 4"/></svg>Drag to turn
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "3D bed hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "h1_text", "label": "Homepage H1 (small line above banners, homepage only)", "default": "Handmade Upholstered Beds, Made in Dewsbury" },
+    { "type": "range", "id": "autoplay", "label": "Seconds per banner", "min": 4, "max": 15, "step": 1, "unit": "s", "default": 7 },
+    { "type": "text", "id": "secondary_label", "label": "Second button label", "default": "Browse all beds" },
+    { "type": "url", "id": "secondary_link", "label": "Second button link" },
+    { "type": "text", "id": "badge_title", "label": "Badge title", "default": "Delivered by our own team" },
+    { "type": "textarea", "id": "badge_text", "label": "Badge text", "default": "Collected from our workshop and carried to your door, never passed through a courier hub." }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Banner",
+      "settings": [
+        { "type": "text", "id": "tab", "label": "Tab label", "default": "Wingback" },
+        { "type": "text", "id": "kicker", "label": "Small line above heading" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Handmade beds" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+        { "type": "collection", "id": "collection", "label": "Button links to" },
+        { "type": "color", "id": "fabric", "label": "3D bed fabric colour", "default": "#2f4a3f" },
+        { "type": "select", "id": "style", "label": "3D bed style", "default": "wingback", "options": [
+          { "value": "wingback", "label": "Wingback, channel tufted" },
+          { "value": "chesterfield", "label": "Chesterfield, buttoned" },
+          { "value": "ottoman", "label": "Ottoman, lid lifts" }
+        ] }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [ { "name": "3D bed hero", "blocks": [ { "type": "slide" } ] } ]
+}
+{% endschema %}
