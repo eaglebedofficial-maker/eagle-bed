@@ -1,0 +1,399 @@
+<title>Growth HQ Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: an app shell — sidebar on desktop, bottom tab bar on phones — with a demo ribbon on top. */
+:root {
+  --bg: #f4f6f2; --surface: #ffffff; --surface-2: #edf1ec; --ink: #13211b; --muted: #5a6a62; --line: #dde3dc;
+  --accent: #127a4f; --accent-ink: #ffffff; --accent-soft: #e0f2e8;
+  --warn: #a35f00; --warn-soft: #fff1d9; --bad: #b8322a; --bad-soft: #fde6e3; --info: #2459b8; --info-soft: #e4edfb;
+  --ribbon: #13211b; --ribbon-ink: #e7f6ee;
+  --display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --shadow: 0 1px 2px rgba(19,33,27,.05), 0 8px 24px rgba(19,33,27,.05);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0c1210; --surface: #131c18; --surface-2: #1a2520; --ink: #e6efea; --muted: #93a49b; --line: #25322c;
+  --accent: #41d293; --accent-ink: #052113; --accent-soft: #15392a;
+  --warn: #f1b04d; --warn-soft: #3a2b12; --bad: #ff8076; --bad-soft: #3d1b18; --info: #82abff; --info-soft: #172548;
+  --ribbon: #1f3a2d; --ribbon-ink: #d6f5e5; --shadow: none; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #0c1210; --surface: #131c18; --surface-2: #1a2520; --ink: #e6efea; --muted: #93a49b; --line: #25322c;
+  --accent: #41d293; --accent-ink: #052113; --accent-soft: #15392a;
+  --warn: #f1b04d; --warn-soft: #3a2b12; --bad: #ff8076; --bad-soft: #3d1b18; --info: #82abff; --info-soft: #172548;
+  --ribbon: #1f3a2d; --ribbon-ink: #d6f5e5; --shadow: none; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+button, input, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0 0 6px; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: 28px; font-weight: 800; } h2 { font-size: 19px; font-weight: 700; } h3 { font-size: 15.5px; font-weight: 700; font-family: var(--body); }
+p { margin: 0 0 8px; } a { color: var(--accent); }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 2px; }
+
+.ribbon { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ribbon); color: var(--ribbon-ink); font-size: 13px; padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ribbon b { font-weight: 700; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 31; background: var(--ribbon); }
+
+.shell { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: calc(100% - 37px); }
+.side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 37px); align-self: start; height: calc(100dvh - 37px); padding: 18px 12px; border-right: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 2px; padding-left: max(12px, env(safe-area-inset-left, 0px)); }
+.brand { display: flex; gap: 10px; align-items: center; padding: 2px 8px 16px; }
+.logo { width: 36px; height: 36px; border-radius: 11px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 16px var(--display); flex: none; }
+.brand b { font-family: var(--display); font-size: 16px; display: block; }
+.nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; color: var(--muted); font-weight: 500; text-decoration: none; }
+.nav a:hover { background: var(--surface-2); color: var(--ink); }
+.nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
+.nav svg, .tabbar svg { width: 18px; height: 18px; flex: none; }
+.badge { margin-left: auto; background: var(--warn-soft); color: var(--warn); font-size: 12px; font-weight: 700; border-radius: 99px; padding: 1px 8px; }
+main { padding-block: 26px 110px; padding-left: max(28px, env(safe-area-inset-left, 0px)); padding-right: max(28px, env(safe-area-inset-right, 0px)); min-width: 0; max-width: 1180px; width: 100%; }
+.tabbar { display: none; }
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .side { display: none; }
+  main { padding-block: 18px 100px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 2px; font-size: 11px; color: var(--muted); text-decoration: none; }
+  .tabbar a[aria-current="page"] { color: var(--accent); font-weight: 700; }
+  .tabbar svg { width: 21px; height: 21px; }
+  h1 { font-size: 24px; }
+}
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); min-width: 0; }
+.grid { display: grid; gap: 12px; }
+.g2 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.sp { justify-content: space-between; }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.section { margin: 28px 0 10px; }
+.btn { border: 0; border-radius: 10px; padding: 9px 15px; min-height: 40px; font-weight: 650; cursor: pointer; background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.btn:hover { filter: brightness(1.06); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.ghost:hover { background: var(--surface-2); filter: none; }
+.btn.sm { padding: 6px 11px; min-height: 32px; font-size: 13.5px; border-radius: 8px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+input[type=text], input[type=search], input[type=password], input[type=email], input[type=number], textarea, select { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 42px; }
+textarea { resize: vertical; }
+label.f { display: block; font-size: 13px; font-weight: 600; color: var(--muted); }
+label.f > * { margin-top: 5px; font-weight: 400; color: var(--ink); }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 650; padding: 3px 9px; border-radius: 99px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.pill.ok { background: var(--accent-soft); color: var(--accent); } .pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.bad { background: var(--bad-soft); color: var(--bad); } .pill.info { background: var(--info-soft); color: var(--info); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.kpi b { display: block; font: 800 28px var(--display); font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 650; }
+.action { display: flex; flex-direction: column; gap: 8px; }
+.agent { display: flex; gap: 12px; align-items: flex-start; }
+.avatar { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-weight: 800; font-size: 13px; color: #fff; flex: none; text-shadow: 0 1px 1px rgba(0,0,0,.25); }
+.switch { position: relative; width: 42px; height: 24px; border-radius: 99px; background: var(--line); border: 0; cursor: pointer; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.switch[aria-checked="true"] { background: var(--accent); }
+.switch[aria-checked="true"]::after { transform: translateX(18px); }
+.log { font: 12.5px/1.55 var(--mono); background: var(--surface-2); border-radius: 10px; padding: 10px 12px; max-height: 46vh; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+.log .tool { color: var(--info); } .log .done { color: var(--accent); font-weight: 700; } .log .think { color: var(--muted); }
+.sheet { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.45); display: flex; align-items: flex-end; justify-content: center; }
+.sheet[hidden] { display: none !important; }
+.pane { background: var(--surface); width: 100%; max-width: 760px; max-height: 90dvh; overflow: auto; border-radius: 18px 18px 0 0; padding: 18px; padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 861px) { .sheet { align-items: center; } .pane { border-radius: 18px; } }
+.diff { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 8px; }
+.diff pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12.5px var(--mono); background: var(--surface-2); padding: 8px 10px; border-radius: 8px; }
+.diff .new pre { background: var(--accent-soft); }
+.msgs { display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 82%; padding: 10px 13px; border-radius: 14px; white-space: pre-wrap; }
+.msg.me { align-self: flex-end; background: var(--accent); color: var(--accent-ink); border-bottom-right-radius: 4px; }
+.msg.ai { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.md h4 { margin: 14px 0 4px; font-size: 15px; } .md ul { margin: 0 0 8px; padding-left: 20px; }
+.tbl-wrap { overflow-x: auto; } table { border-collapse: collapse; width: 100%; font-size: 13px; } td, th { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+.price { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 22px; }
+.price.best { border: 2px solid var(--accent); }
+.price .amt { font: 800 40px var(--display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.price .amt small { font: 500 15px var(--body); color: var(--muted); }
+.price ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+.flag { position: absolute; top: -12px; right: 16px; background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 99px; }
+.spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid color-mix(in srgb, currentColor 25%, transparent); border-top-color: currentColor; animation: sp .8s linear infinite; display: inline-block; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.toast { position: fixed; left: 50%; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; z-index: 60; font-size: 14px; max-width: calc(100vw - 32px); }
+.toast[hidden] { display: none !important; }
+.empty { text-align: center; color: var(--muted); padding: 28px 12px; }
+.dept-tag { display: inline-flex; gap: 6px; align-items: center; }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } .switch::after { transition: none; } }
+</style>
+
+<div class="ribbon" role="note"><b>Interactive demo</b><span>Sample data for Eagle Bed. Buttons simulate the AI team; the real app runs them on your Claude key and connected accounts.</span></div>
+<div class="shell">
+  <aside class="side" aria-label="Main">
+    <div class="brand"><div class="logo">G</div><div><b>Growth HQ</b><span class="muted small" id="bizName">Eagle Bed</span></div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="muted small" style="margin-top:auto;padding:8px 10px">owner@eaglebed.co.uk</div>
+  </aside>
+  <main id="main"></main>
+</div>
+<nav class="tabbar" id="tabbar" aria-label="Main"></nav>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="pane" id="pane"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const CAT = /*CATALOG*/null;
+const BIZ = { name: "Eagle Bed", domain: "www.eaglebed.co.uk", city: "Dewsbury", country: "United Kingdom", products: "beds", product: "bed", adCap: "£30", slots: "09:00, 13:00, 18:00", category: "maker" };
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fill = (t, extra = {}) => t.replace(/\{\{(\w+)\}\}/g, (m, k) => ({ ...BIZ, Products: "Beds", language: "British English", phone: "the business phone", warranty: "5-year frame warranty", weeks: "2", focus: "the most valuable area", auditSections: "A–S sections", newProductRules: "New products rules:", ...extra })[k] ?? m);
+const agent = (id) => CAT.agents.find((a) => a.id === id);
+const ICON = {
+  office: "M3 21V8l9-5 9 5v13M9 21v-6h6v6", actions: "M13 2 4 14h7l-1 8 9-12h-7l1-8z", manager: "M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z",
+  board: "M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9", reports: "M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6zM14 3v6h6M8 13h8M8 17h5",
+  team: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",
+  connections: "M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7", brief: "M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z",
+  memory: "M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2zM9 21h6", plan: "M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zM2 10h20M6 15h4",
+};
+const icon = (n) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICON[n]}"/></svg>`;
+const NAV = [["office", "Office"], ["actions", "Actions"], ["manager", "Manager"], ["board", "Board"], ["reports", "Reports"], ["team", "Team"], ["connections", "Connections"], ["brief", "Business brief"], ["memory", "Memory"], ["plan", "Plan & billing"]];
+const MOBILE = ["office", "actions", "manager", "board", "connections"];
+
+// ---- demo state (example records, clearly sample data)
+const now = Date.now(), ago = (m) => new Date(now - m * 60000).toISOString();
+const S = {
+  connected: new Set(["anthropic", "shopify", "search_console", "ga4", "google_ads", "meta", "publer", "openrush", "zapier"]),
+  agentsOff: new Set(), autopilot: "running", autopilotJobs: new Set(["daily-autopilot", "ceo-review", "seo-drift"]),
+  runs: [
+    { id: "r3", title: "Daily autopilot check", status: "done", t: ago(95), log: [] },
+    { id: "r2", title: "Cut Google Ads waste", status: "done", t: ago(60 * 26), log: [] },
+    { id: "r1", title: "Run the full Master Audit", status: "done", t: ago(60 * 50), log: [] },
+  ],
+  board: [
+    { id: "b1", agent: "onpage", priority: "P1", status: "pending", title: "Clearer SEO title for the ottoman beds page", system: "shopify", target: "/collections/ottoman-beds",
+      before: "Ottoman Beds – Eagle Bed", after: "Ottoman Beds UK | Handmade in Dewsbury | Free GB Delivery", why: "Example: Search Console shows many impressions but a low click rate for 'ottoman beds' (last 28 days).", kpi: "Click rate on /collections/ottoman-beds · review in 14 days" },
+    { id: "b2", agent: "social", priority: "P2", status: "pending", title: "Instagram + Facebook post, Thu 18:00", system: "meta", target: "Post · Thursday 18:00",
+      before: "new", after: "Storage that disappears. Our Chesterfield ottoman lifts on gas struts, so the space under your bed becomes a wardrobe. Handmade to order in Dewsbury · free delivery across Great Britain.\n→ eaglebed.co.uk/products/chesterfield-ottoman-bed", why: "Example: ottoman posts got the most saves in the last 30 days.", kpi: "Saves and link clicks · review next Monday" },
+    { id: "b3", agent: "searchterms", priority: "P0", status: "pending", title: "Add 14 negative keywords to Search campaign", system: "google_ads", target: "Campaign: Search – Beds",
+      before: "(no negatives for these terms)", after: "free, cheap, second hand, used, jobs, diy, pallet, ikea, metal, wooden, leather, costco, argos, hire", why: "Example: these search terms took spend over 30 days with no sale.", kpi: "Ad spend per order · review in 7 days" },
+    { id: "b4", agent: "schema", priority: "P1", status: "applied", title: "Add delivery and returns to Product schema", system: "shopify", target: "theme · product JSON-LD",
+      before: "Offer without shippingDetails / hasMerchantReturnPolicy", after: "Offer with shippingDetails (free, GB, 3–5 working days) and a 14-day return policy", why: "Example: Merchant listings need delivery and returns for rich results.", kpi: "Rich result eligibility · review in 14 days" },
+  ],
+  reports: [
+    { id: "p1", agent: "manager", title: "Master Audit: summary", t: ago(60 * 49), body: [
+      ["h", "Summary"], ["p", "Three leaks cost the most money right now. This is example content showing the report format; your real report uses your own data with sources."],
+      ["t", [["Area", "Finding", "Priority"], ["Checkout", "Mobile visitors add to basket but rarely pay", "P0"], ["SEO", "Category pages get few clicks from Google", "P1"], ["Ads", "Search campaign spends without sales", "P0"]]],
+      ["h", "Next 7 days"], ["l", ["Fix the delivery message on product pages", "Approve the 14 negative keywords on the Board", "Publish clearer titles for the top 5 categories"]] ] },
+    { id: "p2", agent: "searchterms", title: "Google Ads waste review", t: ago(60 * 25), body: [["h", "What happened"], ["p", "Example: 31% of spend went to searches that never buy (second hand, free, DIY). 14 negatives proposed on the Board."], ["l", ["Keep: 'ottoman bed uk', 'king size ottoman bed'", "Stop: 'free bed', 'bed jobs', 'pallet bed'"]]] },
+  ],
+  chat: [
+    { me: true, text: "What should we do this week to get more sales?" },
+    { me: false, text: "Three things, in order:\n1. Approve the 14 negative keywords (P0): they stop ad spend on searches that never buy.\n2. Approve the new ottoman beds title: more people should click it in Google.\n3. I've planned 2 weeks of posts; 1 is waiting on your Board.\nWant me to start the checkout leak fix too?" },
+  ],
+  facts: ["Free delivery across Great Britain; NI, Jersey, Guernsey, Isle of Man £90", "14-day free returns · 5-year frame warranty · no sleep trial", "Never say 'mainland', 'best-selling' or hotel claims"],
+  lessons: [["onpage", "Keep the brand at the end of titles; Google cuts titles over 60 characters."], ["social", "Ottoman 'watch it lift' posts get the most saves. Lead with the movement."]],
+};
+try { const t = localStorage.getItem("ghq-demo-tab"); if (t && !location.hash) location.hash = t; } catch (e) {}
+
+// ---- shell
+function route() { const h = location.hash.slice(1); return NAV.some(([k]) => k === h) ? h : "office"; }
+function renderNav() {
+  const cur = route(), pending = S.board.filter((b) => b.status === "pending").length;
+  $("#nav").innerHTML = NAV.map(([k, l]) => `<a href="#${k}" ${k === cur ? 'aria-current="page"' : ""}>${icon(k)}${l}${k === "board" && pending ? `<span class="badge">${pending}</span>` : ""}</a>`).join("");
+  $("#tabbar").innerHTML = NAV.filter(([k]) => MOBILE.includes(k)).map(([k, l]) => `<a href="#${k}" ${k === cur ? 'aria-current="page"' : ""}>${icon(k)}${l}${k === "board" && pending ? ` (${pending})` : ""}</a>`).join("");
+}
+let toastT;
+function toast(m) { const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => (t.hidden = true), 3200); }
+function openSheet(html) { $("#pane").innerHTML = html; $("#sheet").hidden = false; $("#pane").querySelector("button,[href],input")?.focus(); }
+function closeSheet() { $("#sheet").hidden = true; }
+$("#sheet").addEventListener("click", (e) => { if (e.target.id === "sheet" || e.target.closest("[data-close]")) closeSheet(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
+const when = (iso) => { const d = new Date(iso); return d.toLocaleDateString([], { day: "numeric", month: "short" }) + " " + d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); };
+const team = () => CAT.agents.filter((a) => a.id !== "manager" && (!a.only || a.only.includes(BIZ.category)));
+const caps = () => new Set(CAT.connections.filter((c) => S.connected.has(c.id)).flatMap((c) => c.provides));
+
+// ---- action cards and the simulated run
+function actionCard(a, compact) {
+  const missing = a.needs.filter((n) => !caps().has(n));
+  const focus = a.focus ? (a.id === "social-plan"
+    ? `<select data-focus="${a.id}" aria-label="Weeks"><option>1 week</option><option selected>2 weeks</option><option>3 weeks</option><option>4 weeks</option></select>`
+    : `<input type="text" data-focus="${a.id}" placeholder="${esc(a.focus)}" aria-label="${esc(a.focus)}">`) : "";
+  return `<div class="card action"><div class="row sp" style="align-items:flex-start"><h3>${esc(a.title)}</h3>${a.proposes ? '<span class="pill info" title="Changes wait for your approval">Board</span>' : ""}</div>
+    ${compact ? "" : `<p class="muted small" style="margin:0">${a.agents.map((id) => esc(agent(id)?.name)).join(" · ")}</p>`}
+    ${focus}
+    <div class="row sp"><span class="row">${missing.length ? `<span class="pill warn" title="Connect: ${missing.join(", ")}">Partly connected</span>` : '<span class="pill ok">Ready</span>'}${a.every ? `<span class="pill">every ${a.every}</span>` : ""}</span>
+    <button class="btn sm" data-run="${a.id}">Run</button></div>
+    ${compact ? "" : `<p class="muted small" style="margin:0">From Eagle Bed HQ: ${esc(a.origin)}</p>`}</div>`;
+}
+function simulate(a, focusText) {
+  const run = { id: "r" + Date.now(), title: a ? a.title : "Order: " + focusText.slice(0, 50), status: "running", t: new Date().toISOString(), log: [] };
+  S.runs.unshift(run);
+  const ag = a ? a.agents.map(agent).filter(Boolean) : [agent("manager"), agent("qa")];
+  const steps = [
+    ["think", `Manager: reading the business brief and memory for ${BIZ.name}…`],
+    ["think", `Manager: plan — ${ag.map((x) => "@" + x.id).join(", ")} take this; QA checks every number.`],
+    ...a?.needs.slice(0, 3).map((n) => ["tool", `→ ${caps().has(n) ? "reading " + n.replace("_", " ") : n.replace("_", " ") + " not connected: DATA NOT AVAILABLE"}`]) || [],
+    ["think", `${ag[0]?.name}: ${ag[0]?.role}`],
+    ...(a?.proposes ? [["tool", `→ Board ← ${a.title}: proposal 1 (waits for your approval)`]] : []),
+    ["tool", "→ save_report"], ["tool", "→ save_lesson"], ["done", "Finished. Report saved" + (a?.proposes ? ", 1 change on your Board." : ".")],
+  ];
+  const draw = () => {
+    if ($("#sheet").hidden || $("#pane").dataset.runid !== run.id) return;
+    $("#runLog").innerHTML = run.log.map(([k, t]) => `<div class="${k}">${esc(t)}</div>`).join("") || '<span class="muted">Starting…</span>';
+    $("#runState").innerHTML = run.status === "running" ? '<span class="pill info"><span class="spin"></span> running</span>' : '<span class="pill ok">done</span>';
+    $("#runLog").scrollTop = 1e6;
+  };
+  openSheet(`<div class="row sp" style="margin-bottom:10px"><div><h2 id="sheetTitle">${esc(run.title)}</h2><span id="runState"></span></div><button class="btn ghost sm" data-close>Close</button></div>
+    ${a ? `<details style="margin-bottom:10px"><summary class="small muted">The order the team receives</summary><p class="small" style="margin-top:6px">${esc(fill(a.prompt, focusText ? { focus: focusText } : {}))}</p></details>` : ""}
+    <div class="log" id="runLog" aria-live="polite"></div>
+    <p class="muted small" style="margin-top:10px">Demo simulation. In the real app Claude does this with your connected data; changes land on the <a href="#board" data-close>Board</a> and the write-up in <a href="#reports" data-close>Reports</a>.</p>`);
+  $("#pane").dataset.runid = run.id;
+  draw(); render();
+  steps.forEach((s, i) => setTimeout(() => {
+    run.log.push(s);
+    if (i === steps.length - 1) {
+      run.status = "done";
+      if (a?.proposes) S.board.unshift({ id: "b" + Date.now(), agent: a.agents[0], priority: "P2", status: "pending", title: a.title + " — first change", system: a.needs.includes("google_ads") ? "google_ads" : a.needs.includes("social_publish") ? "meta" : "shopify", target: "Example target", before: "Current value (read from your account)", after: "Proposed value, written by the agent", why: "Example evidence with source and date.", kpi: "One KPI · review date" });
+      S.reports.unshift({ id: "p" + Date.now(), agent: a ? a.agents[0] : "manager", title: run.title, t: new Date().toISOString(), body: [["h", "Summary"], ["p", "Example report. In the real app this holds the findings with evidence, the changes proposed on your Board, and what to watch next."], ["l", ["Finding 1 with source and date", "Finding 2 with source and date", "What we'll measure, and when"]]] });
+      toast("Job finished: report saved" + (a?.proposes ? " and a change is on your Board." : "."));
+      render();
+    }
+    draw();
+  }, 650 * (i + 1)));
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-run]");
+  if (b) { const a = CAT.actions.find((x) => x.id === b.dataset.run); const f = document.querySelector(`[data-focus="${a.id}"]`); simulate(a, f && f.value && f.tagName === "INPUT" ? f.value : ""); }
+});
+
+// ---- views
+const V = {};
+V.office = () => {
+  const pending = S.board.filter((b) => b.status === "pending").length, onDuty = team().filter((a) => !S.agentsOff.has(a.id)).length;
+  return `<div class="head"><div><h1>${BIZ.name} HQ</h1><p class="muted">Your AI team: ${onDuty} agents on duty, led by the Manager.</p></div><a class="btn" href="#actions">All actions</a></div>
+  <div class="grid g4">
+    <div class="card kpi"><b>${pending}</b><span>changes waiting for you</span></div>
+    <div class="card kpi"><b>${S.reports.length}</b><span>reports written</span></div>
+    <div class="card kpi"><b>${S.runs.filter((r) => r.status === "running").length}</b><span>jobs running now</span></div>
+    <div class="card kpi"><b>${S.connected.size}/${CAT.connections.length}</b><span>services connected</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card"><div class="row sp"><h2>24/7 Autopilot</h2><span class="pill ${S.autopilot === "running" ? "ok" : S.autopilot === "paused" ? "warn" : "bad"}"><span class="dot"></span>${S.autopilot}</span></div>
+      <p class="muted small">Runs every morning in the cloud, phone on or off: ${[...S.autopilotJobs].map((id) => CAT.actions.find((a) => a.id === id)?.title).join(", ")}. Pause = emergencies only. Close = nothing.</p>
+      <div class="row">${[["running", "Resume"], ["paused", "Pause"], ["closed", "Close"]].map(([m, l]) => `<button class="btn sm ${S.autopilot === m ? "" : "ghost"}" data-auto="${m}">${l}</button>`).join("")}<a class="btn ghost sm" href="#team">Choose jobs</a></div></div>
+    <div class="card"><h2>Live activity</h2>${S.runs.slice(0, 6).map((r) => `<div class="row sp" style="border-top:1px solid var(--line);padding:7px 0"><span>${r.status === "running" ? '<span class="spin"></span>' : "✓"} ${esc(r.title)}</span><span class="muted small">${when(r.t)}</span></div>`).join("")}</div>
+  </div>
+  <h2 class="section">Start here</h2>
+  <div class="grid g3">${["master-audit", "daily-autopilot", "why-not-buying", "ceo-review", "seo-full", "social-plan"].map((id) => actionCard(CAT.actions.find((a) => a.id === id), true)).join("")}</div>
+  <h2 class="section">The office</h2>
+  <div class="grid g2">${CAT.departments.map((d) => { const ag = team().filter((a) => a.dept === d.name); return ag.length ? `<div class="card"><h3>${d.name}</h3><p class="muted small">${d.goal}</p><div class="chips">${ag.map((a) => `<span class="pill" style="opacity:${S.agentsOff.has(a.id) ? .45 : 1}"><span class="dot" style="color:${a.color}"></span>${esc(a.name)}</span>`).join("")}</div></div>` : ""; }).join("")}</div>`;
+};
+let actGroup = "All", actQ = "";
+V.actions = () => {
+  const list = CAT.actions.filter((a) => (actGroup === "All" || a.group === actGroup) && (a.title + a.prompt).toLowerCase().includes(actQ.toLowerCase()));
+  return `<div class="head"><div><h1>Actions</h1><p class="muted">${CAT.actions.length} one-tap jobs: everything the Eagle Bed HQ team did, ready for any business.</p></div></div>
+  <div class="card" style="margin-bottom:14px"><h3>Give the Manager an order</h3><textarea id="order" rows="2" placeholder="e.g. Get our ottoman beds onto page 1 of Google"></textarea><div class="row" style="margin-top:8px"><button class="btn" id="sendOrder">Send order</button></div></div>
+  <input type="search" id="actQ" placeholder="Search actions" aria-label="Search actions" value="${esc(actQ)}">
+  <div class="chips" style="margin:10px 0 4px" role="group" aria-label="Filter">${["All", ...CAT.groups].map((g) => `<button class="chip" data-group="${esc(g)}" aria-pressed="${actGroup === g}">${esc(g)}</button>`).join("")}</div>
+  ${CAT.groups.filter((g) => actGroup === "All" || g === actGroup).map((g) => { const items = list.filter((a) => a.group === g); return items.length ? `<h2 class="section">${esc(g)}</h2><div class="grid g3">${items.map((a) => actionCard(a)).join("")}</div>` : ""; }).join("")}
+  ${list.length ? "" : '<p class="empty">No action matches.</p>'}`;
+};
+V.manager = () => `<div class="head"><div><h1>Talk to the Manager</h1><p class="muted">Ask anything or give orders. Facts you mention go into Memory.</p></div></div>
+  <div class="msgs">${S.chat.map((m) => `<div class="msg ${m.me ? "me" : "ai"}">${esc(m.text)}</div>`).join("")}</div>
+  <div class="card" style="margin-top:14px"><textarea id="chatBox" rows="3" placeholder="Message the Manager"></textarea>
+  <div class="row" style="margin-top:8px"><button class="btn" id="chatSend">Send</button><button class="btn ghost" id="chatOrder">Send as an order</button></div>
+  <div class="chips" style="margin-top:10px">${["Why are visitors not buying?", "Write next week's posts", "Remember: we close on Sundays", "What did the team do yesterday?"].map((x) => `<button class="chip" data-suggest="${esc(x)}">${esc(x)}</button>`).join("")}</div></div>`;
+let boardF = "pending";
+V.board = () => {
+  const list = S.board.filter((b) => boardF === "all" || b.status === boardF);
+  const tone = { pending: "warn", applied: "ok", rejected: "", undone: "" };
+  return `<div class="head"><div><h1>Approval Board</h1><p class="muted">Nothing goes live without you. Approve, and the team applies it through your connected account, with one-tap undo.</p></div></div>
+  <div class="chips" style="margin-bottom:12px" role="group" aria-label="Filter">${["pending", "applied", "rejected", "all"].map((f) => `<button class="chip" data-bf="${f}" aria-pressed="${boardF === f}">${f} (${f === "all" ? S.board.length : S.board.filter((b) => b.status === f).length})</button>`).join("")}</div>
+  ${list.length ? "" : '<p class="empty">Nothing here. Run an action and its proposed changes appear here.</p>'}
+  <div class="stack">${list.map((p) => `<div class="card"><div class="row sp" style="align-items:flex-start"><div><span class="pill ${p.priority === "P0" ? "bad" : p.priority === "P1" ? "warn" : ""}">${p.priority}</span> <span class="pill ${tone[p.status] || ""}">${p.status}</span>
+    <h3 style="margin-top:6px">${esc(p.title)}</h3><p class="muted small">${esc(agent(p.agent)?.name || p.agent)} · ${esc(p.system)} · ${esc(p.target)}</p></div></div>
+    <div class="diff"><div><div class="muted small">Now</div><pre>${esc(p.before)}</pre></div><div class="new"><div class="muted small">Proposed</div><pre>${esc(p.after)}</pre></div></div>
+    <p class="small" style="margin-top:8px"><b>Why:</b> ${esc(p.why)}</p><p class="small"><b>KPI:</b> ${esc(p.kpi)}</p>
+    <div class="row">${p.status === "pending" ? `<button class="btn sm" data-op="apply" data-id="${p.id}">Approve & apply</button><button class="btn ghost sm" data-op="self" data-id="${p.id}">I applied it myself</button><button class="btn ghost sm" data-op="reject" data-id="${p.id}">Reject</button>` : p.status === "applied" ? `<button class="btn ghost sm" data-op="undo" data-id="${p.id}">Undo</button>` : ""}</div></div>`).join("")}</div>`;
+};
+V.reports = () => `<div class="head"><div><h1>Reports</h1><p class="muted">Every finished job, newest first.</p></div></div>
+  <div class="grid g2">${S.reports.map((r) => `<button class="card" style="text-align:left;cursor:pointer" data-report="${r.id}"><div class="row sp"><span class="pill">${esc(agent(r.agent)?.name || r.agent)}</span><span class="muted small">${when(r.t)}</span></div><h3 style="margin-top:8px">${esc(r.title)}</h3><p class="muted small" style="margin:0">${esc(r.body.find((b) => b[0] === "p")?.[1] || "").slice(0, 140)}…</p></button>`).join("")}</div>`;
+V.team = () => `<div class="head"><div><h1>Your team</h1><p class="muted">${team().length} specialists picked for a maker business like Eagle Bed. Switch any agent off.</p></div><button class="btn ghost sm" id="allOn">All on</button></div>
+  <div class="card agent" style="margin-bottom:14px"><div class="avatar" style="background:${agent("manager").color}">M</div><div><h3>Manager</h3><p class="muted small" style="margin:0">${esc(agent("manager").role)}</p></div></div>
+  ${CAT.departments.map((d) => { const ag = team().filter((a) => a.dept === d.name); return ag.length ? `<h2 class="section">${d.name} <span class="muted small" style="font-weight:400;font-family:var(--body)">· ${d.goal}</span></h2><div class="grid g2">${ag.map((a) => `<div class="card agent" style="opacity:${S.agentsOff.has(a.id) ? .55 : 1}"><div class="avatar" style="background:${a.color}">${esc(a.name.slice(0, 2))}</div><div style="flex:1;min-width:0"><h3>${esc(a.name)}</h3><p class="muted small" style="margin:0">${esc(a.role)}</p></div><button class="switch" role="switch" aria-checked="${!S.agentsOff.has(a.id)}" aria-label="${esc(a.name)} on" data-agent="${a.id}"></button></div>`).join("")}</div>` : ""; }).join("")}
+  <h2 class="section">Autopilot jobs</h2><p class="muted small">Ticked jobs run by themselves each morning (weekly ones on Mondays).</p>
+  <div class="grid g3">${CAT.actions.filter((a) => a.every).map((a) => `<label class="card row sp" style="cursor:pointer"><span><b>${esc(a.title)}</b><br><span class="muted small">every ${a.every}</span></span><input type="checkbox" data-job="${a.id}" ${S.autopilotJobs.has(a.id) ? "checked" : ""} style="width:22px;height:22px"></label>`).join("")}</div>`;
+V.connections = () => `<div class="head"><div><h1>Connections</h1><p class="muted">Connect everything once; every agent then works with your real data. Disconnect any time.</p></div></div>
+  ${[...new Set(CAT.connections.map((c) => c.group))].map((g) => `<h2 class="section">${esc(g)}</h2><div class="grid g2">${CAT.connections.filter((c) => c.group === g).map((c) => { const on = S.connected.has(c.id); return `<div class="card stack" style="gap:8px"><div class="row sp"><h3>${esc(c.name)}</h3><span class="pill ${on ? "ok" : c.required ? "warn" : ""}"><span class="dot"></span>${on ? "Connected" : c.required ? "Required" : "Not connected"}</span></div><p class="muted small" style="margin:0">${esc(c.what)}</p><div class="row"><button class="btn sm ${on ? "ghost" : ""}" data-conn="${c.id}">${on ? "Disconnect" : c.kind === "oauth" ? "Connect with " + esc(c.name.split(" ")[0]) : "Paste key"}</button>${c.inEagleBed ? '<span class="pill info">Used by Eagle Bed</span>' : ""}</div></div>`; }).join("")}</div>`).join("")}`;
+V.brief = () => { const F = (l, v) => `<label class="f">${l}<input type="text" value="${esc(v)}"></label>`; return `<div class="head"><div><h1>Business brief</h1><p class="muted">Your facts override everything. Agents only say what is written here, and never what is on the "never say" list.</p></div></div>
+  <div class="stack"><div class="card grid g2">${F("Business name", BIZ.name)}${F("Website", BIZ.domain)}<label class="f">Category<select>${CAT.categories.map((c) => `<option ${c.id === BIZ.category ? "selected" : ""}>${esc(c.label)} — ${esc(c.hint)}</option>`).join("")}</select></label>${F("What you sell", "beds and mattresses")}${F("Town / city", BIZ.city)}${F("Country", BIZ.country)}</div>
+  <div class="card grid g2">${F("Delivery", "Free across Great Britain; NI, Jersey, Guernsey, Isle of Man £90; usually 3–5 working days")}${F("Returns", "14-day free returns")}${F("Warranty", "5-year frame warranty")}${F("Payment options", "Klarna, Clearpay, card, PayPal, cash on delivery")}${F("Max ad spend per day", "£30")}${F("Posting times", BIZ.slots)}</div>
+  <div class="card grid g2"><label class="f">Facts agents may state<textarea rows="5">Handmade to order in Dewsbury\nFully upholstered beds only\nSolid colours, stripes and two-tone fabrics</textarea></label><label class="f">Never say or claim<textarea rows="5">"Leading", "best-selling" or award claims\nMedical or fire-safety claims\n"Mainland" · hotel claims · DivideBuy or 0% interest</textarea></label></div>
+  <div class="row"><button class="btn" id="saveBrief">Save brief</button></div></div>`; };
+V.memory = () => `<div class="head"><div><h1>Memory</h1><p class="muted">What every agent knows about the business, and what they learned from past jobs.</p></div></div>
+  <div class="grid g2"><div class="card"><h2>Remembered facts</h2>${S.facts.map((f, i) => `<div class="row sp" style="border-top:1px solid var(--line);padding:8px 0;flex-wrap:nowrap"><span style="min-width:0">${esc(f)}</span><button class="btn ghost sm" data-forget-f="${i}">Forget</button></div>`).join("") || '<p class="muted">Nothing yet.</p>'}</div>
+  <div class="card"><h2>Lessons learned</h2>${S.lessons.map(([a, t], i) => `<div class="row sp" style="border-top:1px solid var(--line);padding:8px 0;flex-wrap:nowrap"><span style="min-width:0"><span class="pill">${esc(agent(a)?.name)}</span> ${esc(t)}</span><button class="btn ghost sm" data-forget-l="${i}">Forget</button></div>`).join("") || '<p class="muted">Nothing yet.</p>'}</div></div>`;
+const FEATURES = ["All 60 AI agents in 8 departments", `All ${"__N__"} one-tap jobs: SEO, social, ads, sales, operations`, "Every connection: store, Google, Meta, TikTok, YouTube, Canva, Zapier…", "Approval Board with one-tap undo", "Daily 24/7 autopilot and weekly CEO review", "Reports, memory and lessons learned"];
+V.plan = () => { const feats = FEATURES.map((f) => `<li>${esc(f.replace("__N__", CAT.actions.length))}</li>`).join(""); return `<div class="head"><div><h1>Plan & billing</h1><p class="muted">One plan with everything. Pay monthly, or yearly and save 10%.</p></div></div>
+  <div class="card row sp" style="margin-bottom:16px"><div><h3>Free trial</h3><p class="muted small" style="margin:0">7 days with everything. Then choose a plan to keep your team working.</p></div></div>
+  <div class="grid g2"><div class="card price"><h3>Monthly</h3><div class="amt">£100<small> / month</small></div><p class="muted small" style="margin:0">Billed monthly. Cancel any time.</p><ul>${feats}</ul><button class="btn ghost" data-pay="monthly">Choose monthly</button></div>
+  <div class="card price best"><span class="flag">Save 10% · £120 off</span><h3>Yearly</h3><div class="amt">£1,080<small> / year</small></div><p class="muted small" style="margin:0">Works out at £90 a month, billed once a year.</p><ul>${feats}</ul><button class="btn" data-pay="yearly">Choose yearly</button></div></div>
+  <p class="muted small" style="margin-top:10px">Prices in GBP, paid securely by card through Stripe. AI usage runs on each customer's own Claude account (console.anthropic.com).</p>`; };
+
+function render() {
+  const r = route();
+  renderNav();
+  $("#main").innerHTML = V[r]();
+  try { localStorage.setItem("ghq-demo-tab", "#" + r); } catch (e) {}
+  bind();
+}
+function bind() {
+  document.querySelectorAll("[data-auto]").forEach((b) => (b.onclick = () => { S.autopilot = b.dataset.auto; toast(`Autopilot ${S.autopilot}.`); render(); }));
+  document.querySelectorAll("[data-group]").forEach((b) => (b.onclick = () => { actGroup = b.dataset.group; render(); }));
+  const q = $("#actQ"); if (q) q.oninput = () => { actQ = q.value; const pos = q.selectionStart; render(); const n = $("#actQ"); n.focus(); n.setSelectionRange(pos, pos); };
+  const so = $("#sendOrder"); if (so) so.onclick = () => { const v = $("#order").value.trim(); if (!v) return toast("Write an order first."); simulate(null, v); };
+  document.querySelectorAll("[data-bf]").forEach((b) => (b.onclick = () => { boardF = b.dataset.bf; render(); }));
+  document.querySelectorAll("[data-op]").forEach((b) => (b.onclick = () => {
+    const p = S.board.find((x) => x.id === b.dataset.id), op = b.dataset.op;
+    if (op === "apply") { b.innerHTML = '<span class="spin"></span>'; b.disabled = true; setTimeout(() => { p.status = "applied"; toast("Applied. The old version is kept for undo."); render(); }, 900); return; }
+    p.status = op === "reject" ? "rejected" : op === "undo" ? "undone" : "applied";
+    toast(op === "undo" ? "Undone: the old version is back." : op === "reject" ? "Rejected." : "Marked as applied."); render();
+  }));
+  document.querySelectorAll("[data-report]").forEach((b) => (b.onclick = () => {
+    const r = S.reports.find((x) => x.id === b.dataset.report);
+    const body = r.body.map(([k, v]) => k === "h" ? `<h4>${esc(v)}</h4>` : k === "p" ? `<p>${esc(v)}</p>` : k === "l" ? `<ul>${v.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="tbl-wrap"><table><thead><tr>${v[0].map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${v.slice(1).map((row) => `<tr>${row.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`).join("");
+    openSheet(`<div class="row sp"><h2 id="sheetTitle">${esc(r.title)}</h2><button class="btn ghost sm" data-close>Close</button></div><p class="muted small">${when(r.t)} · ${esc(agent(r.agent)?.name)}</p><div class="md">${body}</div>`);
+  }));
+  const ao = $("#allOn"); if (ao) ao.onclick = () => { S.agentsOff.clear(); render(); };
+  document.querySelectorAll("[data-agent]").forEach((b) => (b.onclick = () => { const id = b.dataset.agent; S.agentsOff.has(id) ? S.agentsOff.delete(id) : S.agentsOff.add(id); render(); }));
+  document.querySelectorAll("[data-job]").forEach((c) => (c.onchange = () => { c.checked ? S.autopilotJobs.add(c.dataset.job) : S.autopilotJobs.delete(c.dataset.job); toast("Autopilot jobs updated."); }));
+  document.querySelectorAll("[data-conn]").forEach((b) => (b.onclick = () => {
+    const c = CAT.connections.find((x) => x.id === b.dataset.conn);
+    if (S.connected.has(c.id)) { S.connected.delete(c.id); toast(`${c.name} disconnected.`); return render(); }
+    openSheet(`<div class="row sp"><h2 id="sheetTitle">Connect ${esc(c.name)}</h2><button class="btn ghost sm" data-close>Close</button></div><p class="muted small">${esc(c.what)}</p>
+      ${c.kind === "oauth" ? `<p>In the real app this opens ${esc(c.name.split(" ")[0])}'s own sign-in page, you press Allow, and you come straight back here.</p>${c.pasteToken ? `<p class="muted small">${esc(c.pasteToken)}</p>` : ""}` : `<label class="f">${c.id === "anthropic" ? "Claude API key" : "Key or token"}<input type="password" id="demoKey" autocomplete="off" placeholder="${c.id === "anthropic" ? "sk-ant-…" : "Paste here"}"></label>${c.id === "shopify" ? '<label class="f" style="margin-top:8px">Store address<input type="text" placeholder="yourstore.myshopify.com"></label>' : ""}<p class="muted small" style="margin-top:6px">Demo: nothing you type here is saved or sent anywhere.</p>`}
+      <div class="row" style="margin-top:10px"><button class="btn" id="demoConnect">${c.kind === "oauth" ? "Continue (demo)" : "Save"}</button></div>`);
+    $("#demoConnect").onclick = () => { S.connected.add(c.id); closeSheet(); toast(`${c.name} connected (demo).`); render(); };
+  }));
+  const sb = $("#saveBrief"); if (sb) sb.onclick = () => toast("Saved. Every agent now uses this brief (demo).");
+  document.querySelectorAll("[data-forget-f]").forEach((b) => (b.onclick = () => { S.facts.splice(+b.dataset.forgetF, 1); render(); }));
+  document.querySelectorAll("[data-forget-l]").forEach((b) => (b.onclick = () => { S.lessons.splice(+b.dataset.forgetL, 1); render(); }));
+  document.querySelectorAll("[data-pay]").forEach((b) => (b.onclick = () => toast(`In the real app this opens secure Stripe checkout for the ${b.dataset.pay} plan.`)));
+  document.querySelectorAll("[data-suggest]").forEach((b) => (b.onclick = () => { $("#chatBox").value = b.dataset.suggest; $("#chatBox").focus(); }));
+  const cs = $("#chatSend"), co = $("#chatOrder");
+  if (cs) cs.onclick = () => {
+    const t = $("#chatBox").value.trim(); if (!t) return;
+    S.chat.push({ me: true, text: t });
+    const remember = /^remember/i.test(t);
+    if (remember) S.facts.push(t.replace(/^remember:?\s*/i, ""));
+    S.chat.push({ me: false, text: remember ? "Saved to Memory. Every agent will follow it from now on." : "Demo reply: in the real app I read your connected data and answer with sources. If it needs real work, I hand it to the right agents and put changes on your Board." });
+    render();
+  };
+  if (co) co.onclick = () => { const t = $("#chatBox").value.trim(); if (!t) return toast("Write an order first."); simulate(null, t); };
+}
+addEventListener("hashchange", render);
+render();
+</script>

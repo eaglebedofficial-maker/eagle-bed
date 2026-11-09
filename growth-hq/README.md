@@ -25,3 +25,6 @@ npm run build
 ```
 
 Regenerate the playbooks after editing the source catalogue: `npm run catalog`. To re-extract it from a newer HQ artifact: `npm i --no-save acorn && node scripts/extract-hq-catalog.cjs path/to/hq.html`.
+
+## Interactive demo
+`demo/growth-hq-demo.html` is a one-page interactive demo of every screen, built from the real catalogue with Eagle Bed sample data. Rebuild it with `node demo/build.cjs` after changing the catalogue. In the demo, buttons simulate the AI team; nothing connects to real accounts.
