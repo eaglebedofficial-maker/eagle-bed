@@ -406,3 +406,7 @@ Settings to use:
 - No 'best-selling', 'leading', award, medical, fire-safety, 'mainland' or hotel claims in any listing.
 - Facts come from the website product pages and Shopify option data (sizes, fabrics, 12 colours, 54 inch standard headboard on the two beds that list it). Headboard height is left out where it is not known.
 - Marketplace prices are the owner's decision.
+
+
+## Weights (owner, 10 Nov 2026)
+Approximate shipping weight, same for all designs: Kids Single 25 kg, Single 30, Small Double 36, Double 40, King 45, Super King 50 kg. Maximum load: 300 kg. Set in Shopify for the 5 best sellers so Marketplace Connect sends them to Etsy and Amazon. Owner approved Etsy + Amazon Handmade; accounts must be opened by the owner (ID/bank).
