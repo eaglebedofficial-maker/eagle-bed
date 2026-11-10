@@ -59,7 +59,7 @@ Products: `mayfair-kids-upholstered-bed`, `line-kids-upholstered-bed`, `mini-lin
 
 ### B5. Chesterfield Bed Bedroom Ideas
 
-Chesterfield bed bedroom ideas: deep button-tufted headboards and footboards for a classic British bedroom. Handmade Chesterfield bed frames in velvet, chenille and linen, from single to super king, built on a solid timber frame in Dewsbury, West Yorkshire. (257 characters)
+Chesterfield bed bedroom ideas: deep button-tufted headboards and footboards for a classic British bedroom. Handmade Chesterfield bed frames in Plush Velvet and Chenille, from single to super king, built on a solid timber frame in Dewsbury, West Yorkshire. (256 characters)
 
 Keywords: chesterfield bed, chesterfield bedroom, button tufted bed, chesterfield bed frame, bedroom ideas
 
