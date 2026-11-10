@@ -62,6 +62,8 @@
   <meta name="robots" content="noindex, follow">
 {%- endif -%}
 
+{%- comment -%} Google Discover (10 Nov 2026): allow large image previews so product and guide pages can appear with big photos. {%- endcomment -%}
+<meta name="robots" content="max-image-preview:large">
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
