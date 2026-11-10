@@ -1,0 +1,102 @@
+diff --git a/tools/cinema/autovideo.py b/tools/cinema/autovideo.py
+--- a/tools/cinema/autovideo.py
++++ b/tools/cinema/autovideo.py
+@@ -324,22 +324,73 @@
+     return title
+ 
+ 
++# Video SEO per bed type (ops/seo-types/video.md): search keyword, 3 type hashtags, collection page.
++SEO_TYPES = {
++    "teddy": ("Teddy Bouclé Bed", ["#teddybed", "#bouclebed", "#ottomanbed"], "ottoman-beds"),
++    "kids": ("Kids Bed", ["#kidsbed", "#kidsbedroom", "#upholsteredbed"], "kids-beds"),
++    "mattress": ("Mattress", ["#mattress", "#mattressuk", "#madeinuk"], "mattresses"),
++    "headboard": ("Upholstered Headboard", ["#headboard", "#upholsteredheadboard", "#bedroomdecor"], "headboards"),
++    "gaslift": ("Gas Lift Ottoman Bed", ["#gasliftbed", "#ottomanbed", "#storagebed"], "ottoman-beds"),
++    "ottoman": ("Ottoman Bed", ["#ottomanbed", "#storagebed", "#gasliftbed"], "ottoman-beds"),
++    "divan": ("Upholstered Divan Bed", ["#divanbed", "#storagebed", "#upholsteredbed"], "divan-beds"),
++    "chesterfield": ("Chesterfield Bed", ["#chesterfieldbed", "#chesterfield", "#upholsteredbed"], "chesterfield-beds"),
++    "wingback": ("Wingback Bed", ["#wingbackbed", "#upholsteredbed", "#bedframe"], "wingback-beds"),
++    "velvet": ("Velvet Bed", ["#velvetbed", "#velvetbedframe", "#upholsteredbed"], "upholstered-beds"),
++    "upholstered": ("Upholstered Bed Frame", ["#upholsteredbed", "#bedframe", "#bedroomdecor"], "upholstered-beds"),
++}
++
++
++def seo_type(p):
++    t, name = p["product_type"], p["title"].lower()
++    if "teddy" in name or "bouc" in name:
++        return "teddy"
++    simple = {"Kids Bed": "kids", "Mattress": "mattress", "Headboard": "headboard", "Divan Bed": "divan"}
++    if t in simple:
++        return simple[t]
++    if t == "Ottoman Bed":
++        s = short_name(p["title"]).lower()
++        return "gaslift" if s.endswith("base") or "gas lift" in s else "ottoman"
++    for k in ("chesterfield", "wingback", "velvet"):
++        if k in name:
++            return k
++    return "upholstered"
++
++
++def with_keyword(name, kw):
++    """Add the keyword only when its words are not already in the name."""
++    return name if all(w in name.lower() for w in kw.lower().split()) else name + " – " + kw
++
++
+ def captions(p, slot):
+     url = SITE + "/products/" + p["handle"]
+     price = min(float(v["price"]) for v in p["variants"])
+     title = p["title"]
+-    tag = {"Ottoman Bed": "#ottomanbed", "Divan Bed": "#divanbed", "Kids Bed": "#kidsbed",
+-           "Mattress": "#mattress", "Headboard": "#headboard"}.get(p["product_type"], "#upholsteredbed")
+-    tags = "#eaglebed #handmadeinbritain " + tag + " #bedroominspo #bedroomdecor #ukhome #dewsbury"
++    kind = seo_type(p)
++    kw, ktags, coll = SEO_TYPES[kind]
++    mattress = p["product_type"] == "Mattress"
++    made = "Made in the UK" if mattress else "Handmade in Dewsbury"
++    tags = "#eaglebed " + ("#madeinuk " if mattress else "#handmadeinbritain ") + ktags[0] + " #bedroominspo #bedroomdecor #ukhome" + ("" if mattress else " #dewsbury")
++    yt_tags = " ".join(["#shorts"] + ktags + ["#eaglebed"])
++    tt_tags = " ".join(ktags + ["#eaglebed", "#madeinuk" if mattress else "#handmadeinuk"])
+     camp = "hq_cinema_" + slot.replace(":", "")
+-    body = ("%s, handmade to order in our Dewsbury workshop. From £%s with free delivery across Great Britain, "
+-            "14-day free returns and a 5-year frame warranty." % (title, ("%.2f" % price).rstrip("0").rstrip(".")))
+-    cta = "Like and follow for a new bed every day, and tell us which colour you'd choose in the comments."
++    pr = ("%.2f" % price).rstrip("0").rstrip(".")
++    if mattress:
++        body = ("%s, made in the UK. From £%s with free delivery across Great Britain, "
++                "14-day free returns and a 5-year guarantee." % (title, pr))
++    else:
++        body = ("%s, handmade to order in our Dewsbury workshop. From £%s with free delivery across Great Britain, "
++                "14-day free returns and a 5-year frame warranty." % (title, pr))
++    cta = "Like and follow for a new bed every day, and tell us which %s you'd choose in the comments." % ("size" if mattress else "colour")
++    head = with_keyword(short_name(title), kw)
++    yt_title = next((t for t in (head + " | " + made, head + " | Eagle Bed", head) if len(t) <= 70), head[:70].rstrip())
++    lead = "" if all(w in title.lower() for w in kw.lower().split()) else kw + ": "
++    more = "More %s: %s" % (coll.replace("-", " "), utm(SITE + "/collections/" + coll, "youtube", camp) + "&utm_content=" + kind)
+     return {
+         "product": title, "handle": p["handle"], "url": url, "priceFrom": price,
+-        "youtubeTitle": (title + " | Handmade in Dewsbury #shorts")[:100],
+-        "youtube": body + "\n\nShop: " + utm(url, "youtube", camp) + "\n\n" + cta + "\n\n" + tags,
+-        "tiktok": body + " Link in bio. " + cta + " " + tags,
++        "seoType": kind, "seoKeyword": kw, "hashtags": ktags,
++        "youtubeTitle": yt_title,
++        "youtube": lead + body + "\n\nShop: " + utm(url, "youtube", camp) + "&utm_content=" + kind + "\n" + more + "\n\n" + cta + "\n\n" + yt_tags,
++        "tiktok": lead + body + " Link in bio. " + cta + " " + tt_tags,
+         "instagram": body + "\n\nTap the link in our bio to shop, or search '" + title + "' on eaglebed.co.uk.\n\n" + cta + "\n\n" + tags,
+         "facebook": body + "\n\nShop now: " + utm(url, "facebook", camp) + "\n\n" + cta,
+     }
+@@ -380,12 +431,13 @@
+     t_lines = wrap(name, SERIF, 170, 1850)
+     overlays = []
+     o1 = os.path.join(base, "t1.png")
+-    text_layer(o1, [(l, SERIF, 170, CREAM) for l in t_lines] + [("HANDMADE IN DEWSBURY", SANS, 64, GOLD)], 3150)
++    mattress = p["product_type"] == "Mattress"  # mattresses are made in the UK, with a 5-year guarantee
++    text_layer(o1, [(l, SERIF, 170, CREAM) for l in t_lines] + [("MADE IN THE UK" if mattress else "HANDMADE IN DEWSBURY", SANS, 64, GOLD)], 3150)
+     o2 = os.path.join(base, "t2.png")
+     text_layer(o2, [("From £%s" % (("%.2f" % price).rstrip("0").rstrip(".")), SERIF, 170, CREAM),
+                     ("Free delivery across Great Britain", SANS, 66, GOLD)], 3150)
+     o3 = os.path.join(base, "t3.png")
+-    fx = random.sample(FACTS[2:], 2)
++    fx = random.sample(["14-day free returns", "5-year guarantee", "Klarna & Clearpay available"] if mattress else FACTS[2:], 2)
+     text_layer(o3, [(fx[0], SANS, 84, CREAM), (fx[1], SANS, 84, CREAM)], 3150)
+     overlays = [o1, o2, o3]
+     endp = os.path.join(base, "end.jpg")

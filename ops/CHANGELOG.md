@@ -28,3 +28,4 @@
 - HQ Office → "SEO types" card: all 30 types with status, 7 done-tracked jobs, agents Brand SEO + Video & Voice SEO, Reddit agent covers Quora. Plan: ops/seo-types/PLAN.md.
 - Listings checklist +4 owner steps: Facebook About fix, LinkedIn page, Pinterest business + Rich Pins, Discover tag line.
 - The owner published "Eagle Bed PageSpeed fix 9 Nov" (now MAIN). The Discover tag in ops/theme-speed-2026-11-09/new/meta-tags.liquid could not be pushed (live theme is write-blocked), so it is an owner step.
+- 10 Nov: HQ v39 live "SEO jobs" panel (db seojobs/*). Brand job: About page new text saved as UNPUBLISHED draft page 723344556363 (about-us-draft-nov-2026). Voice job: 15 answers + 13 FAQ blocks (ops/seo-types/voice.*), awaiting owner approval.

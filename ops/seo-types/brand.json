@@ -1,0 +1,338 @@
+{
+  "checkedOn": "2026-11-10",
+  "serp": [
+    {
+      "query": "eagle bed",
+      "location": "United Kingdom",
+      "checked": "2026-11-10 21:24 UTC",
+      "features": [
+        "knowledge panel",
+        "Google reviews",
+        "third-party reviews",
+        "popular products",
+        "images",
+        "related searches"
+      ],
+      "aiOverview": "not shown in this check (it was shown in the earlier 10 Nov check)",
+      "top": [
+        {
+          "pos": 1,
+          "site": "ukbedsdirect.com",
+          "title": "Eagle Bed Frame UK | Luxury Wall Panel Upholstered Bed",
+          "ours": false,
+          "note": "competitor product called Eagle Bed Frame"
+        },
+        {
+          "pos": 2,
+          "site": "facebook.com",
+          "title": "EAGLE BED | Dewsbury",
+          "ours": true,
+          "note": "old Facebook page; text says 'Furniture Repair & Upholstery Service'"
+        },
+        {
+          "pos": 3,
+          "site": "pinterest.com",
+          "title": "Eagle Beds",
+          "ours": false,
+          "note": "Pinterest ideas page (eagle-themed kids beds), not us"
+        },
+        {
+          "pos": 4,
+          "site": "www.eaglebed.co.uk",
+          "title": "Handmade Beds in Dewsbury, West Yorkshire",
+          "ours": true,
+          "note": "a site page, not the home page"
+        },
+        {
+          "pos": 5,
+          "site": "www.eaglebed.co.uk",
+          "title": "Finger Panel Bed",
+          "ours": true
+        },
+        {
+          "pos": 6,
+          "site": "www.eaglebed.co.uk",
+          "title": "Coca Designer Bed",
+          "ours": true
+        },
+        {
+          "pos": 7,
+          "site": "facebook.com",
+          "title": "Eagle Bed | Dewsbury (2 followers)",
+          "ours": "OWNER TO CONFIRM",
+          "note": "second Facebook page; text says 'wholesale prices'"
+        },
+        {
+          "pos": 8,
+          "site": "www.eaglebed.co.uk",
+          "title": "Vegas Luxury Bed",
+          "ours": true
+        },
+        {
+          "pos": 9,
+          "site": "www.eaglebed.co.uk",
+          "title": "Roman Sleigh Bed",
+          "ours": true
+        }
+      ],
+      "summary": "Our site holds 5 of the 9 organic places (4,5,6,8,9) but not #1. The home page itself does not appear."
+    },
+    {
+      "query": "eagle bed dewsbury",
+      "location": "United Kingdom",
+      "checked": "2026-11-10 21:24 UTC",
+      "features": [
+        "knowledge panel",
+        "Google reviews",
+        "people also ask",
+        "popular products",
+        "images",
+        "related searches ('eagle bed dewsbury reviews', 'eagle bed dewsbury prices')"
+      ],
+      "aiOverview": "not shown",
+      "top": [
+        {
+          "pos": 1,
+          "site": "instagram.com",
+          "title": "Hyder Beds (@hyderbedsltd) · Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 2,
+          "site": "yell.com",
+          "title": "My Dream Beds Ltd, Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 3,
+          "site": "mapquest.com",
+          "title": "Emperor Beds UK",
+          "ours": false
+        },
+        {
+          "pos": 4,
+          "site": "facebook.com",
+          "title": "Premium quality beds ... manufacturer based in Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 5,
+          "site": "yell.com",
+          "title": "Cool Bed Limited, Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 6,
+          "site": "yell.com",
+          "title": "Yorkshire Beds & Mattresses, Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 7,
+          "site": "mapquest.com",
+          "title": "Adjust-A-Bed - West Yorkshire",
+          "ours": false
+        },
+        {
+          "pos": 8,
+          "site": "facebook.com",
+          "title": "Wholesale Bed Yorkshire | Dewsbury",
+          "ours": false
+        },
+        {
+          "pos": 9,
+          "site": "mapquest.com",
+          "title": "Divine Sleep - West Yorkshire",
+          "ours": false
+        }
+      ],
+      "summary": "We are NOT on page 1 at all. The page is filled by other Dewsbury bed firms on Yell, MapQuest, Instagram and Facebook. Google still shows a knowledge panel and Google reviews (probably our Google Business Profile)."
+    },
+    {
+      "query": "eaglebed",
+      "location": "United Kingdom",
+      "checked": "2026-11-10 21:24 UTC",
+      "features": [
+        "AI overview",
+        "related searches"
+      ],
+      "aiOverview": "shown (text not returned by the tool)",
+      "top": [
+        {
+          "pos": 1,
+          "site": "www.eaglebed.co.uk",
+          "title": "Eagle Bed UK | Luxury Handmade Upholstered Beds",
+          "ours": true,
+          "note": "home page"
+        },
+        {
+          "pos": 2,
+          "site": "facebook.com",
+          "title": "EAGLE BED | Dewsbury",
+          "ours": true,
+          "note": "same old 'Furniture Repair' text"
+        },
+        {
+          "pos": 3,
+          "site": "trinitytrailer.com",
+          "title": "Customize Your EAGLEBED Truck Bed",
+          "ours": false,
+          "note": "US truck product, not a bed"
+        },
+        {
+          "pos": 4,
+          "site": "ukbedsdirect.com",
+          "title": "Eagle Bed Frame UK",
+          "ours": false
+        },
+        {
+          "pos": 5,
+          "site": "facebook.com (post)",
+          "title": "Every Eagle Bed is handmade in West Yorkshire...",
+          "ours": true
+        },
+        {
+          "pos": 6,
+          "site": "facebook.com (video)",
+          "title": "Handmade in Dewsbury | Eagle Bed",
+          "ours": true
+        }
+      ],
+      "summary": "We are #1. Only 6 organic results were returned."
+    }
+  ],
+  "homeCurrent": {
+    "title": "Eagle Bed UK | Luxury Handmade Upholstered Beds",
+    "meta": "Luxury upholstered beds handmade in the UK. Wingback, ottoman storage, Chesterfield & kids beds in 6 premium fabrics. Free UK delivery 3-5 days. 10,000+ customers.",
+    "problems": [
+      "Meta is 163 characters (over 155, Google cuts it).",
+      "Meta says '10,000+ customers': this is not in BRIEF, please confirm or remove.",
+      "Title does not say Dewsbury."
+    ]
+  },
+  "homeTitleOptions": [
+    "Eagle Bed | Handmade Upholstered Beds from Dewsbury",
+    "Eagle Bed Dewsbury | Handmade Beds, Free GB Delivery"
+  ],
+  "homeMetaOptions": [
+    "Eagle Bed makes upholstered beds by hand in our Dewsbury workshop. Free Great Britain delivery by our own team, 14-day free returns and a 5-year warranty.",
+    "Eagle Bed: wingback, ottoman, Chesterfield and kids beds handmade to order in Dewsbury, West Yorkshire. Free GB delivery, usually in 3–5 working days."
+  ],
+  "aboutPage": {
+    "title": "About Eagle Bed",
+    "handle": "about-us",
+    "exists": true,
+    "existingId": "gid://shopify/Page/717463683403",
+    "existingPublished": true,
+    "existingUpdatedAt": "2026-10-20T17:01:29Z",
+    "action": "Replace the body of the existing page (do not make a new page). Answer and remove the two [OWNER TO CONFIRM] notes before publishing.",
+    "bodyHtml": "<h2>Eagle Bed at a glance</h2>\n<ul>\n<li><strong>Who we are:</strong> Eagle Bed, a bed maker in Dewsbury, West Yorkshire. [OWNER TO CONFIRM: is it right to call Eagle Bed \"family-run\"? The current page says so.]</li>\n<li><strong>What we make:</strong> fully upholstered beds only: panel, wingback, TV, Chesterfield, ottoman gas-lift, divan and kids' beds, plus headboards and mattresses. We do not make wooden or metal beds.</li>\n<li><strong>Where:</strong> every bed is made to order in our own workshop in Dewsbury.</li>\n<li><strong>Delivery:</strong> free across Great Britain (England, Scotland and Wales) by our own team, usually in 3 to 5 working days. Northern Ireland, Jersey, Guernsey and the Isle of Man: &pound;90.</li>\n<li><strong>Returns:</strong> 14-day free returns, and we collect for free.</li>\n<li><strong>Warranty:</strong> 5-year frame warranty. Mattresses: 5-year guarantee.</li>\n<li><strong>Phone:</strong> <a href=\"tel:+447417439197\">07417 439197</a>, Monday to Friday, 9am to 6pm. <strong>Email:</strong> <a href=\"mailto:eaglebedofficial@gmail.com\">eaglebedofficial@gmail.com</a></li>\n</ul>\n\n<h2>Who we are</h2>\n<p>Eagle Bed makes upholstered beds in Dewsbury, West Yorkshire, and sells them online at eaglebed.co.uk. If you search for \"Eagle Bed\", this is us: the Dewsbury bed maker. Other websites sell a bed design called the \"Eagle Bed Frame\", but that is a product name used by other sellers, not our company. [OWNER TO CONFIRM: Eagle Bed has no link to ukbedsdirect.com.]</p>\n\n<h2>Our Dewsbury workshop</h2>\n<p>Every Eagle Bed is built and upholstered to order in our own workshop in Dewsbury. Each bed is made for one customer, in the size, fabric and colour that customer chooses, so the bed that arrives is made for your room rather than taken off a shelf.</p>\n\n<h2>How a bed is made</h2>\n<ol>\n<li><strong>You choose.</strong> Pick a design, a size (Kids Single 2ft6, Single 3ft, Small Double 4ft, Double 4ft6, King 5ft or Super King 6ft), a fabric and a colour.</li>\n<li><strong>We build the frame.</strong> Each bed is built on a solid wood frame with a slatted base. Ottoman beds can have a gas-lift base that lifts the whole mattress platform for storage underneath.</li>\n<li><strong>We upholster it by hand.</strong> The frame and headboard are covered by hand in your chosen fabric, with details such as button tufting on our Chesterfield designs or stitched channels on our panel designs.</li>\n<li><strong>We deliver it.</strong> Our own team brings it to your door, usually within 3 to 5 working days of your order.</li>\n</ol>\n\n<h2>Fabrics</h2>\n<p>Choose from Plush Velvet, Chenille, Coniston, Naples, Galaxy and Teddy Bouclé. Fabrics come in solid colours, stripes and two-tone finishes. Want to see a colour first? <a href=\"/pages/request-a-swatch\">Request free fabric swatches</a> before you order.</p>\n\n<h2>Delivery</h2>\n<p>Delivery is free across Great Britain (England, Scotland and Wales), with no minimum spend. Delivery to Northern Ireland, Jersey, Guernsey and the Isle of Man costs &pound;90. We use our own delivery team, and we contact you to arrange a delivery window once your order is ready. Full details are on our <a href=\"/pages/delivery-information\">delivery information page</a>.</p>\n\n<h2>Returns</h2>\n<p>You can return an item within 14 days, free of charge: we collect it at no cost to you. The item must be unused, unassembled and in its original packaging. If something arrives faulty, damaged or wrong, contact us within 14 days and we will arrange a free replacement or a full refund. For hygiene reasons, mattresses cannot be returned once the packaging is opened, unless faulty. Read the full <a href=\"/pages/returns-policy\">returns policy</a>.</p>\n\n<h2>Warranty</h2>\n<p>Every Eagle Bed frame and headboard has a 5-year warranty covering faults in materials and workmanship under normal home use. Mattresses come with a 5-year guarantee. See the <a href=\"/pages/warranty\">warranty page</a> for full terms.</p>\n\n<h2>Ways to pay</h2>\n<p>Pay by card, PayPal, Klarna or Clearpay at checkout. Cash on delivery is also possible: please call or email us to arrange it. More on our <a href=\"/pages/finance-options\">finance options page</a>.</p>\n\n<h2>Contact Eagle Bed</h2>\n<p>Call <a href=\"tel:+447417439197\">07417 439197</a> (Monday to Friday, 9am to 6pm) or email <a href=\"mailto:eaglebedofficial@gmail.com\">eaglebedofficial@gmail.com</a>. You can also use our <a href=\"/pages/contact\">contact page</a>.</p>\n<p>Follow us: <a href=\"https://www.facebook.com/share/1GQsNDz1cV/\" rel=\"noopener\">Facebook</a>, <a href=\"https://www.instagram.com/eaglebed.co.uk\" rel=\"noopener\">Instagram</a> and <a href=\"https://www.tiktok.com/@eagle.bed\" rel=\"noopener\">TikTok</a>.</p>\n"
+  },
+  "sameAsConfirmed": [
+    "https://www.facebook.com/share/1GQsNDz1cV/",
+    "https://www.instagram.com/eaglebed.co.uk",
+    "https://www.tiktok.com/@eagle.bed"
+  ],
+  "sameAsLater": [
+    {
+      "profile": "YouTube channel",
+      "status": "EXISTS but URL not confirmed",
+      "evidence": "Our Shorts are posted there by Publer (account 6ada6553da10209b23547110), e.g. https://www.youtube.com/watch?v=0L9VMgCpw-Y and https://www.youtube.com/watch?v=9hrWxVHIJcE. This container cannot open youtube.com, so the channel address could not be read.",
+      "todo": "Owner: open YouTube Studio > Customisation > Basic info and copy the channel URL (https://www.youtube.com/@...). Add it here."
+    },
+    {
+      "profile": "Facebook page (stable address)",
+      "status": "add once owner confirms",
+      "evidence": "BRIEF gives page id 466446689880866. A /share/ link is a redirect; a page address is stronger for Google.",
+      "todo": "Owner: copy the page address from the Facebook page (facebook.com/<name> or facebook.com/profile.php?id=...) and use it instead of the share link."
+    },
+    {
+      "profile": "Pinterest business account",
+      "status": "add once created",
+      "todo": "Create, name it 'Eagle Bed', claim eaglebed.co.uk."
+    },
+    {
+      "profile": "Google Business Profile (Maps link)",
+      "status": "add once owner gives the link",
+      "todo": "In the profile, Share > copy link. Used as hasMap, not sameAs."
+    },
+    {
+      "profile": "LinkedIn company page",
+      "status": "add once created"
+    },
+    {
+      "profile": "Yell listing",
+      "status": "add once created"
+    }
+  ],
+  "claimOrder": [
+    {
+      "step": 1,
+      "profile": "Google Business Profile",
+      "action": "check and finish",
+      "why": "It feeds the knowledge panel and Google reviews that show for both 'eagle bed' and 'eagle bed dewsbury'. Make sure the name is exactly 'Eagle Bed', the website is https://www.eaglebed.co.uk, town is Dewsbury, and ask real customers for reviews."
+    },
+    {
+      "step": 2,
+      "profile": "Facebook page 'EAGLE BED | Dewsbury'",
+      "action": "fix the About text",
+      "why": "It is #2 for 'eagle bed' and says 'Furniture Repair & Upholstery Service'. Change it to: 'Eagle Bed makes upholstered beds by hand in Dewsbury. Free delivery across Great Britain.' Add the website link. Remove 'repair' and 'wholesale' wording."
+    },
+    {
+      "step": 3,
+      "profile": "Second Facebook page 'Eagle Bed | Dewsbury' (2 followers)",
+      "action": "OWNER TO CONFIRM if it is ours; if yes, merge into the main page or delete it",
+      "why": "Two pages with the same name split Google's trust and confuse buyers. It says 'wholesale prices', which does not match the site."
+    },
+    {
+      "step": 4,
+      "profile": "Yell.com listing",
+      "action": "create (free listing)",
+      "why": "Three of the 9 results for 'eagle bed dewsbury' are Yell pages for other Dewsbury bed firms. A Yell page named 'Eagle Bed, Dewsbury' can rank there too."
+    },
+    {
+      "step": 5,
+      "profile": "YouTube channel",
+      "action": "tidy and give us the URL",
+      "why": "We already post Shorts there. Name it 'Eagle Bed', add the website link and 'Handmade beds from Dewsbury' in the description, then add its URL to sameAs."
+    },
+    {
+      "step": 6,
+      "profile": "Pinterest business account",
+      "action": "create and claim eaglebed.co.uk",
+      "why": "A Pinterest 'Eagle Beds' ideas page is #3 for 'eagle bed'. Our own Pinterest profile with bed pins can take that kind of place, and Rich Pins link back to the shop."
+    },
+    {
+      "step": 7,
+      "profile": "Bing Places and Apple Business Connect",
+      "action": "create (free)",
+      "why": "MapQuest and other map sites ranking for 'eagle bed dewsbury' copy data from big map listings. Same name, phone and Dewsbury town everywhere."
+    },
+    {
+      "step": 8,
+      "profile": "Instagram and TikTok bios",
+      "action": "update",
+      "why": "Write 'Eagle Bed - handmade upholstered beds, Dewsbury' and the website link, so every profile says the same thing."
+    },
+    {
+      "step": 9,
+      "profile": "LinkedIn company page",
+      "action": "create",
+      "why": "Another trusted page named 'Eagle Bed' that can rank for the brand name and goes into sameAs."
+    },
+    {
+      "step": 10,
+      "profile": "Thomson Local and FreeIndex",
+      "action": "create (free)",
+      "why": "Extra directory pages with the same details. Lower value, do last."
+    }
+  ],
+  "notes": [
+    "OpenRush credits ran out after the 3 SERP checks, so Search Console data (clicks for 'eagle bed' queries) could not be pulled. Add credits and re-run.",
+    "Repo copy theme/snippets/sr-schema.liquid has an old Facebook link (share/1CRno6bbgH); the live site uses share/1GQsNDz1cV. Use the live one if the theme is rebuilt from the repo.",
+    "Current About page says 'family-run', 'the heart of the country's textile region', 'UK-made mattresses', 'We do not import finished beds', 'custom fabric on request' and 'we aim to respond within 24 hours'. None of these are in BRIEF, so the new draft leaves them out.",
+    "Current About page leaves out Jersey, Guernsey and Isle of Man (£90), PayPal, card and cash on delivery. The new draft adds them.",
+    "FAQ page says Klarna/Clearpay let you 'spread the cost interest-free'. BRIEF says never claim 0% interest. Worth checking with the owner.",
+    "Organization schema could add \"alternateName\": [\"EagleBed\", \"Eagle Bed Dewsbury\"] to help Google tie the names together."
+  ]
+}
