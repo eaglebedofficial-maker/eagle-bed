@@ -33,3 +33,4 @@
 
 ## 10 Nov 2026 — Marketplaces (job `market`)
 - ops/seo-types/market.md + market.json: fee/fit table (Etsy, Amazon Handmade, Amazon, eBay, OnBuy, ManoMano), best sellers from 90-day orders, 5 draft listings, owner account checklist. Recommendation: Etsy UK first + Amazon Handmade. No accounts, no Shopify writes, no price changes. OpenRush SERP check blocked (no credits).
+- 10 Nov: tools/cinema/autovideo.py captions now keyword + hashtags per bed type with collection link (ops/seo-types/video-captions.diff applied, tested on 145 products); mattress videos now say "Made in the UK" / "5-year guarantee" instead of handmade-in-Dewsbury / frame warranty.
