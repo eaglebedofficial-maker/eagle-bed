@@ -25,7 +25,7 @@ Eagle Bed HQ artifact (memory/business notes) and in git history. Keep this file
 - Every day 07:47: monitoring + apply HQ READY TO APPLY items + next due item below.
 - Every Monday: weekly organic revenue review + Google Ads review; first Monday of month: market-share review.
 - 1 Nov (overdue): Valentine's/Easter/Mothering Sunday/student keyword pull (R23 data part).
-- 10 Nov: measure E1 snippet experiment (S20).
+- 10 Nov: measure E1 snippet experiment (S20). 10 Nov: could not measure — the experiment details (which page and baseline) were lost when the scratchpad was wiped; it is folded into the 17 Nov re-measure using site GSC totals.
 - 10 Nov: add Christmas last-order-date sentence to /pages/delivery-information ONLY if owner confirmed it.
 - 13 Nov: Black Friday intro lines on /collections/ottoman-beds and /collections/small-double-beds (facts only unless owner gave a real offer).
 - 17 Nov: re-measure 19–20 Oct changes vs baselines; measure guest-bedroom-bed-guide-uk ('guest bedroom', 'best bed for guest room').
