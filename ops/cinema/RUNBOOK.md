@@ -65,6 +65,11 @@ post: record exactly what happened. Never change prices, ads or the theme in thi
    handmade in Dewsbury, free GB delivery, 14-day free returns, 5-year frame warranty or, for mattresses,
    5-year guarantee). NO prices, offers, discounts, phone numbers or "sale" words in the text: Google removed
    an offer-style post on 20 Oct. Use this run's product. Count the task in usage/zapier-YYYY-MM (kinds.gbp +1).
+6c. **Every 09:00 run: one Pinterest pin** (1 Zapier task; skip if safe-per-day < 8). Open
+   ops/seo-types/pin-queue.json, take the FIRST pin with posted false, and call Zapier Pinterest `create_pin`
+   (tool pinterest_create_pin) with board_id = boardId, image_url = image, source_url = link, title, description.
+   Then set that pin's posted true, pinId and postedAt in the file and commit it with the QUEUE line. When all
+   20 are posted, stop this step. Count the task in usage/zapier-YYYY-MM (kinds.pinterest +1).
 7. Add one line to ops/QUEUE.md (date, slot, product, platforms posted or the blocker) and push.
 
 ## Costs

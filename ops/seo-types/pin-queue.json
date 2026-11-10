@@ -1,0 +1,255 @@
+{
+ "note": "Pinterest pin queue: the cinema autopilot posts ONE unposted pin per 09:00 run (1 Zapier task) via Pinterest create_pin; set posted true + pinId.",
+ "boards": {
+  "Velvet Bed Bedroom Ideas": "1106407902147335646",
+  "Small Bedroom Storage Ideas: Ottoman Beds": "1106407902147335647",
+  "Teddy Bouclé Bed Bedroom Ideas": "1106407902147335648",
+  "Kids Room Ideas: Upholstered Kids Beds": "1106407902147335649",
+  "Chesterfield Bed Bedroom Ideas": "1106407902147335650",
+  "Statement Headboard Bedroom Ideas": "1106407902147335651",
+  "Wingback Bed Bedroom Ideas": "1106407902147335652",
+  "Upholstered Headboard Ideas": "1106407902147335653"
+ },
+ "pins": [
+  {
+   "id": "P01",
+   "boardId": "1106407902147335646",
+   "board": "Velvet Bed Bedroom Ideas",
+   "title": "Velvet Bed Bedroom Idea: Fluted Velvet Upholstered Bed",
+   "description": "Velvet bed bedroom idea: fine vertical fluting across a fully upholstered headboard with a matching footboard. Choose Plush Velvet, Crushed Velvet, Chenille, Naples or Linen, with optional ottoman gas-lift storage. Handmade on a solid timber frame in our Dewsbury workshop, single to super king. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/luxury-fluted-velvet-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/29.png?v=1787571391",
+   "posted": true,
+   "flags": [
+    "Crushed"
+   ],
+   "pinId": "1106407833495865332",
+   "postedAt": "2026-11-10"
+  },
+  {
+   "id": "P02",
+   "boardId": "1106407902147335646",
+   "board": "Velvet Bed Bedroom Ideas",
+   "title": "Velvet Bed Ideas: Aurora Line Tufted Upholstered Bed Frame",
+   "description": "Velvet bed ideas with texture: fine stitched channels run the full height of the Aurora headboard for a softer look than a flat panel. Upholster it in Plush Velvet, Crushed Velvet, Chenille, Naples or Linen, and add ottoman gas-lift storage if you need it. Handcrafted in Dewsbury on a solid timber slatted base. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/aurora-vertical-line-tufted-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/66.png?v=1787571215",
+   "posted": false,
+   "flags": [
+    "Crushed"
+   ]
+  },
+  {
+   "id": "P03",
+   "boardId": "1106407902147335646",
+   "board": "Velvet Bed Bedroom Ideas",
+   "title": "Velvet Bed Bedroom Inspiration: Regal Haven Rounded Panel Bed",
+   "description": "Velvet bed bedroom inspiration for traditional rooms: the Regal Haven has vertical panels with softly rounded edges on the headboard and footboard. Choose Plush Velvet, Crushed Velvet, Chenille, Naples or Linen, with optional ottoman gas-lift storage. Handcrafted in our Dewsbury workshop, single to super king. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/regal-haven-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/99.png?v=1787571130",
+   "posted": false,
+   "flags": [
+    "Crushed"
+   ]
+  },
+  {
+   "id": "P04",
+   "boardId": "1106407902147335647",
+   "board": "Small Bedroom Storage Ideas: Ottoman Beds",
+   "title": "Small Bedroom Storage Idea: Florida Gas Lift Ottoman Bed",
+   "description": "Small bedroom storage idea: lift the base and store bedding, spare linen and seasonal clothes out of sight. The Florida Ottoman Bed has an upholstered headboard on a hydraulic, end-opening gas lift base, in all five UK bed sizes. Fabrics include Plush Velvet, Chenille and Teddy Bouclé. Handmade to order in Dewsbury. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/florida-ottoman-gas-lift-divan-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/eKVWhJXqFtX9.png?v=1785623551",
+   "posted": true,
+   "flags": [],
+   "pinId": "1106407833495865336",
+   "postedAt": "2026-11-10"
+  },
+  {
+   "id": "P05",
+   "boardId": "1106407902147335647",
+   "board": "Small Bedroom Storage Ideas: Ottoman Beds",
+   "title": "Small Bedroom Storage Ideas: Side Lift Ottoman Bed",
+   "description": "Small bedroom storage ideas for rooms where the foot of the bed is close to a wall: this ottoman opens from the side on a smooth gas lift, giving a large storage space under the mattress. Clean, modern upholstered design in Plush Velvet, Chenille, Teddy Bouclé and more. Handmade to order in Dewsbury, West Yorkshire. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/side-lift-open-ottoman-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/1ck8hhefGbmu.png?v=1785623350",
+   "posted": false,
+   "flags": [
+    "wall"
+   ]
+  },
+  {
+   "id": "P06",
+   "boardId": "1106407902147335647",
+   "board": "Small Bedroom Storage Ideas: Ottoman Beds",
+   "title": "Bedroom Storage Ideas: Oxford Wingback Bed with Drawers",
+   "description": "Bedroom storage ideas without a lifting base: the Oxford pairs a winged headboard with vertical panel detail and a divan base with built-in pull-out drawers. Wingback style and everyday storage in one handmade bed, in single to super king sizes. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/oxford-divan-storage-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/Black_6.jpg?v=1787570877",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P07",
+   "boardId": "1106407902147335648",
+   "board": "Teddy Bouclé Bed Bedroom Ideas",
+   "title": "Teddy Bed Bedroom Idea: Cloud Teddy Bouclé Ottoman Bed",
+   "description": "Teddy bed bedroom idea: soft, cloud-like teddy bouclé upholstery over a hydraulic gas lift ottoman base, so you get a cosy, textured look and a large hidden storage space in one bed. Handmade to order in our Dewsbury workshop, from single to super king. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/cloud-teddy-boucle-ottoman-gas-lift-storage-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/s_A5qM24rsFW.png?v=1785622724",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P08",
+   "boardId": "1106407902147335648",
+   "board": "Teddy Bouclé Bed Bedroom Ideas",
+   "title": "Bouclé Bed Bedroom Idea: Valentina Double Arch Bed",
+   "description": "Bouclé bed bedroom idea for soft curves: the Valentina has a double arch headboard with a lower, relaxed profile that suits smaller rooms. Choose Teddy Bouclé, Plush Velvet, Chenille, Naples or Linen, with optional ottoman gas-lift storage. Handmade to order in Dewsbury. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/valentina-double-arch-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/53.jpg?v=1787570630",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P09",
+   "boardId": "1106407902147335649",
+   "board": "Kids Room Ideas: Upholstered Kids Beds",
+   "title": "Kids Room Ideas: Mayfair Buttoned Upholstered Kids Bed",
+   "description": "Kids room ideas with a classic touch: the Mayfair Kids Bed has a softly padded, buttoned panel headboard on a solid low frame. Sizes: Kids Single 2ft6, Single 3ft and Small Double 4ft. Fabrics include Plush Velvet, Chenille and Teddy Bouclé in solid colours, stripes or two-tone. Handmade in Dewsbury. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/mayfair-kids-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/PlaaYQdQqzac.png?v=1785622146",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P10",
+   "boardId": "1106407902147335649",
+   "board": "Kids Room Ideas: Upholstered Kids Beds",
+   "title": "Kids Bedroom Ideas: Line Kids Velvet Bed",
+   "description": "Kids bedroom ideas for Scandi or minimalist rooms: a clean panel line headboard on a solid slatted base, upholstered by hand. Choose Kids Single 2ft6, Single 3ft or Small Double 4ft, in Plush Velvet, Chenille, Teddy Bouclé and more. Made to order in our Dewsbury workshop. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/line-kids-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/v4qiOjUgUiG0.png?v=1785622147",
+   "posted": true,
+   "flags": [],
+   "pinId": "1106407833495865340",
+   "postedAt": "2026-11-10"
+  },
+  {
+   "id": "P11",
+   "boardId": "1106407902147335649",
+   "board": "Kids Room Ideas: Upholstered Kids Beds",
+   "title": "Kids Room Ideas: Mini Line Wingback Kids Bed",
+   "description": "Kids room ideas with a grown-up shape: a softly winged headboard with mini line panel detail on a solid low frame. Kids Single 2ft6, Single 3ft or Small Double 4ft, in solid colours, stripes or two-tone across Plush Velvet, Chenille, Teddy Bouclé and more. Handmade in Dewsbury, West Yorkshire. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/mini-line-wingback-kids-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/5DRqPyvyffIX.png?v=1785622146",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P12",
+   "boardId": "1106407902147335650",
+   "board": "Chesterfield Bed Bedroom Ideas",
+   "title": "Chesterfield Bed Bedroom Idea: Royal Button-Tufted Bed",
+   "description": "Chesterfield bed bedroom idea: a button-tufted headboard and matching footboard for a classic British look. The Royal is our value Chesterfield, built on a solid timber frame with a slatted base, with optional ottoman gas-lift storage. Plush Velvet, Crushed Velvet, Chenille, Naples or Linen. Handcrafted in Dewsbury. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/royal-chesterfield-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/126.png?v=1787571057",
+   "posted": false,
+   "flags": [
+    "Crushed"
+   ]
+  },
+  {
+   "id": "P13",
+   "boardId": "1106407902147335650",
+   "board": "Chesterfield Bed Bedroom Ideas",
+   "title": "Chesterfield Bedroom Ideas: Windsor Button-Tufted Bed",
+   "description": "Chesterfield bedroom ideas, kept simple: classic button tufting on a full-height headboard and footboard, with no unnecessary embellishment. Built on a solid timber slatted frame, with optional ottoman gas-lift storage, in single to super king. Handcrafted in our Dewsbury workshop. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/windsor-chesterfield-button-tufted-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/156.png?v=1787570956",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P14",
+   "boardId": "1106407902147335651",
+   "board": "Statement Headboard Bedroom Ideas",
+   "title": "Statement Headboard Bedroom Idea: Arizona Luxury Bed",
+   "description": "Statement headboard bedroom idea for larger rooms: the Arizona has a grand, generously proportioned, deeply padded headboard on a solid timber slatted base. In all five UK bed sizes, with Plush Velvet, Chenille, Teddy Bouclé and more in solid colours, stripes or two-tone. Handmade to order in Dewsbury. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/arizona-luxury-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/Zr6rHhiUJv-6.png?v=1785623350",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P15",
+   "boardId": "1106407902147335651",
+   "board": "Statement Headboard Bedroom Ideas",
+   "title": "Tall Headboard Bed Idea: Grand Extra-Tall Panel Bed",
+   "description": "Tall headboard bed idea for high-ceilinged rooms: the Grand is our tallest headboard, with vertical panel detail running the full extended height. Solid timber slatted frame, optional ottoman gas-lift storage, and Plush Velvet, Crushed Velvet, Chenille, Naples or Linen. Handcrafted in Dewsbury. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/grand-extra-high-vertical-panel-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/20.png?v=1787571410",
+   "posted": false,
+   "flags": [
+    "Crushed"
+   ]
+  },
+  {
+   "id": "P16",
+   "boardId": "1106407902147335651",
+   "board": "Statement Headboard Bedroom Ideas",
+   "title": "Master Bedroom Ideas: Grand Princess Tall Upholstered Bed",
+   "description": "Master bedroom ideas with a centrepiece: the Grand Princess is a tall upholstered bed with an oversized, deeply padded headboard on a solid timber slatted base. Single to super king, in Plush Velvet, Chenille, Teddy Bouclé and more. Handmade to order in Dewsbury, West Yorkshire. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/grand-princess-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/a5WemTmBUcvm.png?v=1785622940",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P17",
+   "boardId": "1106407902147335652",
+   "board": "Wingback Bed Bedroom Ideas",
+   "title": "Curved Wingback Bed Idea: Roxy Upholstered Bed",
+   "description": "Curved wingback bed idea: a sweeping curved wing headboard with a matching plain upholstered footboard, fully upholstered on a solid timber frame. Choose Plush Velvet, Chenille, Teddy Bouclé and more, in solid colours, stripes or two-tone. Handmade to order in our Dewsbury workshop. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/roxy-curved-wingback-upholstered-bed?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/bIksIi0BrtdR.png?v=1785623154",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P18",
+   "boardId": "1106407902147335652",
+   "board": "Wingback Bed Bedroom Ideas",
+   "title": "Wingback Bed Bedroom Idea: Mayfair Plush Velvet Bed",
+   "description": "Wingback bed bedroom idea in a clean, contemporary shape: the Mayfair's winged headboard is upholstered by hand on a solid timber slatted base. Fabrics: Plush Velvet, Chenille, Coniston, Naples, Galaxy and Teddy Bouclé. Single to super king, made to order in Dewsbury. Free delivery across Great Britain by our own team. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/mayfair-wingback-upholstered-bed-frame?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/zQl6SWuEhIWa.png?v=1785623155",
+   "posted": false,
+   "flags": []
+  },
+  {
+   "id": "P19",
+   "boardId": "1106407902147335653",
+   "board": "Upholstered Headboard Ideas",
+   "title": "Upholstered Headboard Idea: Cambridge Curved Headboard",
+   "description": "Upholstered headboard idea for a quick bedroom refresh: the Cambridge has a softly curved top edge that suits traditional and modern rooms. Padded on a solid hardwood frame, wall-mounted or fixed to a divan base, with made-to-measure options on request. Handmade to order in Dewsbury. Tap through to see sizes and fabrics.",
+   "link": "https://www.eaglebed.co.uk/products/cambridge-curved-headboard?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/439.jpg?v=1785764519",
+   "posted": false,
+   "flags": [
+    "wall"
+   ]
+  },
+  {
+   "id": "P20",
+   "boardId": "1106407902147335653",
+   "board": "Upholstered Headboard Ideas",
+   "title": "Headboard Ideas: Chester Wingback Upholstered Headboard",
+   "description": "Headboard ideas for a divan: a Chester-style wingback headboard gives a divan base the look of a full upholstered bed. Softly curved wings frame a structured, generously padded panel front, and it fits standard UK divan bases. Plush Velvet, Chenille, Teddy Bouclé and more. Handmade in Dewsbury. Tap through to see sizes and order free fabric swatches.",
+   "link": "https://www.eaglebed.co.uk/products/chester-wingback-panel-headboard?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+   "image": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/3OkxSIFDrEHU.png?v=1785622301",
+   "posted": false,
+   "flags": []
+  }
+ ]
+}
