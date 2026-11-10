@@ -50,8 +50,20 @@
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
+
+  if template.name == 'index'
+    assign eb_home_title = shop.metafields.global.title_tag.value | default: shop.metafields.global.title_tag | strip
+    assign eb_home_desc = shop.metafields.global.description_tag.value | default: shop.metafields.global.description_tag | strip
+    if eb_home_title != blank
+      assign og_title = eb_home_title
+    endif
+    if eb_home_desc != blank
+      assign og_description = eb_home_desc
+    endif
+  endif
 %}
 
+{%- comment -%} SEO (10 Nov 2026): on the home page og:title / og:description (and twitter) follow the shop SEO metafields global.title_tag / global.description_tag, like the <title> in layout/theme.liquid. {%- endcomment -%}
 {%- comment -%} Eagle Bed: keep thin duplicate listings and internal search results out of the index {%- endcomment -%}
 {%- if request.page_type == 'collection' -%}
   {%- if collection.handle == 'frontpage' or collection.handle == 'new-trending' or collection.handle == 'all' -%}
