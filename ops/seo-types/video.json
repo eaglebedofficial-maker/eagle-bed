@@ -1,0 +1,919 @@
+{
+ "date": "2026-11-10",
+ "dataNote": "OpenRush (Search Console, keyword volumes, SERP) returned 402 insufficient credits for every call on 10 Nov 2026, so UK volumes and video-result checks are empty, not guessed. Search Console evidence is from the voice agent's pull earlier the same day (ops/seo-types/voice.json, question-style queries, last 3 months).",
+ "keywordPlan": [
+  {
+   "type": "Ottoman beds",
+   "seoType": "ottoman",
+   "main": {
+    "keyword": "ottoman bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "ottoman storage bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "king size ottoman bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "small double ottoman bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "how do ottoman beds work",
+     "impressions": 128,
+     "position": 7.1
+    },
+    {
+     "query": "are ottoman beds better than divan beds",
+     "impressions": 108,
+     "position": 7.7
+    },
+    {
+     "query": "divan vs ottoman",
+     "impressions": 174,
+     "position": 18.4
+    }
+   ],
+   "landingPages": [
+    "/collections/ottoman-beds",
+    "/collections/king-size-ottoman-beds",
+    "/collections/small-double-ottoman-beds"
+   ]
+  },
+  {
+   "type": "Gas lift beds",
+   "seoType": "gaslift",
+   "main": {
+    "keyword": "gas lift ottoman bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "gas lift bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "ottoman bed base",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "end opening ottoman bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "what is gas lift storage bed",
+     "impressions": 69,
+     "position": 11.5
+    },
+    {
+     "query": "what does gas lift bed mean",
+     "impressions": 37,
+     "position": 9.2
+    },
+    {
+     "query": "gas lift bed meaning",
+     "impressions": 26,
+     "position": 11.5
+    }
+   ],
+   "landingPages": [
+    "/collections/ottoman-beds",
+    "/collections/storage-beds"
+   ]
+  },
+  {
+   "type": "Velvet beds",
+   "seoType": "velvet",
+   "main": {
+    "keyword": "velvet bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "velvet bed frame",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "fluted velvet bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "crushed velvet bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [],
+   "landingPages": [
+    "/collections/upholstered-beds"
+   ]
+  },
+  {
+   "type": "Teddy boucle beds",
+   "seoType": "teddy",
+   "main": {
+    "keyword": "teddy bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "boucle bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "teddy boucle ottoman bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "boucle bed frame",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [],
+   "landingPages": [
+    "/collections/ottoman-beds"
+   ]
+  },
+  {
+   "type": "Chesterfield beds",
+   "seoType": "chesterfield",
+   "main": {
+    "keyword": "chesterfield bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "chesterfield bed frame",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "button tufted bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "chesterfield divan bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "what is a chesterfield bed",
+     "impressions": 122,
+     "position": 25.9
+    }
+   ],
+   "landingPages": [
+    "/collections/chesterfield-beds"
+   ]
+  },
+  {
+   "type": "Wingback beds",
+   "seoType": "wingback",
+   "main": {
+    "keyword": "wingback bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "wingback bed frame",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "wingback headboard",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "king size wingback bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [],
+   "landingPages": [
+    "/collections/wingback-beds"
+   ]
+  },
+  {
+   "type": "Divan beds",
+   "seoType": "divan",
+   "main": {
+    "keyword": "divan bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "divan bed with drawers",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "divan bed with headboard",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "divan base",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "divan vs bed frame",
+     "impressions": 190,
+     "position": 10.5
+    },
+    {
+     "query": "what is a divan bed",
+     "impressions": 126,
+     "position": 18.5
+    },
+    {
+     "query": "platform bed frame vs divan base which is better",
+     "impressions": 152,
+     "position": 7.8
+    }
+   ],
+   "landingPages": [
+    "/collections/divan-beds",
+    "/collections/storage-beds-with-drawers"
+   ]
+  },
+  {
+   "type": "Kids beds",
+   "seoType": "kids",
+   "main": {
+    "keyword": "kids bed",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "kids upholstered bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "children's single bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "kids single bed",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [],
+   "landingPages": [
+    "/collections/kids-beds"
+   ]
+  },
+  {
+   "type": "Headboards",
+   "seoType": "headboard",
+   "main": {
+    "keyword": "upholstered headboard",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "fabric headboard",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "headboard for divan bed",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "tall headboard",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "how much does a made-to-measure headboard typically cost?",
+     "impressions": 11,
+     "position": 2
+    }
+   ],
+   "landingPages": [
+    "/collections/headboards"
+   ]
+  },
+  {
+   "type": "Mattresses",
+   "seoType": "mattress",
+   "main": {
+    "keyword": "pocket sprung mattress",
+    "ukVolume": null,
+    "videoResults": null
+   },
+   "secondary": [
+    {
+     "keyword": "memory foam mattress",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "pillow top mattress",
+     "ukVolume": null,
+     "videoResults": null
+    },
+    {
+     "keyword": "3000 pocket sprung mattress",
+     "ukVolume": null,
+     "videoResults": null
+    }
+   ],
+   "volumeNote": "not measured: OpenRush returned 402 (insufficient credits) on 10 Nov 2026",
+   "videoResultsNote": "not checked: OpenRush SERP check returned 402 (insufficient credits)",
+   "searchConsoleEvidence": [
+    {
+     "query": "best pillow top mattress uk",
+     "impressions": 14,
+     "position": 54.4
+    },
+    {
+     "query": "mattress sizes uk",
+     "impressions": 8,
+     "position": 76.4
+    }
+   ],
+   "landingPages": [
+    "/collections/mattresses"
+   ]
+  }
+ ],
+ "templates": {
+  "youtube": {
+   "title": "{short name}[ – {type keyword} if its words are missing] | Handmade in Dewsbury (mattresses: Made in the UK). If longer than 70 characters: '| Eagle Bed', then no suffix.",
+   "description": "[{type keyword}: if missing from the full title]{full product title}, handmade to order in our Dewsbury workshop. From £{price} with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: {product url}?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_{HHMM}&utm_content={seoType}\nMore {collection}: {collection url with the same UTM}\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts {3 type hashtags} #eaglebed",
+   "mattressDescription": "Same, but '{full product title}, made in the UK.' and 'a 5-year guarantee'; the comment prompt asks about size, not colour.",
+   "hashtags": "5: #shorts + 3 type hashtags + #eaglebed"
+  },
+  "tiktok": {
+   "caption": "[{type keyword}: ]{body as above} Link in bio. {call to action} {3 type hashtags} #eaglebed #handmadeinuk (mattresses #madeinuk)",
+   "hashtags": "5: 3 type hashtags + #eaglebed + #handmadeinuk or #madeinuk",
+   "note": "TikTok search reads the caption, so the type keyword comes first when the product title does not already contain it."
+  },
+  "detection": "seo_type(p) in tools/cinema/autovideo.py: teddy/boucle in title > Kids Bed > Mattress > Headboard > Divan Bed > Ottoman Bed ('gaslift' when the short name ends in 'Base' or says 'gas lift', else 'ottoman') > chesterfield / wingback / velvet in title > 'upholstered'.",
+  "coverage": {
+   "upholstered": 71,
+   "headboard": 17,
+   "wingback": 16,
+   "divan": 10,
+   "chesterfield": 7,
+   "ottoman": 7,
+   "mattress": 6,
+   "kids": 6,
+   "gaslift": 2,
+   "velvet": 1,
+   "teddy": 1
+  },
+  "patch": "ops/seo-types/video-captions.diff (not applied; `git apply --check` passes)",
+  "perType": {
+   "ottoman": {
+    "captionKeyword": "Ottoman Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#ottomanbed",
+     "#storagebed",
+     "#gasliftbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#ottomanbed",
+     "#storagebed",
+     "#gasliftbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/ottoman-beds",
+    "example": {
+     "product": "Florida Ottoman Bed – Gas Lift Storage Bed with Headboard",
+     "youtubeTitle": "Florida Ottoman Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 42,
+     "youtubeDescription": "Florida Ottoman Bed – Gas Lift Storage Bed with Headboard, handmade to order in our Dewsbury workshop. From £357.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/florida-ottoman-gas-lift-divan-bed?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=ottoman\nMore ottoman beds: https://www.eaglebed.co.uk/collections/ottoman-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=ottoman\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #ottomanbed #storagebed #gasliftbed #eaglebed",
+     "tiktokCaption": "Florida Ottoman Bed – Gas Lift Storage Bed with Headboard, handmade to order in our Dewsbury workshop. From £357.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #ottomanbed #storagebed #gasliftbed #eaglebed #handmadeinuk"
+    }
+   },
+   "gaslift": {
+    "captionKeyword": "Gas Lift Ottoman Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#gasliftbed",
+     "#ottomanbed",
+     "#storagebed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#gasliftbed",
+     "#ottomanbed",
+     "#storagebed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/ottoman-beds",
+    "example": {
+     "product": "Ottoman Gas Lift Divan Base",
+     "youtubeTitle": "Ottoman Gas Lift Divan Base – Gas Lift Ottoman Bed | Eagle Bed",
+     "youtubeTitleLength": 62,
+     "youtubeDescription": "Gas Lift Ottoman Bed: Ottoman Gas Lift Divan Base, handmade to order in our Dewsbury workshop. From £220.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/ottoman-gas-lift-divan-base?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=gaslift\nMore ottoman beds: https://www.eaglebed.co.uk/collections/ottoman-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=gaslift\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #gasliftbed #ottomanbed #storagebed #eaglebed",
+     "tiktokCaption": "Gas Lift Ottoman Bed: Ottoman Gas Lift Divan Base, handmade to order in our Dewsbury workshop. From £220.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #gasliftbed #ottomanbed #storagebed #eaglebed #handmadeinuk"
+    }
+   },
+   "velvet": {
+    "captionKeyword": "Velvet Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#velvetbed",
+     "#velvetbedframe",
+     "#upholsteredbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#velvetbed",
+     "#velvetbedframe",
+     "#upholsteredbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/upholstered-beds",
+    "example": {
+     "product": "Fluted Velvet Bed – Vertical Fluted Upholstered Bed Frame",
+     "youtubeTitle": "Fluted Velvet Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 40,
+     "youtubeDescription": "Fluted Velvet Bed – Vertical Fluted Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £384.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/luxury-fluted-velvet-upholstered-bed-frame?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=velvet\nMore upholstered beds: https://www.eaglebed.co.uk/collections/upholstered-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=velvet\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #velvetbed #velvetbedframe #upholsteredbed #eaglebed",
+     "tiktokCaption": "Fluted Velvet Bed – Vertical Fluted Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £384.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #velvetbed #velvetbedframe #upholsteredbed #eaglebed #handmadeinuk"
+    }
+   },
+   "teddy": {
+    "captionKeyword": "Teddy Bouclé Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#teddybed",
+     "#bouclebed",
+     "#ottomanbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#teddybed",
+     "#bouclebed",
+     "#ottomanbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/ottoman-beds",
+    "example": {
+     "product": "Cloud Teddy Bouclé Ottoman Bed – Gas Lift Storage Bed",
+     "youtubeTitle": "Cloud Teddy Bouclé Ottoman Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 53,
+     "youtubeDescription": "Cloud Teddy Bouclé Ottoman Bed – Gas Lift Storage Bed, handmade to order in our Dewsbury workshop. From £376.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/cloud-teddy-boucle-ottoman-gas-lift-storage-bed?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=teddy\nMore ottoman beds: https://www.eaglebed.co.uk/collections/ottoman-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=teddy\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #teddybed #bouclebed #ottomanbed #eaglebed",
+     "tiktokCaption": "Cloud Teddy Bouclé Ottoman Bed – Gas Lift Storage Bed, handmade to order in our Dewsbury workshop. From £376.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #teddybed #bouclebed #ottomanbed #eaglebed #handmadeinuk"
+    }
+   },
+   "chesterfield": {
+    "captionKeyword": "Chesterfield Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#chesterfieldbed",
+     "#chesterfield",
+     "#upholsteredbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#chesterfieldbed",
+     "#chesterfield",
+     "#upholsteredbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/chesterfield-beds",
+    "example": {
+     "product": "Royal Chesterfield Bed – Button-Tufted Upholstered Bed Frame",
+     "youtubeTitle": "Royal Chesterfield Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 45,
+     "youtubeDescription": "Royal Chesterfield Bed – Button-Tufted Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £364.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/royal-chesterfield-upholstered-bed?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=chesterfield\nMore chesterfield beds: https://www.eaglebed.co.uk/collections/chesterfield-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=chesterfield\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #chesterfieldbed #chesterfield #upholsteredbed #eaglebed",
+     "tiktokCaption": "Royal Chesterfield Bed – Button-Tufted Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £364.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #chesterfieldbed #chesterfield #upholsteredbed #eaglebed #handmadeinuk"
+    }
+   },
+   "wingback": {
+    "captionKeyword": "Wingback Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#wingbackbed",
+     "#upholsteredbed",
+     "#bedframe",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#wingbackbed",
+     "#upholsteredbed",
+     "#bedframe",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/wingback-beds",
+    "example": {
+     "product": "Eagle Harlington Wingback Bed – Panel Upholstered Bed Frame",
+     "youtubeTitle": "Eagle Harlington Wingback Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 52,
+     "youtubeDescription": "Eagle Harlington Wingback Bed – Panel Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £324.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/harlington-wingback-vertical-panel-bed-frame?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=wingback\nMore wingback beds: https://www.eaglebed.co.uk/collections/wingback-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=wingback\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #wingbackbed #upholsteredbed #bedframe #eaglebed",
+     "tiktokCaption": "Eagle Harlington Wingback Bed – Panel Upholstered Bed Frame, handmade to order in our Dewsbury workshop. From £324.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #wingbackbed #upholsteredbed #bedframe #eaglebed #handmadeinuk"
+    }
+   },
+   "divan": {
+    "captionKeyword": "Upholstered Divan Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#divanbed",
+     "#storagebed",
+     "#upholsteredbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#divanbed",
+     "#storagebed",
+     "#upholsteredbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/divan-beds",
+    "example": {
+     "product": "Oxford Wingback Storage Bed with Drawers – Upholstered Divan Bed",
+     "youtubeTitle": "Oxford Wingback Storage Bed with Drawers – Upholstered Divan Bed",
+     "youtubeTitleLength": 64,
+     "youtubeDescription": "Oxford Wingback Storage Bed with Drawers – Upholstered Divan Bed, handmade to order in our Dewsbury workshop. From £259.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/oxford-divan-storage-bed-frame?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=divan\nMore divan beds: https://www.eaglebed.co.uk/collections/divan-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=divan\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #divanbed #storagebed #upholsteredbed #eaglebed",
+     "tiktokCaption": "Oxford Wingback Storage Bed with Drawers – Upholstered Divan Bed, handmade to order in our Dewsbury workshop. From £259.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #divanbed #storagebed #upholsteredbed #eaglebed #handmadeinuk"
+    }
+   },
+   "kids": {
+    "captionKeyword": "Kids Bed",
+    "youtubeHashtags": [
+     "#shorts",
+     "#kidsbed",
+     "#kidsbedroom",
+     "#upholsteredbed",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#kidsbed",
+     "#kidsbedroom",
+     "#upholsteredbed",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/kids-beds",
+    "example": {
+     "product": "Line Kids Velvet Bed – Handmade Upholstered Kids Bed",
+     "youtubeTitle": "Line Kids Velvet Bed | Handmade in Dewsbury",
+     "youtubeTitleLength": 43,
+     "youtubeDescription": "Line Kids Velvet Bed – Handmade Upholstered Kids Bed, handmade to order in our Dewsbury workshop. From £285.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/line-kids-upholstered-bed?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=kids\nMore kids beds: https://www.eaglebed.co.uk/collections/kids-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=kids\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #kidsbed #kidsbedroom #upholsteredbed #eaglebed",
+     "tiktokCaption": "Line Kids Velvet Bed – Handmade Upholstered Kids Bed, handmade to order in our Dewsbury workshop. From £285.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #kidsbed #kidsbedroom #upholsteredbed #eaglebed #handmadeinuk"
+    }
+   },
+   "headboard": {
+    "captionKeyword": "Upholstered Headboard",
+    "youtubeHashtags": [
+     "#shorts",
+     "#headboard",
+     "#upholsteredheadboard",
+     "#bedroomdecor",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#headboard",
+     "#upholsteredheadboard",
+     "#bedroomdecor",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/headboards",
+    "example": {
+     "product": "Haven Upholstered Headboard – Handmade Fabric Headboard",
+     "youtubeTitle": "Haven Upholstered Headboard | Handmade in Dewsbury",
+     "youtubeTitleLength": 50,
+     "youtubeDescription": "Haven Upholstered Headboard – Handmade Fabric Headboard, handmade to order in our Dewsbury workshop. From £181.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/haven-upholstered-headboard?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=headboard\nMore headboards: https://www.eaglebed.co.uk/collections/headboards?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=headboard\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #headboard #upholsteredheadboard #bedroomdecor #eaglebed",
+     "tiktokCaption": "Haven Upholstered Headboard – Handmade Fabric Headboard, handmade to order in our Dewsbury workshop. From £181.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #headboard #upholsteredheadboard #bedroomdecor #eaglebed #handmadeinuk"
+    }
+   },
+   "mattress": {
+    "captionKeyword": "Mattress",
+    "youtubeHashtags": [
+     "#shorts",
+     "#mattress",
+     "#mattressuk",
+     "#newmattress",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#mattress",
+     "#mattressuk",
+     "#newmattress",
+     "#eaglebed",
+     "#madeinuk"
+    ],
+    "collection": "/collections/mattresses",
+    "example": {
+     "product": "3000 Pocket Sprung Mattress – Single to Super King",
+     "youtubeTitle": "3000 Pocket Sprung Mattress | Made in the UK",
+     "youtubeTitleLength": 44,
+     "youtubeDescription": "3000 Pocket Sprung Mattress – Single to Super King, made in the UK. From £220.99 with free delivery across Great Britain, 14-day free returns and a 5-year guarantee.\n\nShop: https://www.eaglebed.co.uk/products/3000-pocket-sprung-mattress-uk?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=mattress\nMore mattresses: https://www.eaglebed.co.uk/collections/mattresses?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=mattress\n\nLike and follow for a new bed every day, and tell us which size you'd choose in the comments.\n\n#shorts #mattress #mattressuk #newmattress #eaglebed",
+     "tiktokCaption": "3000 Pocket Sprung Mattress – Single to Super King, made in the UK. From £220.99 with free delivery across Great Britain, 14-day free returns and a 5-year guarantee. Link in bio. Like and follow for a new bed every day, and tell us which size you'd choose in the comments. #mattress #mattressuk #newmattress #eaglebed #madeinuk"
+    }
+   },
+   "upholstered": {
+    "captionKeyword": "Upholstered Bed Frame",
+    "note": "fallback for bed frames with no type word in the title (71 of 145 products)",
+    "youtubeHashtags": [
+     "#shorts",
+     "#upholsteredbed",
+     "#bedframe",
+     "#bedroomdecor",
+     "#eaglebed"
+    ],
+    "tiktokHashtags": [
+     "#upholsteredbed",
+     "#bedframe",
+     "#bedroomdecor",
+     "#eaglebed",
+     "#handmadeinuk"
+    ],
+    "collection": "/collections/upholstered-beds",
+    "example": {
+     "product": "Elegant Panel Bed – Short-Headboard Upholstered Frame",
+     "youtubeTitle": "Elegant Panel Bed – Upholstered Bed Frame | Handmade in Dewsbury",
+     "youtubeTitleLength": 64,
+     "youtubeDescription": "Elegant Panel Bed – Short-Headboard Upholstered Frame, handmade to order in our Dewsbury workshop. From £312.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty.\n\nShop: https://www.eaglebed.co.uk/products/elegant-vertical-panel-upholstered-bed?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=upholstered\nMore upholstered beds: https://www.eaglebed.co.uk/collections/upholstered-beds?utm_source=youtube&utm_medium=social&utm_campaign=hq_cinema_1800&utm_content=upholstered\n\nLike and follow for a new bed every day, and tell us which colour you'd choose in the comments.\n\n#shorts #upholsteredbed #bedframe #bedroomdecor #eaglebed",
+     "tiktokCaption": "Elegant Panel Bed – Short-Headboard Upholstered Frame, handmade to order in our Dewsbury workshop. From £312.99 with free delivery across Great Britain, 14-day free returns and a 5-year frame warranty. Link in bio. Like and follow for a new bed every day, and tell us which colour you'd choose in the comments. #upholsteredbed #bedframe #bedroomdecor #eaglebed #handmadeinuk"
+    }
+   }
+  }
+ },
+ "channel": {
+  "description": "Eagle Bed makes upholstered beds by hand in our own workshop in Dewsbury, West Yorkshire. Every bed is made to order on a solid wood frame: ottoman and gas lift storage beds, Chesterfield, wingback, panel and fluted beds, divan beds with drawers, kids beds and headboards. We also sell UK-made mattresses.\n\nNew Shorts twice a day: a different real bed from our range each time, with the link to shop it.\n\nFabrics include plush velvet, chenille, linen and teddy boucle in solid colours, stripes and two-tone. Free fabric swatches let you check the colour at home.\n\nFree delivery across Great Britain by our own team, usually in 3-5 working days. 14-day free returns. 5-year frame warranty (mattresses: 5-year guarantee). Pay by card, PayPal, Klarna or Clearpay.\n\nShop: https://www.eaglebed.co.uk\nCall: 07417 439197 (Mon-Fri 9am-6pm)\nInstagram @eaglebed.co.uk | TikTok @eagle.bed",
+  "descriptionLength": 877,
+  "keywords": [
+   "Eagle Bed",
+   "upholstered beds",
+   "handmade beds UK",
+   "Dewsbury",
+   "ottoman bed",
+   "gas lift ottoman bed",
+   "storage bed",
+   "chesterfield bed",
+   "wingback bed",
+   "velvet bed",
+   "teddy boucle bed",
+   "divan bed",
+   "divan bed with drawers",
+   "kids bed",
+   "upholstered headboard",
+   "pocket sprung mattress",
+   "bed frame UK",
+   "king size bed",
+   "bedroom ideas"
+  ],
+  "playlists": [
+   {
+    "name": "Ottoman & Gas Lift Storage Beds",
+    "seoTypes": [
+     "ottoman",
+     "gaslift",
+     "teddy"
+    ],
+    "description": "Ottoman beds with gas lift storage, handmade to order in Dewsbury. The whole mattress platform lifts on gas struts to open the storage underneath. Free delivery across Great Britain. Shop: https://www.eaglebed.co.uk/collections/ottoman-beds"
+   },
+   {
+    "name": "Chesterfield Beds",
+    "seoTypes": [
+     "chesterfield"
+    ],
+    "description": "Button-tufted Chesterfield beds, upholstered by hand in our Dewsbury workshop on a solid wood frame. Shop: https://www.eaglebed.co.uk/collections/chesterfield-beds"
+   },
+   {
+    "name": "Wingback Beds",
+    "seoTypes": [
+     "wingback"
+    ],
+    "description": "Wingback beds with wrap-around headboard wings, handmade to order in Dewsbury in the fabric and colour you choose. Shop: https://www.eaglebed.co.uk/collections/wingback-beds"
+   },
+   {
+    "name": "Panel, Fluted & Velvet Beds",
+    "seoTypes": [
+     "velvet",
+     "upholstered"
+    ],
+    "description": "Panel, fluted, channel and line headboard beds, in plush velvet and other fabrics. Free fabric swatches. Shop: https://www.eaglebed.co.uk/collections/upholstered-beds"
+   },
+   {
+    "name": "Divan Beds with Drawers",
+    "seoTypes": [
+     "divan"
+    ],
+    "description": "Upholstered divan beds and storage beds with drawers, handmade in Dewsbury. Shop: https://www.eaglebed.co.uk/collections/divan-beds"
+   },
+   {
+    "name": "Kids Beds",
+    "seoTypes": [
+     "kids"
+    ],
+    "description": "Upholstered kids beds, handmade to order in Dewsbury, in kids single, single and small double sizes. Shop: https://www.eaglebed.co.uk/collections/kids-beds"
+   }
+  ],
+  "playlistNote": "Headboard and mattress Shorts: add a 7th playlist 'Headboards & Mattresses' (https://www.eaglebed.co.uk/collections/headboards) once there are 3 or more of them. Publer posts do not add to playlists; the owner adds each Short in YouTube Studio, or a weekly job does it later.",
+  "trailer": {
+   "idea": "30-40 second vertical trailer cut from footage we already host: open on the 4K Fluted Velvet Bed clip (9 Nov), cut to the 4K Sussex Panel Storage Bed clip (10 Nov), then the existing short clips eb-short-handmade.mp4, eb-short-swatches.mp4 and eagle-bed-free-delivery-short.mp4, and end on the Eagle Bed end card (eaglebed.co.uk, 'Like & follow for a new bed every day'). On-screen lines: 'Handmade in Dewsbury' / 'Free fabric swatches' / 'Free delivery across Great Britain' / 'New beds twice a day'. Music: one of the Eagle Bed originals in tools/cinema/music.",
+   "check": "The older clips (eb-short-*, eb-v-*, eb-music-*) could not be watched from this container (cdn.shopify.com is blocked here), so the owner checks them before use. The cinema clips are AI-styled scenes made from our real photos; the trailer should not suggest they are filmed in a customer's home."
+  }
+ },
+ "productVideos": {
+  "list": [
+   {
+    "handle": "luxury-fluted-velvet-upholstered-bed-frame",
+    "type": "velvet",
+    "video": "Shopify Video gid://shopify/Video/75361333576011 (eagle-bed-fluted-velvet-bed-4k.mp4, READY) and https://cdn.shopify.com/s/files/1/1021/5410/9259/files/eagle-bed-fluted-velvet-bed-4k_5d5d12dc-81d8-462e-b097-290eb3736fff.mp4",
+    "made": "2026-11-09",
+    "status": "ready to attach, needs owner approval"
+   },
+   {
+    "handle": "sussex-storage-panel-bed-frame",
+    "type": "divan",
+    "video": "https://cdn.shopify.com/s/files/1/1021/5410/9259/files/eagle-bed-sussex-storage-panel-bed-4k.mp4",
+    "made": "2026-11-10",
+    "status": "ready to attach, needs owner approval"
+   },
+   {
+    "handle": "cloud-teddy-boucle-ottoman-gas-lift-storage-bed",
+    "type": "teddy",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle cloud-teddy-boucle-ottoman-gas-lift-storage-bed so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "florida-ottoman-gas-lift-divan-bed",
+    "type": "ottoman",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle florida-ottoman-gas-lift-divan-bed so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "mayfair-ottoman-gas-lift-divan-bed",
+    "type": "ottoman",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle mayfair-ottoman-gas-lift-divan-bed so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "ottoman-gas-lift-divan-base",
+    "type": "gaslift",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle ottoman-gas-lift-divan-base so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "royal-chesterfield-upholstered-bed",
+    "type": "chesterfield",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle royal-chesterfield-upholstered-bed so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "harlington-wingback-vertical-panel-bed-frame",
+    "type": "wingback",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle harlington-wingback-vertical-panel-bed-frame so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "oxford-divan-storage-bed-frame",
+    "type": "divan",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle oxford-divan-storage-bed-frame so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "line-kids-upholstered-bed",
+    "type": "kids",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle line-kids-upholstered-bed so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "haven-upholstered-headboard",
+    "type": "headboard",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle haven-upholstered-headboard so every bed type has one, then attach after owner approval"
+   },
+   {
+    "handle": "3000-pocket-sprung-mattress-uk",
+    "type": "mattress",
+    "video": null,
+    "status": "no video yet: run autovideo.py --handle 3000-pocket-sprung-mattress-uk so every bed type has one, then attach after owner approval"
+   }
+  ],
+  "themeGap": "The live product template (sections/eb3d-product.liquid, theme 212291486027) shows only image and 3D model media. A video added to a product would NOT appear on the page until the owner publishes a theme change that renders media_type 'video'. Do not add VideoObject before then.",
+  "howToAttach": "After owner approval: Shopify productCreateMedia (or productUpdate with media) with originalSource = the CDN file URL and mediaContentType VIDEO; keep it after the main photo (position 2) so the first image stays the LCP image. For the fluted velvet bed the Shopify Video already exists, so it can be referenced instead of uploaded again.",
+  "videoObject": "Only on products where the video is visible in the gallery: add VideoObject JSON-LD (name, description, thumbnailUrl, uploadDate, contentUrl, duration) inside the eagle-product-schema snippet, guarded by a check that product.media contains a video. See video.md for the Liquid.",
+  "labelling": "Cinema clips are AI-styled scenes of the exact bed made from our own photos. Add a short caption under the player, for example 'Styled scenes made from our product photos', so shoppers are not misled."
+ },
+ "longIdeas": [
+  {
+   "title": "Ottoman bed or divan bed? How a gas lift bed works",
+   "facts": [
+    "A gas lift bed uses hydraulic gas struts to lift the whole mattress platform on a hinge, opening the storage underneath without taking the mattress off (Ottoman Gas Lift Divan Base page).",
+    "A divan is an upholstered box base, usually with drawers or with no storage (same page).",
+    "Gas lift base from £220.99 in Single 3ft (current listing)."
+   ],
+   "evidence": "Search Console (voice.json, last 3 months): 'divan vs ottoman' 174 impressions, 'how do ottoman beds work' 128, 'what is gas lift storage bed' 69.",
+   "footage": "Owner films the lift opening and closing on a real bed in the workshop."
+  },
+  {
+   "title": "What is a Chesterfield bed? Chesterfield, wingback and panel styles",
+   "facts": [
+    "Chesterfield beds have a button-tufted headboard (Royal Chesterfield page).",
+    "Wingback beds have side wings on the headboard; we have 33 products in the Wingback Beds collection and 14 in Chesterfield Beds.",
+    "All are fully upholstered on solid wood frames, made to order in Dewsbury."
+   ],
+   "evidence": "'what is a chesterfield bed' 122 impressions at position 25.9.",
+   "footage": "Existing cinema clips plus phone close-ups of buttons and wings."
+  },
+  {
+   "title": "UK bed sizes explained: single to super king",
+   "facts": [
+    "Single 3ft 90x190cm, Small Double 4ft 120x190cm, Double 4ft6 135x190cm, King 5ft 150x200cm, Super King 6ft 180x200cm (mattress pages).",
+    "Kids beds also come in Kids Single 2.6ft.",
+    "Our bed sizes guide is on the site."
+   ],
+   "evidence": "'mattress sizes uk' and size questions in Search Console.",
+   "footage": "Tape-measure shots on real beds; on-screen size table."
+  },
+  {
+   "title": "Choosing your fabric: velvet, chenille, linen or teddy boucle",
+   "facts": [
+    "Fabrics listed on product pages: Plush Velvet, Naples, Chenille, Linen, Crushed Velvet, Coniston, Galaxy and Teddy Bouclé.",
+    "Solid colours, stripes and two-tone only.",
+    "Free fabric swatches to check colours at home."
+   ],
+   "evidence": "Velvet and fabric questions in Search Console are small (single figures); this video mainly helps people decide.",
+   "footage": "Swatch close-ups (existing eb-short-swatches.mp4 as the start)."
+  },
+  {
+   "title": "From our Dewsbury workshop to your door",
+   "facts": [
+    "Built on a solid wood frame and upholstered by hand, made to order in Dewsbury, West Yorkshire.",
+    "Free delivery across Great Britain by our own team, usually 3-5 working days; Northern Ireland, Jersey, Guernsey and the Isle of Man £90.",
+    "14-day free returns (unused, unassembled, original packaging, we collect); 5-year frame warranty (mattresses: 5-year guarantee).",
+    "Pay by card, PayPal, Klarna, Clearpay or cash on delivery (call or email)."
+   ],
+   "evidence": "Answers the delivery, returns and payment questions customers ask.",
+   "footage": "Owner films the workshop (no street or house numbers on camera) and a delivery van loading."
+  }
+ ]
+}

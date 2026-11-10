@@ -30,3 +30,6 @@
 - The owner published "Eagle Bed PageSpeed fix 9 Nov" (now MAIN). The Discover tag in ops/theme-speed-2026-11-09/new/meta-tags.liquid could not be pushed (live theme is write-blocked), so it is an owner step.
 - 10 Nov: HQ v39 live "SEO jobs" panel (db seojobs/*). Brand job: About page new text saved as UNPUBLISHED draft page 723344556363 (about-us-draft-nov-2026). Voice job: 15 answers + 13 FAQ blocks (ops/seo-types/voice.*), awaiting owner approval.
 - Community SEO (job `community`): drafted 10 disclosed answers for Mumsnet/Reddit threads (8 Mumsnet to post, 2 Reddit marked "do not post: rules") + posting guidance in ops/seo-types/community.md and community.json. Nothing posted.
+
+## 10 Nov 2026 — Marketplaces (job `market`)
+- ops/seo-types/market.md + market.json: fee/fit table (Etsy, Amazon Handmade, Amazon, eBay, OnBuy, ManoMano), best sellers from 90-day orders, 5 draft listings, owner account checklist. Recommendation: Etsy UK first + Amazon Handmade. No accounts, no Shopify writes, no price changes. OpenRush SERP check blocked (no credits).

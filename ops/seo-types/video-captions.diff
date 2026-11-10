@@ -9,7 +9,7 @@ diff --git a/tools/cinema/autovideo.py b/tools/cinema/autovideo.py
 +SEO_TYPES = {
 +    "teddy": ("Teddy Bouclé Bed", ["#teddybed", "#bouclebed", "#ottomanbed"], "ottoman-beds"),
 +    "kids": ("Kids Bed", ["#kidsbed", "#kidsbedroom", "#upholsteredbed"], "kids-beds"),
-+    "mattress": ("Mattress", ["#mattress", "#mattressuk", "#madeinuk"], "mattresses"),
++    "mattress": ("Mattress", ["#mattress", "#mattressuk", "#newmattress"], "mattresses"),
 +    "headboard": ("Upholstered Headboard", ["#headboard", "#upholsteredheadboard", "#bedroomdecor"], "headboards"),
 +    "gaslift": ("Gas Lift Ottoman Bed", ["#gasliftbed", "#ottomanbed", "#storagebed"], "ottoman-beds"),
 +    "ottoman": ("Ottoman Bed", ["#ottomanbed", "#storagebed", "#gasliftbed"], "ottoman-beds"),
