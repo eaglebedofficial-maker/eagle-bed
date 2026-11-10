@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "eb3d-collection",
+      "settings": {
+        "show_description": true,
+        "stat_2": "Handmade in Dewsbury",
+        "stat_3": "Free delivery across Great Britain",
+        "chips": ["upholstered-beds", "wingback-beds", "chesterfield-beds", "ottoman-beds", "divan-beds", "storage-beds", "divan-ottoman-beds", "kids-beds", "headboards", "mattresses"],
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "per_page": 24,
+        "show_about": true
+      }
+    }
+  },
+  "order": ["main"]
+}

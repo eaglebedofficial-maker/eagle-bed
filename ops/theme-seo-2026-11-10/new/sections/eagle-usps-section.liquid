@@ -1,0 +1,43 @@
+{%- comment -%} Eagle Bed — Benefit Bullets (fully editable section). {%- endcomment -%}
+{%- assign uid = 'eu-' | append: section.id -%}
+<div id="{{ uid }}" class="eu-wrap" style="--eu-accent:{{ section.settings.accent }};--eu-bg:{{ section.settings.background }};">
+  <div class="eu-card">
+    {%- if section.settings.heading != blank -%}<h2 class="eu-h">{{ section.settings.heading }}</h2>{%- endif -%}
+    <ul class="eu-list">
+      {%- assign items = section.settings.usp_1 | append: '~|~' | append: section.settings.usp_2 | append: '~|~' | append: section.settings.usp_3 | append: '~|~' | append: section.settings.usp_4 -%}
+      {%- assign parts = items | split: '~|~' -%}
+      {%- for p in parts -%}{%- if p != blank -%}
+        <li><span class="eu-tick"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>{{ p }}</span></li>
+      {%- endif -%}{%- endfor -%}
+    </ul>
+  </div>
+</div>
+<style>
+  #{{ uid }} { padding:{{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px; background:var(--eu-bg); }
+  #{{ uid }} .eu-card { max-width:640px; margin:0 auto; }
+  #{{ uid }} .eu-h { font-size:1.15rem; font-weight:700; color:#1a1a1a; margin:0 0 14px; text-align:center; }
+  #{{ uid }} .eu-list { list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+  #{{ uid }} .eu-list li { display:flex; align-items:center; gap:11px; font-size:.98rem; color:#333; line-height:1.4; }
+  #{{ uid }} .eu-tick { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--eu-accent); color:#fff; }
+  #{{ uid }} .eu-tick svg { width:13px; height:13px; }
+</style>
+{% schema %}
+{
+  "name": "Eagle Benefit Bullets",
+  "tag": "section",
+  "class": "eagle-usps-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
+    { "type": "text", "id": "usp_1", "label": "Bullet 1", "default": "Handmade to order in West Yorkshire" },
+    { "type": "text", "id": "usp_2", "label": "Bullet 2", "default": "Solid wood frame and premium upholstery" },
+    { "type": "text", "id": "usp_3", "label": "Bullet 3", "default": "Free delivery across Great Britain" },
+    { "type": "text", "id": "usp_4", "label": "Bullet 4", "default": "5-year warranty and finance available" },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "accent", "label": "Tick colour", "default": "#7f285b" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 8 }
+  ],
+  "presets": [{ "name": "Eagle Benefit Bullets" }]
+}
+{% endschema %}

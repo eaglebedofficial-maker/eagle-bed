@@ -1,0 +1,63 @@
+{%- comment -%}
+  Eagle Bed — Delivery Timeline (compact, shown between Quantity and Add to Cart).
+  Editable via the "Delivery Timeline" block in the theme editor.
+{%- endcomment -%}
+{%- assign step_1 = step_1 | default: 'Ordered' -%}
+{%- assign step_2 = step_2 | default: 'Order Ready' -%}
+{%- assign step_3 = step_3 | default: 'Delivered' -%}
+{%- assign ready_from = ready_from | default: 1 -%}
+{%- assign ready_to = ready_to | default: 2 -%}
+{%- assign delivered_from = delivered_from | default: 3 -%}
+{%- assign delivered_to = delivered_to | default: 5 -%}
+{%- assign footnote = footnote | default: 'Free delivery within <strong>3–5 working days</strong> across Great Britain.' -%}
+{%- assign accent = accent | default: '#7f285b' -%}
+{%- assign accent_2 = accent_2 | default: '#a83b76' -%}
+{%- assign background = background | default: '#f7f1ec' -%}
+
+{%- assign day = 86400 -%}
+{%- assign now_ts = 'now' | date: '%s' | times: 1 -%}
+{%- assign ordered_date = now_ts | date: '%-d %b' -%}
+{%- assign ready_start = ready_from | times: day | plus: now_ts | date: '%-d %b' -%}
+{%- assign ready_end = ready_to | times: day | plus: now_ts | date: '%-d %b' -%}
+{%- assign del_start = delivered_from | times: day | plus: now_ts | date: '%-d %b' -%}
+{%- assign del_end = delivered_to | times: day | plus: now_ts | date: '%-d %b' -%}
+
+<div class="eagle-dt" id="eagle-dt-product" style="--dt-accent:{{ accent }};--dt-accent-2:{{ accent_2 }};--dt-bg:{{ background }};">
+  <div class="eagle-dt__track">
+    <div class="eagle-dt__line"></div>
+    <div class="eagle-dt__step">
+      <div class="eagle-dt__node"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 3h2.2l1 4m0 0 1.6 8.2a1.5 1.5 0 0 0 1.5 1.2h7.7a1.5 1.5 0 0 0 1.5-1.1l1.7-6.6a.8.8 0 0 0-.8-1H5.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg></div>
+      <div class="eagle-dt__label">{{ step_1 }}</div>
+      <div class="eagle-dt__date">{{ ordered_date }}</div>
+    </div>
+    <div class="eagle-dt__step">
+      <div class="eagle-dt__node"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 8.2 12 3 3 8.2v7.6L12 21l9-5.2V8.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 8.2 12 13.4l9-5.2M12 13.4V21" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+      <div class="eagle-dt__label">{{ step_2 }}</div>
+      <div class="eagle-dt__date">{% if ready_from == ready_to %}{{ ready_start }}{% else %}{{ ready_start }} – {{ ready_end }}{% endif %}</div>
+    </div>
+    <div class="eagle-dt__step">
+      <div class="eagle-dt__node"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 6.5h10.5v9H2.5zM13 9h4l3 3v3.5h-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.9" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="1.9" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <div class="eagle-dt__label">{{ step_3 }}</div>
+      <div class="eagle-dt__date">{% if delivered_from == delivered_to %}{{ del_start }}{% else %}{{ del_start }} – {{ del_end }}{% endif %}</div>
+    </div>
+  </div>
+  {%- if footnote != blank -%}
+    <p class="eagle-dt__foot"><span class="svg-wrapper" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>{{ footnote }}</span></p>
+  {%- endif -%}
+</div>
+
+<style>
+  #eagle-dt-product { --dt-text:#1a1a1a; --dt-muted:#6b6b6b; margin:12px 0 14px; padding:14px 12px 11px; background:var(--dt-bg); border:1px solid rgba(0,0,0,.06); border-radius:12px; text-align:center; }
+  #eagle-dt-product .eagle-dt__track { position:relative; display:flex; justify-content:space-between; align-items:flex-start; gap:4px; }
+  #eagle-dt-product .eagle-dt__line { position:absolute; top:22px; left:17%; right:17%; height:2px; background:linear-gradient(90deg,var(--dt-accent),var(--dt-accent-2)); border-radius:2px; z-index:0; }
+  #eagle-dt-product .eagle-dt__step { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; align-items:center; }
+  #eagle-dt-product .eagle-dt__node { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; background:linear-gradient(135deg,var(--dt-accent),var(--dt-accent-2)); box-shadow:0 4px 12px rgba(127,40,91,.26); border:3px solid var(--dt-bg); }
+  #eagle-dt-product .eagle-dt__node svg { width:22px; height:22px; }
+  #eagle-dt-product .eagle-dt__label { margin-top:9px; font-weight:600; font-size:.64rem; text-transform:uppercase; letter-spacing:.7px; color:var(--dt-muted); }
+  #eagle-dt-product .eagle-dt__date { margin-top:5px; display:inline-block; font-size:.8rem; font-weight:700; color:var(--dt-accent); background:#fff; padding:3px 10px; border-radius:999px; border:1px solid rgba(127,40,91,.16); box-shadow:0 1px 4px rgba(127,40,91,.1); white-space:nowrap; }
+  #eagle-dt-product .eagle-dt__foot { margin:13px 0 0; font-size:.74rem; color:var(--dt-text); font-weight:500; display:inline-flex; align-items:center; gap:6px; line-height:1.3; }
+  #eagle-dt-product .eagle-dt__foot strong { color:var(--dt-accent); font-weight:700; }
+  #eagle-dt-product .eagle-dt__foot .svg-wrapper { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; width:16px; height:16px; border-radius:50%; background:var(--dt-accent); color:#fff; }
+  #eagle-dt-product .eagle-dt__foot .svg-wrapper svg { width:10px; height:10px; }
+  @media (max-width:480px){ #eagle-dt-product .eagle-dt__node { width:40px; height:40px; } #eagle-dt-product .eagle-dt__node svg { width:20px; height:20px; } #eagle-dt-product .eagle-dt__line { top:20px; } #eagle-dt-product .eagle-dt__date { font-size:.74rem; padding:3px 8px; } #eagle-dt-product .eagle-dt__foot { font-size:.7rem; } }
+</style>

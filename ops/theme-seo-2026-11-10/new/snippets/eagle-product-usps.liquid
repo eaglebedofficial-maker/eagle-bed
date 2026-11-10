@@ -1,0 +1,32 @@
+{%- comment -%}
+  Eagle Bed — Product USP bullets (shown under the price).
+  Edit the text via the "USP bullets" block in the theme editor.
+{%- endcomment -%}
+{%- assign usp_1 = usp_1 | default: 'Handmade to order in West Yorkshire' -%}
+{%- assign usp_2 = usp_2 | default: 'Solid wood frame &amp; premium upholstery' -%}
+{%- assign usp_3 = usp_3 | default: 'Free delivery across Great Britain' -%}
+{%- assign usp_4 = usp_4 | default: '5-year warranty &amp; finance available' -%}
+{%- assign accent = accent | default: '#7f285b' -%}
+
+<ul class="eagle-usps" style="--u-accent:{{ accent }};">
+  {%- assign items = usp_1 | append: '~|~' | append: usp_2 | append: '~|~' | append: usp_3 | append: '~|~' | append: usp_4 -%}
+  {%- assign parts = items | split: '~|~' -%}
+  {%- for p in parts -%}
+    {%- if p != blank -%}
+      <li>
+        <span class="eagle-usps__tick" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>{{ p }}</span>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
+
+<style>
+  .eagle-usps { list-style:none; margin:14px 0 18px; padding:0; display:grid; gap:9px; }
+  .eagle-usps li { display:flex; align-items:center; gap:10px; font-size:.92rem; color:#333; line-height:1.35; }
+  .eagle-usps__tick { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px; border-radius:50%; background:var(--u-accent); color:#fff; }
+  .eagle-usps__tick svg { width:12px; height:12px; }
+</style>

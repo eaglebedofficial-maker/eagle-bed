@@ -1,0 +1,65 @@
+{%- comment -%} Eagle Bed — "Why choose Eagle Bed" benefits strip (product page). Fully editable in the theme editor. {%- endcomment -%}
+{%- assign acc = section.settings.accent -%}
+<div class="epb" style="--epb-accent:{{ acc }};--epb-bg:{{ section.settings.background }};">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="epb__heading">{{ section.settings.heading }}</h2>
+    <div class="epb__rule"></div>
+  {%- endif -%}
+  <div class="epb__grid">
+    <div class="epb__item">
+      <span class="epb__ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      <h3>{{ section.settings.t1 }}</h3><p>{{ section.settings.d1 }}</p>
+    </div>
+    <div class="epb__item">
+      <span class="epb__ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 6.5h10.5v9H2.5zM13 9h4l3 3v3.5h-7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      <h3>{{ section.settings.t2 }}</h3><p>{{ section.settings.d2 }}</p>
+    </div>
+    <div class="epb__item">
+      <span class="epb__ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 20 6v6c0 4.5-3.2 7.5-8 9-4.8-1.5-8-4.5-8-9V6l8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <h3>{{ section.settings.t3 }}</h3><p>{{ section.settings.d3 }}</p>
+    </div>
+    <div class="epb__item">
+      <span class="epb__ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="3.5" y="3.5" width="17" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/></svg></span>
+      <h3>{{ section.settings.t4 }}</h3><p>{{ section.settings.d4 }}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .epb { max-width:1100px; margin:0 auto; padding:{{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px; background:var(--epb-bg); text-align:center; }
+  .epb__heading { font-size:clamp(1.4rem,2.6vw,1.9rem); font-weight:700; color:#1a1a1a; margin:0 0 12px; }
+  .epb__rule { width:56px; height:2px; background:var(--epb-accent); margin:0 auto 34px; }
+  .epb__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
+  .epb__item { display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .epb__ic { display:inline-flex; align-items:center; justify-content:center; width:58px; height:58px; border-radius:50%;
+    background:#fff; border:1px solid rgba(127,40,91,.16); color:var(--epb-accent); box-shadow:0 4px 12px rgba(127,40,91,.10); }
+  .epb__ic svg { width:28px; height:28px; }
+  .epb__item h3 { font-size:1rem; font-weight:700; color:#1a1a1a; margin:4px 0 0; }
+  .epb__item p { font-size:.86rem; color:#555; line-height:1.55; margin:0; max-width:230px; }
+  @media (max-width:749px){ .epb__grid { grid-template-columns:repeat(2,1fr); gap:30px 18px; } }
+</style>
+
+{% schema %}
+{
+  "name": "Eagle Benefits Strip",
+  "tag": "section",
+  "class": "eagle-benefits-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why Choose Eagle Bed" },
+    { "type": "text", "id": "t1", "label": "Benefit 1 title", "default": "Handmade in the UK" },
+    { "type": "textarea", "id": "d1", "label": "Benefit 1 text", "default": "Crafted to order in West Yorkshire using solid wood frames and premium upholstery." },
+    { "type": "text", "id": "t2", "label": "Benefit 2 title", "default": "Free Fast Delivery" },
+    { "type": "textarea", "id": "d2", "label": "Benefit 2 text", "default": "Free delivery across Great Britain, typically within 3–5 working days." },
+    { "type": "text", "id": "t3", "label": "Benefit 3 title", "default": "5-Year Warranty" },
+    { "type": "textarea", "id": "d3", "label": "Benefit 3 text", "default": "Every bed is backed by our 5-year warranty and satisfaction guarantee." },
+    { "type": "text", "id": "t4", "label": "Benefit 4 title", "default": "Made Your Way" },
+    { "type": "textarea", "id": "d4", "label": "Benefit 4 text", "default": "Choose your size, fabric, colour and headboard to match your bedroom." },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "accent", "label": "Accent", "default": "#7f285b" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#f7f1ec" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "default": 48 }
+  ],
+  "presets": [{ "name": "Eagle Benefits Strip" }]
+}
+{% endschema %}

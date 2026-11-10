@@ -1,0 +1,359 @@
+{{ 'eb3d.css' | asset_url | stylesheet_tag }}
+{{ 'eb3d-luxe.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'eb3d.js' | asset_url }}" defer></script>
+<script src="{{ 'eb3d-luxe.js' | asset_url }}" defer></script>
+<style>.eb3d-stage__face img{object-fit:contain;background:#fff}.eb3d-size-first{margin-bottom:18px}.eb3d-trust a{text-decoration:underline;text-underline-offset:3px}.eb3d-trust li{line-height:1.35}.eb3d-pdp-video{position:relative;margin-top:14px;border-radius:26px;overflow:hidden;background:radial-gradient(90% 80% at 50% 30%,#f7f6f3,#e3dfd8)}.eb3d-pdp-video video{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;background:#fff}.eb3d-pdp-video iframe{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0}</style>
+{%- liquid
+  assign cv = product.selected_or_first_available_variant
+  assign first_media = cv.featured_media | default: product.featured_media
+  assign first_alt = first_media.alt | default: product.title
+  assign has_model = false
+  for m in product.media
+    if m.media_type == 'model'
+      assign has_model = true
+    endif
+  endfor
+  assign form_id = 'eb3d-form-' | append: section.id
+  assign noop = 'eb3d-noop-' | append: section.id
+  assign related = product.collections.first
+  if collection
+    assign related = collection
+  endif
+  assign eb_skip = 'frontpage|all|new-trending|best-sellers' | split: '|'
+  assign eb_type = product.type | downcase
+  assign eb_pref = 'upholstered-beds'
+  if eb_type == 'ottoman bed'
+    assign eb_pref = 'ottoman-beds'
+  elsif eb_type == 'divan bed'
+    assign eb_pref = 'divan-beds'
+  elsif eb_type == 'kids bed'
+    assign eb_pref = 'kids-beds'
+  elsif eb_type == 'mattress'
+    assign eb_pref = 'mattresses'
+  elsif eb_type == 'headboard'
+    assign eb_pref = 'headboards'
+  endif
+  assign crumb_col = nil
+  for c in product.collections
+    if c.handle == eb_pref
+      assign crumb_col = c
+      break
+    endif
+  endfor
+  unless crumb_col
+    if related
+      unless eb_skip contains related.handle
+        assign crumb_col = related
+      endunless
+    endif
+  endunless
+  unless crumb_col
+    for c in product.collections
+      unless eb_skip contains c.handle
+        assign crumb_col = c
+        break
+      endunless
+    endfor
+  endunless
+  assign ptype = product.type | downcase
+  assign show3d = false
+  if section.settings.show_3d and ptype contains 'bed'
+    assign show3d = true
+  endif
+  assign hay = product.tags | join: ' ' | append: ' ' | append: product.title | downcase
+  assign bstyle = 'wingback'
+  if hay contains 'chester'
+    assign bstyle = 'chesterfield'
+  elsif hay contains 'ottoman'
+    assign bstyle = 'ottoman'
+  endif
+  assign cols = section.settings.colours_3d | split: ','
+-%}
+<div class="eb3d eb3d-pdp" data-pdp data-money-format="{{ shop.money_format | strip_html | escape }}">
+  <div class="eb3d-wrap">
+    <nav class="eb3d-crumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a> /
+      {%- if crumb_col -%} <a href="{{ crumb_col.url }}">{{ crumb_col.title | escape }}</a> /{%- endif -%}
+      <span aria-current="page"> {{ product.title | escape }}</span>
+    </nav>
+    <div class="eb3d-pdp__grid">
+      <div class="eb3d-gallery" data-gallery data-three-src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" data-bed-src="{{ 'eb3d-bed.js' | asset_url }}">
+        {%- if show3d -%}
+          <div class="eb3d-gtabs" role="tablist" aria-label="Gallery view">
+            <button type="button" role="tab" class="eb3d-gtab is-on" aria-selected="true" data-gtab="photos">Photos</button>
+            <button type="button" role="tab" class="eb3d-gtab" aria-selected="false" data-gtab="3d"><span class="eb3d-gtab__dot" aria-hidden="true"></span>3D colour preview</button>
+          </div>
+        {%- endif -%}
+        <div data-gview="photos">
+          <div class="eb3d-stage" data-stage>
+            <div class="eb3d-stage__card" data-faces>
+              <div class="eb3d-stage__face">
+                {%- if first_media -%}
+                  {{ first_media.preview_image | image_url: width: 1400 | image_tag: widths: '600,900,1200,1400', sizes: '(min-width: 990px) 55vw, 100vw', fetchpriority: 'high', loading: 'eager', alt: first_alt }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </div>
+            </div>
+            <span class="eb3d-stage__glare" aria-hidden="true"></span>
+            {%- if has_model -%}
+              <div class="eb3d-stage__model" data-model>
+                {%- for m in product.media -%}
+                  {%- if m.media_type == 'model' -%}
+                    {{ m | model_viewer_tag: image_size: '1024x', reveal: 'auto', toggleable: false, camera-controls: true, auto-rotate: true, ar: true }}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if show3d -%}<button type="button" class="eb3d-try3d" data-gopen="3d"><span class="eb3d-gtab__dot" aria-hidden="true"></span>See it in your colour</button>{%- endif -%}
+            {%- if first_media -%}<button type="button" class="eb3d-stage__zoom" data-zoom>View full size</button>{%- endif -%}
+          </div>
+          {%- if product.media.size > 1 -%}
+            <div class="eb3d-thumbs" role="list" aria-label="Product images">
+              {%- for m in product.media -%}
+                {%- if m.media_type == 'image' or m.media_type == 'model' -%}
+                  {%- assign t_alt = m.alt | default: product.title -%}
+                  <button type="button" role="listitem" class="eb3d-thumb{% if m.id == first_media.id %} is-active{% endif %}" data-thumb="{{ m.id }}" data-type="{{ m.media_type }}" data-src="{{ m.preview_image | image_url: width: 1400 }}" data-alt="{{ t_alt | escape }}" aria-label="Show image {{ forloop.index }}">
+                    {{ m.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+                    {%- if m.media_type == 'model' -%}<span class="eb3d-thumb__3d">3D</span>{%- endif -%}
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- comment -%} SEO (10 Nov 2026): product videos (Shopify video and YouTube/Vimeo) under the photos. The main photo stays the first media item and the LCP image; preload none keeps the page fast. {%- endcomment -%}
+          {%- for m in product.media -%}
+            {%- if m.media_type == 'video' or m.media_type == 'external_video' -%}
+              <div class="eb3d-pdp-video">
+                {%- if m.media_type == 'video' -%}
+                  {{ m | video_tag: controls: true, muted: true, playsinline: true, preload: 'none', image_size: '1400x' }}
+                {%- else -%}
+                  {{ m | external_video_tag: loading: 'lazy' }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if show3d -%}
+          <div data-gview="3d" hidden>
+            <div class="eb3d-cfg eb3d-cfg--pdp" data-eb3d-hero data-cfg data-autoplay="86400" aria-label="3D colour preview">
+              <div class="eb3d-cfg__stage" data-bed-stage tabindex="0" aria-label="3D bed in the selected colour. Drag, or use the left and right arrow keys, to turn it.">
+                <canvas aria-hidden="true"></canvas>
+                <div class="eb3d-cfg__fallback">{%- if first_media -%}{{ first_media.preview_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</div>
+                <span class="eb3d-pdp3d__hint" aria-hidden="true">Drag to turn</span>
+                <div class="eb3d-cfg__label" aria-live="polite">
+                  {%- for c in cols -%}
+                    {%- assign pair = c | split: ':' -%}
+                    {%- assign cname = pair[0] | strip -%}
+                    {%- assign chex = pair[1] | strip -%}
+                    <p class="eb3d-cfg__name{% if forloop.first %} is-active{% endif %}" data-slide data-color="{{ chex }}" data-style="{{ bstyle }}">{{ cname | escape }}<span>{{ section.settings.preview_note | escape }}</span></p>
+                  {%- endfor -%}
+                </div>
+              </div>
+              <div class="eb3d-cfg__swatches" role="tablist" aria-label="Preview colour">
+                {%- for c in cols -%}
+                  {%- assign pair = c | split: ':' -%}
+                  {%- assign cname = pair[0] | strip -%}
+                  {%- assign chex = pair[1] | strip -%}
+                  <button type="button" role="tab" class="eb3d-cfg__sw{% if forloop.first %} is-active{% endif %}" data-slide-tab data-cname="{{ cname | downcase | escape }}" aria-label="{{ cname | escape }}" title="{{ cname | escape }}" style="--sw: {{ chex }}"><span class="eb3d-swatch"></span></button>
+                {%- endfor -%}
+              </div>
+              <p class="eb3d-pdp3d__note">{{ section.settings.preview_help | escape }}{%- if section.settings.swatch_link != blank -%} <a href="{{ section.settings.swatch_link }}">Order free swatches</a>{%- endif -%}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="eb3d-info">
+        {%- if product.vendor != blank -%}<p class="eb3d-info__vendor">{{ product.vendor | escape }}</p>{%- endif -%}
+        <h1 class="eb3d-info__title">{{ product.title | escape }}</h1>
+        <div class="eb3d-price">
+          <span data-price>{{ cv.price | money }}</span>
+          <s data-compare{% unless cv.compare_at_price > cv.price %} hidden{% endunless %}>{{ cv.compare_at_price | money }}</s>
+          <span class="eb3d-save" data-save hidden></span>
+        </div>
+        {%- if section.settings.finance_text != blank -%}<p class="eb3d-finance">{{ section.settings.finance_text | escape }}</p>{%- endif -%}
+
+        {%- comment -%} Size (variant options) shown first, above the app product options {%- endcomment -%}
+        {%- unless product.has_only_default_variant -%}
+          <div class="eb3d-form eb3d-size-first">
+            {%- for option in product.options_with_values -%}
+              {%- assign oname = option.name | downcase -%}
+              {%- assign is_colour = false -%}
+              {%- if oname contains 'colour' or oname contains 'color' or oname contains 'fabric' -%}{%- assign is_colour = true -%}{%- endif -%}
+              {%- assign oi = forloop.index0 -%}
+              <fieldset class="eb3d-opt" data-option-index="{{ oi }}">
+                <legend>{{ option.name | escape }}<span data-option-value>{{ option.selected_value | escape }}</span></legend>
+                <div class="eb3d-pills">
+                  {%- for value in option.values -%}
+                    <div class="eb3d-pill">
+                      <input type="radio" form="{{ noop }}" id="{{ section.id }}-{{ oi }}-{{ forloop.index0 }}" name="eb3d-{{ section.id }}-{{ oi }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                      <label for="{{ section.id }}-{{ oi }}-{{ forloop.index0 }}">{%- if is_colour -%}<span class="eb3d-swatch" data-swatch="{{ value | escape }}" aria-hidden="true"></span>{%- endif -%}{{ value | escape }}</label>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        {%- form 'product', product, id: form_id, class: 'eb3d-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ cv.id }}">
+
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}{% render block %}
+              {%- when 'liquid' -%}<div {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+            {%- endcase -%}
+          {%- endfor -%}
+
+          {%- if section.settings.show_timeline -%}
+            {% render 'eagle-delivery-timeline', step_1: 'Ordered', step_2: 'Order Ready', step_3: 'Delivered', ready_from: 1, ready_to: 2, delivered_from: 3, delivered_to: 5, footnote: 'Free delivery within <strong>3–5 working days</strong> across Great Britain.' %}
+          {%- endif -%}
+
+          <div class="eb3d-buy" data-add-main>
+            <div class="eb3d-qty" data-qty>
+              <button type="button" data-step="-1" aria-label="Decrease quantity">−</button>
+              <input type="number" name="quantity" min="1" value="1" aria-label="Quantity">
+              <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+            </div>
+            <button type="submit" name="add" class="eb3d-btn eb3d-btn--ink product-form__submit" data-add data-label="Add to basket"{% unless cv.available %} disabled{% endunless %}>
+              <span data-add-text>{%- if cv.available -%}Add to basket{%- else -%}Sold out{%- endif -%}</span>
+            </button>
+          </div>
+          {%- if section.settings.show_dynamic -%}<div class="eb3d-dynamic">{{ form | payment_button }}</div>{%- endif -%}
+        {%- endform -%}
+
+        {%- liquid
+          assign swatch_url = section.settings.swatch_link | default: '/pages/request-a-swatch'
+          assign tel = section.settings.phone | remove: ' '
+        -%}
+        <ul class="eb3d-trust" aria-label="Why buy from Eagle Bed">
+          {%- if section.settings.trust_2 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>{{ section.settings.trust_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.trust_1 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10M7 20h10M8 4v16M16 4v16"/><path d="M8 8l8 3M8 12l8 3M8 16l8-1"/></svg>{{ section.settings.trust_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.trust_3 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>{{ section.settings.trust_3 | escape }}</li>{%- endif -%}
+          {%- if section.settings.trust_4 != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg>{{ section.settings.trust_4 | escape }}</li>{%- endif -%}
+          {%- if section.settings.swatch_label != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="10" height="10" rx="1.5"/></svg><a href="{{ swatch_url }}">{{ section.settings.swatch_label | escape }}</a></li>{%- endif -%}
+          {%- if tel != blank -%}<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:{{ tel }}">Call {{ section.settings.phone | escape }}</a></li>{%- endif -%}
+        </ul>
+
+        <div class="eb3d-acc">
+          {%- if product.description != blank -%}
+            <details open><summary>Description</summary><div class="eb3d-rte">{{ product.description }}</div></details>
+          {%- endif -%}
+          {%- if section.settings.tab_1_title != blank -%}<details><summary>{{ section.settings.tab_1_title | escape }}</summary><div class="eb3d-rte">{{ section.settings.tab_1 }}</div></details>{%- endif -%}
+          {%- if section.settings.tab_2_title != blank -%}<details><summary>{{ section.settings.tab_2_title | escape }}</summary><div class="eb3d-rte">{{ section.settings.tab_2 }}</div></details>{%- endif -%}
+          {%- if section.settings.tab_3_title != blank -%}<details><summary>{{ section.settings.tab_3_title | escape }}</summary><div class="eb3d-rte">{{ section.settings.tab_3 }}</div></details>{%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.show_related and related and related.products_count > 1 -%}
+    <div class="eb3d-rail" data-rail style="--rail-bg:transparent;padding-bottom:0">
+      <div class="eb3d-wrap">
+        <div class="eb3d-head">
+          <h2 class="eb3d-h2">More from {{ related.title | escape }}</h2>
+          <div class="eb3d-rail__ctrl">
+            <button type="button" class="eb3d-arrow" data-rail-dir="-1" aria-label="Scroll to previous beds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <button type="button" class="eb3d-arrow" data-rail-dir="1" aria-label="Scroll to more beds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="eb3d-rail__track" data-rail-track>
+        {%- for p in related.products limit: 13 -%}
+          {%- unless p.id == product.id -%}{% render 'eb3d-card', product: p %}{%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="eb3d-sticky" data-sticky>
+    <div class="eb3d-sticky__t">{{ product.title | escape }}<br><span data-sticky-price>{{ cv.price | money }}</span></div>
+    <button type="button" class="eb3d-btn eb3d-btn--ink" data-add data-label="Add to basket"{% unless cv.available %} disabled{% endunless %}><span data-add-text>Add to basket</span></button>
+  </div>
+  <script type="application/json" data-product-json>{{ product | json }}</script>
+</div>
+{% render 'eagle-product-schema', product: product, crumb_collection: related %}
+{%- comment -%} SEO (10 Nov 2026): VideoObject, only when the product has a Shopify-hosted video. contentUrl = the largest mp4 source. {%- endcomment -%}
+{%- assign eb_video = nil -%}
+{%- for m in product.media -%}
+  {%- if m.media_type == 'video' -%}
+    {%- assign eb_video = m -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if eb_video -%}
+  {%- assign eb_video_src = eb_video.sources.first.url -%}
+  {%- assign eb_video_h = 0 -%}
+  {%- for s in eb_video.sources -%}
+    {%- if s.format == 'mp4' and s.height > eb_video_h -%}
+      {%- assign eb_video_src = s.url -%}
+      {%- assign eb_video_h = s.height -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign eb_video_head = eb_video_src | slice: 0, 2 -%}
+  {%- if eb_video_head == '//' -%}
+    {%- assign eb_video_src = eb_video_src | prepend: 'https:' -%}
+  {%- endif -%}
+  {%- assign eb_video_desc = product.description | strip_html | strip | truncate: 300 | default: product.title -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": {{ product.title | json }},
+  "description": {{ eb_video_desc | json }},
+  "thumbnailUrl": {{ eb_video.preview_image | image_url: width: 1280 | prepend: 'https:' | json }},
+  "uploadDate": {{ product.published_at | date: '%Y-%m-%d' | json }},
+  "contentUrl": {{ eb_video_src | json }}
+}
+</script>
+{%- endif -%}
+{%- if has_model -%}
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.Shopify && Shopify.loadFeatures) {
+      Shopify.loadFeatures([{ name: 'model-viewer-ui', version: '1.0', onLoad: function (e) {
+        if (e) return;
+        document.querySelectorAll('[data-model] model-viewer').forEach(function (m) { try { new Shopify.ModelViewerUI(m); } catch (err) {} });
+      } }]);
+    }
+  });
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "3D product page",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "finance_text", "label": "Finance line", "default": "Spread the cost with Klarna or Clearpay at checkout." },
+    { "type": "checkbox", "id": "show_timeline", "label": "Show delivery timeline", "default": true },
+    { "type": "checkbox", "id": "show_dynamic", "label": "Show Buy it now button", "default": true },
+    { "type": "header", "content": "3D colour preview" },
+    { "type": "checkbox", "id": "show_3d", "label": "Show 3D colour preview on beds", "info": "Shows on products whose type contains 'Bed'.", "default": true },
+    { "type": "textarea", "id": "colours_3d", "label": "Preview colours (Name:#hex, comma separated)", "default": "Grey:#8a8d91, Cream:#e6dac2, Silver:#c0c2c5, Steel:#6b7682, White:#eeeeea, Royal Blue:#23407a, Sky Blue:#8fb5d6, Emerald Green:#1f5c45, Beige:#cdbb9c, Baby Pink:#e3b7bd, Black:#1c1c1e, Brown:#5a3e2f, Red:#8e1f26, Pebble:#a39e93" },
+    { "type": "text", "id": "preview_note", "label": "Line under colour name", "default": "3D colour preview, shape is illustrative" },
+    { "type": "text", "id": "preview_help", "label": "Help text", "default": "Choose your fabric and colour in the options to order. Screens vary, so see the real thing first:" },
+    { "type": "url", "id": "swatch_link", "label": "Swatch page link" },
+    { "type": "header", "content": "Trust and tabs" },
+    { "type": "text", "id": "trust_1", "label": "Trust point 1", "default": "Handmade to order in West Yorkshire" },
+    { "type": "text", "id": "trust_2", "label": "Trust point 2", "default": "Free delivery across Great Britain in 3–5 working days" },
+    { "type": "text", "id": "trust_3", "label": "Trust point 3", "default": "5-year warranty" },
+    { "type": "text", "id": "trust_4", "label": "Trust point 4", "default": "Pay with Klarna or Clearpay" },
+    { "type": "text", "id": "swatch_label", "label": "Swatch link label (uses the swatch page link above)", "default": "Free fabric swatches" },
+    { "type": "text", "id": "phone", "label": "Phone number (tap to call)", "default": "07417 439197" },
+    { "type": "text", "id": "tab_1_title", "label": "Tab 1 title", "default": "Delivery and returns" },
+    { "type": "richtext", "id": "tab_1", "label": "Tab 1 text", "default": "<p>Free delivery across Great Britain (England, Scotland and Wales) by our own team, typically within 3–5 working days. For returns and faulty items, please see our <a href=\"/pages/returns-policy\">returns policy</a>.</p>" },
+    { "type": "text", "id": "tab_2_title", "label": "Tab 2 title", "default": "Delivery day and care" },
+    { "type": "richtext", "id": "tab_2", "label": "Tab 2 text", "default": "<p>Let us know about stairs, parking or tight access in the delivery notes and we will plan around it. To care for your upholstery, vacuum gently with a soft brush and blot spills with a clean, damp cloth.</p>" },
+    { "type": "text", "id": "tab_3_title", "label": "Tab 3 title", "default": "The Eagle Bed promise" },
+    { "type": "richtext", "id": "tab_3", "label": "Tab 3 text", "default": "<p>Each bed is handmade to order in West Yorkshire using solid wood frames and premium upholstery, and is backed by our 5-year warranty.</p>" },
+    { "type": "checkbox", "id": "show_related", "label": "Show more from this collection", "default": true }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "liquid", "name": "Custom Liquid", "settings": [ { "type": "liquid", "id": "custom_liquid", "label": "Custom Liquid" } ] }
+  ]
+}
+{% endschema %}

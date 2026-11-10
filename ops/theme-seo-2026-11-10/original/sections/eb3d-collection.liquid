@@ -1,0 +1,218 @@
+{{ 'eb3d.css' | asset_url | stylesheet_tag }}
+{{ 'eb3d-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'eb3d.js' | asset_url }}" defer></script>
+<script src="{{ 'eb3d-collection.js' | asset_url }}" defer></script>
+{%- liquid
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+  assign active_count = 0
+  for f in collection.filters
+    if f.type == 'price_range'
+      if f.min_value.value != nil or f.max_value.value != nil
+        assign active_count = active_count | plus: 1
+      endif
+    else
+      assign active_count = active_count | plus: f.active_values.size
+    endif
+  endfor
+  assign hero_img = collection.image
+  if hero_img == blank and collection.products.first.featured_media
+    assign hero_img = collection.products.first.featured_media.preview_image
+  endif
+  assign p2 = collection.products[1]
+  assign p3 = collection.products[2]
+  assign can_filter = false
+  if section.settings.enable_filtering and collection.filters != empty
+    assign can_filter = true
+  endif
+-%}
+<div class="eb3d eb3d-colpage" data-colpage data-section="{{ section.id }}">
+  <header class="eb3d-colhero">
+    <div class="eb3d-wrap eb3d-colhero__grid{% if hero_img == blank %} eb3d-colhero__grid--solo{% endif %}">
+      <div class="eb3d-colhero__copy">
+        <nav class="eb3d-crumbs eb3d-crumbs--light" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <span aria-current="page">{{ collection.title | escape }}</span></nav>
+        <h1 class="eb3d-colhero__title">{{ collection.title | escape }}</h1>
+        {%- if section.settings.show_description and collection.description != blank -%}
+          <p class="eb3d-colhero__desc">{{ collection.description | strip_html | truncatewords: 38 }}</p>
+        {%- endif -%}
+        <div class="eb3d-colhero__stats">
+          <span><strong>{{ collection.all_products_count }}</strong> {{ collection.all_products_count | pluralize: 'design', 'designs' }}</span>
+          {%- if section.settings.stat_2 != blank -%}<span>{{ section.settings.stat_2 | escape }}</span>{%- endif -%}
+          {%- if section.settings.stat_3 != blank -%}<span>{{ section.settings.stat_3 | escape }}</span>{%- endif -%}
+        </div>
+      </div>
+      {%- if hero_img != blank -%}
+        <div class="eb3d-colhero__stack" data-tilt="8" aria-hidden="true">
+          <div class="eb3d-colhero__deck">
+            {%- if p3.featured_media -%}<div class="eb3d-colhero__face eb3d-colhero__face--3">{{ p3.featured_media.preview_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '400,700', sizes: '(min-width: 900px) 36vw, 80vw', alt: '' }}</div>{%- endif -%}
+            {%- if p2.featured_media -%}<div class="eb3d-colhero__face eb3d-colhero__face--2">{{ p2.featured_media.preview_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '400,700', sizes: '(min-width: 900px) 36vw, 80vw', alt: '' }}</div>{%- endif -%}
+            <div class="eb3d-colhero__face eb3d-colhero__face--1">{{ hero_img | image_url: width: 1100 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '500,800,1100', sizes: '(min-width: 900px) 40vw, 90vw', alt: '' }}</div>
+            <span class="eb3d-colhero__glare"></span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.chips != blank -%}
+      <nav class="eb3d-wrap" aria-label="Bed types">
+        <div class="eb3d-chips">
+          {%- for c in section.settings.chips -%}
+            <a class="eb3d-chip{% if c.handle == collection.handle %} is-on{% endif %}" href="{{ c.url }}"{% if c.handle == collection.handle %} aria-current="page"{% endif %}>{{ c.title | escape }}</a>
+          {%- endfor -%}
+        </div>
+      </nav>
+    {%- endif -%}
+  </header>
+
+  <div class="eb3d-toolbar">
+    <div class="eb3d-wrap eb3d-toolbar__in">
+      {%- if can_filter -%}
+        <button type="button" class="eb3d-fbtn" data-filter-open aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+          Filter{%- if active_count > 0 -%}<span class="eb3d-fbtn__n">{{ active_count }}</span>{%- endif -%}
+        </button>
+      {%- endif -%}
+      <div class="eb3d-activef">
+        {%- for f in collection.filters -%}
+          {%- if f.type == 'price_range' -%}
+            {%- if f.min_value.value != nil or f.max_value.value != nil -%}
+              <a class="eb3d-afpill" href="{{ f.url_to_remove }}">{{ f.min_value.value | default: 0 | money_without_trailing_zeros }} – {{ f.max_value.value | default: f.range_max | money_without_trailing_zeros }} <span aria-hidden="true">×</span><span class="eb3d-sr">Remove price filter</span></a>
+            {%- endif -%}
+          {%- else -%}
+            {%- for v in f.active_values -%}
+              <a class="eb3d-afpill" href="{{ v.url_to_remove }}">{{ v.label | escape }} <span aria-hidden="true">×</span><span class="eb3d-sr">Remove filter</span></a>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if active_count > 1 -%}<a class="eb3d-link" href="{{ collection.url }}?sort_by={{ sort_by }}">Clear all</a>{%- endif -%}
+      </div>
+      <p class="eb3d-toolbar__count">{{ collection.products_count }} {{ collection.products_count | pluralize: 'bed', 'beds' }}</p>
+      {%- if section.settings.enable_sorting -%}
+        <label class="eb3d-sort"><span class="eb3d-sr">Sort by</span>
+          <select data-sort>
+            {%- for o in collection.sort_options -%}
+              <option value="{{ o.value | escape }}"{% if o.value == sort_by %} selected{% endif %}>{{ o.name | escape }}</option>
+            {%- endfor -%}
+          </select>
+        </label>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="eb3d-colbody">
+    <div class="eb3d-wrap">
+      {%- paginate collection.products by section.settings.per_page -%}
+        {%- if collection.products.size > 0 -%}
+          <div class="eb3d-grid" data-grid>
+            {%- for p in collection.products -%}
+              {%- liquid
+                assign badge = ''
+                if p.compare_at_price_min > p.price_min
+                  assign badge = 'Sale'
+                endif
+                unless p.available
+                  assign badge = 'Sold out'
+                endunless
+              -%}
+              {% render 'eb3d-card', product: p, tag: badge %}
+            {%- endfor -%}
+          </div>
+          {%- if paginate.next -%}
+            {%- assign shown = paginate.current_offset | plus: collection.products.size -%}
+            {%- assign pct = shown | times: 100 | divided_by: paginate.items -%}
+            <div class="eb3d-more" data-more-wrap>
+              <p class="eb3d-more__count">Showing {{ shown }} of {{ paginate.items }}</p>
+              <div class="eb3d-more__bar"><span style="width: {{ pct }}%"></span></div>
+              <a class="eb3d-btn eb3d-btn--ink" href="{{ paginate.next.url }}" data-more>Load more beds</a>
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="eb3d-empty">
+            <h2 class="eb3d-h2">No beds match those filters</h2>
+            <p>Try removing a filter or two. Every bed can also be made in a different size, fabric or colour on request.</p>
+            <a class="eb3d-btn eb3d-btn--ink" href="{{ collection.url }}">Clear filters</a>
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+
+      {%- if section.settings.show_about and collection.description != blank -%}
+        <section class="eb3d-about">
+          <details>
+            <summary>About {{ collection.title | escape }}</summary>
+            <div class="eb3d-rte">{{ collection.description }}</div>
+          </details>
+        </section>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if can_filter -%}
+    <dialog class="eb3d-drawer" data-filter-drawer aria-labelledby="eb3d-ft-{{ section.id }}">
+      <form class="eb3d-drawer__form" action="{{ collection.url }}" method="get">
+        <div class="eb3d-drawer__head">
+          <h2 id="eb3d-ft-{{ section.id }}">Filter</h2>
+          <button type="button" class="eb3d-drawer__x" data-filter-close aria-label="Close filters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <input type="hidden" name="sort_by" value="{{ sort_by | escape }}">
+        <div class="eb3d-drawer__body">
+          {%- for f in collection.filters -%}
+            <details class="eb3d-fgroup"{% if forloop.index <= 3 or f.active_values.size > 0 %} open{% endif %}>
+              <summary>{{ f.label | escape }}{%- if f.active_values.size > 0 -%}<span class="eb3d-fbtn__n">{{ f.active_values.size }}</span>{%- endif -%}</summary>
+              {%- if f.type == 'price_range' -%}
+                {%- assign pmax = f.range_max | money_without_currency | remove: ',' -%}
+                <div class="eb3d-price-range">
+                  <label>Min (£)<input type="number" name="{{ f.min_value.param_name }}" value="{% if f.min_value.value != nil %}{{ f.min_value.value | money_without_currency | remove: ',' }}{% endif %}" placeholder="0" min="0" max="{{ pmax }}" step="1" inputmode="numeric"></label>
+                  <label>Max (£)<input type="number" name="{{ f.max_value.param_name }}" value="{% if f.max_value.value != nil %}{{ f.max_value.value | money_without_currency | remove: ',' }}{% endif %}" placeholder="{{ pmax }}" min="0" max="{{ pmax }}" step="1" inputmode="numeric"></label>
+                </div>
+              {%- else -%}
+                <div class="eb3d-fvals">
+                  {%- for v in f.values -%}
+                    {%- liquid
+                      assign is_empty = false
+                      if v.count == 0 and v.active == false
+                        assign is_empty = true
+                      endif
+                    -%}
+                    <label class="eb3d-fval{% if is_empty %} is-empty{% endif %}">
+                      <input type="checkbox" name="{{ v.param_name }}" value="{{ v.value | escape }}"{% if v.active %} checked{% endif %}{% if is_empty %} disabled{% endif %}>
+                      <span class="eb3d-fval__box">{%- if v.swatch.color -%}<i class="eb3d-swatch" style="--sw: {{ v.swatch.color }}"></i>{%- endif -%}{{ v.label | escape }} <em>{{ v.count }}</em></span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </details>
+          {%- endfor -%}
+        </div>
+        <div class="eb3d-drawer__foot">
+          <a class="eb3d-btn eb3d-btn--ghost" href="{{ collection.url }}?sort_by={{ sort_by }}">Clear all</a>
+          <button type="submit" class="eb3d-btn eb3d-btn--ink">Show results</button>
+        </div>
+      </form>
+    </dialog>
+  {%- endif -%}
+</div>
+{%- comment -%} BreadcrumbList structured data, mirrors the visible breadcrumb (Home / Collection) {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.secure_url | append: '/' | json }} },
+    { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ shop.secure_url | append: '/collections/' | append: collection.handle | json }} }
+  ]
+}
+</script>
+{% schema %}
+{
+  "name": "3D collection",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_description", "label": "Show short description in header", "default": true },
+    { "type": "text", "id": "stat_2", "label": "Header badge 2", "default": "Handmade in Dewsbury" },
+    { "type": "text", "id": "stat_3", "label": "Header badge 3", "default": "Free mainland UK delivery" },
+    { "type": "collection_list", "id": "chips", "label": "Quick links to other bed types", "limit": 14 },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "default": true },
+    { "type": "checkbox", "id": "enable_sorting", "label": "Enable sorting", "default": true },
+    { "type": "range", "id": "per_page", "label": "Beds per load", "min": 12, "max": 48, "step": 4, "default": 24 },
+    { "type": "checkbox", "id": "show_about", "label": "Show full description below grid (good for SEO)", "default": true }
+  ]
+}
+{% endschema %}
