@@ -4,9 +4,9 @@ Source: Lead Finder 10 Nov 2026. Status: new (no messages sent). Contacts are pu
 
 ## 1. Whitegates Dewsbury  (`tb-whitegates-dewsbury`)
 
-- **Type:** Letting agent (furnished and unfurnished lets)
+- **Type:** Letting agent
 - **Area:** Dewsbury
-- **Why they fit:** Dewsbury lettings branch that says it manages over 400 rental properties for landlords, including furnished lets.
+- **Why they fit:** Dewsbury lettings branch that says it manages over 400 rental properties for landlords.
 - **Contact:** Lettings phone 01924 468323 (as listed on Rightmove); branch page https://whitegates.co.uk/estate-agents-and-letting-agents/branch/dewsbury ; 1-3 Northgate, Dewsbury WF13 1DS
 - **Fit:** Divan Storage Base with Drawers; Ottoman Gas Lift Divan Base; kids beds for family lets
 - **Message (121 words):**
