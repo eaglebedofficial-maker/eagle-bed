@@ -37,3 +37,20 @@
 - 10 Nov: Programmatic job: 5 UNPUBLISHED automated collections created (kids-single-beds 710502383947, single-storage-beds 710502416715, double-storage-beds 710502449483, small-double-storage-beds 710502515019, double-divan-beds 710502580555) using new sources conditions; "custom fabric" line removed from kids copy. All 7 SEO-types jobs marked done in HQ memory/actions (Monday re-check).
 - 10 Nov (owner approved all): published the 5 size collections to all channels (live counts 17/17/17/6/13); replaced /pages/about-us text with the true-facts version (backup ops/seo-types/backups/about-us-old.html), deleted the temporary draft page; set shop metafields global.title_tag/description_tag (the live home title comes from Online Store preferences, unchanged: owner step); Gmail check found GBP, Yell, Bing Places, Bing Webmaster, Pinterest business and YouTube already exist; HQ v40 listings corrected.
 - 10 Nov: Google Business Profile (via Zapier, location 9500753489661593239): title -> "Eagle Bed", primary category -> Bed shop (manufacturer/mattress/furniture store additional); kept our description (declined Google update "wholesale prices"); first GBP post (storage beds, SHOP button). 24 review-request Gmail DRAFTS for orders up to 3 Nov. RUNBOOK step 6b: weekly Monday GBP post. 14 hidden kids beds left unpublished (AI mock-up photos, 2 needs-pricing). Zapier usage +9 (gbp).
+
+## 10 Nov 2026: voice FAQ blocks applied
+- Owner-approved "Quick answers" blocks from ops/seo-types/voice.json added near the end of each body (before the final contact/CTA section where there is one), each with its own FAQPage JSON-LD (no page had one before; Shopify kept the script tags). Backups: ops/seo-types/backups/<handle>-before-voice.html.
+- /blogs/news/ottoman-bed-vs-divan-bed-uk: block added; old FAQ "What is the difference between an ottoman and a divan bed?" removed (duplicate).
+- /blogs/news/divan-bed-vs-bed-frame-uk: block added (2 Qs); no old Q removed (near matches "What is a divan bed base?" and "Platform bed frame vs divan base: which is better?" kept, different wording/query).
+- /blogs/news/how-do-ottoman-beds-work: block added; old FAQ "How does an ottoman bed work?" removed (duplicate).
+- /blogs/news/chesterfield-beds-uk-buying-guide: block added; old FAQ "What is a Chesterfield bed?" removed (duplicate).
+- /blogs/news/small-double-beds-uk-the-complete-guide-for-spare-rooms: block added.
+- /blogs/news/handmade-beds-uk-quality-guide: block added before "Where to Start".
+- /pages/bed-sizes-guide: block added before "Still not sure which size?"; old FAQ "What are the standard UK bed sizes?" removed (duplicate).
+- /pages/delivery-information: block added (2 Qs) before "Browse Our Beds"; old "Is delivery free, and how long does it take?" removed (duplicate); "Elsewhere, contact us first." dropped from the city answer (not on live pages or in BRIEF).
+- /pages/finance-options: block added before "Need help choosing?"; "Coming soon: DivideBuy" item removed (owner approved).
+- /pages/returns-policy: block added before "Contact Us".
+- /pages/warranty: block added at end.
+- /pages/about-us: block added before "Contact Eagle Bed"; "and we do not import finished beds" dropped from the answer (not in BRIEF or on the live page).
+- /pages/request-a-swatch: block added before "While you wait".
+- /pages/faq: "spread the cost interest-free ... Subject to eligibility." changed to "spread the cost in instalments, subject to eligibility." (backup ops/seo-types/backups/faq-before-wording.html). No other page or news article said interest-free or 0%.
