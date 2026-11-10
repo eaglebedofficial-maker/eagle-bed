@@ -52,9 +52,11 @@ post: record exactly what happened. Never change prices, ads or the theme in thi
    Update the videos doc: per platform `ig`, `fb`, `yt`, `tt` true/false, `status` "posted" if at
    least Instagram or Facebook went out, else "failed" with `error`. If Zapier says the task limit is
    reached, write that exact reason, set `status` "failed", and do not keep retrying this run.
-6. **Monday 09:00 run only:** also run `python3 tools/aivis/check.py --out /tmp/aivis.json` and
+6. **Monday 09:00 run only:** ArtifactData `get` growth/main, write its `questions` list to /tmp/questions.json, then run `python3 tools/aivis/check.py --prompts /tmp/questions.json --out /tmp/aivis.json` and
    ArtifactData `set` aivis/latest from it (fields at, date, model, asked, named, cited, topSources,
    rows[prompt, named, cited, sources, answer]) so HQ shows how often AI assistants recommend Eagle Bed.
+   Also refresh the Google page-1 tracker: OpenRush get_search_performance (last_28_days, group_by query, limit 1000,
+   compare_to none), match growth/main.keywords and ArtifactData `set` seo/ranks {at, period, rows[q,pos,imp,clk]}.
 7. Add one line to ops/QUEUE.md (date, slot, product, platforms posted or the blocker) and push.
 
 ## Costs
