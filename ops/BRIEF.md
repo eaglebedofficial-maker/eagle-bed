@@ -1,6 +1,7 @@
 # Eagle Bed BRIEF (owner facts override everything)
 Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki
 - Free delivery across Great Britain (England, Scotland, Wales); Northern Ireland, Jersey, Guernsey, Isle of Man £90; usually 3–5 working days, own team.
+- Owner confirmed 10 Nov 2026: Eagle Bed is a FAMILY-RUN business; our own delivery team ASSEMBLES the bed on delivery.
 - 14-day free returns. 5-year frame warranty (mattresses: "5-year guarantee"). NO sleep trial.
 - Phone 07417 439197, Mon–Fri 9am–6pm. Workshop Pepproyd Street, Eastborough, Dewsbury WF13 1PA — say Dewsbury only; never Batley, Howard Street or the owner's home.
 - Pay: Klarna, Clearpay, card (Shopify Payments), PayPal, cash on delivery (call/email). DivideBuy NOT available — never claim it or 0% interest.
