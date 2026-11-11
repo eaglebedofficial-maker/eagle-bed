@@ -25,3 +25,29 @@ Daily trade outreach (Yorkshire and the North West). 19 emails sent from eaglebe
 | 19 | Student Haus | Student letting agent | Liverpool (Pall Mall) | info@student-haus.com | https://unifresher.co.uk/the-best-student-letting-agencies-in-liverpool-revealed/ (search snippet) |
 
 Skipped (already emailed today): info@adamsestates.co.uk, info@unipol.org.uk.
+
+## 10am run (London + South East)
+
+17 emails sent from eaglebedofficial@gmail.com; all logged in HQ (collection `leads`, status `contacted`, source `Email Marketing 2026-11-11`).
+
+| # | Name | Type | Area | Email | Source |
+|---|---|---|---|---|---|
+| 1 | St. David's Hotels | Family-run hotel | Paddington, London (Norfolk Square) | info@stdavidshotels.com | https://stdavidshotels.com/ |
+| 2 | London-House.com | Serviced apartments | London | reservations@london-house.com | https://uk.trustpilot.com/review/www.london-house.com (company reply naming its reservations address) |
+| 3 | Kasar Stays | Serviced apartments | Kent (Maidstone, Chatham, Rochester, Gillingham, Sittingbourne) | bookings@kasarstays.com | https://uk.trustpilot.com/review/khhomes.co.uk (company replies); https://stayz.com.au/holiday-rental/p11661543 |
+| 4 | St Stephens Guest House | Guest house | Canterbury, Kent | info@ststephensguesthouse.co.uk | https://www.visitkent.co.uk/accommodation/st-stephens-guest-house-3431 |
+| 5 | House of Agnes | Small hotel / guest house | Canterbury, Kent (St Dunstan's Street) | info@houseofagnes.co.uk | https://www.houseofagnes.co.uk/?p=243 |
+| 6 | Harriet House B&B | B&B | Canterbury, Kent (Broad Oak Road) | enquiries@harriethouse.co.uk | https://www.canterbury.co.uk/accommodation/harriet-house-bb-3148/ |
+| 7 | Pickwick's Guest House | Guest house | Headington, Oxford | info@pickwicksguesthouse.co.uk | https://www.aramsociety.org/wp-content/uploads/2023/07/Accommodation-in-Oxford.pdf |
+| 8 | Original Cottages (Kent and Sussex) | Holiday-let agency | Kent and Sussex | info@originalcottages.co.uk | https://www.visitkent.co.uk/accommodation/original-cottages-kent-sussex-3210 |
+| 9 | Classic Cottages | Holiday-let agency | Sussex and Kent (Battle office) | hello@classic.co.uk | https://classic.co.uk/information/contact.aspx |
+| 10 | Bloom Stays | Holiday-let agency | Canterbury, Kent (homes across Kent and Sussex) | hello@bloomstays.com | https://canterbury.co.uk/bloom-stays/bloom-stays-holiday-homes-70729 |
+| 11 | Bolthole Retreats | Holiday-let agency | Oxfordshire Cotswolds | enquiries@boltholeretreats.co.uk | https://www.charlbury.info/business/438 |
+| 12 | Holges Holiday Homes | Holiday-let manager | Broadstairs, Kent | info@holgesholidayhomes.co.uk | https://www.broadstairschamber.org.uk/view-member-listing/holges-holiday-homes |
+| 13 | Brighton Accommodation Agency | Student letting agent | Brighton (Lewes Road) | lettings@baagency.co.uk | https://unifresher.co.uk/?p=51775 |
+| 14 | SGE Care | Supported living provider | Rainham, Essex | info@sgecare.com | https://sgecare.pages.dev/contact/ |
+| 15 | Hazeldene House | Care home | Pembury, Tunbridge Wells, Kent | enquiries@hazeldenehouse.com | https://issuu.com/carechoices/docs/kent_care_directory_2014-15 |
+| 16 | The Final Touch | Home stager | Richmond, Surrey (and Lymington) | info@thefinaltouch.co.uk | https://copper-scarlet-napg.squarespace.com/the-final-touch |
+| 17 | Nesy Property Staging | Home stager | London and Surrey | info@nesy.co.uk | https://www.gumtree.com/p/interior-designers/Bark/8863042048 (business listing); https://nesy.my.canva.site/ |
+
+Skip list checked: 39 HQ leads and 21 earlier sent threads (all Yorkshire / North West); no overlap. Two short of 19: no further published generic addresses found for London/South East targets this run (target sites blocked by the network, so search snippets only).
