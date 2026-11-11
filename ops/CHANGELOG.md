@@ -73,3 +73,4 @@
 - 11 Nov: Email Marketing agent + HQ v46 Email tab (outreach/plan warm-up 40->80->140->200/day, weekdays 09:53 UK). Plan in ops/email/PLAN.md.
 - 11 Nov: HQ v47 mobile app fit (Sales lead rows wrapped: page was 591px wide on a 390px phone; compact header; animations off on phones; overflow locked). New scheduled task "Eagle Bed daily report 9:15pm (email + phone)" into this session.
 - 11 Nov: HQ v48: Office Sales lead list shows only leads needing the owner (replied/won/not-yet-contacted); emailed businesses live in the Email tab (today + all before today); "First message (draft)" renamed "Email we sent" for sent emails; lead status "bounced" added.
+- 11 Nov: Inbox agent (every 2h 9am-9pm, drafts replies with WhatsApp 07417 439197, phone alert) + HQ v49 Inbox card; trade emails now invite WhatsApp; WhatsApp Business connected in Zapier; ops/whatsapp/SETUP.md with profile, greeting, away message, quick replies, catalogue and forward-to-Gmail Zap steps.
