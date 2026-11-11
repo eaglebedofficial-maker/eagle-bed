@@ -1,0 +1,106 @@
+{
+  "prompts": {
+    "Best ottoman storage bed in the UK?": {
+      "fix": "Added eb-answer paragraph at top of /collections/ottoman-beds description: \"Choosing an ottoman storage bed? Look for gas lift struts that hold the lid open, a solid wood frame, full-length storage and end or side lift. Our gas lift ottoman beds are handmade to order in our own Dewsbury workshop, such as the Ottoman Gas Lift Divan Base from £220.99 and the Cloud Teddy Bouclé Ottoman Bed from £376.99, delivered and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/ottoman-beds"
+    },
+    "Best velvet wingback bed UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/wingback-beds description: \"When choosing a velvet wingback bed, look for a solid wood frame, wings deep enough to lean against and a dense velvet that holds the panel lines, and measure the wall, as the wings add width. Our wingback beds are handmade to order in Dewsbury in Plush Velvet or other fabrics, such as the Mayfair Wingback Bed from £285.99 and the Roxy Curved Wingback Bed from £337.99. Free swatches available.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-wingback-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/wingback-beds"
+    },
+    "Best divan bed with storage UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/divan-beds description: \"For a divan bed with storage, choose between drawers, which suit everyday items, and a gas lift ottoman base, which lifts the whole mattress for bulky things. Check that the base takes a standard UK mattress and fits your room. Our divans are handmade to order in Dewsbury: the Divan Storage Base with Drawers from £168.99 and the Ottoman Gas Lift Divan Base from £220.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-divan-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/divan-beds"
+    },
+    "Best kids beds UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/kids-beds description: \"Look for kids beds that are sturdy, soft and sized to grow into: a solid wood frame, a padded headboard and a standard UK mattress size. Our kids beds are handmade to order in Dewsbury in Kids Single, Single and Small Double, such as the Line Kids Velvet Bed and Line Wingback Kids Bed from £285.99, delivered free across Great Britain and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-kids-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/kids-beds"
+    },
+    "Best value mattress UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/mattresses description: \"For good value, compare the spring count, comfort layers and price in your size, not just the headline price. Our 1000 Pocket Sprung Mattress starts from £194.99, and the 3000 Pocket Sprung Mattress, with more individually wrapped springs, starts from £220.99. Both come in Single to Super King with a 5-year guarantee, free delivery across Great Britain, and Klarna or Clearpay at checkout.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-mattresses.html.",
+      "url": "https://www.eaglebed.co.uk/collections/mattresses"
+    },
+    "Chesterfield bed UK where to buy": {
+      "fix": "Added eb-answer paragraph at top of /collections/chesterfield-beds description: \"You can buy a Chesterfield bed online from Eagle Bed, a family-run business that handmakes every Chesterfield upholstered bed to order in our own Dewsbury workshop. Look for deep, even button tufting and a solid wood frame. Choose the Windsor Button-Tufted Chesterfield Bed from £312.99 or the Chesterfield Tufted Bed from £324.99, delivered free across England, Scotland and Wales and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-chesterfield-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/chesterfield-beds"
+    },
+    "Best gas lift ottoman bed UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/ottoman-beds description: \"Choosing an ottoman storage bed? Look for gas lift struts that hold the lid open, a solid wood frame, full-length storage and end or side lift. Our gas lift ottoman beds are handmade to order in our own Dewsbury workshop, such as the Ottoman Gas Lift Divan Base from £220.99 and the Cloud Teddy Bouclé Ottoman Bed from £376.99, delivered and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/ottoman-beds"
+    },
+    "Best bed for a small bedroom UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/storage-beds description: \"For a small bedroom, choose a bed that doubles as storage. A side lift ottoman opens from the long side, so the bed can sit foot-to-wall; drawers need about 60cm of clear floor. A small double (4ft) saves width if space is tight. Our storage beds are handmade in Dewsbury, such as the Side Lift Ottoman Storage Base from £249.99 and the Divan Storage Base with Drawers from £168.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-storage-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/storage-beds"
+    },
+    "Best teddy boucle bed UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/upholstered-beds description: \"For a teddy bouclé or velvet bed, look for a solid wood frame, tight, even upholstery and free swatches so you can see the fabric first. Every Eagle Bed is handmade to order in Dewsbury in your choice of fabric, including Teddy Bouclé and Plush Velvet. Try the Cloud Teddy Bouclé Ottoman Bed from £376.99 or the Mayfair Wingback Bed in Plush Velvet from £285.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-upholstered-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/upholstered-beds"
+    },
+    "Best king size ottoman bed UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/king-size-ottoman-beds description: \"A king size ottoman bed should take a standard 5ft (150 x 200 cm) mattress, lift smoothly on gas struts and suit your room: end lift needs floor space at the foot, while side lift suits narrow rooms. Every bed here comes in King. In king size, the Ottoman Gas Lift Divan Base is from £305.99 and the Cloud Teddy Bouclé Ottoman Bed from £467.99, both handmade in Dewsbury.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-king-size-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/king-size-ottoman-beds"
+    },
+    "Best small double bed with storage UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/small-double-storage-beds description: \"A small double (4ft, 120 x 190 cm) storage bed suits a box room or guest room. Pick side lift if the foot of the bed meets a wall, end lift if there is floor space at the foot, or drawers for daily access. In Small Double, the Divan Storage Base with Drawers is from £188.99 and the Side Lift Ottoman Storage Base from £274.99, both handmade in Dewsbury.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-small-double-storage-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/small-double-storage-beds"
+    },
+    "Best upholstered headboard UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/headboards description: \"When choosing an upholstered headboard, match it to your bed width, check the height against your wall and see the fabric first with free swatches. Our headboards are handmade to order in Dewsbury on solid wood frames, in panel, channel, buttoned and wingback styles, such as the Lines Panel Headboard from £155.99 and the Linear Panel Upholstered Headboard from £181.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-headboards.html.",
+      "url": "https://www.eaglebed.co.uk/collections/headboards"
+    },
+    "Best panel bed UK": {
+      "fix": "Added eb-answer paragraph at top of /collections/panel-beds description: \"A panel bed has a headboard split into padded sections. Look for a solid wood frame, a headboard height that suits your ceiling and the option of storage. Ours are handmade to order in Dewsbury, from Single to Super King, such as the Eagle Mayfair Panel Bed from £311.99 or the Cambridge Panel Storage Bed with Drawers from £259.99, delivered free and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-panel-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/panel-beds"
+    }
+  },
+  "keywords": {
+    "gas lift ottoman bed": {
+      "fix": "Added eb-answer paragraph at top of /collections/ottoman-beds description: \"Choosing an ottoman storage bed? Look for gas lift struts that hold the lid open, a solid wood frame, full-length storage and end or side lift. Our gas lift ottoman beds are handmade to order in our own Dewsbury workshop, such as the Ottoman Gas Lift Divan Base from £220.99 and the Cloud Teddy Bouclé Ottoman Bed from £376.99, delivered and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/ottoman-beds"
+    },
+    "ottoman beds": {
+      "fix": "Added eb-answer paragraph at top of /collections/ottoman-beds description: \"Choosing an ottoman storage bed? Look for gas lift struts that hold the lid open, a solid wood frame, full-length storage and end or side lift. Our gas lift ottoman beds are handmade to order in our own Dewsbury workshop, such as the Ottoman Gas Lift Divan Base from £220.99 and the Cloud Teddy Bouclé Ottoman Bed from £376.99, delivered and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/ottoman-beds"
+    },
+    "chesterfield beds uk": {
+      "fix": "Added eb-answer paragraph at top of /collections/chesterfield-beds description: \"You can buy a Chesterfield bed online from Eagle Bed, a family-run business that handmakes every Chesterfield upholstered bed to order in our own Dewsbury workshop. Look for deep, even button tufting and a solid wood frame. Choose the Windsor Button-Tufted Chesterfield Bed from £312.99 or the Chesterfield Tufted Bed from £324.99, delivered free across England, Scotland and Wales and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-chesterfield-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/chesterfield-beds"
+    },
+    "chesterfield upholstered bed": {
+      "fix": "Added eb-answer paragraph at top of /collections/chesterfield-beds description: \"You can buy a Chesterfield bed online from Eagle Bed, a family-run business that handmakes every Chesterfield upholstered bed to order in our own Dewsbury workshop. Look for deep, even button tufting and a solid wood frame. Choose the Windsor Button-Tufted Chesterfield Bed from £312.99 or the Chesterfield Tufted Bed from £324.99, delivered free across England, Scotland and Wales and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-chesterfield-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/chesterfield-beds"
+    },
+    "3000 pocket sprung mattress": {
+      "fix": "Added eb-answer paragraph at top of /collections/mattresses description: \"For good value, compare the spring count, comfort layers and price in your size, not just the headline price. Our 1000 Pocket Sprung Mattress starts from £194.99, and the 3000 Pocket Sprung Mattress, with more individually wrapped springs, starts from £220.99. Both come in Single to Super King with a 5-year guarantee, free delivery across Great Britain, and Klarna or Clearpay at checkout.\" Collection answer names the 3000 Pocket Sprung Mattress (from £220.99) and the collection links to the product page https://www.eaglebed.co.uk/products/3000-pocket-sprung-mattress-uk (product not edited). SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-mattresses.html.",
+      "url": "https://www.eaglebed.co.uk/collections/mattresses"
+    },
+    "best storage beds for small bedrooms uk": {
+      "fix": "Added eb-answer paragraph at top of /collections/storage-beds description: \"For a small bedroom, choose a bed that doubles as storage. A side lift ottoman opens from the long side, so the bed can sit foot-to-wall; drawers need about 60cm of clear floor. A small double (4ft) saves width if space is tight. Our storage beds are handmade in Dewsbury, such as the Side Lift Ottoman Storage Base from £249.99 and the Divan Storage Base with Drawers from £168.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-storage-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/storage-beds"
+    },
+    "beds for small bedrooms": {
+      "fix": "Added eb-answer paragraph at top of /collections/storage-beds description: \"For a small bedroom, choose a bed that doubles as storage. A side lift ottoman opens from the long side, so the bed can sit foot-to-wall; drawers need about 60cm of clear floor. A small double (4ft) saves width if space is tight. Our storage beds are handmade in Dewsbury, such as the Side Lift Ottoman Storage Base from £249.99 and the Divan Storage Base with Drawers from £168.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-storage-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/storage-beds"
+    },
+    "teddy boucle ottoman bed": {
+      "fix": "Added eb-answer paragraph at top of /collections/ottoman-beds description: \"Choosing an ottoman storage bed? Look for gas lift struts that hold the lid open, a solid wood frame, full-length storage and end or side lift. Our gas lift ottoman beds are handmade to order in our own Dewsbury workshop, such as the Ottoman Gas Lift Divan Base from £220.99 and the Cloud Teddy Bouclé Ottoman Bed from £376.99, delivered and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-ottoman-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/ottoman-beds"
+    },
+    "wingback bed": {
+      "fix": "Added eb-answer paragraph at top of /collections/wingback-beds description: \"When choosing a velvet wingback bed, look for a solid wood frame, wings deep enough to lean against and a dense velvet that holds the panel lines, and measure the wall, as the wings add width. Our wingback beds are handmade to order in Dewsbury in Plush Velvet or other fabrics, such as the Mayfair Wingback Bed from £285.99 and the Roxy Curved Wingback Bed from £337.99. Free swatches available.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-wingback-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/wingback-beds"
+    },
+    "velvet bed": {
+      "fix": "Added eb-answer paragraph at top of /collections/upholstered-beds description: \"For a teddy bouclé or velvet bed, look for a solid wood frame, tight, even upholstery and free swatches so you can see the fabric first. Every Eagle Bed is handmade to order in Dewsbury in your choice of fabric, including Teddy Bouclé and Plush Velvet. Try the Cloud Teddy Bouclé Ottoman Bed from £376.99 or the Mayfair Wingback Bed in Plush Velvet from £285.99.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-upholstered-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/upholstered-beds"
+    },
+    "kids beds": {
+      "fix": "Added eb-answer paragraph at top of /collections/kids-beds description: \"Look for kids beds that are sturdy, soft and sized to grow into: a solid wood frame, a padded headboard and a standard UK mattress size. Our kids beds are handmade to order in Dewsbury in Kids Single, Single and Small Double, such as the Line Kids Velvet Bed and Line Wingback Kids Bed from £285.99, delivered free across Great Britain and assembled by our own team.\" SEO title/description already keyword-matched, unchanged. Backup: ops/aivis/backups/collection-kids-beds.html.",
+      "url": "https://www.eaglebed.co.uk/collections/kids-beds"
+    },
+    "divan vs ottoman": {
+      "fix": "covered by guide",
+      "url": "https://www.eaglebed.co.uk/blogs/news/ottoman-bed-vs-divan-bed-uk"
+    }
+  }
+}
