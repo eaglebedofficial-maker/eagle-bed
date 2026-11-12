@@ -13,3 +13,4 @@
 - 2026-11-11 18:00 cinema: Black Piping Contrast Bed 4K video posted to Facebook (1123957490626374), Instagram (17952673341056647, 1080p copy, 2nd try), YouTube (cFEzRORmm2k) + TikTok via Publer. 5 Zapier tasks (53 this month). Owner's photo task also posted the 18:00 photo post at 17:46 (not skipping 09:00/18:00).
 - 2026-11-12 daily (supervisor=running): Wed 11 Nov 55 sessions vs 52 on 4 Nov, 11 carts, 1 checkout, 0 orders. Last order #1039 (10 Nov, card). No new abandoned checkouts. 11 Nov photo posts all posted. OpenRush still out of credits (no Ads/GSC). Next due: 13 Nov Black Friday lines (facts only).
 - 2026-11-12 09:00 cinema: video FAILED - Gemini image API HTTP 502 twice; nothing posted (videos/2026-11-12_0900cine failed). Pinterest P02 posted (pin 1106407833495976164). 1 Zapier task (58 this month).
+- 2026-11-12 18:00 cinema: video FAILED - Gemini prepaid credits depleted (HTTP 402). Owner told to top up at ai.studio/projects. No Zapier tasks used.
