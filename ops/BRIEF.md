@@ -24,3 +24,9 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Google Ads numbers: OpenRush get_ad_performance only. Zapier Google Ads only for owner-approved changes.
 - No more Publer TikTok photo top-ups (cinema task posts TikTok/YouTube).
 - Plan: videos ~240, 1pm photo ~60, rest owner jobs/retries. If usage >80% of cap before the 20th: tell owner once, skip optional work.
+
+## Cinema runs, notes 12 Nov 2026 (agreed with the main HQ session)
+- Pinterest (09:00 runs): pin queue is HQ ArtifactData "pins" (query posted==false, order by "order", limit 1) -> Zapier pinterest_create_pin -> update pins/<id> posted true, pinId, postedAt; usage kinds.pinterest +1. Ignore ops/seo-types/pin-queue.json.
+- Photo posts at 09:00/13:00/18:00 alongside the 2 daily videos are intended (3 photos + 2 videos a day).
+- Instagram "still processing": wait ~60s, retry once. Use the 1080p copy for Instagram.
+- Run tools/cinema/autovideo.py with python3.13 (python3.11 PIL is broken in this container).
