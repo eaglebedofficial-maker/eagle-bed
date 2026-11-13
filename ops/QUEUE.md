@@ -16,3 +16,4 @@
 - 2026-11-12 18:00 cinema: video FAILED - Gemini prepaid credits depleted (HTTP 402). Owner told to top up at ai.studio/projects. No Zapier tasks used.
 - 2026-11-13 daily (supervisor=running): Thu 12 Nov 76 sessions vs 57 on 5 Nov, 12 carts, 3 checkouts, 0 orders. Last order #1039 10 Nov (card); 2 days without an order (normal range). 12 Nov photo posts all posted. Done: Black Friday facts-only line on ottoman-beds + small-double-beds (backed up). OpenRush + Gemini still out of credits.
 - 2026-11-13 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P03 posted (1106407833496056019). 1 Zapier task (71 this month).
+- 2026-11-13 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
