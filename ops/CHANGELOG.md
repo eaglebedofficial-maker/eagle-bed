@@ -8,3 +8,5 @@
 - ops/ files rebuilt in the repo (AUTOPILOT_REGISTRY, BRIEF, QUEUE, CHANGELOG).
 ## 5 Nov 2026
 - FB/IG: posted 5 Nov 09:00 Florida Panel Bed carousel (IG 18144878680719401; FB 466446689880866_122226548456559693); HQ post marked posted.
+## 13 Nov 2026
+- Black Friday intro line (facts only, no offer) added as the first paragraph (<p class="eb-seasonal">) of /collections/ottoman-beds and /collections/small-double-beds: "Shopping for a new bed this Black Friday? Every Eagle Bed [ottoman bed|small double] is handmade to order in our Dewsbury workshop and delivered free across Great Britain by our own team, usually within 3–5 working days, with 14-day free returns and Klarna or Clearpay at checkout." Backups: ops/backups/2026-11-13_collection_*_description.html. REMOVE the eb-seasonal paragraph on 1 Dec.

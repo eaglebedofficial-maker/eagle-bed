@@ -27,10 +27,10 @@ Eagle Bed HQ artifact (memory/business notes) and in git history. Keep this file
 - 1 Nov (overdue): Valentine's/Easter/Mothering Sunday/student keyword pull (R23 data part).
 - 10 Nov: measure E1 snippet experiment (S20). 10 Nov: could not measure — the experiment details (which page and baseline) were lost when the scratchpad was wiped; it is folded into the 17 Nov re-measure using site GSC totals.
 - 10 Nov: add Christmas last-order-date sentence to /pages/delivery-information ONLY if owner confirmed it.
-- 13 Nov: Black Friday intro lines on /collections/ottoman-beds and /collections/small-double-beds (facts only unless owner gave a real offer).
+- DONE 13 Nov: Black Friday intro lines (facts only) on /collections/ottoman-beds and /collections/small-double-beds. Remove on 1 Dec.
 - 17 Nov: re-measure 19–20 Oct changes vs baselines; measure guest-bedroom-bed-guide-uk ('guest bedroom', 'best bed for guest room').
 - 26 Nov: Search Console review of the two new ottoman size collections; if they get impressions, add double (27,100) and single (22,200) ottoman pages.
-- 1 Dec: verify new-year article went live; add one link from /collections/ottoman-beds and the ottoman guide. Next HQ order from roadmap (Dec–Jan wave).
+- 1 Dec: remove Black Friday eb-seasonal paragraph from ottoman-beds + small-double-beds. Verify new-year article went live; add one link from /collections/ottoman-beds and the ottoman guide. Next HQ order from roadmap (Dec–Jan wave).
 - 15 Dec: Feb collection/guide prep (R23).
 - 20 Jan 2027: optional Valentine's refresh on /collections/headboards and /collections/upholstered-beds.
 - 1 Mar 2027: Easter line on /collections/small-double-beds only with a real offer.
