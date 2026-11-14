@@ -18,3 +18,4 @@
 - 2026-11-13 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P03 posted (1106407833496056019). 1 Zapier task (71 this month).
 - 2026-11-13 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
 - 2026-11-14 daily (supervisor=running): HIGH: Fri 13 Nov 33 sessions vs 79 on 6 Nov (-58%); near-zero visits 11:00-16:00 UTC. Site up (200), checkout works: 2 orders 13 Nov #1040 Cloud Teddy Bouclé £556.19 + #1041 Eagle Regal Gold-Trim £503.98 (both card). Live theme now 'Eagle Bed SEO fixes 10 Nov - PUBLISH' (owner published). Cannot check Ads (OpenRush credits). Owner asked to check Google Ads is running. Abandoned 12 Nov 22:07 Ottoman base £228.60. 13 Nov photo posts all posted.
+- 2026-11-14 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P05 posted (1106407833496139580). 1 Zapier task (84 this month).
