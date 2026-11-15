@@ -21,3 +21,4 @@
 - 2026-11-14 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P05 posted (1106407833496139580). 1 Zapier task (84 this month).
 - 2026-11-14 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
 - 2026-11-15 daily (supervisor=running): Sat 14 Nov 50 sessions vs 58 on 7 Nov (-14%, recovered from Fri). New order #1042 Curved Wingback Bed £578.68 (card). 3 orders 13-14 Nov. OpenRush + Gemini still out of credits. 14 Nov photo posts checked.
+- 2026-11-15 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P06 posted (1106407833496227419). 1 Zapier task (97 this month).
