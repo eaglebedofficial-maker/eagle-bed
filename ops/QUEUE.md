@@ -23,3 +23,4 @@
 - 2026-11-15 daily (supervisor=running): Sat 14 Nov 50 sessions vs 58 on 7 Nov (-14%, recovered from Fri). New order #1042 Curved Wingback Bed £578.68 (card). 3 orders 13-14 Nov. OpenRush + Gemini still out of credits. 14 Nov photo posts checked.
 - 2026-11-15 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P06 posted (1106407833496227419). 1 Zapier task (97 this month).
 - 2026-11-15 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
+- 2026-11-16 daily (supervisor=running): Sun 15 Nov 93 sessions vs 49 on 8 Nov, but ~40 are 'direct' non-UK (US 17, Brazil, Thailand, Venezuela, etc.) and 26 of them reached checkout with no cart and no abandoned checkout record: looks like bot/card-testing traffic. UK sessions ~53 (normal). Week 9-15 Nov: 5 orders £2,405.64 (prev 6, £2,811.30), AOV £463. Last order #1042 14 Nov (card). OpenRush still out of credits (no Ads review this Monday). Gemini still out. Owner told.
