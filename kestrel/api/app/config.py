@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-opus-5-5"
 
     rate_limit_per_minute: int = 240
+    auth_attempts_per_5min: int = 20
     log_level: str = "INFO"
 
     @property

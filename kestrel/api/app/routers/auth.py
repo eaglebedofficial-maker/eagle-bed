@@ -59,7 +59,7 @@ def user_payload(db: Session, user: User, org_id: int | None = None):
 
 def _throttle(request: Request, key: str):
     ip = request.client.host if request.client else "?"
-    if not cache.hit(f"auth:{key}:{ip}", 20, 300):
+    if not cache.hit(f"auth:{key}:{ip}", get_settings().auth_attempts_per_5min, 300):
         raise HTTPException(429, "Too many attempts. Wait a few minutes and try again.")
 
 

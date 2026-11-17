@@ -98,7 +98,11 @@ def analyse(db: Session, product_id: int, days_list=(30, 90, 180, 365)) -> dict:
     else:
         out["seasonality"] = None
     # buy box ownership
-    bb = db.execute(select(BuyBoxHistory.ts, BuyBoxHistory.seller_id).where(BuyBoxHistory.product_id == product_id, BuyBoxHistory.ts >= now - timedelta(days=90)).order_by(BuyBoxHistory.ts)).all()
+    start = now - timedelta(days=90)
+    bb = db.execute(select(BuyBoxHistory.ts, BuyBoxHistory.seller_id).where(BuyBoxHistory.product_id == product_id, BuyBoxHistory.ts >= start).order_by(BuyBoxHistory.ts)).all()
+    prev = db.execute(select(BuyBoxHistory.ts, BuyBoxHistory.seller_id).where(BuyBoxHistory.product_id == product_id, BuyBoxHistory.ts < start).order_by(BuyBoxHistory.ts.desc()).limit(1)).first()
+    if prev:  # the seller holding the buy box when the window opened
+        bb = [(start, prev[1])] + list(bb)
     if bb:
         share = defaultdict(float)
         for i, (t, s) in enumerate(bb):
