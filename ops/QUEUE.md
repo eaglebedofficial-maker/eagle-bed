@@ -29,3 +29,4 @@
 - 2026-11-16 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
 - 2026-11-17 daily (supervisor=running): Mon 16 Nov 114 sessions but only 45 UK; bot-like checkout traffic grew: 48 reached checkout with 3 carts (US 25, Vietnam 5, Brazil 4...). 0 orders 15-16 Nov; last order #1042 14 Nov (card). 16 Nov photo posts posted. 17 Nov re-measure blocked (no GSC, OpenRush 402). Owner reminded about bot checkouts.
 - 2026-11-17 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P08 posted (1106407833496388319). 1 Zapier task (123 this month).
+- 2026-11-17 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
