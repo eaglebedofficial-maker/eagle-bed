@@ -1,7 +1,10 @@
 from functools import lru_cache
 
-from pydantic import Field
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+_DEV_FERNET = "Wd3dV0B3Yq4ZJ3wS1F3nYwqfJt2iUqvQ9kXo2y8hFvQ="
 
 
 class Settings(BaseSettings):
@@ -18,7 +21,7 @@ class Settings(BaseSettings):
     refresh_token_days: int = 30
     cookie_secure: bool = False
     # Fernet key (urlsafe base64, 32 bytes) for provider credentials at rest
-    secret_encryption_key: str = "Wd3dV0B3Yq4ZJ3wS1F3nYwqfJt2iUqvQ9kXo2y8hFvQ="
+    secret_encryption_key: str = _DEV_FERNET
 
     storage_dir: str = "./storage"
     max_upload_mb: int = 20
@@ -35,7 +38,15 @@ class Settings(BaseSettings):
 
     rate_limit_per_minute: int = 240
     auth_attempts_per_5min: int = 20
+    demo_login_enabled: bool = True  # allows one-click sign-in to the clearly labelled demo workspace
     log_level: str = "INFO"
+
+    @model_validator(mode="after")
+    def _production_secrets(self):
+        if self.environment == "production":
+            if self.jwt_secret.startswith("dev-insecure") or self.secret_encryption_key == _DEV_FERNET:
+                raise ValueError("Set JWT_SECRET and SECRET_ENCRYPTION_KEY before running in production (see .env.example).")
+        return self
 
     @property
     def is_production(self) -> bool:

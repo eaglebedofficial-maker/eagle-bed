@@ -100,6 +100,23 @@ def login(body: LoginIn, request: Request, response: Response, db: Session = Dep
     return user_payload(db, user, m.org_id if m else None)
 
 
+@router.post("/demo")
+def demo_login(request: Request, response: Response, db: Session = Depends(get_db)):
+    """Sign in to the fictional demo workspace (created by `python -m app.demo`)."""
+    if not get_settings().demo_login_enabled:
+        raise HTTPException(404, "The demo workspace is not enabled on this server.")
+    _throttle(request, "demo")
+    org = db.scalar(select(Organisation).where(Organisation.is_demo.is_(True), Organisation.slug == "kestrel-demo"))
+    m = org and db.scalar(select(Membership).where(Membership.org_id == org.id, Membership.role == "owner"))
+    if not m:
+        raise HTTPException(404, "No demo workspace on this server. Run `python -m app.demo` to create it.")
+    user = db.get(User, m.user_id)
+    _issue(db, response, user, org.id)
+    audit(db, "auth.demo_login", org_id=org.id, user_id=user.id, ip=request.client.host if request.client else "")
+    db.commit()
+    return user_payload(db, user, org.id)
+
+
 @router.post("/refresh")
 def refresh(request: Request, response: Response, db: Session = Depends(get_db)):
     raw = request.cookies.get("k_refresh")
