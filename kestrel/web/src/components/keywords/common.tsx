@@ -28,6 +28,8 @@ const PROVIDER_NAMES: Record<string, string> = {
 };
 export const providerName = (k?: string) => (k ? PROVIDER_NAMES[k] ?? k : undefined);
 
+export const isNotConfigured = (e: unknown) => e instanceof ApiError && (e.status === 424 || e.notConfigured);
+
 /** ErrorState that renders the not-configured state (HTTP 424) with a readable provider name. */
 export function ApiErrorView({ error, onRetry, className, fallbackProvider }: { error: unknown; onRetry?: () => void; className?: string; fallbackProvider?: string }) {
   if (error instanceof ApiError && (error.status === 424 || error.notConfigured)) {
@@ -49,8 +51,17 @@ export function Gate({ allowed, reason = "Analyst role or higher required", chil
 
 /* ---------------------------------------------------------------- helpers */
 export const splitLines = (s: string) => s.split(/[\n,;\t]+/).map((x) => x.trim()).filter(Boolean);
-export const ASIN_RE = /\b(B0[A-Z0-9]{8}|[0-9]{9}[0-9X])\b/gi;
-export const extractAsins = (s: string) => Array.from(new Set((s.toUpperCase().match(ASIN_RE) ?? []).map((a) => a.toUpperCase())));
+/** ASINs from free text: bare ASINs/ISBN-10s, or the /dp/ part of Amazon product URLs. */
+export function extractAsins(s: string): string[] {
+  const out: string[] = [];
+  for (const tok of s.split(/[\s,;]+/).filter(Boolean)) {
+    if (tok.includes("/")) {
+      const m = tok.match(/\/(?:dp|gp\/product|product|gp\/aw\/d)\/([A-Z0-9]{10})(?=[/?#]|$)/i);
+      if (m) out.push(m[1].toUpperCase());
+    } else if (/^(B0[A-Z0-9]{8}|[0-9]{9}[0-9X])$/i.test(tok)) out.push(tok.toUpperCase());
+  }
+  return Array.from(new Set(out));
+}
 
 export function toCsv(headers: string[], rows: (string | number | boolean | null | undefined)[][]) {
   const esc = (v: unknown) => {

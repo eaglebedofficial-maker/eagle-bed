@@ -185,7 +185,7 @@ export function FilterSheet({ open, onOpenChange, filters, onApply, unsupported 
 }
 
 /* ---------------------------------------------------------------- active chips */
-function chipLabel(k: string, v: unknown, currency: string): string {
+export function chipLabel(k: string, v: unknown, currency: string): string {
   const r = ALL_RANGES.find((d) => `${d.key}_min` === k || `${d.key}_max` === k);
   if (r) {
     const val = r.money ? `${currencySymbol(currency).trim()}${v}` : `${v}${r.suffix && r.suffix !== "/100" ? r.suffix : ""}`;

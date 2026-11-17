@@ -32,7 +32,7 @@ export function useDebounced<T>(value: T, ms = 350): T {
 
 /** Numeric input bound to a string so partially typed values ("1.") survive. */
 export function NumInput({ value, onChange, prefix, suffix, placeholder, id, min, step = "any", invalid, disabled, className, "aria-label": ariaLabel }: {
-  value: string; onChange: (v: string) => void; prefix?: React.ReactNode; suffix?: React.ReactNode; placeholder?: string; id?: string; min?: number; step?: string;
+  value: string; onChange: (v: string) => void; prefix?: string; suffix?: React.ReactNode; placeholder?: string; id?: string; min?: number; step?: string;
   invalid?: boolean; disabled?: boolean; className?: string; "aria-label"?: string;
 }) {
   return (

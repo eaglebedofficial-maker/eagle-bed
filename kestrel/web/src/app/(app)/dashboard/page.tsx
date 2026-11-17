@@ -10,6 +10,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { BarList, EmptyState, ErrorState, MetricCard, ScorePill, SourceBadge } from "@/components/ui/data";
 import { Badge, Button, Card, CardBody, CardHeader, Skeleton, Textarea } from "@/components/ui/primitives";
 import { get } from "@/lib/api";
+import { SUPPLIER_STATUS } from "@/components/app/supplier";
 import { useSession } from "@/lib/session";
 import { ago, money, num } from "@/lib/utils";
 
@@ -21,11 +22,6 @@ type Dash = {
   activity: { kind: string; title: string; body: string; at: string }[];
 };
 
-export const SUPPLIER_STATUS: Record<string, { label: string; tone: "success" | "primary" | "cyan" | "neutral" | "danger" | "warning" }> = {
-  official_brand_owner: { label: "Official brand owner", tone: "success" }, verified_authorised_distributor: { label: "Verified authorised distributor", tone: "success" },
-  manufacturer: { label: "Manufacturer", tone: "cyan" }, established_wholesaler: { label: "Business verified", tone: "primary" },
-  unverified: { label: "Unverified", tone: "neutral" }, high_risk: { label: "High risk", tone: "danger" },
-};
 
 function greeting() {
   const h = new Date().getHours();

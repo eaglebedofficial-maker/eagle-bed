@@ -24,7 +24,7 @@ export function RfqDialog({ open, onOpenChange, supplier, onCreated }: { open: b
   const [f, setF] = React.useState({ product_desc: "", quantity: "", target_price: "", currency: "GBP", branded: false, brand: "" });
   React.useEffect(() => {
     if (open) { setSup(supplier ?? null); setProd(null); setF({ product_desc: "", quantity: "", target_price: "", currency: "GBP", branded: false, brand: "" }); }
-  }, [open, supplier]);
+  }, [open, supplier?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const create = useMutation({
     mutationFn: () => post<Rfq>("/rfq", {
       supplier_id: sup!.id, product_desc: f.product_desc.trim(), product_id: prod?.id ?? null, quantity: f.quantity ? Math.round(Number(f.quantity)) : null,

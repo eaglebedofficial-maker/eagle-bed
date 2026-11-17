@@ -42,7 +42,7 @@ const CURRENCIES = ["GBP", "EUR", "USD", "CNY"].map((c) => ({ value: c, label: c
 export function SupplierFormDialog({ open, onOpenChange, supplier, onSaved }: { open: boolean; onOpenChange: (v: boolean) => void; supplier?: SupplierDetail | null; onSaved?: (s: SupplierDetail) => void }) {
   const qc = useQueryClient();
   const [f, setF] = React.useState<Form>(EMPTY);
-  React.useEffect(() => { if (open) setF(supplier ? fromSupplier(supplier) : EMPTY); }, [open, supplier]);
+  React.useEffect(() => { if (open) setF(supplier ? fromSupplier(supplier) : EMPTY); }, [open, supplier?.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((p) => ({ ...p, [k]: v }));
 
   const body = () => ({
