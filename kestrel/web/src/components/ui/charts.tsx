@@ -74,8 +74,11 @@ export function CategoryChart({ data, x, series, height = 260, valueFormat, hori
       <ResponsiveContainer>
         <BarChart data={data} layout={horizontal ? "vertical" : "horizontal"} margin={{ top: 8, right: 12, bottom: 0, left: horizontal ? 8 : 4 }} barCategoryGap="22%">
           <CartesianGrid stroke="rgb(var(--line))" strokeOpacity={0.6} vertical={!!horizontal} horizontal={!horizontal} />
-          {horizontal ? (<><XAxis type="number" tickFormatter={(v) => valueFormat ? valueFormat(v, series[0].key) : v} {...AXIS} /><YAxis type="category" dataKey={x} width={140} {...AXIS} /></>)
-            : (<><XAxis dataKey={x} {...AXIS} interval={0} tick={{ ...AXIS.tick, fontSize: 10 }} /><YAxis width={56} tickFormatter={(v) => valueFormat ? valueFormat(v, series[0].key) : v} {...AXIS} /></>)}
+          {/* Recharts 2 does not look inside fragments, so each axis is a direct child. */}
+          {horizontal ? <XAxis type="number" tickFormatter={(v) => valueFormat ? valueFormat(v, series[0].key) : v} {...AXIS} />
+            : <XAxis dataKey={x} {...AXIS} interval={0} tick={{ ...AXIS.tick, fontSize: 10 }} />}
+          {horizontal ? <YAxis type="category" dataKey={x} width={140} {...AXIS} />
+            : <YAxis width={56} tickFormatter={(v) => valueFormat ? valueFormat(v, series[0].key) : v} {...AXIS} />}
           <RTooltip content={<TooltipBox valueFormat={valueFormat} />} cursor={{ fill: "rgb(var(--surface-2))" }} isAnimationActive={false} />
           {series.length > 1 && <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12, color: "rgb(var(--muted))" }} />}
           {series.map((s) => <Bar key={s.key} dataKey={s.key} name={s.label} stackId={stacked ? "a" : undefined} fill={tokenColor(s.tone || "primary")} radius={stacked ? 0 : horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]} isAnimationActive={false} />)}
