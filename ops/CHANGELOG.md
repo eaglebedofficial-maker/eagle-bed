@@ -75,3 +75,4 @@
 - 11 Nov: HQ v48: Office Sales lead list shows only leads needing the owner (replied/won/not-yet-contacted); emailed businesses live in the Email tab (today + all before today); "First message (draft)" renamed "Email we sent" for sent emails; lead status "bounced" added.
 - 11 Nov: Inbox agent (every 2h 9am-9pm, drafts replies with WhatsApp 07417 439197, phone alert) + HQ v49 Inbox card; trade emails now invite WhatsApp; WhatsApp Business connected in Zapier; ops/whatsapp/SETUP.md with profile, greeting, away message, quick replies, catalogue and forward-to-Gmail Zap steps.
 - 12 Nov 00:10 — Checked leads: emailedAt is already set on all contacted leads, so no backfill was needed. Told the cinema session to run Pinterest step 6c, wait for READY before posting the IG Reel, and post the queued William Elegant video.
+- 17 Nov — First interested trade reply: Ivywell Interiors (Bristol) asked about client-supplied fabric; owner replied yes. Added COM fact to BRIEF.
