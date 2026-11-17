@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Kestrel design tokens — RGB triplets so Tailwind opacity modifiers work.
+   Light is the base; .dark overrides. Default theme is dark (set on <html> before paint). */
+:root {
+  --bg: 247 249 252;          /* #F7F9FC */
+  --surface: 255 255 255;     /* #FFFFFF */
+  --surface-2: 243 246 250;
+  --surface-3: 234 239 246;
+  --line: 227 232 240;
+  --line-strong: 208 216 228;
+  --fg: 23 32 51;             /* #172033 */
+  --muted: 86 99 125;
+  --subtle: 132 143 165;
+  --primary: 79 124 255;      /* #4F7CFF */
+  --primary-fg: 255 255 255;
+  --primary-soft: 232 239 255;
+  --cyan: 14 160 190;         /* darker cyan for contrast on light */
+  --cyan-soft: 224 246 251;
+  --violet: 112 96 240;
+  --violet-soft: 239 236 255;
+  --success: 22 163 106;      /* #16A36A */
+  --success-soft: 225 245 236;
+  --warning: 196 128 26;      /* #E7A23B darkened for text contrast on light */
+  --warning-soft: 252 242 224;
+  --danger: 224 82 82;        /* #E05252 */
+  --danger-soft: 252 233 233;
+  --shadow: 15 23 42;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 11 16 32;             /* #0B1020 */
+  --surface: 17 24 39;        /* #111827 */
+  --surface-2: 21 29 47;      /* #151D2F */
+  --surface-3: 28 38 60;
+  --line: 32 43 66;
+  --line-strong: 46 60 90;
+  --fg: 230 235 245;
+  --muted: 154 166 191;
+  --subtle: 104 116 141;
+  --primary: 79 124 255;
+  --primary-fg: 255 255 255;
+  --primary-soft: 26 38 78;
+  --cyan: 34 199 232;         /* #22C7E8 */
+  --cyan-soft: 13 49 61;
+  --violet: 139 124 255;      /* #8B7CFF */
+  --violet-soft: 37 33 74;
+  --success: 22 163 106;
+  --success-soft: 14 44 34;
+  --warning: 231 162 59;      /* #E7A23B */
+  --warning-soft: 52 39 18;
+  --danger: 224 82 82;
+  --danger-soft: 56 22 26;
+  --shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+@layer base {
+  * { @apply border-line; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-bg text-fg antialiased; font-feature-settings: "cv11", "ss01"; }
+  ::selection { background: rgb(var(--primary) / 0.25); }
+  :focus-visible { outline: 2px solid rgb(var(--primary)); outline-offset: 2px; }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.015em; }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
+  *::-webkit-scrollbar-thumb { background: rgb(var(--line-strong)); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+  *::-webkit-scrollbar-track { background: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
