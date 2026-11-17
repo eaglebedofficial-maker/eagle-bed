@@ -84,6 +84,7 @@ function runTracking() {
           t.history = t.history || [];
           t.history.push({ t: Date.now(), price: p.price || null, bsr: p.bsr || null, reviews: p.reviews || null, rating: p.rating || null, offers: p.offers || null, bought: p.bought || null, sales: est.units || null, sellerType: p.sellerType || "" });
           if (t.history.length > 1500) t.history = t.history.slice(-1500);
+          alertOn(t, settings);
           t.title = t.title || p.title; t.image = t.image || p.image; t.category = p.category; t.last = Date.now(); t.error = "";
           count++;
         }, function (e) { t.error = e.message; }).then(function () { return sleep(2500 + Math.random() * 2500); });
@@ -103,4 +104,18 @@ function runTracking() {
       return set({ tracked: tracked, ranktrack: rt, trackLog: log });
     });
   }).then(function () { running = false; return count; }, function (e) { running = false; throw e; });
+}
+
+// Price / rank / seller alerts (Keepa-style), compared with the previous reading.
+function alertOn(t, settings) {
+  var H = t.history || []; if (H.length < 2) return;
+  var a = H[H.length - 2], b = H[H.length - 1], msgs = [];
+  var pct = (settings && +settings.alertPct) || 5;
+  if (a.price && b.price && Math.abs(b.price - a.price) / a.price * 100 >= pct) msgs.push("Price " + (b.price < a.price ? "dropped" : "rose") + " " + a.price + " → " + b.price);
+  if (a.bsr && b.bsr && (b.bsr < a.bsr / 2 || b.bsr > a.bsr * 2)) msgs.push("Rank moved #" + a.bsr + " → #" + b.bsr);
+  if (a.sellerType !== b.sellerType && a.sellerType && b.sellerType) msgs.push("Buy box seller type " + a.sellerType + " → " + b.sellerType);
+  if (a.offers && b.offers && b.offers - a.offers >= 3) msgs.push("New sellers joined: " + a.offers + " → " + b.offers);
+  if (!msgs.length || (settings && settings.alerts === false)) return;
+  try { chrome.notifications.create("pp-" + t.asin + "-" + Date.now(), { type: "basic", iconUrl: "icons/icon128.png", title: "Product Pilot: " + (t.title || t.asin).slice(0, 60), message: msgs.join(" · ") }); } catch (e) { }
+  t.alerts = (t.alerts || []).concat([{ t: Date.now(), msg: msgs.join(" · ") }]).slice(-50);
 }
