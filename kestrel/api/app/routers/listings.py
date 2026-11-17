@@ -97,6 +97,17 @@ def save_draft(did: int, body: DraftIn, ctx: Ctx = Depends(need_analyst)):
     return {"ok": True}
 
 
+@router.delete("/sets/{gid}/products/{pid}")
+def remove_from_set(gid: int, pid: int, ctx: Ctx = Depends(need_analyst)):
+    g = ctx.db.get(TrackingGroup, gid)
+    if not g or g.org_id != ctx.org_id:
+        raise HTTPException(404, "Set not found")
+    for t in ctx.db.scalars(select(TrackedProduct).where(TrackedProduct.group_id == gid, TrackedProduct.product_id == pid)):
+        ctx.db.delete(t)
+    ctx.db.commit()
+    return {"ok": True}
+
+
 @router.delete("/listings/drafts/{did}")
 def delete_draft(did: int, ctx: Ctx = Depends(need_analyst)):
     d = ctx.db.get(ListingDraft, did)
@@ -223,7 +234,10 @@ def create_set(body: SetIn, ctx: Ctx = Depends(need_analyst)):
     g = TrackingGroup(org_id=ctx.org_id, name=body.name, kind=body.kind)
     ctx.db.add(g)
     ctx.db.flush()
-    for pid in body.product_ids[:50]:
+    cap = 10 if body.kind == "competitor_set" else 50
+    if len(body.product_ids) > cap:
+        raise HTTPException(422, f"A {'competitor set' if cap == 10 else 'market'} holds at most {cap} products.")
+    for pid in body.product_ids:
         p = ctx.db.get(Product, pid)
         if p and p.org_id == ctx.org_id:
             ctx.db.add(TrackedProduct(org_id=ctx.org_id, product_id=pid, group_id=g.id))
@@ -237,6 +251,9 @@ def add_to_set(gid: int, product_ids: list[int], ctx: Ctx = Depends(need_analyst
     if not g or g.org_id != ctx.org_id:
         raise HTTPException(404, "Set not found")
     have = set(ctx.db.scalars(select(TrackedProduct.product_id).where(TrackedProduct.group_id == gid)))
+    cap = 10 if g.kind == "competitor_set" else 50
+    if len(have | set(product_ids)) > cap:
+        raise HTTPException(422, f"This set can hold at most {cap} products.")
     for pid in product_ids:
         p = ctx.db.get(Product, pid)
         if p and p.org_id == ctx.org_id and pid not in have:

@@ -1,7 +1,7 @@
 "use client";
 /* Product sets: competitor sets (Competitor Analysis) and market sets (Market Tracker). */
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Activity, ArrowDownRight, ArrowUpRight, Boxes, Coins, DollarSign, PackageSearch, Plus, Radar, Star, Target, Trash2, TrendingUp, Users } from "lucide-react";
+import { Activity, ArrowDownRight, ArrowUpRight, Boxes, Coins, DollarSign, PackageSearch, Plus, Radar, Star, Target, Trash2, TrendingUp, Users, X } from "lucide-react";
 import * as React from "react";
 import {
   Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Scatter, ScatterChart, Tooltip as RTooltip, XAxis, YAxis, ZAxis,
@@ -125,6 +125,11 @@ function SetView({ id, kind, onDeleted }: { id: number; kind: Kind; onDeleted: (
     onSuccess: () => { toast.success("Deleted"); setRemoving(false); qc.invalidateQueries({ queryKey: ["sets", kind] }); onDeleted(); },
     onError: (e) => toast.error(errorMessage(e)),
   });
+  const drop = useMutation({
+    mutationFn: (pid: number) => del(`/sets/${id}/products/${pid}`),
+    onSuccess: () => { toast.success("Removed from set"); qc.invalidateQueries({ queryKey: ["set", id] }); qc.invalidateQueries({ queryKey: ["sets", kind] }); },
+    onError: (e) => toast.error(errorMessage(e)),
+  });
   if (q.isLoading) return <div className="space-y-4"><div className="grid grid-cols-2 gap-3 lg:grid-cols-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-28" />)}</div><Skeleton className="h-72" /></div>;
   if (q.error) return <Card><ApiErrorView error={q.error} onRetry={() => q.refetch()} /></Card>;
   const d = q.data!;
@@ -142,7 +147,7 @@ function SetView({ id, kind, onDeleted }: { id: number; kind: Kind; onDeleted: (
       </div>
       {!d.products.length ? (
         <Card><EmptyState icon={PackageSearch} title="No products in this set" description="Add products from your workspace to start comparing." action={<Gate allowed={analyst}><Button onClick={() => setAdding(true)}><Plus />Add products</Button></Gate>} /></Card>
-      ) : kind === "competitor_set" ? <CompetitorView d={d} /> : <MarketView d={d} days={days} />}
+      ) : kind === "competitor_set" ? <CompetitorView d={d} onRemove={analyst ? (pid) => drop.mutate(pid) : undefined} /> : <MarketView d={d} days={days} onRemove={analyst ? (pid) => drop.mutate(pid) : undefined} />}
       <ProductPickerDialog open={adding} onOpenChange={setAdding} multiple max={Math.max(1, room)} title={`Add up to ${room} product${room === 1 ? "" : "s"}`} confirmLabel="Add to set"
         onPick={(ps) => add.mutate(ps.filter((p) => !d.products.some((x) => x.id === p.id)).map((p) => p.id))} />
       <ConfirmDialog open={removing} onOpenChange={setRemoving} title={`Delete ${c.noun}?`} confirmLabel="Delete" loading={remove.isPending}
@@ -154,8 +159,8 @@ function SetView({ id, kind, onDeleted }: { id: number; kind: Kind; onDeleted: (
 const avg = (xs: (number | null | undefined)[]) => { const v = xs.filter((x): x is number => x != null); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
 const short = (p: { title: string; asin: string; brand?: string }, n = 26) => { const t = p.brand ? `${p.brand} · ${p.asin}` : p.title || p.asin; return t.length > n ? t.slice(0, n - 1) + "…" : t; };
 
-function shareTable(d: SetDetail, currency: string): ColumnDef<SetProduct, any>[] {
-  return [
+function shareTable(d: SetDetail, currency: string, onRemove?: (id: number) => void): ColumnDef<SetProduct, any>[] {
+  const cols: ColumnDef<SetProduct, any>[] = [
     { id: "title", header: "Product", accessorKey: "title", enableHiding: false, cell: ({ row }) => <ProductCell p={row.original} /> },
     { id: "price", header: "Price", accessorKey: "price", meta: { align: "right" }, cell: ({ row: { original: p } }) => money(p.price, p.currency || currency) },
     { id: "rating", header: "Rating", accessorKey: "rating", meta: { align: "right" }, cell: ({ getValue }) => getValue() ? <span className="inline-flex items-center gap-1">{Number(getValue()).toFixed(1)}<Star className="size-3 fill-warning text-warning" /></span> : "—" },
@@ -168,10 +173,12 @@ function shareTable(d: SetDetail, currency: string): ColumnDef<SetProduct, any>[
     { id: "competition", header: "Competition", accessorKey: "competition", cell: ({ getValue }) => <CompetitionBadge level={getValue()} /> },
     { id: "score", header: "Score", accessorKey: "score", meta: { align: "right" }, cell: ({ getValue }) => <ScorePill score={getValue()} /> },
   ];
+  if (onRemove) cols.push({ id: "remove", header: "", enableSorting: false, enableHiding: false, cell: ({ row }) => <Button size="icon-sm" variant="ghost" aria-label="Remove from set" onClick={(e) => { e.stopPropagation(); onRemove(row.original.id); }}><X /></Button> });
+  return cols;
 }
 
 /* ---------------------------------------------------------------- competitor view */
-function CompetitorView({ d }: { d: SetDetail }) {
+function CompetitorView({ d, onRemove }: { d: SetDetail; onRemove?: (id: number) => void }) {
   const { currency } = useSession();
   const [metric, setMetric] = React.useState<"price" | "reviews" | "rating" | "units">("price");
   const ps = d.products;
@@ -210,7 +217,7 @@ function CompetitorView({ d }: { d: SetDetail }) {
       </Card>
       <Card className="overflow-hidden">
         <CardHeader eyebrow="Comparison" title="Side by side" action={<SourceBadge source={BASIS(d)} />} />
-        <DataTable className="rounded-none border-x-0 border-b-0 shadow-none" columns={shareTable(d, currency)} data={ps} getRowId={(p) => String(p.id)} storageKey="competitor-set" />
+        <DataTable className="rounded-none border-x-0 border-b-0 shadow-none" columns={shareTable(d, currency, onRemove)} data={ps} getRowId={(p) => String(p.id)} storageKey="competitor-set" />
       </Card>
       <ChangesFeed changes={d.changes} currency={currency} />
     </>
@@ -270,7 +277,7 @@ function ChangesFeed({ changes, currency }: { changes: Change[]; currency: strin
 }
 
 /* ---------------------------------------------------------------- market view */
-function MarketView({ d, days }: { d: SetDetail; days: number }) {
+function MarketView({ d, days, onRemove }: { d: SetDetail; days: number; onRemove?: (id: number) => void }) {
   const { currency } = useSession();
   const ps = d.products;
   const byId = new Map(ps.map((p) => [String(p.id), p]));
@@ -330,7 +337,7 @@ function MarketView({ d, days }: { d: SetDetail; days: number }) {
       </div>
       <Card className="overflow-hidden">
         <CardHeader eyebrow="Products" title="Market members" action={<SourceBadge source={BASIS(d)} />} />
-        <DataTable className="rounded-none border-x-0 border-b-0 shadow-none" columns={shareTable(d, currency)} data={ps} getRowId={(p) => String(p.id)} storageKey="market-set" />
+        <DataTable className="rounded-none border-x-0 border-b-0 shadow-none" columns={shareTable(d, currency, onRemove)} data={ps} getRowId={(p) => String(p.id)} storageKey="market-set" />
       </Card>
     </>
   );

@@ -60,7 +60,7 @@ def build_context(ctx: Ctx, question: str, context: dict) -> tuple[str, dict]:
             records.append({"id": hid, "type": "history_analytics", "product": rid, "source": h.get("source"), "period_from": h.get("period_from"), "period_to": h.get("period_to"),
                             "windows": h.get("windows"), "price_stability": h.get("price_stability"), "sales_consistency": h.get("sales_consistency"), "bsr_movement_pct": h.get("bsr_movement_pct"),
                             "seasonality": h.get("seasonality"), "buybox": h.get("buybox")})
-            index[hid] = {"type": "history", "label": f"History · {p.asin}", "href": f"/history?product={p.id}", "retrieved_at": h.get("period_to"), "classification": "licensed" if h.get("source") == "keepa" else "user"}
+            index[hid] = {"type": "history", "label": f"History · {p.asin}", "href": f"/history?product={p.id}", "retrieved_at": h.get("period_to"), "classification": {"keepa": "licensed", "demo": "demo"}.get(h.get("source"), "user")}
     sq = select(Supplier).where(Supplier.org_id == ctx.org_id)
     words = [w for w in re.findall(r"[a-zA-Z]{4,}", question.lower())]
     sups = ctx.db.scalars(sq.where(or_(*[Supplier.legal_name.ilike(f"%{w}%") for w in words[:6]], *[Supplier.trading_name.ilike(f"%{w}%") for w in words[:6]])).limit(10)).all() if words else []

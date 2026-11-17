@@ -54,7 +54,7 @@ def series(pid: int, days: int = 365, ctx: Ctx = Depends(get_ctx)):
         "buybox_sellers": [[int(t.timestamp() * 1000), s] for t, s in bb if not since or t >= since],
         "offers": [{"seller_id": o.seller_id, "is_fba": o.is_fba, "is_amazon": o.is_amazon, "price": o.price, "condition": o.condition, "is_buybox": o.is_buybox} for o in current_offers],
         "offers_at": latest_ts, "analytics": hist.analyse(ctx.db, pid),
-        "source": {"provider": ",".join(sorted(sources)) or ("tracking" if snaps else None), "classification": "licensed" if "keepa" in sources else "user",
+        "source": {"provider": ",".join(sorted(sources)) or ("tracking" if snaps else None), "classification": "demo" if "demo" in sources else "licensed" if "keepa" in sources else "user",
                    "period_from": datetime.fromtimestamp(first / 1000, timezone.utc).isoformat() if first else None,
                    "period_to": datetime.fromtimestamp(last / 1000, timezone.utc).isoformat() if last else None},
         "available": bool(data) or bool(snaps), "keepa_stats": (p.raw or {}).get("keepa_stats"),

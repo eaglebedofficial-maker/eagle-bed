@@ -142,7 +142,7 @@ class ProcessIn(BaseModel):
 
 
 @router.post("/process")
-def process(body: ProcessIn):
+def process(body: ProcessIn, ctx: Ctx = Depends(get_ctx)):
     return kw.process(body.text, remove_words=body.remove_words, min_len=body.min_words, dedupe_words=body.dedupe_words)
 
 
@@ -275,6 +275,12 @@ def check_now(track_ids: list[int] | None = None, ctx: Ctx = Depends(need_analys
     ts = list(ctx.db.scalars(q.limit(200)))
     if not get_provider(ctx.db, ctx.org_id, "dataforseo").configured():
         raise ProviderError("not_configured", "Rank checks need DataForSEO (Amazon search results). Connect it in Settings → Integrations.", "dataforseo")
+    distinct = {(t.keyword.marketplace, t.keyword.phrase) for t in ts}
+    if len(distinct) > 5:  # each keyword is a live search (up to ~60 s): run large batches in the worker
+        from ..worker import enqueue
+        enqueue(ctx.db, "ranks.check", {"track_ids": [t.id for t in ts]}, org_id=ctx.org_id)
+        ctx.db.commit()
+        return {"checked": 0, "errors": [], "queued": len(ts)}
     return check_tracks(ctx.db, ts)
 
 
@@ -300,16 +306,23 @@ def index_check(body: IndexIn, ctx: Ctx = Depends(need_analyst)):
     if not p or p.org_id != ctx.org_id:
         raise HTTPException(404, "Product not found")
     dfs = get_provider(ctx.db, ctx.org_id, "dataforseo")
-    out = []
-    for ph in [k for k in body.keywords if k.strip()][:50]:
-        k = upsert_kw(ctx, p.marketplace, ph)
+    if not dfs.configured():
+        raise ProviderError("not_configured", "Index checks need DataForSEO (Amazon search results). Connect it in Settings → Integrations.", "dataforseo")
+    phrases = list(dict.fromkeys(k.strip() for k in body.keywords if k.strip()))[:50]
+
+    def look(ph):  # network only; database writes stay on this thread
         try:
             items = dfs.serp(p.marketplace, f"{p.asin} {ph}", depth=20, wait=45).data["items"]
-            ok = any(i.get("asin") == p.asin for i in items)
-        except ProviderError as e:
-            if e.code == "not_configured":
-                raise
-            ok = None
+            return any(i.get("asin") == p.asin for i in items)
+        except ProviderError:
+            return None
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        results = list(pool.map(look, phrases))
+    out = []
+    for ph, ok in zip(phrases, results):
+        k = upsert_kw(ctx, p.marketplace, ph)
         ctx.db.add(IndexCheck(org_id=ctx.org_id, product_id=p.id, keyword_id=k.id, indexed=ok, source="dataforseo"))
         out.append({"keyword": k.phrase, "indexed": ok})
     ctx.db.commit()

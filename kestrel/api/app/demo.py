@@ -160,6 +160,9 @@ def build(db, reset: bool = False):
                      price_min=round(rng.uniform(2, 8), 2), price_max=round(rng.uniform(40, 150), 2), source="demo",
                      communication_rating=rng.randint(3, 5), quality_rating=rng.randint(3, 5),
                      registry="companies_house" if country == "GB" else "",
+                     registry_checked_at=datetime.now(timezone.utc) if country == "GB" else None,
+                     vat_checked_at=datetime.now(timezone.utc) if vat is not None else None,
+                     vat_data={"valid": vat, "name": name.replace(" (Demo)", "").upper(), "demo": True} if vat is not None else {},
                      registry_data={"name": name.replace(" (Demo)", "").upper(), "status": "active" if reg_active else "dissolved", "demo": True,
                                     "number": f"DEMO{rng.randint(1000, 9999)}", "incorporated": f"{2026 - int(yrs)}-03-01"} if country == "GB" else {})
         db.add(s)

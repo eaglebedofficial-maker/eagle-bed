@@ -389,7 +389,9 @@ def reimb_status(cid: int, body: dict, ctx: Ctx = Depends(need_analyst)):
     c = ctx.db.get(ReimbursementCase, cid)
     if not c or c.org_id != ctx.org_id:
         raise HTTPException(404, "Case not found")
-    if body.get("status") in ("identified", "reviewed_by_seller", "filed_by_seller", "resolved", "dismissed"):
+    if "status" in body:
+        if body["status"] not in ("identified", "reviewed_by_seller", "filed_by_seller", "resolved", "dismissed"):
+            raise HTTPException(422, "Unknown status")
         c.status = body["status"]
     ctx.db.commit()
     return {"ok": True}

@@ -26,9 +26,10 @@ export function useTracks(days: number, productId?: number | null) {
 export function useCheckTracks() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (ids: number[]) => post<{ checked: number; errors: string[] }>("/keywords/tracks/check", ids),
+    mutationFn: (ids: number[]) => post<{ checked: number; errors: string[]; queued?: number }>("/keywords/tracks/check", ids),
     onSuccess: (r) => {
-      if (r.checked) toast.success(`Checked ${num(r.checked)} keyword position${r.checked === 1 ? "" : "s"}`);
+      if (r.queued) toast.success(`Checking ${num(r.queued)} tracks in the background. Positions update over the next few minutes.`);
+      else if (r.checked) toast.success(`Checked ${num(r.checked)} keyword position${r.checked === 1 ? "" : "s"}`);
       else if (!r.errors.length) toast.message("No active tracks to check");
       r.errors.forEach((e) => toast.error(e));
       qc.invalidateQueries({ queryKey: ["keyword-tracks"] });

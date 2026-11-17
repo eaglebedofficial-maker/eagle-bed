@@ -55,7 +55,7 @@ export function Overview({ s, onVerify, verifying }: { s: Profile; onVerify: () 
       <Card>
         <CardHeader eyebrow="Company register" title={reg ? reg.name : "Not verified yet"}
           description={reg ? `Checked ${ago(s.registry_checked_at)} · ${s.registry === "companies_house" ? "Companies House" : s.registry ?? "Register"}` : s.country === "GB" ? "Verify against Companies House to confirm the legal entity, status and filing history." : `No registry integration for ${countryName(s.country)}. Check the national register and record it as evidence.`}
-          action={reg ? <SourceBadge source={{ provider: "Companies House", classification: "public_registry", retrieved_at: s.registry_checked_at }} /> : undefined} />
+          action={reg ? <SourceBadge source={{ provider: "Companies House", classification: s.source === "demo" ? "demo" : "public_registry", retrieved_at: s.registry_checked_at }} /> : undefined} />
         <CardBody>
           {reg ? (
             <>
@@ -97,8 +97,8 @@ export function Overview({ s, onVerify, verifying }: { s: Profile; onVerify: () 
         <Card>
           <CardHeader eyebrow="VAT registration" title={s.vat_number || "No VAT number recorded"}
             description={s.vat_checked_at ? `Checked ${ago(s.vat_checked_at)} against ${s.country === "GB" || s.vat_number?.toUpperCase().startsWith("GB") ? "HMRC" : "EU VIES"}` : s.vat_number ? "Not checked yet. Verify to validate it." : "Add the VAT number (Edit) so it can be validated with HMRC or VIES."}
-            action={<div className="flex items-center gap-2"><VatBadge valid={s.vat_valid} size="sm" />{s.vat_checked_at && <SourceBadge source={{ provider: s.country === "GB" ? "HMRC VAT register" : "EU VIES", classification: "public_registry", retrieved_at: s.vat_checked_at }} />}</div>} />
-          {vat && (
+            action={<div className="flex items-center gap-2"><VatBadge valid={s.vat_valid} size="sm" />{s.vat_checked_at && <SourceBadge source={{ provider: s.country === "GB" ? "HMRC VAT register" : "EU VIES", classification: s.source === "demo" ? "demo" : "public_registry", retrieved_at: s.vat_checked_at }} />}</div>} />
+          {vat && Object.keys(vat).length > 0 && (
             <CardBody>
               <KeyValue rows={[["Registered name", vat.name], ["Registered address", vat.address], ["Number", vat.vrn || vat.number], ["Result", vat.valid ? "Valid" : <span key="v" className="text-danger">Not valid</span>]]} />
             </CardBody>

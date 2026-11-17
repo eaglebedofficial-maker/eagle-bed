@@ -95,9 +95,9 @@ def apply_filters(q, f: dict, org_id: int):
         if hi not in (None, ""):
             q = q.where(colm <= float(hi) * (1000 if key == "weight" else 1))
     if f.get("age_max_days"):
-        q = q.where(Product.listed_at >= date.today() - timedelta(days=int(f["age_max_days"])))
+        q = q.where(Product.listed_at >= date.today() - timedelta(days=int(float(f["age_max_days"]))))
     if f.get("age_min_days"):
-        q = q.where(Product.listed_at <= date.today() - timedelta(days=int(f["age_min_days"])))
+        q = q.where(Product.listed_at <= date.today() - timedelta(days=int(float(f["age_min_days"]))))
     if f.get("exclude_amazon"):
         q = q.where(or_(Product.amazon_sells.is_(None), Product.amazon_sells.is_(False)))
     if f.get("tracked"):
