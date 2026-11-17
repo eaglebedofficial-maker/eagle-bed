@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Product Pilot — Amazon Research Suite",
+  "short_name": "Product Pilot",
+  "version": "2.0.0",
+  "description": "X-Ray search results, sales and revenue estimates, FBA profit, price and rank history, keyword research, reverse-ASIN rank checks and daily tracking for Amazon.",
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": { "default_title": "Product Pilot", "default_popup": "popup.html", "default_icon": { "16": "icons/icon16.png", "48": "icons/icon48.png" } },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["storage", "unlimitedStorage", "alarms", "offscreen", "contextMenus", "activeTab"],
+  "host_permissions": [
+    "https://www.amazon.com/*", "https://www.amazon.co.uk/*", "https://www.amazon.de/*", "https://www.amazon.fr/*",
+    "https://www.amazon.it/*", "https://www.amazon.es/*", "https://www.amazon.ca/*",
+    "https://completion.amazon.com/*", "https://completion.amazon.co.uk/*",
+    "https://api.keepa.com/*", "https://charts.camelcamelcamel.com/*"
+  ],
+  "content_scripts": [{
+    "matches": [
+      "https://www.amazon.com/*", "https://www.amazon.co.uk/*", "https://www.amazon.de/*", "https://www.amazon.fr/*",
+      "https://www.amazon.it/*", "https://www.amazon.es/*", "https://www.amazon.ca/*"
+    ],
+    "js": ["engine.js", "ui.js", "net.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}

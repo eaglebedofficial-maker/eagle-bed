@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;width:330px;font:13px -apple-system,Segoe UI,sans-serif;color:#16202b;background:#f4f6f8}
+.h{display:flex;gap:9px;align-items:center;padding:12px 14px;background:#fff;border-bottom:1px solid #dfe4ea}
+.m{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#0f7a6b,#0b5a4f);color:#fff;display:grid;place-items:center;font-weight:800}
+.b{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+input,select{font:inherit;padding:8px 9px;border:1px solid #dfe4ea;border-radius:8px;background:#fff;min-width:0}
+button{font:inherit;font-weight:700;border:0;border-radius:8px;padding:9px 10px;cursor:pointer;background:#0f7a6b;color:#fff}
+button.g{background:#fff;color:#16202b;border:1px solid #dfe4ea}.r{display:flex;gap:6px}.r>*{flex:1}
+small{color:#5e6b7a}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+</style></head><body>
+<div class="h"><div class="m">P</div><div><b>Product Pilot</b><br><small>Amazon research suite</small></div></div>
+<div class="b">
+  <div class="r"><select id="mkt" style="flex:0 0 74px"><option>UK</option><option>US</option><option>DE</option><option>FR</option><option>IT</option><option>ES</option><option>CA</option></select><input id="q" placeholder="Search Amazon or paste ASIN" autofocus></div>
+  <button id="go">X-Ray search</button>
+  <button class="g" id="here">Analyze this tab</button>
+  <div class="grid">
+    <button class="g" data-s="keywords">Keyword research</button>
+    <button class="g" data-s="reverse">Reverse ASIN</button>
+    <button class="g" data-s="research">Product research</button>
+    <button class="g" data-s="tracker">Trackers</button>
+    <button class="g" data-s="profit">Profit calculator</button>
+    <button class="g" data-s="settings">Settings</button>
+  </div>
+  <button class="g" id="copy">Copy this page's data for the Product Pilot artifact</button>
+  <small id="msg"></small>
+</div>
+<script src="engine.js"></script><script src="popup.js"></script>
+</body></html>
