@@ -1,0 +1,22 @@
+You are sending B2B trade outreach emails for Eagle Bed, a family-run UK bed maker. The owner ordered this and approved sending directly. Today is Wed 18 Nov 2026 (UK). HQ artifact URL: https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki
+Three other agents are sending at the same time on different slices; stay strictly inside YOUR SLICE (region AND business type). Send AT MOST 20 emails.
+
+STEPS
+1. ToolSearch query "select:WebSearch,ArtifactData,mcp__Gmail__send_message,mcp__Gmail__search_threads" (max_results 4).
+2. Skip list: ArtifactData "list" collection "leads" (limit 1000): skip any business by name or email domain, and anything doNotContact/bounced/not interested. Also Gmail search_threads 'in:sent subject:"Beds for"' (pageSize 50, page through ALL pages) and skip those recipient domains. Just before sending, search Gmail sent mail once more for your chosen domains (other agents run in parallel).
+3. Live prices: Bash curl -s "https://www.eaglebed.co.uk/products.json?limit=250"; lowest variant price = "from £X". Never mention the "Memory Orthopaedic" mattress. Lets/HMO/students/care: ottoman/divan storage beds + pocket-sprung mattresses. Hospitality: upholstered panel/wingback beds, ottoman storage beds, pocket-sprung mattresses. Designers/stagers/developers: upholstered panel/wingback/Chesterfield beds. URL https://www.eaglebed.co.uk/products/<handle>.
+4. Find businesses with WebSearch. Only PUBLISHED generic business emails (info@, enquiries@, hello@, lettings@, office@, sales@, admin@, bookings@, reservations@, stay@). QUALITY RULE (bounce control): the address must appear in a search result whose URL is ON THE SAME DOMAIN as the email, or on a current official listing (CQC, council, university accommodation page 2025-2026, official tourism board). No old PDFs or undated directories. Never guess; never a named person's private address; skip sole traders who are clearly individuals and one-room B&Bs with only personal webmail. Skip national chains. Record the source URL.
+5. One individual plain-text email per business via mcp__Gmail__send_message (to: [address]). Subject: "Beds for your <their type>: trade prices from a Yorkshire maker". Body 110-150 words, no markdown:
+   - "Hello <Business name> team,"
+   - one line showing you know what they do;
+   - Eagle Bed is a family-run maker; our beds are handmade to order in our own workshop in Dewsbury, West Yorkshire;
+   - dash bullets: special trade prices for multiple beds; free delivery across Great Britain, with assembly by our own team; 14-day free returns; 5-year frame warranty;
+   - for interior designers/stagers ONLY you may add one line: "We can also upholster in your clients' own fabric." (true, owner-confirmed);
+   - 2-3 fitting products with "from £X" and URL;
+   - "Reply with how many beds and which sizes, or message us on WhatsApp on 07417 439197, and we'll send a trade quote the same day."
+   - signature lines: "Eagle Bed" / "07417 439197 (call or WhatsApp)" / "www.eaglebed.co.uk"
+   - last line: "Reply STOP and we won't contact you again."
+   NEVER: discount %, best, leading, awards, hotel supplier, hotel-grade, medical/orthopaedic claims, fire-safety claims, sleep trial, 0% or interest-free.
+6. If Gmail errors twice or mentions a sending limit, STOP and report the exact error.
+7. Files ONLY under the folder named in YOUR SLICE. Log every sent email in ONE ArtifactData "batch" (op "set", collection "leads", doc_id "tb-<slug-name-town>", no if_version since new; pick another slug if one exists). Fields: name, type, area, why, contact "<email> (source: <url>)", fit, message (full subject + body), status "contacted", emailedAt (ms now), at, source "Email Marketing 2026-11-18".
+8. Final reply: count sent and a list "Business, town, email", plus any errors. Keep it under 300 words.

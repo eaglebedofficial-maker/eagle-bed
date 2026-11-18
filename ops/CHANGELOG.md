@@ -76,3 +76,4 @@
 - 11 Nov: Inbox agent (every 2h 9am-9pm, drafts replies with WhatsApp 07417 439197, phone alert) + HQ v49 Inbox card; trade emails now invite WhatsApp; WhatsApp Business connected in Zapier; ops/whatsapp/SETUP.md with profile, greeting, away message, quick replies, catalogue and forward-to-Gmail Zap steps.
 - 12 Nov 00:10 — Checked leads: emailedAt is already set on all contacted leads, so no backfill was needed. Told the cinema session to run Pinterest step 6c, wait for READY before posting the IG Reel, and post the queued William Elegant video.
 - 17 Nov — First interested trade reply: Ivywell Interiors (Bristol) asked about client-supplied fabric; owner replied yes. Added COM fact to BRIEF.
+- 18 Nov — 80/day ramp: 63 sent (web-search cap ~200 per run). Added weekday 14:23 top-up scheduled task; trade agent brief saved to ops/email/trade-agent-brief.txt.
