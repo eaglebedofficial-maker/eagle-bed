@@ -31,3 +31,4 @@
 - 2026-11-17 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P08 posted (1106407833496388319). 1 Zapier task (123 this month).
 - 2026-11-17 18:00 cinema: video skipped - Gemini credits still depleted (402). No Zapier tasks.
 - 2026-11-18 daily (supervisor=running): Tue 17 Nov UK 35 sessions, 7 carts, 2 checkouts, 0 orders; bot checkouts lower (US 16/10 checkout). No orders since #1042 (14 Nov) - 3 days, within normal range. 17 Nov photo posts posted. OpenRush + Gemini still out of credits.
+- 2026-11-18 09:00 cinema: video skipped - Gemini credits still depleted (402). Pinterest P09 posted (1106407833496466354). 1 Zapier task (136 this month).
