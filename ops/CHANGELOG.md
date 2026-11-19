@@ -97,3 +97,4 @@
 - 19 Nov: owner removed UK from 'preselect marketing checkbox' in Settings > Checkout (consent box now unticked by default, PECR/UK GDPR).
 - 19 Nov: owner opened Shopify Messaging 'You left items at checkout' email editor (puts it in DRAFT). Owner to finish later; MUST tap 'Set to active' or abandoned-cart emails stop. Drafts saved in Gmail for Kayleigh, Victoria Witham, Sabrina Witek (abandoned checkouts).
 - 19 Nov: deleted Gmail draft to the Savoy King abandoned-checkout customer: she already ordered (#1034, 6 Nov). HQ overview now starts from day 1 (5 Oct).
+- 19 Nov: Project Rocket Sales Stage 1 (read-only forensic audit) done: ops/rocket/stage1/ (5 specialist reports + STAGE1-REPORT.md), report page published and linked from HQ Office > Master reports (rocketCard). 24 OpenRush credits (month 55/2001). Stage 2 waits for owner approval.
