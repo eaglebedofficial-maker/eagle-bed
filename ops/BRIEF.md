@@ -2,6 +2,7 @@
 Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki
 - Free delivery across Great Britain (England, Scotland, Wales); Northern Ireland, Jersey, Guernsey, Isle of Man £90; usually 3–5 working days, own team.
 - SELL IN THE UK ONLY (owner, 19 Nov): no sales or delivery outside the UK. Never offer international shipping.
+- Ottoman Gas Lift Divan Base: base height 14 inches (owner, 19 Nov 2026, in reply to a customer). Storage depth and opening direction still to confirm.
 - Owner confirmed 10 Nov 2026: Eagle Bed is a FAMILY-RUN business; our own delivery team ASSEMBLES the bed on delivery.
 - Weights (owner, 10 Nov 2026, approximate, same for all designs): Double about 40 kg; set in Shopify for the 5 best sellers as Kids Single 25, Single 30, Small Double 36, Double 40, King 45, Super King 50 kg. Beds hold up to 300 kg (owner).
 - 14-day free returns. 5-year frame warranty (mattresses: "5-year guarantee"). NO sleep trial.
