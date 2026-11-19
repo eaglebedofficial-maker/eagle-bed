@@ -78,3 +78,4 @@
 - 17 Nov — First interested trade reply: Ivywell Interiors (Bristol) asked about client-supplied fabric; owner replied yes. Added COM fact to BRIEF.
 - 18 Nov — 80/day ramp: 63 sent (web-search cap ~200 per run). Added weekday 14:23 top-up scheduled task; trade agent brief saved to ops/email/trade-agent-brief.txt.
 - 19 Nov 00:35 — CEO audit + roadmap (ops/ceo/). OpenRush ledger + HQ credits card (v51), skills-list bug fixed, video autopilot paused (Gemini 402), assembly claim removed from social/email/inbox tasks, weekly Google growth task (Mon 11:17, ≤40 credits).
+- 19 Nov — SEO: Ottoman Gas Lift Divan Base title/meta retargeted to 'ottoman divan bed' (backup ops/seo-types/backups/seo-ottoman-divan-base-2026-11-19.json).
