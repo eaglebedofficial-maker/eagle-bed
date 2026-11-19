@@ -16,3 +16,5 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Videos: original royalty-free music only (HQ music.js). The Claude app blocks website photos inside HQ and this container cannot download cdn.shopify.com — never work around either; owner picks photos from phone in HQ → Social.
 
 - Customer-supplied fabric (COM): YES, accepted. Owner confirmed to a trade client on 17 Nov 2026. Metres needed per size and any extra charge are not yet confirmed; say "we will confirm the fabric quantity for your size".
+
+- ASSEMBLY (18 Nov 2026): owner told customer #1043 assembly is £50 extra, cash on delivery. This conflicts with earlier copy ("our team assembles the bed"). Until the owner confirms, do NOT promise free assembly anywhere; say "free delivery across Great Britain by our own team".

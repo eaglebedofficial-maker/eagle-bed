@@ -10,7 +10,7 @@ STEPS
    - "Hello <Business name> team,"
    - one line showing you know what they do;
    - Eagle Bed is a family-run maker; our beds are handmade to order in our own workshop in Dewsbury, West Yorkshire;
-   - dash bullets: special trade prices for multiple beds; free delivery across Great Britain, with assembly by our own team; 14-day free returns; 5-year frame warranty;
+   - dash bullets: special trade prices for multiple beds; free delivery across Great Britain by our own team; 14-day free returns; 5-year frame warranty;
    - for interior designers/stagers ONLY you may add one line: "We can also upholster in your clients' own fabric." (true, owner-confirmed);
    - 2-3 fitting products with "from £X" and URL;
    - "Reply with how many beds and which sizes, or message us on WhatsApp on 07417 439197, and we'll send a trade quote the same day."
