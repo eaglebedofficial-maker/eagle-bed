@@ -60,7 +60,7 @@ post: record exactly what happened. Never change prices, ads or the theme in thi
 6b. **Monday 09:00 run only: one Google Business Profile post** (1 Zapier task; skip if safe-per-day < 4).
    Zapier Google Business Profile `create_post` (tool google_business_profile_create_post): location
    `locations/9500753489661593239`, topic_type STANDARD, call_to_action_type SHOP, call_to_action_url = the
-   product URL + `?utm_source=google&utm_medium=organic&utm_campaign=gbp_post`, photo_source_url = the product's
+   product URL + `?utm_source=google-business-profile&utm_medium=referral&utm_campaign=<YYYY-MM>-gbp-posts&utm_content=gbp-<YYYY-MM-DD>`, photo_source_url = the product's
    first products.json image, post_summary = 2-3 plain sentences with real facts only (what it is, sizes,
    handmade in Dewsbury, free GB delivery, 14-day free returns, 5-year frame warranty or, for mattresses,
    5-year guarantee). NO prices, offers, discounts, phone numbers or "sale" words in the text: Google removed
