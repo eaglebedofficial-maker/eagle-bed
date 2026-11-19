@@ -1,0 +1,143 @@
+# Eagle Bed HQ: what it is, what it does, what it has done (A to Z)
+
+Written 19 Nov 2026. Customer names, passwords and keys are left out on purpose.
+
+## 1. What Eagle Bed HQ is
+
+Eagle Bed HQ is the private control room for Eagle Bed (www.eaglebed.co.uk), a family-run maker of handmade upholstered beds in Dewsbury, West Yorkshire. It has two parts:
+
+1. **The HQ page.** A private web page on claude.ai. It is the dashboard, memory and database for the whole business: settings, leads, emails, social posts, videos, inbox, credit meters, skills and work logs. It has tabs for Office, Sales, Email, Social, Inbox and Memory.
+2. **The AI team behind it.** Claude (made by Anthropic) runs as a Manager plus 65 specialist agents, and as a set of scheduled tasks that run automatically every day in the cloud. Every change is saved in a private GitHub repository (eagle-bed) with a change log, so all work can be checked and undone.
+
+The owner stays in charge. HQ never changes prices, spends ad money, publishes a new website design, refunds or changes orders, or sends bulk customer marketing without the owner's OK.
+
+## 2. What HQ is connected to (and what it controls)
+
+| System | What HQ can do with it |
+|---|---|
+| Shopify store | Read products, orders, customers and analytics. Edit page text, SEO titles and descriptions, blogs, collections and FAQs (always with a backup first). Create product drafts. It cannot publish themes or change prices without the owner. |
+| Gmail (eaglebedofficial) | Read the inbox, write reply drafts for the owner, send trade emails to businesses and review requests, send the daily report. |
+| Zapier | Posts to Facebook, Instagram, TikTok and YouTube (through Publer), Pinterest, Google Business Profile, WhatsApp Business forwarding and Google Ads reports. Limited to 750 tasks a month, counted in HQ. |
+| OpenRush | Real Google data: Search Console clicks and positions, Google Ads results, keyword research, live Google result checks, competitor and backlink data. 2,001 credits a month, 400 always kept in reserve, every credit logged. |
+| Google Ads | Read only. Performance Max "All Products" runs at £25 a day. HQ reports on it; the owner decides budgets. |
+| Meta (Facebook/Instagram) | Product catalogue (145 products synced) and ad account reading. All Meta ad campaigns are paused. |
+| Gemini (Google AI) | Makes 4K images for the cinema videos. Currently out of credit, so the video autopilot is paused. |
+| Skills | Installed know-how packs: SEO (many), emails, CRO, copywriting, copy-editing, ads, ad creative, cold email, social, analytics, conversion tracking, Remotion video, image generation, find-skills, product scout and new-product agent. |
+
+## 3. The AI team (65 agents plus the Manager)
+
+The Manager plans each job, gives it to the right agents, checks the result and reports back. The agents cover:
+
+- **SEO and Google:** keyword research, on-page SEO, technical SEO, content, product pages, schema, speed, topic clusters, SEO drift watch, local SEO, brand SEO, video and voice SEO, image SEO, search experience.
+- **AI search:** being recommended by ChatGPT, Google AI answers, Copilot and Perplexity; agent-ready website.
+- **Sales:** lead finder, email marketing, sales closer, customer finder (abandoned checkouts), offers and pricing, marketplaces (Etsy, Amazon Handmade), reviews and trust.
+- **Ads:** Google Ads, Google Shopping, search terms, ad creative, tracking.
+- **Social and video:** social media, Instagram, TikTok, YouTube, Pinterest, Reddit/Quora, cinema video director, CGI product photos.
+- **Website:** store designer (conversion), checkout doctor, buyer walkthrough, accessibility, theme engineer, site health.
+- **Operations:** workshop planner, materials and demand, quality control, delivery and returns, customer care, profit and cash, seasons and promotions.
+- **Checks:** verification and fact-checking, decision council, weekly issue scout, brand voice, market research, competitor spy.
+
+One agent (Competitor Teardown) is switched off to save cost.
+
+## 4. What runs automatically every day
+
+| Task | When (UK time) | What it does |
+|---|---|---|
+| Inbox agent | Every 2 hours, 9am to 9pm | Reads new emails, writes ready-to-send reply drafts for the owner, sends a phone alert for anything urgent. |
+| Trade email marketing | Weekdays 09:53, top-up 14:23 | Emails UK businesses that buy beds (letting agents, landlords, care homes, holiday lets, interior designers, home stagers). Up to 80 a day now, rising to 140. Each email is personal and has a STOP line. |
+| Social photo posts | 08:41, 12:41, 17:41 | Posts a bed photo post to Facebook, Instagram and TikTok. |
+| Daily report | 23:59 | Emails the owner the day's sales, emails, posts, problems and to-dos. |
+| Daily autopilot | 07:47 | Works through queued HQ jobs, posts Pinterest pins, checks the website. |
+| Weekly Google growth check | Mondays 11:17 | Checks Google clicks and positions and plans the next SEO fixes (40 credits a week). |
+| CEO sprint | Mondays and Thursdays | Reviews the business and runs the most valuable jobs. |
+| Weekly search revenue report | Mondays | Google and sales numbers for the week. |
+| Cinema videos | 08:46 and 17:46 | Paused until Gemini is topped up. |
+
+## 5. Everything done, day by day
+
+### October 2026
+- **5 Oct:** Built a 3D "digital showroom" layer for the Shopify theme and fixed it so Shopify accepted it. Wrote the organic growth plan and the HQ agent brief.
+- **27–28 Oct:** Installed the find-skills and image-generation skills. Built a CGI photo studio for product shots (first test render of the Fluted Velvet Bed).
+
+### 4–6 November
+- Rebuilt the business files (facts brief, autopilot list, job queue, change log).
+- Started regular Facebook and Instagram posts; TikTok posts through Publer. Removed wrong "hotel" claims from captions.
+- Set up the Cinema Studio (AI video tools) and the HQ Cinema card.
+
+### 9 November
+- **Website speed:** made a faster copy of the theme (lighter 3D, faster images and fonts, faster on phones). The owner published it, so it is now the live theme.
+- HQ got a progress memory (agents remember what is done and agreed) and a done-tracker so finished jobs don't repeat.
+- Started the twice-daily 4K cinematic video autopilot and the AI recommendation checker (does ChatGPT name Eagle Bed?).
+- Set the Zapier budget guard (750 tasks a month).
+
+### 10 November (big SEO day)
+- **30 SEO types plan** and live SEO jobs panel in HQ.
+- **New size collections published:** kids single beds, single storage beds, double storage beds, small double storage beds, double divan beds.
+- **New About page** with true facts only (old version backed up).
+- **Google Business Profile fixed:** name "Eagle Bed", category "Bed shop", first Google post.
+- **Quick-answer FAQ blocks** (with Google FAQ code) added to 13 pages: delivery, returns, warranty, finance, swatches, size guide, About and 6 buying guides. Removed "interest-free" and "DivideBuy coming soon" wording.
+- **24 Google review request emails** sent to customers whose beds were delivered.
+- **Pinterest:** 8 boards created and the first pins posted; a daily pin queue started.
+- Fluted Velvet 4K film added to its product page.
+- Weights added to the 5 best sellers. Google Shopping and Meta catalogue health check: all 145 products listed.
+- PR pitches written for UK bed round-ups (3 drafts, 9 form pitches).
+- Marketplace plan: Etsy and Amazon Handmade recommended (accounts need the owner).
+- Fixed HQ page errors (v42).
+
+### 11 November
+- **New pages published:** "Beds in West Yorkshire" (Dewsbury, Huddersfield, Leeds, Wakefield, Bradford, Batley, Mirfield) and the "UK bed buying guide".
+- **AI answers** added to 12 collections, so Google and AI tools can quote Eagle Bed. All 30 buyer questions and 20 tracked searches now have a page that answers them.
+- Photo posts raised to 3 a day on Facebook, Instagram and TikTok.
+- **Trade email marketing started** (warm-up plan 40, then 80, 140 and 200 a day).
+- HQ fitted for phones; daily report task started.
+- **Inbox agent started**, WhatsApp Business connected, WhatsApp setup kit written (profile, greeting, away message, quick replies).
+- Owner signed up to FreeIndex and Apple Business listings.
+
+### 12–18 November
+- Pinterest queue moved into HQ so any task can post pins.
+- **16 Nov:** made a 76-second animated film of a bed being made in the workshop (wide and phone versions). Waiting for the owner to say "post it".
+- **17 Nov:** first interested trade reply (an interior design company asked about customers' own fabric). Owner confirmed customer-supplied fabric is accepted; added to the facts brief.
+- **18 Nov:** trade emails raised to 80 a day; afternoon top-up added.
+
+### 19 November
+- **CEO audit and roadmap:** every agent, task and cost checked; top 20 improvements ranked by money. Found and stopped waste (failing video runs paused).
+- **OpenRush credit ledger** and "Paid credits & budgets" card in HQ. 31 of 2,001 credits used so far.
+- **Google Ads checked:** Performance Max at £25 a day made 6.96 sales worth £2,591.62 in 28 days from £708.82 spend (about 3.7 times the spend back). Advised not to add a separate Shopping campaign.
+- **Assembly pricing:** owner decided assembly is never free; optional Room of Choice Assembly is £69.99 (was £49.99). Owner changed it on all 145 products. 17 website pages, all agent instructions, the WhatsApp texts and HQ were updated to match. Room of Choice Drop Off is £29.99; downstairs delivery is free.
+- **SEO pages improved:** ottoman beds, storage beds, divan beds, Ottoman Gas Lift Divan Base (retargeted to "ottoman divan bed"), small-bedroom guide and the "how ottoman beds work" guide.
+- **Top 5 product pages rewritten for sales:** Cloud Teddy Bouclé ottoman, memory foam mattress, side-lift ottoman, Panel Line and Panel Line Border. Each now has a clear opening, sizes and prices, a "Good to know" list and FAQs. All backed up first.
+- **Email flows written:** abandoned checkout (2 emails), swatch follow-up and after-purchase emails, plus a phone guide with copy buttons.
+- **Checkout fixed:** the marketing box is no longer pre-ticked for UK customers (UK law).
+- **Abandoned checkouts:** personal follow-up email drafts written for the real customers who left checkouts.
+- 11 marketing skills installed and listed in HQ.
+- Recorded that Eagle Bed sells in the UK only.
+
+## 6. Results so far
+
+- **Google (22 Oct–18 Nov):** 168 clicks (up 38) and 14,916 impressions (up 5,347).
+- **Sales:** 5 orders worth £2,406 in the week of 9–15 Nov. A customer who asked for swatches went on to order.
+- **Trade emails:** about 300 businesses contacted, 1 interested reply, bounces about 3–4%.
+- **Google Ads:** about 3.7 times the spend back.
+- **Reviews:** a new 5-star review on 15 Nov.
+
+## 7. The rules HQ always follows
+
+- Facts only, from the business facts file. No "best", "leading" or "award", no medical or orthopaedic claims, no fire-safety claims, no sleep trial, no discount percentages, no "interest-free".
+- Assembly is never free (£69.99 optional).
+- UK only.
+- Customer reply drafts must be ready to send, with no notes left inside.
+- Trade emails go only to businesses, using addresses from their own website or official listings, and always include a STOP line.
+- Backup before every website change; everything is logged in the change log.
+- Never share the Shopify login or any password or key.
+- The owner approves prices, ad spend, theme publishing, refunds, order changes and anything that can't be undone.
+
+## 8. Waiting for the owner
+
+- Finish the abandoned-cart email in Shopify Messaging and make sure it says **Active**.
+- Send the 3 abandoned-checkout drafts in Gmail.
+- Reply to two waiting customers; give a delivery slot to one order.
+- Profit per bed (to decide the Google Ads budget).
+- Optional Gemini top-up (restarts the daily videos).
+- "Post it" for the animated film.
+- Decide on the "10% off EAGLE10" bar, the "Orthopaedic" mattress name and the Panel Line "Headboard" title.
+- Do we still deliver to Jersey, Guernsey and the Isle of Man?
