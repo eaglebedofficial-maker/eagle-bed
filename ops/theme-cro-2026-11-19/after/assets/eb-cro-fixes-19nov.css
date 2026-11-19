@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Eagle Bed CRO fixes, 19 Nov 2026 (Rocket Stage 3, owner approved "Fix the website")
+   One file, loaded once from layout/theme.liquid. Remove the <link> line there to undo.
+   No copy, price, product or checkout change. "html body" prefix = wins over eb3d*.css
+   without !important, whatever the load order.
+   ========================================================================== */
+
+/* 1. Mobile overflow (page wider than the phone) ------------------------- */
+/* Product grid: a 1fr track cannot shrink below its content (thumbnail strip),
+   so the whole column grew to the strip width. minmax(0,1fr) + min-width:0
+   lets the strip scroll inside its own box, as designed. */
+@media (max-width: 990px) {
+  html body .eb3d-pdp__grid { grid-template-columns: minmax(0, 1fr); }
+}
+html body .eb3d-pdp__grid > *,
+html body .eb3d-gallery,
+html body .eb3d-info { min-width: 0; }
+html body .eb3d-thumbs { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* Description tables (e.g. Divan Base size/price table) scroll inside themselves */
+html body .eb3d-info table { display: block; max-width: 100%; overflow-x: auto; }
+html body .eb3d-info img,
+html body .eb3d-info iframe,
+html body .eb3d-info video { max-width: 100%; height: auto; }
+/* Easify Product Options block (outer containers only) adds a few px */
+html body .eb3d-info .easify-product-options,
+html body .eb3d-info #easify-product-options,
+html body .eb3d-info .po-options-root { max-width: 100%; min-width: 0; }
+/* Home: "N designs" count badges pushed the category cards past the screen edge */
+html body .eb3d-cats__grid > * { min-width: 0; }
+html body .eb3d-cat__label { min-width: 0; }
+html body .eb3d-cat__name { min-width: 0; overflow-wrap: anywhere; }
+
+/* 2. Readable product names (were white on white / light grey) ----------- */
+/* base.css colours every h1-h3 with the Dawn scheme text colour (white).
+   Use the eb3d ink token (#161619 via eb3d-luxe) on the light product area. */
+html body .eb3d-pdp .eb3d-info__title { color: var(--ink, #161619); }
+/* Card names follow their card's own text colour: ink on light grids
+   (collections, related products), cream on the dark home rails.
+   .eb3d-show .eb3d-card__title (cream) keeps priority. */
+html body .eb3d-card__title { color: inherit; }
+/* Basket heading "Your basket" / "Your basket is empty" on the light stone background */
+html body .eb3d-cart h1,
+html body .eb3d-cart .eb3d-empty h2,
+html body .eb3d-cart .eb3d-summary h2 { color: var(--ink, #161619); }
+
+/* 3. Chat bubble must not cover the mobile buy buttons -------------------- */
+/* Shopify Inbox (<shopify-chat>) is a full-screen fixed layer; its "Chat" button sits
+   20px above the layer's bottom edge. Raising the layer's bottom edge by 80px puts the
+   button (and its invisible tap area) above the product sticky bar (66px + 12px) and the
+   basket "Checkout securely" bar (~69px). The chat panel, when open, ends 80px higher. */
+html body shopify-chat { transition: bottom .3s ease; }
+@media (max-width: 990px) {
+  html.eb-cro-lift-chat body shopify-chat { bottom: 80px; }
+}
+@media (max-width: 990px) {
+  html body:has(.eb3d-sticky.is-on) shopify-chat { bottom: 80px; }
+}
+@media (max-width: 749px) {
+  html body:has(.ebc-bar) shopify-chat { bottom: 80px; }
+}
+/* ======================= end Eagle Bed CRO fixes 19 Nov ====================== */
