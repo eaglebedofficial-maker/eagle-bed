@@ -1,0 +1,86 @@
+{
+ "res": [
+  {
+   "sz": "Single (3FT)",
+   "price": "£220.99",
+   "addon": "",
+   "url": "/products/ottoman-gas-lift-div"
+  },
+  {
+   "sz": "Small Double (4FT)",
+   "price": "£253.99",
+   "addon": "additional charge of £69.99 GBP",
+   "url": "/cart"
+  },
+  {
+   "sz": "Standard Double (4FT6)",
+   "price": "£272.99",
+   "addon": "additional charge of £69.99 GBP",
+   "url": "/cart"
+  },
+  {
+   "sz": "King (5FT)",
+   "price": "£305.99",
+   "addon": "additional charge of £69.99 GBP",
+   "url": "/cart"
+  },
+  {
+   "sz": "Super-King (6FT)",
+   "price": "£363.99",
+   "addon": "additional charge of £69.99 GBP",
+   "url": "/cart"
+  }
+ ],
+ "lines": [
+  {
+   "t": "Ottoman Gas Lift Divan Base",
+   "v": "Super-King (6FT)",
+   "unit": 433.98,
+   "line": 433.98,
+   "props": {
+    "Fabric Type": "Plush Velvet",
+    "Plush Velvet": "Blue",
+    "Mattress Type": "No Mattress",
+    "Delivery Service": "Room of Choice Assembly (£69.99 GBP)"
+   }
+  },
+  {
+   "t": "Ottoman Gas Lift Divan Base",
+   "v": "King (5FT)",
+   "unit": 375.98,
+   "line": 375.98,
+   "props": {
+    "Fabric Type": "Plush Velvet",
+    "Plush Velvet": "Blue",
+    "Mattress Type": "No Mattress",
+    "Delivery Service": "Room of Choice Assembly (£69.99 GBP)"
+   }
+  },
+  {
+   "t": "Ottoman Gas Lift Divan Base",
+   "v": "Standard Double (4FT6)",
+   "unit": 342.98,
+   "line": 342.98,
+   "props": {
+    "Fabric Type": "Plush Velvet",
+    "Plush Velvet": "Blue",
+    "Mattress Type": "No Mattress",
+    "Delivery Service": "Room of Choice Assembly (£69.99 GBP)"
+   }
+  },
+  {
+   "t": "Ottoman Gas Lift Divan Base",
+   "v": "Small Double (4FT)",
+   "unit": 323.98,
+   "line": 323.98,
+   "props": {
+    "Fabric Type": "Plush Velvet",
+    "Plush Velvet": "Blue",
+    "Mattress Type": "No Mattress",
+    "Delivery Service": "Room of Choice Assembly (£69.99 GBP)"
+   }
+  }
+ ],
+ "total": 1476.92,
+ "count": 4
+}
