@@ -95,3 +95,4 @@
 - 19 Nov — CRO/SEO: /products/panel-line-upholstered-bed-frame new opening paragraph + "Good to know" + 3 FAQs (vs Panel Line Border, upstairs/assembly, own fabric); meta now has from-price £90.99 and free swatches (title unchanged).
 - 19 Nov — CRO/SEO: /products/panel-line-border-upholstered-bed new opening paragraph + "Good to know" + 3 FAQs (54-inch headboard fit, upstairs/assembly, own fabric); meta now mentions free fabric swatches (title unchanged). OpenRush ledger now 31 used.
 - 19 Nov: owner removed UK from 'preselect marketing checkbox' in Settings > Checkout (consent box now unticked by default, PECR/UK GDPR).
+- 19 Nov: owner opened Shopify Messaging 'You left items at checkout' email editor (puts it in DRAFT). Owner to finish later; MUST tap 'Set to active' or abandoned-cart emails stop. Drafts saved in Gmail for Kayleigh, Victoria Witham, Sabrina Witek (abandoned checkouts).
