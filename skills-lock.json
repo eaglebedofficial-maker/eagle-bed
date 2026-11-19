@@ -64,6 +64,13 @@
       "skillPath": "skills/emails/SKILL.md",
       "computedHash": "3f44a7f0b14d82606010859aed532738dbd899310ac3e103adff5c6d5c29be13"
     },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "commit": "6f55706d1069e512430582ad86e4e57dc07afe1b",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "computedHash": "3a00c916c1a0ee0ccb64b27b08049508d712d65c04ee1bd84d96709854c488e4"
+    },
     "social": {
       "source": "coreyhaines31/marketingskills",
       "commit": "73573e94a06a39965978b3fa1f9c1eace8cebc7c",
