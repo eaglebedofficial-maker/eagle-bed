@@ -24,12 +24,13 @@ Profit is **UNKNOWN** everywhere. Product, material, labour and delivery costs a
 4. **Google Ads works, but less well than it looks.** PMax at £25/day returned 3.65x in 28 days (£709.44 spend, 6.96 sales, £2,591.62). 3 of the 7 sales came from people searching "eagle bed/beds". Without brand searches the return is about **1.7x**, about £165 per sale. VERIFIED / ESTIMATE (report 02).
 5. **Mobile is now where the sales are.** 81% of human sessions and 11 of 12 tracked conversions are on mobile. Mobile conversion rose from 0.20% to 0.91%. VERIFIED (report 01).
 6. **But a possible mobile layout bug needs a real-phone check today.** In a test iPhone 13 browser the Side Lift product page is 1,495 px wide on a 390 px screen, and the product title is white on white. Real phones are clearly buying, and the test browser blocks some scripts. So this is a **P0 "confirm on a real phone today"**, not a proven outage. Manager check, VERIFIED in test browser.
-7. **Three honesty risks are live.** Product pages promise "Klarna or Clearpay at checkout", but no Clearpay was seen at checkout. 253 trade emails implied free assembly, which the owner has ruled out (£69.99). "Gas lift storage bed" listings show a price that does not include the storage base. VERIFIED (reports 03, 05).
+7. **Three honesty risks are live.** Product pages promise "Klarna or Clearpay at checkout", but no Clearpay was seen at checkout, and no order has ever been paid with Clearpay (0 of 43, section 16). 253 trade emails implied free assembly, which the owner has ruled out (£69.99). "Gas lift storage bed" listings show a price that does not include the storage base. VERIFIED (reports 03, 05).
 8. **Only 20 of 145 live products sold in 90 days.** Ottoman beds were 10 of the last 16 orders. Headboards (17 live) sold nothing. VERIFIED (report 01).
-9. **Reviews are the biggest gap against rivals.** About 1 product review found. The closest Yorkshire rival shows about 2,276 Trustpilot reviews at 5.0. VERIFIED (own) / HISTORICAL (rival).
+9. **Reviews are the biggest gap against rivals.** 2 product reviews on 145 products (section 16). The closest Yorkshire rival shows about 2,276 Trustpilot reviews at 5.0. VERIFIED (own) / HISTORICAL (rival).
 10. **Trade email has not sold yet.** 253 emails, 1 interested reply (an interior design studio), 0 quotes, 0 orders. There is a legal-form gap under PECR. VERIFIED (report 05).
 11. **The 66-agent agency is mostly idle.** About 15 agents do real, repeated work. 21 have never had a task. 68% of finished tasks still say "NEEDS VERIFICATION". About 60% of scheduled wake-ups on the account are not Eagle Bed. VERIFIED (report 05).
-12. **Stage 1 cost 24 OpenRush credits.** Month total 55 of 2,001. The 400-credit reserve is untouched. VERIFIED (credit lists in reports 02, 04).
+12. **Stage 1 cost 27 OpenRush credits** (24 + 3 for the afternoon GA4 pull). Month total 58 of 2,001. The 400-credit reserve is untouched. VERIFIED (credit lists in reports 02, 04, 06).
+13. **Afternoon gap closure (section 16).** Order #1020: PayPal took £273.59 and all 3 refund attempts failed, so a cancelled customer may still be owed the money (P0 owner check). No order has ever used Clearpay. Meta ads have been paused since 8 Sep. GA4 shows sessions −8%, not −38%. VERIFIED (report 06).
 
 **The one-line answer:** the store converts better than ever, but it depends on one paid campaign and on brand searches, it has almost no reviews, and several page and claim problems may be costing orders now.
 
@@ -61,7 +62,7 @@ Window: last 30 = 20 Oct to 19 Nov 2026; previous 30 = 19 Sep to 19 Oct 2026 (sa
 
 **Things the headline hides (VERIFIED, report 01):**
 1. The previous-30 "returns" of -£585.90 are two old orders cancelled on 25 Sep (#1010, #1014), not product returns. Payment status EXPIRED.
-2. **#1020 (£273.59) was cancelled 18 minutes after purchase but still shows PAID with £0 refunded.** If no refund was made outside Shopify, previous-30 net sales are overstated. Adjusted previous-30 net = £2,240.51 and net growth = +206% (ESTIMATE). **Owner to check #1020.**
+2. **#1020 (£273.59) was cancelled 18 minutes after purchase but still shows PAID with £0 refunded.** If no refund was made outside Shopify, previous-30 net sales are overstated. Adjusted previous-30 net = £2,240.51 and net growth = +206% (ESTIMATE). **Update (section 16, VERIFIED): PayPal captured the £273.59 and all three refund attempts (23 Sep, 29 Sep ×2) FAILED. The customer may still be owed the money. Owner to check PayPal today (P0).**
 3. 4 of the 16 orders have no linked session (cookies declined or tracking blocked, ESTIMATE). So Shopify's 0.81% under-counts real buying. The real rate is about 1.07%.
 4. EAGLE10 (10% off) was used on 13 of 16 orders (81%). It cost £615.07 this month and £1,154.02 since July. It is the only discount code in use.
 5. All 16 orders were marked "fulfilled" within 8 minutes to 2 days of purchase (median about 2 h 48 min). None has tracking. In this store "fulfilled" means "accepted", not "shipped".
@@ -89,7 +90,7 @@ Window: last 30 = 20 Oct to 19 Nov 2026; previous 30 = 19 Sep to 19 Oct 2026 (sa
 | Previous-period orders | 01: 8 orders, £2,514.10 (to 19 Oct, includes cancelled #1020) | 02: 7 orders + 1 adjustment row, £2,551.01 (to 18 Oct) | Different end date and cancellation handling. Use report 01 (matches the screenshot). Both say orders at least doubled. |
 | Mobile share | 01: 80.9% of human sessions | 02: 1,327 of 1,969 = 67% of all sessions; 03: "77%" | 03 quotes the October figure (HISTORICAL). Bots are mostly desktop, which lowers mobile share in 02. Use 81% human. |
 | Google Ads spend (28 days) | Roadmap: £708.82 | 02: £709.44 | Pulled at different times; last 2 days are preliminary. Use £709.44 (later pull). |
-| Trade emails sent | Roadmap: "about 300" | 05: 253 (HQ), 244 Gmail threads | 253 VERIFIED in HQ and day docs. The 9-thread Gmail gap is unexplained. |
+| Trade emails sent | Roadmap: "about 300" | 05: 253 (HQ), 244 Gmail threads | 253 VERIFIED in HQ and day docs. **Gap explained (section 16):** the 9 missing threads are bounced sends from 11–13 Nov moved to Trash. 244 + 9 = 253. |
 | EAGLE10 creation date | 03: discount "created 19 Nov 2026 05:08 UTC" | 01: EAGLE10 used on 24 orders since August | Both cannot describe the same discount. Possibly the code was re-created today, or 03 read a cart timestamp. UNKNOWN. **Owner to check Shopify → Discounts.** |
 | Side Lift page tested | 03 tested `/products/side-lift-open-ottoman-bed` | 01 best seller lands on `/products/side-lift-ottoman-gas-lift-storage-bed` | These may be two different listings. The real-phone check must cover both. |
 | Mobile "leak" | 03: mobile pages broken (P0) | 01: mobile CR 0.91%, 11 of 12 conversions on mobile | Real phones are buying. The test browser may exaggerate. Hence "confirm on a real phone today" (section 6). |
@@ -205,7 +206,7 @@ Shopify files Google Ads clicks under "search", not "paid". Only the UTM table s
 | ChatGPT | 1 | £629.96 | 1 |
 | No tracking data | 4 | £1,336.46 | 10 |
 | Google feed `sag_organic` (paid or free) | 0 | – | 6 (all before 7 Oct) |
-| Facebook paid ads (August) | 0 | – | 2 |
+| Facebook paid ads (August; all Meta campaigns paused since 8 Sep, section 16) | 0 | – | 2 |
 | Organic web search (SEO) | 0 | – | 1 (August) |
 | Social organic, email, Pinterest | 0 | – | 0 |
 
@@ -224,7 +225,8 @@ Shopify files Google Ads clicks under "search", not "paid". Only the UTM table s
 - 97 "reached checkout" sessions on 15–17 Nov against only 14 cart sessions. VERIFIED.
 - Desktop, "direct", landing straight on `/checkout/…/shoppay_login`, from the US, Brazil, Bangladesh, Vietnam, Venezuela and Argentina. VERIFIED.
 - This looks like automated checkout probing, for example card testing. ESTIMATE (pattern match).
-- RECOMMENDATION (P0): owner checks Shopify → Settings → Checkout bot protection, and Shopify Payments for small failed or declined charges.
+- **Update (section 16, VERIFIED):** 15–17 Nov had 0 orders, 0 failed transactions and 1 abandoned checkout (a real £285.99 bed). No money impact found. Declines that never became orders cannot be read (no Shopify Payments access). Now more likely Shop Pay login probing than card testing. ESTIMATE.
+- RECOMMENDATION (now P1, was P0): owner checks Shopify → Settings → Checkout bot protection, and Shopify Payments for small failed or declined charges.
 
 ---
 
@@ -243,6 +245,7 @@ Method: live site in Playwright Chromium, iPhone 13 emulation (390 px) and deskt
 **B. Clearpay.**
 - The product page text says "Spread the cost with Klarna or Clearpay at checkout". The cart says "Pay in 3 with Klarna or Clearpay". The BRIEF lists Clearpay.
 - The specialist saw Card, Klarna, Shop Pay instalments and PayPal at checkout, with **no Clearpay** (£305.99 test basket).
+- **Update (section 16, VERIFIED):** 0 of 43 orders since July were paid with Clearpay (methods used: card, Klarna, PayPal, Shop Pay Instalments). Wallets on: Shop Pay, Apple Pay, Google Pay. The Clearpay switch itself cannot be read through the API. Treat the claim as unsupported until the owner shows it switched on.
 - **Owner to confirm in Shopify → Settings → Payments.** If Clearpay is off, either switch it on or remove the word from the theme, product copy and BRIEF. This is a misleading-claim risk until settled.
 
 **C. Abandoned-checkout lists include people who already bought.**
@@ -256,7 +259,7 @@ Method: live site in Playwright Chromium, iPhone 13 emulation (390 px) and deskt
 | 1 | Mobile product pages wider than the phone (Side Lift 1,495 px, Savoy 1,110 px, Cloud Teddy 540 px, Divan Base 441 px) | VERIFIED in test browser; screenshots in scratchpad `rocket-cro/` | **P0 confirm** | CSS `min-width:0` on the grid column (test brought Side Lift to 390 px; Savoy only to 689 px, so another cause exists). Test all PDPs at 360/390 px | Yes (theme) |
 | 2 | Sticky "Add to basket" bar never appears on overflowing pages | VERIFIED (same root cause) | P0 confirm | Fixing #1 should fix it | Yes (theme) |
 | 3 | Product title white on white on every PDP; "Your basket" heading 1.2:1 contrast | VERIFIED, Manager re-checked rgb(255,255,255) | **P1** | Set title colour to the theme's dark ink in eb3d.css | Yes (theme) |
-| 4 | Clearpay promised, not seen at checkout | VERIFIED | **P1** (P0 to confirm) | Owner checks Payments | Yes |
+| 4 | Clearpay promised, not seen at checkout, never used in 43 orders | VERIFIED | **P1** (P0 to confirm) | Owner checks Payments | Yes |
 | 5 | "Gas lift storage bed" price leaves out the storage base (+£119.99 to +£189.99); Base Type defaults to slatted | VERIFIED | **P1** | Price the ottoman into the headline or rename; make Base Type required | Yes (price) |
 | 6 | Main price does not move with add-ons; only a line "additional charge of £X" | VERIFIED | P2 | Show a running total | Yes (app) |
 | 7 | Colour group also titled "Fabric Type" | VERIFIED | P2 | Rename "Colour" in Easify | Yes (app) |
@@ -265,7 +268,7 @@ Method: live site in Playwright Chromium, iPhone 13 emulation (390 px) and deskt
 | 10 | Heavy PDPs: about 3 MB, 1.26 MB JS; Easify 412 KB, also on /cart | VERIFIED (lab) | P2 | Unload Easify from cart; defer chat widgets | Yes |
 | 11 | Phone required at checkout | VERIFIED | P2 | Keep if delivery team needs it; better help text | Yes |
 | 12 | Delivery timeline shows Sunday and next-day ready; clashes with "3–5 working days" | VERIFIED | P2 | Skip weekends; use owner's real make time | Yes |
-| 13 | Reviews: "Product reviews (0) · Store reviews (1)" | VERIFIED | P2 | Judge.me requests to past buyers | Yes |
+| 13 | Reviews: "Product reviews (0) · Store reviews (1)" on the page tested; 2 product reviews across 145 products (section 16) | VERIFIED | P2 | Judge.me requests to past buyers | Yes |
 | 14 | No direct WhatsApp link | VERIFIED | P3 | Add wa.me link | Yes |
 | 15 | Mattress page has no delivery-service option | VERIFIED | P3 | Owner decides | Yes |
 | 16 | Two Product JSON-LD blocks per PDP | VERIFIED | P3 | Keep one | Yes |
@@ -407,7 +410,7 @@ Competitor sites were blocked by the session network. Rival facts come from sear
 
 | Seller | King ottoman / gas-lift | King upholstered frame | Free delivery | Lead time | Assembly | Trustpilot |
 |---|---|---|---|---|---|---|
-| **Eagle Bed** | £305.99 base; £467.99 Cloud | £349.99 typical; £484.99 Savoy | Yes, GB, own team | 3–5 working days | +£69.99 | none; about 1 Judge.me review |
+| **Eagle Bed** | £305.99 base; £467.99 Cloud | £349.99 typical; £484.99 Savoy | Yes, GB, own team | 3–5 working days | +£69.99 | none; 2 Judge.me product reviews (section 16) |
 | PSCL Beds (Yorkshire) | £249 base (size?) | £349–£589 | Yes, mainland | 5–10 days (3–5 paid) | paid | **5.0 / about 2,276** |
 | Stylo Beds (W Yorks) | from £359.98 | UNKNOWN | Yes | UNKNOWN | UNKNOWN | none found |
 | Bedwick (Bradford) | UNKNOWN | UNKNOWN | Eng/Wales/Ireland | UNKNOWN | UNKNOWN | none found |
@@ -535,7 +538,7 @@ Columns: Dir = direction of impact. Effort L/M/H. Risk L/M/H.
 - **Agents:** Theme Engineer, Accessibility. **Integrations:** theme. **Approval:** yes. **Success:** title visible on phone and desktop; axe contrast passes.
 
 ### O3. Settle the Clearpay promise
-- **Evidence:** PDP and cart text promise Clearpay; checkout showed none (report 03, VERIFIED). Owner to confirm in Settings → Payments.
+- **Evidence:** PDP and cart text promise Clearpay; checkout showed none (report 03, VERIFIED); 0 Clearpay payments in 43 orders (section 16, VERIFIED). Owner to confirm in Settings → Payments.
 - **Why:** a buyer who chose us for Clearpay meets a surprise at the last step; misleading-claim risk.
 - **Direction:** up (if switched on) or risk down (if wording removed). **Effort:** L. **Risk:** L.
 - **Agents:** Checkout Doctor, Product Pages. **Integrations:** Shopify Payments. **Approval:** yes. **Success:** checkout payment list and site copy say the same thing.
@@ -572,7 +575,7 @@ Columns: Dir = direction of impact. Effort L/M/H. Risk L/M/H.
 - **Agents:** Content Creation, Product Pages. **Integrations:** Shopify. **Approval:** theme section yes; copy no. **Success:** guide-to-product clicks and carts visible in Shopify landing-page report.
 
 ### O9. Build genuine reviews
-- **Evidence:** about 1 product review; "Store reviews (1)"; rival 2,276 Trustpilot reviews (reports 03, 04).
+- **Evidence:** 2 product reviews on 145 products (section 16); "Store reviews (1)"; rival 2,276 Trustpilot reviews (reports 03, 04).
 - **Why:** £400–£900 purchase from a small brand needs social proof. Biggest gap vs rivals.
 - **Direction:** up (conversion). **ESTIMATE:** about 35 valid delivered orders × 30% response ≈ 10 reviews. **Effort:** L. **Risk:** L (never fake reviews).
 - **Agents:** Reviews & Trust (lead), Customer Care. **Integrations:** Judge.me. **Approval:** yes (emails to customers). **Success:** 10+ genuine reviews in 6 weeks; stars on PDPs.
@@ -650,18 +653,18 @@ Columns: Dir = direction of impact. Effort L/M/H. Risk L/M/H.
 | # | Problem | Evidence | Label |
 |---|---|---|---|
 | 1 | Possible mobile overflow and invisible title on product pages | Manager check + report 03 | VERIFIED (test browser); real phone UNKNOWN |
-| 2 | Clearpay promised, not seen at checkout | Report 03 | VERIFIED; owner to confirm |
+| 2 | Clearpay promised, not seen at checkout, never used | Reports 03, 06 | VERIFIED; owner to confirm |
 | 3 | 253 trade emails implied free assembly | Report 05 | VERIFIED |
 | 4 | No legal-form check before cold email (PECR) | Report 05 | VERIFIED gap; exposure ESTIMATE |
-| 5 | Almost no reviews | Reports 03, 04 | VERIFIED |
+| 5 | Almost no reviews (2 on 145 products) | Reports 03, 04, 06 | VERIFIED |
 | 6 | Paid sales lean on brand searches; non-brand ROAS about 1.7 | Report 02 | ESTIMATE |
 | 7 | One campaign and one source (PMax) bring half the orders | Report 02 | VERIFIED |
 | 8 | 125 of 145 live products sold nothing in 90 days | Report 01 | VERIFIED |
 | 9 | "Fulfilled" is not "shipped"; no tracking; timeline over-promises | Reports 01, 03 | VERIFIED |
 | 10 | Profit unknown: no product or delivery costs | All reports | UNKNOWN |
 | 11 | Metrics polluted: 24% bots, about 30% non-UK | Reports 01, 02 | VERIFIED |
-| 12 | Possible card-testing bots on checkout, 15–17 Nov | Report 02 | VERIFIED pattern; cause ESTIMATE |
-| 13 | #1020 cancelled but still PAID, £0 refunded (£273.59) | Report 01 | VERIFIED; refund UNKNOWN |
+| 12 | Possible card-testing bots on checkout, 15–17 Nov | Reports 02, 06 | VERIFIED pattern; no orders or failed charges found; cause ESTIMATE |
+| 13 | #1020 cancelled but still PAID: £273.59 captured, 3 refund attempts FAILED | Reports 01, 06 | VERIFIED; refund outside Shopify UNKNOWN (owner checks PayPal) |
 | 14 | EAGLE10 on 81% of orders works as a standing price cut | Report 01 | VERIFIED |
 | 15 | Storage-bed headline price leaves out the storage | Report 03 | VERIFIED |
 | 16 | Not on page 1 for core terms; rankings split across URLs | Reports 02, 04 | VERIFIED |
@@ -682,10 +685,11 @@ Columns: Dir = direction of impact. Effort L/M/H. Risk L/M/H.
 | Stage 1: competitors (2 × inspect_serp) | 6 |
 | Stage 1: traffic/ads (3 × get_search_performance, 1 × get_ad_campaigns, 2 × get_ad_performance) | 18 |
 | Stage 1: sales, website, trade reports | 0 |
-| **Stage 1 total** | **24** |
-| **Month total now** | **55 of 2,001** |
+| Stage 1: gap closure (1 × get_website_analytics, report 06) | 3 |
+| **Stage 1 total** | **27** |
+| **Month total now** | **58 of 2,001** |
 | Reserve (untouched) | 400 |
-| Left to spend outside the reserve | 1,546 |
+| Left to spend outside the reserve | 1,543 |
 
 Stage 1 stayed well under its budgets (traffic 18 of 30, competitors 6 of 12). This report used 0 credits.
 
@@ -715,15 +719,18 @@ Stage 1 stayed well under its budgets (traffic 18 of 30, competitors 6 of 12). T
 - Merchant Center diagnostics and free-listing clicks: owner check, or a connector.
 - Google Ads conversion-action list and product report: owner check in Ads; add `utm_content`.
 - Omnisend connector for email flows.
-- Judge.me admin (true review count).
+- Judge.me admin (store-level reviews; product reviews now counted: 2).
+- Supermetrics Facebook Insights and Instagram Insights (not authenticated; organic social reach UNKNOWN).
+- Shopify app scopes `read_shopify_payments` / `read_payment_customizations` (needed to read the Clearpay switch and declined charges).
 - Competitor sites (blocked by network); re-check live prices before any price decision.
 
 ### 15.3 Analytics discrepancies to keep explaining
 - 1,489 human vs 1,972/1,969 all vs 1,380 UK (section 2.1).
 - Ads 6.96 conversions vs 8 PMax first-touch orders (repeat buyer not counted; click date vs order date).
-- Gmail 244 threads vs HQ 253 trade sends.
+- Gmail 244 threads vs HQ 253 trade sends: explained (9 bounced threads in Trash, section 16).
+- GA4 −8% sessions vs Shopify −37/−39% (GA4 filters bots; section 16).
 - EAGLE10 creation date (19 Nov) vs use since August.
-- #1020 PAID after cancel.
+- #1020 PAID after cancel: refunds failed in PayPal (section 16).
 
 ### 15.4 Conversion measurement
 - Weekly: UK human sessions, carts, checkouts (human), orders, AOV, mobile vs desktop.
@@ -745,7 +752,7 @@ Stage 1 stayed well under its budgets (traffic 18 of 30, competitors 6 of 12). T
 ### 15.7 Missing financial information (owner)
 - Product cost per bed and size; delivery cost per order; payment fees.
 - VAT status (all web orders show £0 tax).
-- #1020 refund status.
+- #1020: was the £273.59 refunded inside PayPal? (Shopify shows 3 failed refunds.)
 - Real make time and delivery lead time.
 - Swatch cost; COM fabric metres per size.
 
@@ -760,7 +767,7 @@ See the queue below. P0 items are today. P1 within 7 days. Nothing that changes 
 |---|---|---|---|---|---|---|---|---|
 | Q1 | **P0** | Owner opens Side Lift (both URLs) and Savoy on own phone: sideways scroll? title visible? | Owner, with Checkout Doctor | §6.1A | Know if the bug is real | – | n/a (owner check) | Owner answers yes/no for each page, ideally with a screenshot |
 | Q2 | **P0** | Confirm Clearpay in Shopify → Settings → Payments | Owner, with Checkout Doctor | §6.1B | Claim and checkout agree | – | n/a (check) | Owner says on or off; decision to enable or remove wording recorded |
-| Q3 | **P0** | Check checkout bot protection; look for small failed charges 15–17 Nov | Owner, with Analytics | §5.5 | Card testing stopped or ruled out | – | Yes (settings) | Bot protection on; Payments checked |
+| Q3 | P1 (was P0) | Check checkout bot protection; look for small failed charges 15–17 Nov (none found on orders, section 16) | Owner, with Analytics | §5.5 | Card testing stopped or ruled out | – | Yes (settings) | Bot protection on; Payments checked |
 | Q4 | **P0** | Rule: before any abandoned-checkout contact, check for a later order | Customer Care / Inbox task | §6.1C | No messages to people who already bought | – | Yes (prompt change) | Rule in Inbox and Email & SMS prompts |
 | Q5 | **P0** | Decide on holding the trade email ramp at 80/day (step-up due 25 Nov) | Email Marketing | §10 | No volume rise before legal gate exists | – | Yes | Owner decision recorded before 25 Nov |
 | Q6 | **P0** | Draft a proper quote for the design studio (COM fabric, £69.99 assembly wording) | Sales Closer | §10 | First trade quote | owner prices | Yes (owner sends) | Quote sent and logged |
@@ -770,7 +777,7 @@ See the queue below. P0 items are today. P1 within 7 days. Nothing that changes 
 | Q10 | P1 | Storage-bed price and Base Type default | Offer & Pricing | §6.2 #5 | No price surprise | owner price | Yes | Headline matches the name |
 | Q11 | P1 | PMax brand exclusion + account negative list | Google Ads | §7.5 | About £80 per 28 days to non-brand | – | Yes (owner in Ads) | Lists live; weekly brand/non-brand report |
 | Q12 | P1 | Judge.me review requests to past delivered orders | Reviews & Trust | §12 O9 | 10+ genuine reviews | – | Yes | Requests sent; reviews counted |
-| Q13 | P1 | Check #1020 refund; check EAGLE10 creation date | Profit & Cash | §2.2 | Clean baseline | – | n/a (check) | Owner answers both |
+| Q13 | **P0** (#1020) / P1 (EAGLE10) | Check #1020 in PayPal: 3 Shopify refund attempts failed, customer may be owed £273.59; check EAGLE10 creation date | Profit & Cash | §2.2 | Clean baseline | – | n/a (check) | Owner answers both |
 | Q14 | P1 | Fulfil only at dispatch; send a delivery date; fix timeline weekends | Delivery & Returns | §12 O12 | Fewer chasers, honest promise | owner make times | Yes | Process written; timeline fixed |
 | Q15 | P1 | Legal-form gate, privacy line, LIA, suppression list | Email Marketing | §10 | PECR gap closed | – | Yes | Gate in prompt; footer live; LIA in `ops/email/` |
 | Q16 | P1 | Phone the 18 local leads (CTPS screened) | Lead Finder + owner | §10 | Local trade conversations | call script | Yes | 18 outcomes logged |
@@ -849,8 +856,8 @@ See the queue below. P0 items are today. P1 within 7 days. Nothing that changes 
 | O20 | Product-level ad measurement | P2 |
 
 ### E. Exact Stage 2 plan (short)
-1. **Today (P0):** owner phone check (Q1), Clearpay check (Q2), bot protection (Q3), abandoned-checkout rule (Q4), trade ramp decision (Q5), design-studio quote (Q6).
-2. **This week (P1):** title colour and overflow fix on a theme copy; Clearpay wording; storage price; PMax brand exclusion and negatives; Judge.me requests; #1020 and EAGLE10 checks; fulfilment process; PECR gate; phone local leads; Merchant Center check.
+1. **Today (P0):** owner phone check (Q1), Clearpay check (Q2), #1020 PayPal refund check (Q13), abandoned-checkout rule (Q4), trade ramp decision (Q5), design-studio quote (Q6).
+2. **This week (P1):** title colour and overflow fix on a theme copy; Clearpay wording; storage price; PMax brand exclusion and negatives; Judge.me requests; bot protection (Q3); EAGLE10 check; fulfilment process; PECR gate; phone local leads; Merchant Center check.
 3. **Next two weeks (P2):** ottoman hub and near-win SEO; guide product blocks; Easify clarity; speed; ad measurement; Line Bumper walk-through; swatch button; UK human dashboard; agency and schedule clean-up.
 4. **Owner data pack (any time, unlocks profit work):** product costs, delivery costs, VAT status, make and lead times, swatch cost.
 5. **Measure weekly:** UK human sessions, orders, AOV, mobile CR, non-brand ROAS, reviews count, trade quotes.
@@ -879,8 +886,38 @@ See the queue below. P0 items are today. P1 within 7 days. Nothing that changes 
 
 ---
 
+## 16. Gap closure (19 Nov, afternoon)
+
+Read-only pulls by Verification/QA + Analytics. Full detail: `06-gap-closure.md`. 3 OpenRush credits used.
+
+| # | Gap | Status | Finding | Label |
+|---|---|---|---|---|
+| 1 | Meta ads | CLOSED | Eagle Bed account: 12 campaigns, all PAUSED. Last spend 8 Sep 2026. £0 from 9 Sep to 18 Nov. Last 90 days £166.51 (438 link clicks), all from the 24 Aug–8 Sep campaign. Meta logged no pixel purchases for it, though Shopify shows 2 Facebook-ads buyers. | VERIFIED (Meta Ads) |
+| 1b | Meta catalogue | CLOSED | 3 items rejected for policy (FB/IG Shops); 60 with duplicate images; 62 with fewer than 2 images. Fix in Shopify; low priority while ads are paused. | VERIFIED |
+| 2 | Social reach | STILL UNKNOWN | Supermetrics FB/IG Insights not connected; Meta tools have no organic insights. GA4 Organic Social: 23 sessions vs 27. | UNKNOWN / VERIFIED proxy |
+| 3 | GA4 by channel | CLOSED | 1,688 sessions vs 1,841 (−8.3%), much smaller than Shopify's −37/−39%: supports the bot explanation. Paid Search 211 sessions but only 22 engaged (was 133). AI Assistant 61 → 176. Paid Shopping 430 → 2 is PMax relabelled as Cross-network. GA4 currency is USD (store GBP). | VERIFIED (GA4) / ESTIMATE (causes) |
+| 4 | Reviews | CLOSED | 145 published products; 2 have a Judge.me review (1 each, 5 stars): Side Lift Ottoman and Cambridge Storage Panel Bed. 143 have none. | VERIFIED |
+| 5 | Clearpay | PARTLY | 0 Clearpay payments in 43 orders. Methods used: card 29, Klarna 6, PayPal 6, Shop Pay Instalments 1, manual 1. Wallets: Shop Pay, Apple Pay, Google Pay. The switch cannot be read (missing API scope). | VERIFIED / ESTIMATE (off) |
+| 6 | Card testing 15–17 Nov | PARTLY | 0 orders, 0 failed transactions, 0 tiny cancelled orders, 1 abandoned checkout (real bed). No money impact. Non-order declines not readable. Q3 moves to P1. Side note: 4 of the last 16 orders had a failed first card attempt (3-D Secure) before paying. | VERIFIED / ESTIMATE |
+| 7 | #1020 | CLOSED (new risk) | PayPal SALE £273.59 succeeded; 3 REFUND attempts all FAILED (PROCESSING_ERROR). Shopify never refunded. Owner checks PayPal today. Also #1010 and #1014 were marked fulfilled although payment failed. | VERIFIED |
+| 8 | PECR / DUAA | PARTLY | ICO: limited companies, LLPs and Scottish partnerships are corporate (no email consent rule); sole traders and other partnerships are individuals (consent or soft opt-in needed). DUAA 2025: PECR fines up to £17.5m or 4% of turnover; soft opt-in extended to charities. Exact commencement date not confirmed; ICO site blocked in this session. | HISTORICAL (web search, 19 Nov) |
+| 9 | Gmail 244 vs HQ 253 | CLOSED | 9 bounced sends from 11–13 Nov were moved to Gmail Trash. 244 + 9 = 253. One 11 Nov bounce is still "contacted" in HQ. HQ shows 39 more trade sends today (292 total). | VERIFIED |
+| 10 | Tracking | CLOSED | 0 of the last 16 orders have tracking; 2 of 43 ever (#1003, #1022). | VERIFIED |
+
+What changes in this report:
+- **#1020 moves to P0.** It is no longer just a bookkeeping question. A cancelled customer may still be owed £273.59 after 8 weeks.
+- **Clearpay:** the evidence against it is now strong. Q2 stays P0 (owner confirms in Settings → Payments), but the site wording should be treated as unsupported.
+- **Reviews:** 2 product reviews, not "about 1". The gap against rivals is unchanged.
+- **Card testing:** no money impact found; Q3 drops to P1.
+- **Meta:** paid social played no part in Oct–Nov sales (£0 spend since 8 Sep).
+- **Trade email:** sends continued today (39). Owner may want to pause until the PECR legal-form gate exists (Q5, Q15).
+- **New Stage 2 checks:** Paid Search engagement collapse in GA4 (network split, search terms); GA4 currency to GBP; payment-before-fulfil rule (#1010, #1014); fix the one bounced lead still marked "contacted".
+
+---
+
 ## Limitations
-- This report adds no new data pulls. It combines the five specialist reports and the Manager's checks of 19 Nov 2026.
+- Sections 1–15 add no new data pulls; they combine the five specialist reports and the Manager's checks of 19 Nov 2026. Section 16 adds read-only pulls from report 06.
+- Organic Facebook/Instagram reach, the Clearpay switch, declined non-order card attempts and the DUAA PECR commencement date remain UNKNOWN (section 16).
 - The mobile overflow was measured in a test browser that blocks some scripts. Real-phone behaviour is UNKNOWN until Q1.
 - Competitor facts are search-index copies (crawl date unknown).
 - Ads, GSC and Shopify windows differ by 1–3 days.
@@ -888,5 +925,5 @@ See the queue below. P0 items are today. P1 within 7 days. Nothing that changes 
 - Profit is UNKNOWN throughout.
 
 ## Credits used
-- This report: 0 OpenRush credits.
-- Stage 1 total: 24 (6 competitors + 18 traffic/ads). Month total 55 of 2,001. Reserve 400 untouched.
+- This report: 0 OpenRush credits. Gap closure (report 06): 3 (1 × get_website_analytics).
+- Stage 1 total: 27 (6 competitors + 18 traffic/ads + 3 GA4). Month total 58 of 2,001. Reserve 400 untouched.
