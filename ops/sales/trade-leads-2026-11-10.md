@@ -1,5 +1,7 @@
 # Trade leads - 10 Nov 2026
 
+> HISTORICAL RECORD: emails already sent on 10 Nov 2026, before the 19 Nov decision that assembly is never free (optional £69.99). Do not reuse this wording.
+
 Source: Lead Finder 10 Nov 2026. Status: new (no messages sent). Contacts are public business routes found via web search; own-site pages could not be opened from this session, so confirm each phone/email before use.
 
 ## 1. Whitegates Dewsbury  (`tb-whitegates-dewsbury`)

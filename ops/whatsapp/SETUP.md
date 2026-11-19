@@ -8,20 +8,20 @@ New-message trigger only works inside a Zap, so forward WhatsApp messages to Gma
 ## Business profile (paste in WhatsApp Business > Settings > Business tools > Business profile)
 Category: Furniture store
 Description (max 512):
-Eagle Bed is a family-run bed maker. Every bed is handmade to order in our own workshop in Dewsbury, West Yorkshire: ottoman storage beds, divans, wingback, Chesterfield and panel beds, kids beds, headboards and mattresses. Free delivery across England, Scotland and Wales, and our own team assembles your bed. 14-day free returns, 5-year frame warranty, free fabric swatches. Ask us for a quote or trade prices for multiple beds.
+Eagle Bed is a family-run bed maker. Every bed is handmade to order in our own workshop in Dewsbury, West Yorkshire: ottoman storage beds, divans, wingback, Chesterfield and panel beds, kids beds, headboards and mattresses. Free delivery across England, Scotland and Wales by our own team; optional room-of-choice assembly £69.99. 14-day free returns, 5-year frame warranty, free fabric swatches. Ask us for a quote or trade prices for multiple beds.
 Address: Pepproyd Street, Eastborough, Dewsbury WF13 1PA
 Hours: Mon-Fri 9:00-18:00
 Email: eaglebedofficial@gmail.com
 Website: https://www.eaglebed.co.uk
 
 ## Greeting message (Business tools > Greeting message)
-Hello and thanks for messaging Eagle Bed! Tell us which bed you like (or send a photo), the size, and your town, and we'll reply with a price and delivery date. Every bed is handmade in our Dewsbury workshop, with free GB delivery and assembly.
+Hello and thanks for messaging Eagle Bed! Tell us which bed you like (or send a photo), the size, and your town, and we'll reply with a price and delivery date. Every bed is handmade in our Dewsbury workshop, with free GB delivery (assembly available for £69.99).
 
 ## Away message (outside 9-6 Mon-Fri)
 Thanks for your message! We're away right now and will reply from 9am on the next working day. Browse our beds at www.eaglebed.co.uk.
 
 ## Quick replies
-/delivery  Free delivery across England, Scotland and Wales by our own team, who assemble the bed, usually in 3-5 working days. Northern Ireland, Jersey, Guernsey and the Isle of Man £90.
+/delivery  Free delivery across England, Scotland and Wales by our own team, usually in 3-5 working days. Optional room-of-choice assembly £69.99. Northern Ireland, Jersey, Guernsey and the Isle of Man £90.
 /returns   14-day free returns (unused, in original packaging). 5-year frame warranty.
 /pay       Pay by card, PayPal, Klarna or Clearpay at checkout on www.eaglebed.co.uk.
 /swatch    Free fabric swatches: https://www.eaglebed.co.uk/pages/request-a-swatch
