@@ -25,6 +25,11 @@ html body .eb3d-info video { max-width: 100%; height: auto; }
 html body .eb3d-info .easify-product-options,
 html body .eb3d-info #easify-product-options,
 html body .eb3d-info .po-options-root { max-width: 100%; min-width: 0; }
+/* Easify 4-column swatch grids (Base Type, Mattress Type, colours) are 374px wide and
+   stick out on phones under 411px (iPhone 13/14/15: 390px). Show 3 per row there. */
+@media (max-width: 410px) {
+  html body .eb3d-info .po-imageSwatches-grid-4 { grid-template-columns: repeat(3, 86px); }
+}
 /* Home: "N designs" count badges pushed the category cards past the screen edge */
 html body .eb3d-cats__grid > * { min-width: 0; }
 html body .eb3d-cat__label { min-width: 0; }
