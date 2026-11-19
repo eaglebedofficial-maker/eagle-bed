@@ -778,3 +778,15 @@ Everything in sections 22–24 is £0 ad spend. Snippet and compliance metas; or
 - **This report:** 0 OpenRush credits. Stage 6 total **97**; month **213 of 2,001**; reserve untouched (Manager, VERIFIED).
 - **HQ (ArtifactData):** 1 write, `seo/stage6` (new document, under 100 KB).
 - **Files written:** `ops/rocket/stage6/STAGE6-REPORT.md`, `seo-opportunity-register.csv`, `owner-approval-queue.csv`; HTML summary `rocket-stage6.html` in the session scratchpad. Nothing published or committed.
+
+## 29. Owner decisions received after the report (19 Nov 2026, night) – Stage 6 closed
+
+| Item | Owner answer | What it means now | Status |
+|---|---|---|---|
+| OA01 / OA25 – bought links? | "I never ever bought any links." | The 31 "PBN backlinks" spam domains were not bought. Google says it ignores spammy links it did not ask for; no disavow file. HQ checks Search Console → Manual actions and the backlink count once a month. | CLOSED – monitor monthly |
+| OA04 – hide the GBP address? | No. The Google Business Profile shows the Pepproyd Street workshop/warehouse (factory); customers can come there. | Keep the address visible on GBP. Never show the owner's home (Batley) address anywhere. | CLOSED |
+| OA06 – FurnitureStore schema | Revised by the owner's answer: the workshop is a real place customers visit. | Keep a physical-business schema, but only with the Pepproyd Street address and the real visiting rule (opening hours or "by appointment") – owner to confirm which. | OPEN – one detail |
+| OA07 – registered office | Show the workshop, never the home address. | Recommended: the owner or accountant changes ABBAS TRADE LTD's registered office at Companies House to the Pepproyd Street workshop (free online form AD01). Then the website line "Registered office: Pepproyd Street, Eastborough, Dewsbury WF13 1PA" is legally correct. Until then, do not publish a registered-office line. | OPEN – owner/accountant |
+
+Facts file updated (ops/BRIEF.md): workshop address = customer-facing address; home address never used; no links ever bought.
+Stage 6 is COMPLETE. All other approvals in owner-approval-queue.csv stay as listed; Stage 5 blockers stay OPEN; costs/VAT stay PARKED.

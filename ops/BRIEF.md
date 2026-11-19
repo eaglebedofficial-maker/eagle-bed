@@ -1,6 +1,7 @@
 # Eagle Bed BRIEF (owner facts override everything)
 Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki
 - TRADING ENTITY (owner, 19 Nov 2026): the whole business runs under ABBAS TRADE LTD; Eagle Bed is its trading name. (EAGLE BED LTD 17084410 is being struck off and must not be named as the seller.) Company number 16410472 (owner confirmed 19 Nov). VAT registered, VAT number 520 9622 06 (owner, 19 Nov) – prices include 20% VAT; profit must use ex-VAT revenue (price ÷ 1.2). Registered office: to confirm.
+- ADDRESSES (owner, 19 Nov night): the Pepproyd Street, Eastborough, Dewsbury WF13 1PA address is the workshop/factory/warehouse – customers may come there and it is on Google Business Profile. NEVER show or mention the owner's home address (Batley) anywhere. Owner has never bought backlinks.
 - Free delivery across Great Britain (England, Scotland, Wales); Northern Ireland, Jersey, Guernsey, Isle of Man £90; usually 3–5 working days, own team.
 - SELL IN THE UK ONLY (owner, 19 Nov): no sales or delivery outside the UK. Never offer international shipping.
 - Ottoman Gas Lift Divan Base: base height 14 inches (owner, 19 Nov 2026, in reply to a customer). Storage depth and opening direction still to confirm.
