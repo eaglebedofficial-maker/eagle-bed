@@ -1,0 +1,34 @@
+item,priority,decision (Stage 4 approval list),status,evidence,note
+1,P0,"Accountant confirms trading entity, VAT and Terms/footer wording",COMPLETED,"Owner 19 Nov: ABBAS TRADE LTD 16410472 (BRIEF line 3; CHANGELOG 19 Nov x3); VAT 520 9622 06 (BRIEF). Live curl 19 Nov 20:05: /policies/terms-of-service and /policies/contact-information name ABBAS TRADE LTD, company 16410472; 'Eagle bed ltd' absent",Residual (not blockers): registered office line not on policies; VAT number not shown on site; VAT scheme (standard?) not stated; Shopify records £0 tax on every order incl. #1038/#1040 (VERIFIED) so Shopify net sales are VAT-inclusive
+2,P0,Check PayPal and refund #1020 (£273.59) if owed,PENDING,"Shopify GraphQL 19 Nov: #1020 cancelled 23 Sep 13:33, financial status PAID, refunded £0.00, gateway paypal. No owner note in CHANGELOG/BRIEF/HQ inbox/worklog",A refund made directly in PayPal would not show in Shopify; owner must say
+3,P0,"Fill cost spreadsheet P1 rows, delivery per drop, VAT choice",PENDING,"openpyxl 19 Nov: owner-cost-collection.xlsx (16:35, unchanged) Costs cols G-M 0 of 831 rows filled, all Status UNKNOWN; Delivery & fees cost cells empty; HQ costs/* had 0 documents",VAT choice now answerable as YES (owner) - only the cost cells remain
+4,P0,Confirm Ottoman Gas Lift Divan Base opening; align options/text,PENDING,"Live page 19 Nov: description 'end-opening'; Base Type options 'Divan Ottoman left side opening' / 'Right side opening'. Owner gave base height 14 in (HQ inbox, owner reply 19 Nov 16:52; BRIEF) - opening direction still unconfirmed (BRIEF: 'opening direction still to confirm')",Height 14 in is owner-stated but not on the page
+5,P0,Owner expectation check with #1038 buyer (ottoman vs slatted),PENDING,No owner note. HQ inbox: #1038 delivery enquiry marked done; owner said delivered 17 Nov (Stage 4). Shopify has no delivered stamp,Owner's own call; no action by HQ
+6,,Ottoman-named beds: (a) price base in or (b) rename + required Base Type,PENDING,Live 19 Nov: Line Bumper headline £324.99 (slatted base) with 'end-opening gas lift base' text; no change in CHANGELOG,
+7,,'With Drawers' divans: remove 'No Drawers' default or rename,PENDING,Live 19 Nov: Divan Storage Base with Drawers headline £168.99; no CHANGELOG entry,
+8,,Running total next to main and sticky price,PENDING,Not in CHANGELOG; not in theme 213270004043 scope (Report 3.1),
+9,,'from £X with ottoman base' under price on headboard beds,PENDING,No CHANGELOG entry,
+10,,"Print prices on 60in, Golden Strip, Diamond Button, floor-standing options",PENDING,No CHANGELOG entry,
+11,,Tie mattress size to bed size in Easify,PENDING,No CHANGELOG entry,
+12,,Line Ambassador: remove Shopify Colour option,PENDING,No CHANGELOG entry; product-db 19 Nov still lists colour variants,
+13,,"Grand Extra-Tall: real headboard height, tall options, SKUs",PENDING,No owner height in BRIEF/CHANGELOG,
+14,,"Fix size prices: Royal Chesterfield SK, Prism King, Valentina Single (owner sets prices)",PENDING,product-db 19 Nov: Royal Chesterfield King £399.99 > Super King £389.99 (unchanged),Owner sets every price
+15,,"Aurora Luxury, Vegas, Coca option set; Storage Box fabric choice",PENDING,No CHANGELOG entry,
+16,,Confirm whether the 6 MERGE products are duplicates,PENDING,"Stage 5 read-only comparison done (03-decisions-profit-measurement.md §4): 1 pair likely duplicate (Chesterfield Tufted / Chester Chesterfield: identical photo files + ladder), others likely distinct",Owner confirms before any change
+17,,Headboards: standalone / option / later,PENDING,"No owner answer; 17 live headboards, 0 orders ever (Stage 4)",
+18,,"Revisit 25 CONSIDER RETIRING frames after 18 Dec, not before",PENDING,"No owner answer; default holds (nothing retired, review scheduled after 18 Dec readout)",Effectively the plan unless the owner says otherwise
+19,,Clearpay: switch on at checkout or remove wording,PENDING,Live 19 Nov: 'Spread the cost with Klarna or Clearpay at checkout' on all 7 product pages fetched; 0 Clearpay payments in all orders (Stage 1); social captions already drop Clearpay (CHANGELOG 19 Nov U1/U2),Promise unsupported until owner shows Clearpay ON
+20,,Export Google Ads PMax Products report (30/90 days),PENDING,COMMON-BRIEF: not supplied,
+21,,One-day utm_content={product_id} test on PMax,PENDING,COMMON-BRIEF: not approved/implemented,
+22,,Exclude brand searches from PMax (no budget increase),PENDING,No owner answer; HQ worklog google-ads-2026-11-19 is advice only,
+23,,One inventory rule for made-to-order products,PENDING,product-db 19 Nov: mixed tracked/CONTINUE (e.g. Side Lift qty 997-1000),
+24,,"Measure storage depth, lift height, overall dimensions (2 bases + Line Bumper)",PENDING,"Partial: Gas Lift Divan Base base height 14 in (owner, 19 Nov). Live pages 19 Nov: no height, storage depth, lift height or overall dimensions on Gas Lift, Side Lift or Line Bumper (Side Lift shows mattress sizes only)",Add 14 in to page only with owner approval of the wording
+25,,New photos for Divan Base (open) and Stone,PENDING,"Shopify 19 Nov: Gas Lift Divan Base 4 media (newest 27 Oct fabric guide; product photos Feb/Aug); Stone 6 media, 3 WhatsApp images from Feb 2025, newest product photo Aug",
+26,,Genuine review requests to past buyers (no incentives),PENDING,"Precedent: owner approved and sent 24 Google review requests 10 Nov for orders delivered by 3 Nov (CHANGELOG). Judge.me 19 Nov: 3 reviews total (2 product + 1 store), unchanged since Stage 3","New batch = orders delivered after 3 Nov, one email per customer"
+27,,One mattress price list (add-on vs mattress page),PENDING,No CHANGELOG entry,Owner sets every price
+28,,"Check #1016 (Northern Ireland postcode, £0 shipping)",PENDING,"Shopify 19 Nov: #1016 shipping £0.00, province NIR, PAID, delivered 25 Sep; #1038 (NIR) paid £90",
+29,,Remove £300 placeholder unit cost on 4 beds once real costs exist,NOT APPLICABLE,Conditional on real costs; 0% costs today,Becomes PENDING when the cost sheet returns
+X1,owner,Fix the website (CRO theme fixes),COMPLETED,Owner published theme 213270004043 on 19 Nov (CHANGELOG; COMMON-BRIEF),Effect measured from 20 Nov (cro/programme)
+X2,owner,VAT registered 520 9622 06,COMPLETED,"Owner 19 Nov (BRIEF, CHANGELOG)",Profit uses ex-VAT revenue (÷1.2)
+X3,owner,Gas Lift Divan Base height 14 in,COMPLETED,Owner email reply to a customer 19 Nov 16:52 (HQ inbox; BRIEF),Fact only; not yet on the page
+X4,owner,Assembly never free (£69.99 optional); UK only; marketing box unticked; trade emails to companies only,COMPLETED,BRIEF; CHANGELOG 19 Nov; live Easify £69.99 verified 19 Nov (CHANGELOG),
