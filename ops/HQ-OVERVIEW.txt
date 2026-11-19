@@ -6,7 +6,7 @@ Written 19 Nov 2026. Customer names, passwords and keys are left out on purpose.
 
 Eagle Bed HQ is the private control room for Eagle Bed (www.eaglebed.co.uk), a family-run maker of handmade upholstered beds in Dewsbury, West Yorkshire. It has two parts:
 
-1. The HQ page. A private web page on claude.ai. It is the dashboard, memory and database for the whole business: settings, leads, emails, social posts, videos, inbox, credit meters, skills and work logs. It has tabs for Office, Sales, Email, Social, Inbox and Memory.
+1. The HQ page. Started on 29 Oct 2026 with 11 agents. A private web page on claude.ai. It is the dashboard, memory and database for the whole business: settings, leads, emails, social posts, videos, inbox, credit meters, skills and work logs. It has tabs for Office, Sales, Email, Social, Inbox and Memory.
 2. The AI team behind it. Claude (made by Anthropic) runs as a Manager plus 65 specialist agents, and as a set of scheduled tasks that run automatically every day in the cloud. Every change is saved in a private GitHub repository (eagle-bed) with a change log, so all work can be checked and undone.
 
 The owner stays in charge. HQ never changes prices, spends ad money, publishes a new website design, refunds or changes orders, or sends bulk customer marketing without the owner's OK.
@@ -51,14 +51,26 @@ One agent (Competitor Teardown) is switched off to save cost.
 
 5. Everything done, day by day
 
-October 2026
-- 5 Oct: Built a 3D "digital showroom" layer for the Shopify theme and fixed it so Shopify accepted it. Wrote the organic growth plan and the HQ agent brief.
-- 27–28 Oct: Installed the find-skills and image-generation skills. Built a CGI photo studio for product shots (first test render of the Fluted Velvet Bed).
+Day 1: 5 October 2026 (the start)
+- First full audit of eaglebed.co.uk. Found: broken page header code on the live theme (no language tag, empty canonical link), no Google product data (no price or stock rich results), an "ends in" summer-sale countdown still showing in October, a permanent "was" price on every product (a UK pricing-law risk, flagged to the owner), 77% of visitors on phones but only 2 orders from 2,679 phone visits in 30 days, Google visits falling (674 to 332 a week), fake "bot" visitors spoiling the numbers, and 44 thin "Beds delivered to {city}" pages plus duplicate blog posts.
+- Built the "ABBAS 3D" digital showroom theme (Dawn base plus a 3D bed layer): Google product data, breadcrumbs, FAQ data, a calm announcement bar instead of the countdown, a sticky buy bar for phones, bespoke, WhatsApp and phone options. Fixed it until Shopify accepted it (5 fixes the same day).
+- Wrote the showroom blueprint (sitemap and page plan) and the organic growth plan (merge duplicate posts, fix city pages, Google tracking checklist), plus the first brief for the HQ agents.
 
-4–6 November
-- Rebuilt the business files (facts brief, autopilot list, job queue, change log).
-- Started regular Facebook and Instagram posts; TikTok posts through Publer. Removed wrong "hotel" claims from captions.
-- Set up the Cinema Studio (AI video tools) and the HQ Cinema card.
+26–30 October
+- 26–27 Oct: a separate personal project, "Trading HQ" (a share-trading dashboard), was built in the same account. It is not part of Eagle Bed and does not touch the store.
+- 27 Oct: added Claude plugins and skills for the business: SEO (claude-seo), Instagram agent, YouTube agent, music (bitwize-music), first-customer-finder, bed-cgi (CGI images from product photos), find-skills and nano-banana-2 image generation. Added the Eagle Bed fabric and colour guide image.
+- 28 Oct: built the CGI photo studio for product shots, added Fluted Velvet Bed reference photos, made the first test render, added the free Pollinations image option.
+- 29 Oct: added more expert tools: reverse-engineer-anything, "The Agency" (283 specialist sub-agents), build-your-own-x tutorials, graphify (project maps) and ECC.
+- 29 Oct: Eagle Bed HQ was born as a terminal-style command centre with a Manager and 11 skill-based agents that can hand work to each other.
+- 30 Oct: HQ got its look (hooded hacker avatars, server-room office, boot screen). Started an HQ phone app (opens HQ full screen, keeps the screen awake). Fixed the basket's sticky checkout button being hidden behind the chat bubble on phones. Tagged all social post and video links with tracking codes (UTM) so sales from social can be measured.
+
+4–8 November
+- 4 Nov: rebuilt the business files (facts brief, autopilot list, job queue, change log). Started the daily autopilot with a daily summary.
+- Facebook and Instagram posts started (4 Nov Vegas Luxury Bed, 5 Nov Florida Panel Bed); TikTok through Publer. Removed wrong "hotel" claims from captions.
+- 5 Nov: installed the Claude Ads skill and its agents. Daily report: 4 orders in 7 days (£1,352.45); Google Ads return 6.3 times the spend.
+- 6 Nov: installed ECC in full. Set up the Cinema Studio (AI video tools) and the Higgsfield AI Studio agent. The Customer Finder spotted a customer who came back twice to the Savoy King bed and told the owner to phone; she ordered that day (£823.48). Another order (£275.40) the same day.
+- 7 Nov: 6 orders since 31 Oct (£2,451.33). Zapier hit its monthly limit, so social posting stopped for a while; the owner was told.
+- 8 Nov: added tiered AI model routing (cheaper models for simple jobs). Daily report: 2 more orders (£275.40 and £629.96); Google clicks up 11 in a week.
 
 9 November
 - Website speed: made a faster copy of the theme (lighter 3D, faster images and fonts, faster on phones). The owner published it, so it is now the live theme.
@@ -104,7 +116,7 @@ October 2026
 - Top 5 product pages rewritten for sales: Cloud Teddy Bouclé ottoman, memory foam mattress, side-lift ottoman, Panel Line and Panel Line Border. Each now has a clear opening, sizes and prices, a "Good to know" list and FAQs. All backed up first.
 - Email flows written: abandoned checkout (2 emails), swatch follow-up and after-purchase emails, plus a phone guide with copy buttons.
 - Checkout fixed: the marketing box is no longer pre-ticked for UK customers (UK law).
-- Abandoned checkouts: personal follow-up email drafts written for the real customers who left checkouts.
+- Abandoned checkouts: personal follow-up email drafts written for 2 real customers who left checkouts (a third draft was deleted because that customer had already ordered).
 - 11 marketing skills installed and listed in HQ.
 - Recorded that Eagle Bed sells in the UK only.
 
@@ -130,7 +142,7 @@ October 2026
 8. Waiting for the owner
 
 - Finish the abandoned-cart email in Shopify Messaging and make sure it says Active.
-- Send the 3 abandoned-checkout drafts in Gmail.
+- Send the 2 abandoned-checkout drafts in Gmail.
 - Reply to two waiting customers; give a delivery slot to one order.
 - Profit per bed (to decide the Google Ads budget).
 - Optional Gemini top-up (restarts the daily videos).
