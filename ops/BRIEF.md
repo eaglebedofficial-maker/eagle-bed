@@ -18,3 +18,4 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Customer-supplied fabric (COM): YES, accepted. Owner confirmed to a trade client on 17 Nov 2026. Metres needed per size and any extra charge are not yet confirmed; say "we will confirm the fabric quantity for your size".
 
 - ASSEMBLY (owner, 19 Nov 2026, final): assembly is NEVER free. Optional "Room of Choice Assembly" add-on, £69.99 (Easify product option on all products; was £49.99). Delivery stays free across Great Britain by our own team. Wording: "Optional room-of-choice assembly is available for £69.99." Never write free/included assembly.
+- DELIVERY OPTIONS on product pages (19 Nov 2026, live): Downstairs Drop Off free; Room of Choice Drop Off +£29.99; Room of Choice Assembly +£69.99. "Free delivery" means to the door/downstairs. Do not say "we carry it to your room" or "we build it" for free.

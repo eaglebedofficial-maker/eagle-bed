@@ -80,3 +80,4 @@
 - 19 Nov 00:35 — CEO audit + roadmap (ops/ceo/). OpenRush ledger + HQ credits card (v51), skills-list bug fixed, video autopilot paused (Gemini 402), assembly claim removed from social/email/inbox tasks, weekly Google growth task (Mon 11:17, ≤40 credits).
 - 19 Nov — SEO: Ottoman Gas Lift Divan Base title/meta retargeted to 'ottoman divan bed' (backup ops/seo-types/backups/seo-ottoman-divan-base-2026-11-19.json).
 - 19 Nov — Owner: assembly never free, optional Room of Choice Assembly £69.99 (Easify, was £49.99). BRIEF, trade brief, inbox + social tasks updated; site wording rewrite in progress.
+- 19 Nov — Owner set Easify assembly to £69.99; verified live on all 145 products. Site wording rewritten: 17 edits (about-us, beds-west-yorkshire, uk-bed-buying-guide, 3 draft city pages, 4 collections, 6 products); backups in ops/seo-types/backups/assembly-2026-11-19/.
