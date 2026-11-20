@@ -1,0 +1,5 @@
+{"created": "2026-11-20T16:48:56Z", "blog": "gid://shopify/Blog/125086138699 (news)",
+ "articles": [
+  {"id": "gid://shopify/Article/1006219329867", "handle": "divan-base-buying-guide-uk", "url": "https://www.eaglebed.co.uk/blogs/news/divan-base-buying-guide-uk"},
+  {"id": "gid://shopify/Article/1006219362635", "handle": "velvet-vs-boucle-bed", "url": "https://www.eaglebed.co.uk/blogs/news/velvet-vs-boucle-bed"}],
+ "rollback": "articleUpdate(id, article:{isPublished:false}) to hide, or articleDelete(id) to remove"}
