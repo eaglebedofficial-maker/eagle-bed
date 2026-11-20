@@ -55,7 +55,7 @@ The Eagle Bed family
 
 **Subject:** Questions about your Eagle Bed order?
 
-**Preview text:** Free delivery, Klarna or Clearpay, 14-day free returns and a 5-year frame warranty.
+**Preview text:** Free delivery, Klarna or card, 14-day free returns and a 5-year frame warranty.
 
 **Body:**
 
@@ -64,7 +64,7 @@ Hi {{ customer.first_name }},
 Buying a bed online is a big decision, so here are the answers people ask us most:
 
 - **Delivery:** free across England, Scotland and Wales to your door, by our own team. Room of choice drop off is +£29.99 and room of choice assembly is +£69.99, both optional.
-- **Paying:** card, PayPal, Klarna or Clearpay at checkout.
+- **Paying:** card, PayPal or Klarna at checkout.
 - **Returns:** 14-day free returns if the bed is unused, unassembled and in its original packaging.
 - **Warranty:** 5-year frame warranty.
 - **Fabric:** free swatches, or send us your own fabric.

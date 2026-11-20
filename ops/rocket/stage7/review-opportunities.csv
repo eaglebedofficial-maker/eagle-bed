@@ -1,0 +1,44 @@
+order,order_date,product,delivered,delivered_evidence,already_reviewed,google_request_10_nov,judge_me_request,eligible_now,platform_suggestion,next_step,label
+#1001,2026-07-13,Finger Panel Bed,Refunded,Shopify bulk stamp 25 Sep,No,No,UNKNOWN,No,None,Refunded order on the business's own address – not a customer review opportunity,VERIFIED
+#1002,2026-07-24,Mirror Strip Sunrise Bed,Yes (stamp),Shopify bulk stamp 25 Sep (date unreliable),No,Yes (same customer as #1005),UNKNOWN (before Judge.me invitations seen),No – already asked,None,Do not ask again,ESTIMATE
+#1003,2026-07-30,3000 Pocket Sprung Mattress,Yes (stamp),Courier tracking + bulk stamp,No,No,No,No,None (TEMU marketplace order – reviews belong on TEMU),Do not contact outside the marketplace,VERIFIED
+#1004,2026-08-09,Side Lift Ottoman Storage Base,Yes (stamp),Bulk stamp 25 Sep,UNKNOWN (store review of 20 Sep is not tied to an order),Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1005,2026-08-09,Mirror Strip Sunrise Bed,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1006,2026-08-20,Line Kids Velvet Bed,Refunded,Bulk stamp 19 Oct,No,No,UNKNOWN,No,None,Refunded – do not chase; if they post a review it is published like any other,VERIFIED
+#1007,2026-08-21,Line Kids Velvet Bed (x2),Yes (stamp),Bulk stamp 25 Sep,No,No (no email on order),No (no email),No,None,No email address – no request,VERIFIED
+#1008,2026-08-24,Divan Storage Base with Drawers,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1009,2026-08-24,Side Lift Ottoman Storage Base,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1010,2026-08-26,Ottoman Gas Lift Divan Base,Cancelled (payment expired),–,No,No,No,No,None,Not a sale,VERIFIED
+#1011,2026-08-30,Memory Orthopaedic Mattress,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1012,2026-08-31,Mirror Strip Sunrise Bed,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1013,2026-08-31,Hilton Wingback Bed,Yes (stamp),Bulk stamp 25 Sep,No,Yes,UNKNOWN,No – already asked,None,Do not ask again,ESTIMATE
+#1014,2026-09-01,Side Lift Ottoman Storage Base,Cancelled (payment expired),–,No,No,No,No,None,Not a sale,VERIFIED
+#1015,2026-09-02,Side Lift Ottoman Storage Base,Yes (stamp),Bulk stamp 25 Sep,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1016,2026-09-08,Line Ambassador Bed (Northern Ireland),Yes (stamp),Bulk stamp 25 Sep,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1017,2026-09-09,Ottoman Gas Lift Divan Base,Yes (stamp),Bulk stamp 25 Sep,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1018,2026-09-15,Line Kids Velvet Bed,Yes (stamp),Bulk stamp 25 Sep,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1019,2026-09-18,Eagle Sunrise Fan Panel Bed,Yes (stamp),Bulk stamp 25 Sep,UNKNOWN (store review 20 Sep may be this order – HYPOTHESIS),Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1020,2026-09-23,Ottoman Gas Lift Divan Base,Cancelled,–,No,No,No,No,None,Not a sale,VERIFIED
+#1021,2026-09-29,Ottoman Gas Lift Divan Base,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1022,2026-10-01,Upholstered Ottoman Storage Box,Probably (DPD parcel),DPD tracking; not marked delivered,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1023,2026-10-06,3000 Pocket Sprung Mattress,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1024,2026-10-06,3000 Pocket Sprung Mattress,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1025,2026-10-08,Elegant Panel Bed,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1026,2026-10-09,Regal Luxe Panel Bed,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1027,2026-10-14,Ottoman Gas Lift Divan Base,Yes (stamp),Bulk stamp 3 Nov,No,Yes (also covers #1033 – same customer),Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1028,2026-10-24,Ottoman Gas Lift Divan Base,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1029,2026-10-27,Side Lift Ottoman Storage Base,Yes (stamp + review),Bulk stamp 3 Nov; review says no issues,Yes – Judge.me 5 stars 11 Nov (ESTIMATE match by timing),Yes,Sent (review collected via store invitation),No – reviewed,None,Publicly reply to the review (R-reply-positive),ESTIMATE (match)
+#1030,2026-10-31,Side Lift Ottoman Storage Base,Yes (stamp),Bulk stamp 3 Nov,No,Yes,Likely sent (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1031,2026-11-01,Cambridge Panel Storage Bed with Drawers,Yes (implied by review),Not marked; review says quick delivery,Yes – Judge.me 5 stars 15 Nov (only Cambridge order),Yes,Sent,No – reviewed,None,Publicly reply to the review; mark delivered,VERIFIED (review) / ESTIMATE (match)
+#1032,2026-11-02,Side Lift Ottoman Storage Base,UNKNOWN,Not marked delivered,No,Yes (before any delivered date – too early),Likely sent about 16 Nov (ESTIMATE),No – already asked twice,None,Do not ask again,ESTIMATE
+#1033,2026-11-03,Ottoman Gas Lift Divan Base,UNKNOWN,Not marked delivered,No,Yes (via #1027 – same customer),Likely sent about 17 Nov (ESTIMATE),No – already asked,None,Do not ask again,ESTIMATE
+#1034,2026-11-06,Eagle Savoy Channel Bed,UNKNOWN,Not marked delivered,No,No,Scheduled about 20 Nov by the 14-day timer (ESTIMATE),Only after owner confirms delivery,Judge.me (product needs first evidence),Owner confirms delivery date; if delivered 5+ days ago let the Judge.me request stand; no Google ask,ESTIMATE
+#1035,2026-11-06,Ottoman Gas Lift Divan Base,UNKNOWN,Not marked delivered,No,No,Scheduled about 20 Nov (ESTIMATE),Only after owner confirms delivery,Judge.me (best seller with 0 product reviews),Owner confirms delivery date,ESTIMATE
+#1036,2026-11-07,Royal Chesterfield Bed (Wales),UNKNOWN,Not marked delivered,No,No,Scheduled about 21 Nov (ESTIMATE),Only after owner confirms delivery,Google (one platform per customer) – only if Judge.me can exclude this order; otherwise Judge.me,Owner confirms delivery date,ESTIMATE
+#1037,2026-11-08,Side Lift Ottoman Storage Base,UNKNOWN,Not marked delivered,No,No,No (no email on order),No,None,No email – no request; do not text without consent,VERIFIED
+#1038,2026-11-09,Cloud Teddy Boucle Ottoman Bed (Northern Ireland),Yes – owner-confirmed 17 Nov,Owner message; not marked in Shopify,No,No,Scheduled about 23 Nov (ESTIMATE),From 22 Nov (delivery + 5 days),Judge.me (product needs first evidence),Mark delivered 17 Nov; let one Judge.me request + one reminder run,VERIFIED (owner) / ESTIMATE (timer)
+#1039,2026-11-10,Ottoman Gas Lift Divan Base,UNKNOWN,Not marked delivered,No,No,Scheduled about 24 Nov (ESTIMATE),Only after owner confirms delivery,Judge.me (best seller with 0 product reviews),Owner confirms delivery date,ESTIMATE
+#1040,2026-11-13,Cloud Teddy Boucle Ottoman Bed,Not yet – booked Sat 21 Nov,Owner reply 18 Nov,No,No,No email on order – none unless the customer agrees to add it,From 26 Nov if delivered 21 Nov and email added with consent,Judge.me (product needs first evidence),Mark delivered on 21 Nov,VERIFIED
+#1041,2026-11-13,Eagle Regal Gold-Trim Bed (Scotland),UNKNOWN,Not marked delivered,No,No,Scheduled about 27 Nov (ESTIMATE),Only after owner confirms delivery,Google (one platform per customer) – only if Judge.me can exclude this order; otherwise Judge.me,Owner confirms delivery date,ESTIMATE
+#1042,2026-11-14,Curved Wingback Bed,UNKNOWN,Not marked delivered,No,No,Scheduled about 28 Nov (ESTIMATE),Only after owner confirms delivery,Google (one platform per customer) – only if Judge.me can exclude this order; otherwise Judge.me,Owner confirms delivery date,ESTIMATE
+#1043,2026-11-18,Grand Extra-Tall Panel Bed,Not yet,Delivery pending,No,No,Scheduled about 2 Dec (ESTIMATE),After delivery + 5 days,Google (one platform per customer) – only if Judge.me can exclude this order; otherwise Judge.me,Resolve assembly price first (AC01); mark delivered on the day,ESTIMATE

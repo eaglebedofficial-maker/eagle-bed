@@ -50,7 +50,7 @@ I wanted to check you got on all right with the swatches we sent: {fabric list}.
 
 If none were quite right, we can post a few more colours. Just tell us what you're after. You're also welcome to use your own fabric, and we'll confirm the fabric quantity for your size.
 
-If you have a question about sizes, delivery or paying with Klarna or Clearpay, WhatsApp us on 07417 439197 or simply reply to this email.
+If you have a question about sizes, delivery or paying with Klarna, WhatsApp us on 07417 439197 or simply reply to this email.
 
 No rush at all. We're here when you're ready.
 
