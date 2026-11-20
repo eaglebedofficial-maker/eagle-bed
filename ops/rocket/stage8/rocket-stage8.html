@@ -1,0 +1,2346 @@
+<title>Rocket Stage 8</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f7f5f1;--surface:#ffffff;--ink:#1d1b18;--muted:#5e5850;--line:#e3ded5;--accent:#7a5a1e;--accent-bg:#f3ead8;
+--p0:#b42318;--p0-bg:#fdecea;--p1:#9a5b00;--p1-bg:#fff3dc;--ok:#1f6b3a;--ok-bg:#e6f4ea;--est:#4a4fa8;--est-bg:#ecedfb;--unk:#6b6b6b;--unk-bg:#efefef;--hist:#6b4e16;--hist-bg:#f5eedf;--code-bg:#f0ece5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141311;--surface:#1d1b18;--ink:#ece8e1;--muted:#a69f94;--line:#35312b;--accent:#e0b866;--accent-bg:#2e2617;
+--p0:#ff8a80;--p0-bg:#3a1714;--p1:#ffc266;--p1-bg:#352610;--ok:#7fd49b;--ok-bg:#16301f;--est:#aab0ff;--est-bg:#22244a;--unk:#bdbdbd;--unk-bg:#2c2c2c;--hist:#e2c48a;--hist-bg:#2f2717;--code-bg:#2a2722}}
+:root[data-theme="dark"]{--bg:#141311;--surface:#1d1b18;--ink:#ece8e1;--muted:#a69f94;--line:#35312b;--accent:#e0b866;--accent-bg:#2e2617;
+--p0:#ff8a80;--p0-bg:#3a1714;--p1:#ffc266;--p1-bg:#352610;--ok:#7fd49b;--ok-bg:#16301f;--est:#aab0ff;--est-bg:#22244a;--unk:#bdbdbd;--unk-bg:#2c2c2c;--hist:#e2c48a;--hist-bg:#2f2717;--code-bg:#2a2722}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+padding:20px max(16px, env(safe-area-inset-right,0px)) 48px max(16px, env(safe-area-inset-left,0px));overflow-x:hidden}
+main{max-width:980px;margin:0 auto}
+h1{font-size:1.45rem;line-height:1.25;margin:.2em 0 .3em;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:1.6em 0 .6em}
+h3{font-size:1.02rem;margin:1.3em 0 .4em}
+h4{font-size:.95rem;margin:1em 0 .3em}
+p,li{overflow-wrap:anywhere}
+.sub{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+code{background:var(--code-bg);padding:.05em .3em;border-radius:4px;font-size:.86em;overflow-wrap:anywhere}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 8px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:1.3rem;line-height:1.2;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:.8rem;display:block}
+.kpi small{font-size:.72rem;color:var(--muted)}
+.note{background:var(--accent-bg);border-left:3px solid var(--accent);padding:10px 12px;border-radius:6px;margin:12px 0;font-size:.95rem}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;min-width:70px}
+th{background:var(--code-bg);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td{overflow-wrap:break-word}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:0 14px}
+details[open]{padding-bottom:10px}
+summary{cursor:pointer;font-weight:650;padding:12px 0;list-style-position:outside}
+summary::marker{color:var(--accent)}
+.lb{display:inline-block;font-size:.68em;font-weight:700;letter-spacing:.03em;padding:.05em .4em;border-radius:4px;vertical-align:.08em}
+.lb-verified{color:var(--ok);background:var(--ok-bg)}
+.lb-historical{color:var(--hist);background:var(--hist-bg)}
+.lb-estimate{color:var(--est);background:var(--est-bg)}
+.lb-unknown{color:var(--unk);background:var(--unk-bg)}
+.lb-recommendation,.lb-hypothesis{color:var(--accent);background:var(--accent-bg)}
+.pr{display:inline-block;font-size:.72em;font-weight:800;padding:.05em .4em;border-radius:4px}
+.p0{color:var(--p0);background:var(--p0-bg)}
+.p1{color:var(--p1);background:var(--p1-bg)}
+ul,ol{padding-left:1.25em}
+footer{color:var(--muted);font-size:.8rem;margin-top:24px}
+pre{margin:0;padding:10px 12px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;color:var(--ink)}
+.st{display:inline-block;font-size:.72em;font-weight:800;padding:.05em .45em;border-radius:4px}
+.st-pass{color:var(--ok);background:var(--ok-bg)}
+.st-fail{color:var(--p0);background:var(--p0-bg)}
+.st-unknown{color:var(--unk);background:var(--unk-bg)}
+.answer{font-size:1.05rem;border-left-width:4px}
+.draft{border:2px dashed var(--p0);border-radius:8px;padding:12px;margin:10px 0;background:var(--bg)}.draft input,.draft select,.draft textarea{max-width:100%;font:inherit}.draft a{color:var(--accent)}.ribbon{color:var(--p0);font-weight:800;letter-spacing:.04em}.banner{background:var(--p0-bg);color:var(--p0);font-weight:800;padding:10px 12px;border-radius:8px;margin:10px 0;letter-spacing:.02em}.verdict h3{margin-top:1em}.lb-matched{color:var(--ok);background:var(--ok-bg)}.lb-platform{color:var(--est);background:var(--est-bg)}blockquote{margin:12px 0;padding:0}</style>
+<main>
+<h1>Eagle Bed — Project Rocket Sales<br>Stage 8 (final): Revenue Command Centre &amp; Controlled Scaling</h1>
+<p class="sub">20 Nov 2026 · Manager's report over 4 Stage 8 specialist reports, 15 data files and the Stage 5–7 owner queues · read-only · order numbers and anonymised IDs only · source: ops/rocket/stage8/STAGE8-REPORT.md</p>
+<div class="banner">PROFITABILITY NOT VERIFIED — COST DATA PARKED</div>
+<section aria-label="Key numbers"><div class="kpis">
+<div class="kpi"><span>Net sales, last 30d</span><b>£6,857.57</b><small>16 orders · +142.6% · VERIFIED</small></div>
+<div class="kpi"><span>Net sales, all-time</span><b>£15,241.97</b><small>38 paid orders · reconciles · VERIFIED</small></div>
+<div class="kpi"><span>Google Ads (30d / 90d)</span><b>3.78 / 2.32</b><small>real ROAS · CPA £102.05 / £165.98 · MATCHED</small></div>
+<div class="kpi"><span>Ads card</span><b>DECLINED</b><small>19 Nov 22:36 · still serving 01:00 · AT RISK</small></div>
+<div class="kpi"><span>Non-brand Ads drought</span><b>18 days</b><small>£441.97 spent · 0 orders · MATCHED</small></div>
+<div class="kpi"><span>Customers waiting</span><b>7</b><small>+ Ivywell (trade) · VERIFIED</small></div>
+<div class="kpi"><span>Weekly capacity</span><b>UNKNOWN</b><small>owner question · never 0</small></div>
+<div class="kpi"><span>Owner queue</span><b>13 P0</b><small>P1 18 · P2 20 · P3 12 · decided 10</small></div>
+</div></section>
+<div class="verdict"><h2>CEO verdict (at a glance)</h2>
+<h3>1. What is working</h3>
+<ul>
+<li>Sales: <strong>£6,857.57 net from 16 orders in the last 30 days, +142.6%</strong> on fewer visitors <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>PMax at £25/day: <strong>30-day real ROAS 3.78, CPA £102.05</strong> — revenue, not profit <span class="lb lb-matched">MATCHED</span>.</li>
+<li>Customer replies: median first reply <strong>1.5 hours</strong> since 12 Nov <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>The books reconcile: £15,241.97 paid net; 0 unmatched Ads conversions <span class="lb lb-verified">VERIFIED</span> / <span class="lb lb-matched">MATCHED</span>.</li>
+<li>Website fixes are live: CRO theme, ABBAS TRADE LTD on Terms, assembly shown as an optional £69.99 add-on <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h3>2. What is not working</h3>
+<ul>
+<li>Non-brand ads: <strong>no order from 18 days of clicks (£441.97)</strong>; 90-day non-brand ROAS ≈1.52 <span class="lb lb-matched">MATCHED</span> / <span class="lb lb-estimate">ESTIMATE</span>.</li>
+<li>Organic: <strong>0 orders in 30 days</strong>; AI answers name us <strong>0 of 4</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Trade email: <strong>314 sent → 1 interested, 0 quotes, £0</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>High-traffic ottomans lose buyers at the basket: Line Bumper 432 landings, 28 carts, 0 orders <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Delivery records: only <strong>1 real delivered date</strong> in 22 orders <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h3>3. What is unknown</h3>
+<ul>
+<li>Profit (costs and VAT parked) · weekly workshop and delivery capacity · whether abandoned-cart emails are on · whether Clearpay is on · Google Ads balance after the decline · Enhanced Conversions and Merchant Center health · consent validity before 19 Nov · the new theme's effect (too early).</li>
+</ul>
+<h3>4. Fix immediately</h3>
+<ul>
+<li>Google Ads card (today) · #1040 time slot (this evening) · #1043 assembly price (before delivery) · replies to E010, E011, E021, E022, E023, E002 and Ivywell · PayPal #1020 · abandoned-cart automation Active · say HOLD AT 80 before 25 Nov.</li>
+</ul>
+<h3>5. Safe to scale</h3>
+<ul>
+<li><strong>Nothing with money.</strong> Profitability is not verified and capacity is unknown.</li>
+<li>£0-cost work only: keep Side Lift first in merchandising and organic work (SCALE CANDIDATE, no extra spend); organic snippet drafts; review requests after real delivery.</li>
+</ul>
+<h3>6. Hold</h3>
+<ul>
+<li>PMax at £25/day (no increase; Search and Shopping stay paused) · trade emails at 80/day · social posts as they are · CRO theme until the 3 Dec read-out · new products until 18 Dec · returning-customer emails until consent Q2 · cinema task off while video is paused.</li>
+</ul>
+<h3>7. Owner's next steps (today first)</h3>
+<ol>
+<li><strong>Today:</strong> Google Ads → Billing: add funds or a new card; check for a balance due.</li>
+<li><strong>Today:</strong> reply to E010, E011, E021, E022, E023; send E002 the correct number (07417 439197); answer trade Q1–Q3 for Ivywell.</li>
+<li><strong>Today:</strong> decide #1043 assembly (£50 written or £69.99) and note it on the order.</li>
+<li><strong>Today:</strong> check the abandoned-cart automation badge says Active.</li>
+<li><strong>This evening:</strong> send the #1040 time slot for Saturday 21 Nov.</li>
+<li><strong>By Mon 23 Nov:</strong> check PayPal for #1020 (£273.59); mark delivered dates for #1031–#1043.</li>
+<li><strong>Before Wed 25 Nov:</strong> reply "HOLD AT 80" for trade emails.</li>
+<li><strong>This week:</strong> weekly capacity (beds, delivery runs, lead time); Christmas last order date; Clearpay ON/OFF; Gas Lift Divan Base opening direction; workshop visiting rule.</li>
+<li><strong>This week:</strong> approve stopping the cinema task while autoCinema is false.</li>
+<li><strong>When you see the accountant:</strong> registered office (form AD01 to the workshop), costs and VAT.</li>
+</ol>
+<h2>P0 owner actions — today</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>What the owner does</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQ01</td>
+<td>Google Ads payment card</td>
+<td>Google Ads → Billing → Payment methods: add funds or a new card, then check Summary for a balance</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ02</td>
+<td>#1040 delivery time slot (Sat 21 Nov) – due this evening</td>
+<td>Phone or WhatsApp the buyer the Saturday time slot tonight</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ03</td>
+<td>#1043 assembly: honour the written £50 or ask £69.99 (list price)</td>
+<td>Decide £50 or £69.99 and write it on the order notes</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ04</td>
+<td>Reply to E010 (made-to-measure 6ft × 6ft with front-lift ottoman)</td>
+<td>Send the HQ draft today (yes/no, price when known)</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ05</td>
+<td>Send E011 the itemised written quote (delivery wanted 27–30 Nov)</td>
+<td>Send the quote with assembly as optional £69.99; no date promise you cannot keep</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>AQ06</td>
+<td>Reply to E023 (ready to buy; can the ottoman open from the side?)</td>
+<td>Answer the opening question and send total, warranty and link</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ07</td>
+<td>Give E022 the King base storage depth (promised by today)</td>
+<td>Measure and send, or approve the holding line</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ08</td>
+<td>Answer E021 in Shopify Inbox (South West delivery)</td>
+<td>Confirm free delivery to South West England by our own team; day agreed by phone</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ09</td>
+<td>Ivywell Interiors: answer trade questions Q1–Q3 (fabric per size, COM charge, where to send)</td>
+<td>Fill in Q1–Q3 (one line each)</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ10</td>
+<td>Send E002 one corrected message with 07417 439197</td>
+<td>Send the correction and check quick replies/signatures</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ11</td>
+<td>Hold trade emails at 80/day (plan steps up to 140/day on 25 Nov)</td>
+<td>Reply HOLD AT 80 before Wed 25 Nov</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ12</td>
+<td>PayPal refund for #1020 (£273.59)</td>
+<td>Check PayPal; refund or tell us it was refunded</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ13</td>
+<td>Abandoned-cart automation is Active</td>
+<td>Marketing → Automations → Recover abandoned checkout → Set to active (send a screenshot)</td>
+<td>2 min</td>
+</tr>
+</tbody>
+</table></div></div>
+<details open><summary>Full report (sections 1–26)</summary>
+<p>Manager's report over the four Stage 8 specialist reports and 15 data files, plus the Stage 5–7 owner queues. Prepared Fri 20 Nov 2026 (Europe/London, GMT). Data extracted 20 Nov 01:00–01:30. <strong>Read-only:</strong> nothing live was changed, nobody was contacted, nothing was committed. Order numbers and anonymised IDs only (E0xx, C0xx); trade businesses by business name.</p>
+<blockquote>
+<p><strong>PROFITABILITY NOT VERIFIED — COST DATA PARKED.</strong> Every £ figure here is revenue, not profit. ROAS means revenue ÷ ad spend.</p>
+</blockquote>
+<p><strong>Labels:</strong> <span class="lb lb-verified">VERIFIED</span> read from the source on 20 Nov · <span class="lb lb-matched">MATCHED</span> Ads conversion tied to a Shopify order by date and exact value · <span class="lb lb-platform">PLATFORM-REPORTED</span> the platform says so, Shopify cannot confirm · <span class="lb lb-estimate">ESTIMATE</span> a calculation on a stated rule · <span class="lb lb-hypothesis">HYPOTHESIS</span> still to test · <span class="lb lb-unknown">UNKNOWN</span> not available (never 0) · <span class="lb lb-historical">HISTORICAL</span> earlier stage.</p>
+<p><strong>Files (ops/rocket/stage8/):</strong> <code>growth-opportunities.csv</code> (30), <code>business-risk-register.csv</code> (20), <code>owner-approval-queue.csv</code> (75 rows), <code>scaling-decisions.csv</code> (29 rows), <code>dashboard-test-results.csv</code> (12 tests, 12 PASS), <code>reporting-cadence.md</code>, <code>cmd-ceo.json</code> (HQ <code>cmd/ceo</code>), plus the specialists' reports 01–04 and their 15 CSVs.</p>
+<hr />
+<h2>1. Executive summary</h2>
+<ol>
+<li><strong>Sales are up, on less traffic.</strong> Last 30 days (21 Oct–19 Nov): <strong>£6,857.57 net from 16 paid orders</strong>, against £2,826.41 from 7 in the previous 30 days (<strong>+142.6%</strong>) <span class="lb lb-verified">VERIFIED</span>. UK human sessions fell from 2,045 to 1,356 <span class="lb lb-platform">PLATFORM-REPORTED</span>; order conversion rose from 0.34% to 1.18% <span class="lb lb-verified">VERIFIED</span>. The growth came from conversion and basket value, not visitors.</li>
+<li><strong>The money reconciles to the penny.</strong> All-time paid net <strong>£15,241.97</strong> from 38 orders <span class="lb lb-verified">VERIFIED</span>. Shopify Analytics shows £15,515.56 because it still counts cancelled #1020 (£273.59), whose PayPal refund failed <span class="lb lb-verified">VERIFIED</span>. Google Ads' 15 conversions (£5,712.92) = 14 real paid orders (£5,402.42) + cancelled #1014 (£310.50) <span class="lb lb-matched">MATCHED</span>.</li>
+<li><strong>Google Ads is at risk tonight.</strong> The card was declined at 22:36 on 19 Nov (insufficient funds). PMax was still serving at 01:00 <span class="lb lb-verified">VERIFIED</span>. PMax runs at £25/day: 30-day real ROAS <strong>3.78</strong>, CPA <strong>£102.05</strong>; 90-day ROAS <strong>2.32</strong>, CPA <strong>£165.98</strong> <span class="lb lb-verified">VERIFIED</span> / <span class="lb lb-matched">MATCHED</span>. But there has been <strong>no non-brand Ads order since 3 Nov: 18 days of clicks, £441.97 spent</strong> <span class="lb lb-matched">MATCHED</span>.</li>
+<li><strong>Customers and promises are waiting.</strong> #1040 needs its Saturday time slot <strong>this evening</strong>; #1043 has a £50 assembly quote against the £69.99 list price; E010, E011, E021, E022, E023 and the trade lead Ivywell Interiors are waiting on us <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>We cannot scale yet.</strong> Profit is not verified (costs parked), weekly workshop and delivery capacity are UNKNOWN, only #1038 has a real delivered date, and non-brand ads have gone dry. <strong>No budget increase. No channel is cleared for more spend.</strong></li>
+<li><strong>Open work is mostly owner decisions.</strong> Of 142 recommendations from Stages 1–7, 16 are verified complete, 64 await an owner YES/NO and 29 are blocked by missing owner facts <span class="lb lb-verified">VERIFIED</span>. The consolidated queue has <strong>13 P0 items for today</strong>.</li>
+<li><strong>Live site still carries unsupported claims:</strong> Clearpay on 9 of 13 checked pages, "end-opening" on the Gas Lift Divan Base page, a "two-man courier" line in the refund policy; /pages/trade is still 404 <span class="lb lb-verified">VERIFIED</span>.</li>
+</ol>
+<h2>2. What was checked</h2>
+<ul>
+<li><strong>Revenue, orders, products, delivery</strong> (specialist 01): Shopify GraphQL + ShopifyQL, 145 published products, 22 orders since 1 Oct, Gmail delivery promises.</li>
+<li><strong>Google Ads, organic, AI search</strong> (specialist 02): live campaigns, 7/30/90-day performance, order-by-order reconciliation, Search Console (data ends 17 Nov), 3 technical re-checks, 4 AI questions re-run.</li>
+<li><strong>Customers, recovery, reviews, trade</strong> (specialist 03): customers, abandoned checkouts, 23 enquiries, 3 reviews, 332 trade leads.</li>
+<li><strong>Continuity, data quality, agents, resources</strong> (specialist 04): 142 past recommendations re-checked, 34 data-quality checks, 66 agents (65 + Manager) and 13 scheduled tasks, OpenRush / Zapier / scheduled-task usage.</li>
+<li><strong>Manager:</strong> Stage 5 <code>owner-decisions.csv</code> and <code>owner-decision-request.md</code>, Stage 6 and 7 <code>owner-approval-queue.csv</code>, Stage 7 <code>owner-trade-questions.md</code>, the Stage 5–7 reports and the CHANGELOG, merged into one queue.</li>
+<li><strong>Manager actions today (internal only):</strong> BRIEF Clearpay line corrected; the autopilot session was asked to remove Clearpay from its video caption; it declined until the owner confirms (it says the owner told it Clearpay is a payment method) and noted that caption step has been dormant since 9 Nov, so nothing with it is being posted. The Clearpay ON/OFF decision is in the owner queue.</li>
+</ul>
+<h2>3. CEO overview (KPIs)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Value</th>
+<th>Window</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Net sales</td>
+<td>£6,857.57</td>
+<td>Last 30d (21 Oct–19 Nov)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Net sales, previous 30d</td>
+<td>£2,826.41</td>
+<td>21 Sep–20 Oct</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Change in net</td>
+<td>+142.6%</td>
+<td>30d vs previous 30d</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Paid orders</td>
+<td>16</td>
+<td>Last 30d</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>AOV (net)</td>
+<td>£428.60</td>
+<td>Last 30d</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Order conversion (orders ÷ UK human sessions)</td>
+<td>1.18% (was 0.34%)</td>
+<td>Last 30d</td>
+<td>VERIFIED / PLATFORM-REPORTED</td>
+</tr>
+<tr>
+<td>UK human sessions</td>
+<td>1,356 (was 2,045)</td>
+<td>Last 30d</td>
+<td>PLATFORM-REPORTED</td>
+</tr>
+<tr>
+<td>Net sales</td>
+<td>£13,289.78</td>
+<td>Last 90d (22 Aug–19 Nov)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Net sales, all-time</td>
+<td>£15,241.97 (38 paid orders)</td>
+<td>13 Jul–20 Nov</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Google Ads spend</td>
+<td>£785.78</td>
+<td>Last 30d</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Real ROAS / CPA</td>
+<td>3.78 / £102.05</td>
+<td>Last 30d</td>
+<td>MATCHED</td>
+</tr>
+<tr>
+<td>Real ROAS / CPA</td>
+<td>2.32 / £165.98</td>
+<td>Last 90d (23 Aug–20 Nov)</td>
+<td>MATCHED</td>
+</tr>
+<tr>
+<td>Non-brand Ads drought</td>
+<td>18 days, £441.97</td>
+<td>Clicks 3–20 Nov</td>
+<td>MATCHED</td>
+</tr>
+<tr>
+<td>Organic orders</td>
+<td>0</td>
+<td>Last 30d</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>GSC clicks</td>
+<td>165</td>
+<td>28d to 19 Nov (data to 17 Nov)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>AI answers naming Eagle Bed</td>
+<td>0 of 4</td>
+<td>20 Nov</td>
+<td>VERIFIED (tool, date)</td>
+</tr>
+<tr>
+<td>Customers waiting on us</td>
+<td>7</td>
+<td>20 Nov 01:05</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Trade revenue</td>
+<td>£0.00</td>
+<td>10–20 Nov</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Genuine reviews</td>
+<td>3 (all 5★)</td>
+<td>All-time</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Real delivered dates</td>
+<td>1 of 22 orders since 1 Oct</td>
+<td>1 Oct–20 Nov</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Weekly workshop / delivery capacity</td>
+<td>UNKNOWN</td>
+<td>–</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>Profit / contribution</td>
+<td>UNKNOWN (costs parked)</td>
+<td>–</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>OpenRush credits used</td>
+<td>236 of 2,001 (reserve 400 untouched)</td>
+<td>November</td>
+<td>VERIFIED (ledger)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>4. Revenue</h2>
+<p>Rules: order date (Europe/London); paid figures exclude cancelled #1010, #1014, #1020 and refunded #1001, #1006. Gross = subtotal + discounts; net = gross − discounts − returns; total = net + shipping + tax. Never mixed.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Dates</th>
+<th>Gross</th>
+<th>Discounts</th>
+<th>Net</th>
+<th>Total</th>
+<th>Paid orders</th>
+<th>AOV</th>
+<th>Previous net</th>
+<th>Change</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yesterday</td>
+<td>19 Nov</td>
+<td>£0</td>
+<td>£0</td>
+<td>£0</td>
+<td>£0</td>
+<td>0</td>
+<td>n/a</td>
+<td>£539.97</td>
+<td>n/a</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Last 7d</td>
+<td>13–19 Nov</td>
+<td>£2,360.89</td>
+<td>£182.07</td>
+<td>£2,178.82</td>
+<td>£2,178.82</td>
+<td>4</td>
+<td>£544.71</td>
+<td>£2,707.12</td>
+<td>−19.5%</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Last 30d</td>
+<td>21 Oct–19 Nov</td>
+<td>£7,472.64</td>
+<td>£615.07</td>
+<td>£6,857.57</td>
+<td>£6,947.57</td>
+<td>16</td>
+<td>£428.60</td>
+<td>£2,826.41</td>
+<td>+142.6%</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Previous 30d</td>
+<td>21 Sep–20 Oct</td>
+<td>£2,953.88</td>
+<td>£127.47</td>
+<td>£2,826.41</td>
+<td>£2,826.41</td>
+<td>7</td>
+<td>£403.77</td>
+<td>£3,605.80</td>
+<td>−21.6%</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Last 90d</td>
+<td>22 Aug–19 Nov</td>
+<td>£14,203.37</td>
+<td>£913.59</td>
+<td>£13,289.78</td>
+<td>£13,379.78</td>
+<td>33</td>
+<td>£402.72</td>
+<td>£1,952.19</td>
+<td>+580.8%</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>YTD / all-time</td>
+<td>13 Jul–20 Nov</td>
+<td>£16,243.34</td>
+<td>£1,001.37</td>
+<td>£15,241.97</td>
+<td>£15,393.59</td>
+<td>38</td>
+<td>£401.10</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Excluded money (shown separately):</strong> cancelled £859.49 (#1010 £275.40, #1014 £310.50, #1020 £273.59); refunded £514.80 (#1001, #1006) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Ex-VAT (÷ 1.2):</strong> last 30d £5,714.64; last 90d £11,074.82 <span class="lb lb-estimate">ESTIMATE</span> — Shopify records £0 tax on every order except #1003; VAT items parked.</li>
+<li><strong>Months (net / orders):</strong> Jul £776 / 2; Aug £2,825 / 8; Sep £2,284 / 6; Oct £3,365 / 9; Nov to the 19th £5,991 / 13 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Highest weeks:</strong> w/c 2 Nov £2,811.30 (6 orders); w/c 9 Nov £2,315.64 (5) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Seasonality:</strong> cannot be measured (first order 13 Jul, no previous year) <span class="lb lb-unknown">UNKNOWN</span>.</li>
+<li>Full detail: <code>ceo-revenue-baseline.csv</code> (240 rows), <code>revenue-trend.csv</code>.</li>
+</ul>
+<h2>5. Orders</h2>
+<ul>
+<li><strong>Paid orders:</strong> 38 all-time; 16 in the last 30d; 4 in the last 7d; <strong>0 on 19 Nov and 0 so far on 20 Nov</strong>. Last order <strong>#1043 (18 Nov)</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Zero-order days are normal here:</strong> 99 of 131 days had no paid order; longest gap 11 days <span class="lb lb-verified">VERIFIED</span>. 19 Nov was the first full day on the new theme — too early to judge (review 3 Dec).</li>
+<li><strong>Weekly intake (orders received):</strong> w/c 28 Sep 1 · 5 Oct 4 · 12 Oct 1 · 19 Oct 1 · 26 Oct 3 · 2 Nov <strong>6</strong> · 9 Nov 5 · 16 Nov 1 (partial) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Cancellations / refunds:</strong> 3 cancelled (all Aug–Sep) and 2 refunded (Jul–Aug); none since 23 Sep <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>New vs returning:</strong> 15 new / 1 returning in the last 30d; 2 returning buyers all-time (#1005, #1033) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>"Fulfilled" means accepted, not dispatched:</strong> all 38 are Fulfilled, a median of about 3 hours after the order <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h2>6. Products</h2>
+<ul>
+<li><strong>Catalogue:</strong> 145 published products; 257 in admin (187 active, 70 draft) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Classes (90d):</strong> A 1 · B 11 · C 2 · D 4 · E 34 · F 60 · G 7 · <strong>H 26 (blocked or flagged by a configuration or information issue)</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Top revenue (90d net):</strong> Ottoman Gas Lift Divan Base £2,666.63, 7 orders [H] · Side Lift Ottoman Storage Base £1,603.38, 6 [A] · Cloud Teddy Bouclé Ottoman £977.39, 2 [H] · Savoy Channel £823.48 · Royal Chesterfield £629.96 [H] <span class="lb lb-verified">VERIFIED</span>. 20 products sold in 90 days.</li>
+<li><strong>Only large-sample converter:</strong> Side Lift, 2.25% on 267 landings <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Carts that do not become orders (90d, landings / cart sessions / orders):</strong> Line Bumper 432 / 28 / <strong>0</strong> [H] · Line Ambassador 370 / 26 / 1 [H] · Gas Lift Divan Base 593 / 27 / 7 [H] · Grand Extra-Tall 118 / 18 / 1 [H] · Cloud Teddy 109 / 14 / 2 [H] <span class="lb lb-verified">VERIFIED</span>. Price truth on the H products remains the largest product lever (mechanism VERIFIED; cause HYPOTHESIS).</li>
+<li><strong>Paid-attributed:</strong> only 10 products have paid-order evidence; per-product Ads spend is UNKNOWN <span class="lb lb-matched">MATCHED</span> / <span class="lb lb-unknown">UNKNOWN</span>.</li>
+<li><strong>No profit ranking:</strong> 0 of 763 variants costed <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Full detail: <code>product-performance.csv</code>, HQ <code>cmd/products</code>.</li>
+</ul>
+<h2>7. Google Ads</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Dates</th>
+<th>Spend</th>
+<th>Real paid orders</th>
+<th>Real value</th>
+<th>Real ROAS (ex-VAT)</th>
+<th>Real CPA</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last 7</td>
+<td>13–19 Nov</td>
+<td>£183.34</td>
+<td>2 (#1040, #1042 — both brand)</td>
+<td>£1,134.87</td>
+<td>6.19 (5.16)</td>
+<td>£91.67</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>Previous 7</td>
+<td>6–12 Nov</td>
+<td>£200.42</td>
+<td>0</td>
+<td>£0</td>
+<td>none</td>
+<td>–</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Last 30</td>
+<td>21 Oct–19 Nov</td>
+<td>£785.78</td>
+<td>7.70</td>
+<td>£2,966.63</td>
+<td>3.78 (3.15)</td>
+<td>£102.05</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>Previous 30</td>
+<td>21 Sep–20 Oct</td>
+<td>£750.72</td>
+<td>2.29</td>
+<td>£901.82</td>
+<td>1.20 (1.00)</td>
+<td>£327.83</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>Last 90</td>
+<td>23 Aug–20 Nov</td>
+<td>£2,323.67</td>
+<td>14 (+#1014 cancelled)</td>
+<td>£5,402.42</td>
+<td>2.32 (1.94)</td>
+<td>£165.98</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Live:</strong> PMax "All Products" ENABLED at <strong>£25.00/day</strong>, limited by budget (this is not a recommendation to raise it); Search UK (£5) and Shopping UK (£15) PAUSED; one PMax removed. Total inside the £30/day cap <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Card:</strong> £500 payment received 19 Nov 22:33, then <strong>declined 22:36</strong> (Visa ••0882, insufficient funds). No later success, stop or suspension email to 01:02 <span class="lb lb-verified">VERIFIED</span>. Balance due UNKNOWN.</li>
+<li><strong>By campaign (90d):</strong> PMax real ROAS 3.23 (CPA £122.94); Shopping 0.70; Search 1.69 (both orders brand) <span class="lb lb-matched">MATCHED</span>.</li>
+<li><strong>Brand vs non-brand (90d):</strong> brand 5 orders, ROAS 17.8 on ~£115.84 visible spend; <strong>non-brand 9 orders, ROAS ≈1.52 (1.27 ex-VAT)</strong> <span class="lb lb-estimate">ESTIMATE</span> — search terms cover 28% of spend.</li>
+<li><strong>Reconciliation:</strong> 9 directly matched, 4 assisted, 1 platform-reported only, 1 cancelled (#1014), <strong>0 unmatched</strong> <span class="lb lb-matched">MATCHED</span>. Enhanced Conversions, Merchant Center diagnostics, location and product spend are UNKNOWN.</li>
+<li><strong>Decisions:</strong> PMax <strong>HOLD + fix tracking</strong>; Shopping and Search <strong>keep paused</strong>; feed <strong>fix first</strong>. No campaign is a scale candidate.</li>
+</ul>
+<h2>8. Organic SEO</h2>
+<ul>
+<li><strong>Search Console (28d to 19 Nov, data to 17 Nov):</strong> 165 clicks (was 134), 15,070 impressions (was 9,777), position 26.5 (was 20.8) <span class="lb lb-verified">VERIFIED</span>. <strong>Brand clicks fell from 42 to 17</strong> <span class="lb lb-verified">VERIFIED</span>; non-brand ≈148 <span class="lb lb-estimate">ESTIMATE</span>. Nothing new since Stage 6 (Google lag).</li>
+<li><strong>Organic orders:</strong> <strong>0 in the last 7 and 30 days; 1 in 90 days</strong> (#1024, £337.99, probable free listing) <span class="lb lb-verified">VERIFIED</span> / <span class="lb lb-estimate">ESTIMATE</span>. #1036 (£629.96) came from chatgpt.com, an AI referral <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Near-wins (0 clicks):</strong> "cloud bed small double" position 7.9; "gas lift ottoman bed" 18.0; "gas lift bed" 25.3 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Technical:</strong> T05, T06 and T03 re-checked — all still open; 23 of 23 Stage 6 technical items open; no metadata draft live (expected) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Indexing and field Core Web Vitals:</strong> UNKNOWN until owner exports.</li>
+</ul>
+<h2>9. AI search</h2>
+<ul>
+<li><strong>Re-run today (WebSearch tool, not a UK SERP):</strong> Eagle Bed <strong>named 0 of 4, cited 0 of 4</strong> (Stage 6: 0 of 12) <span class="lb lb-verified">VERIFIED</span> for this tool and date.</li>
+<li>One answer named an eBay seller in Dewsbury selling a velvet Chesterfield wingback bed; whether that is Eagle Bed is UNKNOWN.</li>
+<li>Google AI Overview sample (19 Nov): eaglebed.co.uk cited 5 times in the sampled corpus <span class="lb lb-historical">HISTORICAL</span>, directional. ChatGPT, Perplexity, Copilot and AI Mode: UNKNOWN.</li>
+<li><strong>What answers reward:</strong> published numbers (strut rating, storage depth, guarantee years, delivery exceptions) and third-party mentions. <strong>Inclusion cannot be promised.</strong></li>
+</ul>
+<h2>10. Customers</h2>
+<ul>
+<li><strong>Records / with an order / paying buyers:</strong> 73 / 41 / 36; new 34, returning 2 (5.6%); repeat orders 2 of 38 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Enquiries:</strong> 23 genuine since 1 Oct; <strong>median first reply since 12 Nov: 1.5 hours</strong> (was 407 h before 12 Nov) <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Waiting on us (7):</strong> E010 (no reply since 7 Nov), E008 (stale since 29 Oct), E011 (quote overdue; delivery wanted 27–30 Nov), E019 (#1040 slot tonight), E021 (South West delivery), E022 (storage depth due today), E023 (ready to buy; side opening?) <span class="lb lb-verified">VERIFIED</span>. E020 = the #1043 assembly decision.</li>
+<li><strong>Open aftercare cases:</strong> 7 (AC01–AC06, AC08); complaints in Gmail: 0 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Consent:</strong> 38 subscribed (12 never ordered), all single opt-in; the risk that the box was pre-ticked before 19 Nov is unresolved <span class="lb lb-hypothesis">HYPOTHESIS</span>.</li>
+<li><strong>Controls for every reply:</strong> 07417 439197 only; no internal notes; never invent measurements or dates; assembly is an optional £69.99 add-on (verified live 20 Nov); no Clearpay.</li>
+</ul>
+<h2>11. Recovery</h2>
+<ul>
+<li><strong>Abandoned checkouts (8 Sep–20 Nov):</strong> 21 = 12 bots/tests + 5 bought anyway (4 people) + 1 no contact + <strong>3 real, not bought</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Eligible (real, subscribed):</strong> <strong>1</strong> (≈0.4 a month) <span class="lb lb-verified">VERIFIED</span> count / <span class="lb lb-estimate">ESTIMATE</span> rate. The old "~45 a month" figure is withdrawn.</li>
+<li><strong>Automation status: UNKNOWN</strong> (no API field; editing on 19 Nov may have left it in Draft). Recovered orders 0 visible; recovery rate UNKNOWN.</li>
+<li><strong>Owner check today:</strong> Marketing → Automations → "Recover abandoned checkout" → Set to active.</li>
+</ul>
+<h2>12. Trade sales</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Value</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leads / emailed / never contacted</td>
+<td>332 / 314 / 18</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Verified limited-company leads</td>
+<td>63</td>
+<td>VERIFIED (HQ text)</td>
+</tr>
+<tr>
+<td>Emailed with unknown legal form</td>
+<td>253 (Stage 7 counted 251)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Suppressed (doNotContact)</td>
+<td>17 (14 bounced + 3 STOP)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Human replies</td>
+<td>4 (1 interested, 3 STOP)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Quotes / won / trade revenue</td>
+<td>0 / 0 / £0.00</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Follow-ups due</td>
+<td>1 — Ivywell Interiors (overdue; blocked on Q1–Q3)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>/pages/trade</td>
+<td>404</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Outreach plan</td>
+<td>steps up to 140/day on 25 Nov</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Recommendation: hold at 80 a day</strong> until the first compliant sends (with the privacy line) have been checked and the trade page exists. 0 of 314 past emails carried the privacy line; 251 carried an incorrect assembly claim; 312 promised a same-day quote (all fixed for future sends) <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h2>13. Delivery &amp; capacity</h2>
+<ul>
+<li><strong>22 orders since 1 Oct:</strong> delivered with a real date <strong>1</strong> (#1038, 17 Nov, owner-confirmed — took 8 days against a 3–5 working-day promise); dispatched with tracking 1 (#1022, DPD); awaiting manufacture / ready <strong>UNKNOWN</strong>; unknown 20 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Estimate by age:</strong> 12 orders (#1022–#1033) probably delivered; 9 (#1034–#1043 except #1038) probably still open <span class="lb lb-estimate">ESTIMATE</span>.</li>
+<li><strong>Open promises:</strong> #1040 slot due <strong>this evening</strong> for Sat 21 Nov (no customer email on the order); #1043 assembly £50 vs £69.99, no date given; #1038 delivered but not marked; E011 wants delivery 27–30 Nov <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Service mix since 1 Oct:</strong> Downstairs Drop Off 12; Room of Choice Assembly 5 (at the old £49.99); Room of Choice Drop Off 2; none recorded 3 <span class="lb lb-verified">VERIFIED</span>.</li>
+<li><strong>Weekly delivery capacity: UNKNOWN. Workshop capacity: UNKNOWN.</strong> Owner questions: beds per week; delivery runs per week (days, areas); real order-to-delivery days.</li>
+</ul>
+<h2>14. Reviews</h2>
+<ul>
+<li><strong>Genuine reviews:</strong> 3 Judge.me, all 5★ (1 store, Side Lift 1, Cambridge 1); 0 replies <span class="lb lb-verified">VERIFIED</span>. Google ≈0 <span class="lb lb-estimate">ESTIMATE</span>; no Trustpilot profile.</li>
+<li><strong>Next eligible (after confirmed delivery; one request + one reminder; no incentive):</strong> #1038 from 22 Nov once marked delivered; #1034, #1035, #1036, #1039, #1041, #1042 after delivery is confirmed; #1040 from 26 Nov if delivered 21 Nov and an email is added; #1043 after the assembly decision; #1037 has no email. The 24 asked on 10 Nov are not asked again.</li>
+<li><strong>Expectation:</strong> about 2–3 reviews a month <span class="lb lb-estimate">ESTIMATE</span>.</li>
+</ul>
+<h2>15. Agents (65 + Manager) performance</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Agents</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplicates</td>
+<td>21 (20 + Lead Finder coordination gap)</td>
+<td>VERIFIED (Stage 1 matrix + HQ)</td>
+</tr>
+<tr>
+<td>Improves accuracy</td>
+<td>18 (incl. 1 low volume)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Repeatedly fails (blocked by missing data)</td>
+<td>10</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Excessive resources</td>
+<td>10</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Generates opportunities</td>
+<td>4 (incl. Email Marketing, claims corrected)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Saves time</td>
+<td>2 + Manager (mixed: saves time / duplicates)</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Saves time:</strong> the Inbox task cut median first reply from 407 h to 1.5 h.</li>
+<li><strong>Quality notes:</strong> the wrong WhatsApp number was a human reply; internal notes reached a customer via an unedited draft (prompt fixed 15 Nov); past incorrect assembly claims came from trade emails (251) and social captions (fixed 19 Nov); Clearpay remained in the autopilot caption template (change requested today). <strong>No agent made an unapproved live change</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Full matrix: <code>agent-performance.csv</code> (66 agent rows + 13 scheduled tasks).</li>
+</ul>
+<h2>16. Automations &amp; scheduled tasks</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Schedule (UK)</th>
+<th>Runs/week</th>
+<th>Status / note</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inbox agent (trig_015kv1BJhoAyGXD4veTMkCTo)</td>
+<td>every 2 h, 09:07–21:07</td>
+<td>49</td>
+<td>Keep</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Social posts (trig_01KWcB82NnwV2BbFQhQ3iuhL)</td>
+<td>08:41 / 12:41 / 17:41</td>
+<td>21</td>
+<td>Opus + 7 connectors incl. dead Supermetrics — trim</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Cinema videos (trig_016okuWup1wybjbpScFyxw4B)</td>
+<td>08:46 / 17:46</td>
+<td>14</td>
+<td><strong>Fires while autoCinema is false</strong> — disable</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Daily autopilot (trig_01JfLktS4EjKHgtArtoHASzv)</td>
+<td>07:47</td>
+<td>7</td>
+<td>Caption template had Clearpay — change requested</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Daily report incl. DQ (trig_01RxMxSftZmA5XFKM8QHTH84)</td>
+<td>23:59</td>
+<td>7</td>
+<td>Keep; feeds dq/latest</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Email Marketing (trig_01QJKSXdVhoLknhemD2qC5Jb)</td>
+<td>weekdays 09:53</td>
+<td>5</td>
+<td>Ramp decision before 25 Nov</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Email Marketing top-up (trig_01KjwYApBMKCQsMJCeXvbrr5)</td>
+<td>weekdays 14:23</td>
+<td>5</td>
+<td>Keep only if volume is kept</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>CEO sprint (trig_01GL2DgPpqXmDynATB6eu3xJ)</td>
+<td>Mon + Thu 10:23</td>
+<td>2</td>
+<td>Overlaps autopilot as a queue runner</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Weekly Search Revenue (trig_01JT6xGfHqH2K1jH6V5SB8DX)</td>
+<td>Mon 08:52</td>
+<td>1</td>
+<td>Overlaps weekly Google growth</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Weekly Google growth (trig_01P1wKHd5L7Qc9og4T9TS18L)</td>
+<td>Mon 11:17</td>
+<td>1</td>
+<td>First run 23 Nov; ≤40 credits</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Trading HQ watchdog (<strong>not Eagle Bed</strong>)</td>
+<td>hourly</td>
+<td>168</td>
+<td>60 percent of all wake-ups — move or slow</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Total 280 wake-ups a week; Eagle Bed 112</strong> <span class="lb lb-verified">VERIFIED</span>. <code>last_run</code> only proves the wake was delivered, not that the task worked.</li>
+<li><strong>Abandoned-checkout automation:</strong> UNKNOWN (owner check). <strong>Zapier:</strong> see section 19.</li>
+<li>No new scheduled task is proposed. The monthly report (section 23) is a proposal folded into an existing task.</li>
+</ul>
+<h2>17. Data quality &amp; reconciliation</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shopify paid orders vs revenue</td>
+<td>38 / £15,393.59 in both sources</td>
+<td>PASS <span class="lb lb-verified">VERIFIED</span></td>
+</tr>
+<tr>
+<td>Shopify net vs paid net</td>
+<td>£15,515.56 − £273.59 (#1020) = £15,241.97</td>
+<td>Explained <span class="lb lb-verified">VERIFIED</span></td>
+</tr>
+<tr>
+<td>#1020 paid but cancelled</td>
+<td>PAID, £0 refunded</td>
+<td>FAIL (critical)</td>
+</tr>
+<tr>
+<td>#1010 / #1014</td>
+<td>cancelled but marked delivered</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Ads conversions vs orders</td>
+<td>15 / £5,712.92 = 14 paid + #1014</td>
+<td>WARN <span class="lb lb-matched">MATCHED</span></td>
+</tr>
+<tr>
+<td>Delivered vs fulfilled</td>
+<td>no real dates on #1031–#1043 except #1038</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Clearpay claim vs payments</td>
+<td>9 of 13 pages vs 0 payments</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>GA4 purchases</td>
+<td>GA4 currency is USD</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>Merchant Center vs Shopify</td>
+<td>no export</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>Consent validity</td>
+<td>38 subscribed, possible pre-tick</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>Phone number</td>
+<td>correct on 13 of 13 pages</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Costs / VAT</td>
+<td>0 costs; £0 tax recorded</td>
+<td>FAIL (parked, not re-asked)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Totals (34 Stage 8 checks, <code>data-quality-register.csv</code>):</strong> <strong>18 FAIL, 6 WARN, 6 PASS, 4 UNKNOWN</strong> <span class="lb lb-verified">VERIFIED</span> count of the file. The HQ <code>dq/latest</code> monitor (19 more checks, merged in the same file) scored 67 at 00:01 today, down from 71.</li>
+</ul>
+<h2>18. Metric dictionary</h2>
+<ul>
+<li><code>metric-dictionary.csv</code> holds <strong>52 KPIs</strong>, each with definition, calculation, source, window, last-updated time, data quality and confidence <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Groups: revenue (gross, discounts, returns, net, Shopify-reported net, shipping, tax, total); orders (paid, cancelled, refunded, fulfilled, delivered verified, AOV, new / returning); traffic and funnel (UK human sessions, cart, checkout, completed, two conversion definitions, product landings); Google Ads (spend, conversion value, real orders, real ROAS, paid product attribution); organic (GSC, sessions, landings, orders); recovery; enquiries; trade; delivery (open orders, days open, hours to fulfil, promises, capacity); reviews; credits; profitability.</li>
+<li>Confidence mix: 27 VERIFIED, 10 PLATFORM-REPORTED, 4 MATCHED, 3 ESTIMATE, 3 UNKNOWN, 5 mixed labels <span class="lb lb-verified">VERIFIED</span> count of the file.</li>
+<li><strong>Two conversion definitions are kept apart:</strong> orders ÷ sessions (business view) and completed-checkout sessions ÷ sessions (Shopify view).</li>
+</ul>
+<h2>19. Resource usage</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Value</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenRush allocation (renews 19 Dec)</td>
+<td>2,001 credits</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>OpenRush used this month</td>
+<td><strong>236</strong> (221 before Stage 8 + 15 Stage 8)</td>
+<td>VERIFIED (ledger)</td>
+</tr>
+<tr>
+<td>OpenRush remaining / protected reserve</td>
+<td>1,765 / <strong>400 untouched</strong></td>
+<td>VERIFIED (calculation)</td>
+</tr>
+<tr>
+<td>Spendable outside the reserve</td>
+<td>1,365</td>
+<td>VERIFIED (calculation)</td>
+</tr>
+<tr>
+<td>Planned: weekly Google growth task</td>
+<td>≤40 a week from 23 Nov</td>
+<td>PLATFORM-REPORTED (task prompt)</td>
+</tr>
+<tr>
+<td>Repeated research on 19 Nov</td>
+<td>≈6 Ads + ≈15 GSC credits pulled twice</td>
+<td>ESTIMATE</td>
+</tr>
+<tr>
+<td>Zapier</td>
+<td>156 of 750 counted since 10 Nov; ≈13 a day (≈390 a month); 1–9 Nov not counted; reset date UNKNOWN</td>
+<td>PLATFORM-REPORTED / ESTIMATE</td>
+</tr>
+<tr>
+<td>Scheduled tasks</td>
+<td>280 wake-ups a week (Eagle Bed 112; Trading HQ 168)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>Gemini (video) / Supermetrics</td>
+<td>out of credit (HTTP 402) / trial expired 8 Sep</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table></div>
+<h2>20. Top 30 opportunities</h2>
+<p>Ranked by money already in reach and by dependency. Impact is ESTIMATE or UNKNOWN — no £ forecasts. Full detail: <code>growth-opportunities.csv</code>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>ID</th>
+<th>Opportunity</th>
+<th>Area</th>
+<th>Decision</th>
+<th>Expected impact</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>OP01</td>
+<td>Keep Google Ads serving: fix the declined payment card</td>
+<td>Google Ads</td>
+<td>FIX FIRST</td>
+<td>ESTIMATE: protects the 2–3 brand orders a fortnight that ads capture (02 §2.5); £ value UNKNOWN</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>2</td>
+<td>OP02</td>
+<td>Answer the waiting pre-sale customers (E010, E011, E021, E022, E023)</td>
+<td>Customers</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>ESTIMATE: 0–5 orders (one per waiting buyer); £ value UNKNOWN</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>3</td>
+<td>OP03</td>
+<td>Keep the open delivery promises (#1040 slot tonight; #1043 assembly price)</td>
+<td>Delivery</td>
+<td>FIX FIRST</td>
+<td>Protects 2 paid orders already taken; £ at risk UNKNOWN beyond #1040 £556.19</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>4</td>
+<td>OP04</td>
+<td>First trade quote: reply to Ivywell Interiors (fabric metres, COM charge, where to send)</td>
+<td>Trade</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (first trade quote; no trade order yet)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>5</td>
+<td>OP05</td>
+<td>Price truth on the high-traffic flagged ottoman beds (Line Bumper, Line Ambassador, Cloud Teddy, Grand Extra-Tall)</td>
+<td>Products / CRO</td>
+<td>FIX FIRST</td>
+<td>UNKNOWN (largest product lever per 01 §4; no forecast)</td>
+<td>VERIFIED (mechanism) / HYPOTHESIS (cause)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>OP06</td>
+<td>Confirm the Ottoman Gas Lift Divan Base opening direction and fix the page</td>
+<td>Products</td>
+<td>FIX FIRST</td>
+<td>UNKNOWN (removes a contradiction on the top seller page)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>7</td>
+<td>OP07</td>
+<td>Remove or confirm the Clearpay claim</td>
+<td>Compliance / CRO</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Risk reduction; sales impact UNKNOWN</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>8</td>
+<td>OP08</td>
+<td>Confirm the abandoned-checkout automation is Active</td>
+<td>Recovery</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>ESTIMATE: very small (≈0.4 eligible checkouts a month)</td>
+<td>UNKNOWN / VERIFIED</td>
+</tr>
+<tr>
+<td>9</td>
+<td>OP09</td>
+<td>Record real delivered dates and fulfil on dispatch day</td>
+<td>Delivery / Reviews</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Unlocks review timing; fewer where-is-my-order chasers (UNKNOWN size)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>10</td>
+<td>OP10</td>
+<td>Genuine review requests after confirmed delivery (Judge.me Delivered + 5 days)</td>
+<td>Reviews</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>ESTIMATE: about 2–3 reviews a month</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>11</td>
+<td>OP11</td>
+<td>Organic snippet quick wins: Cloud Teddy, Panel Line Border, Square Panel</td>
+<td>Organic SEO</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (CTR uplift; no forecast)</td>
+<td>VERIFIED (GSC to 17 Nov)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>OP12</td>
+<td>Sitemap clean-up: hide 2 noindexed collections, remove 4 empty legacy blogs (301)</td>
+<td>Organic SEO</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (crawl hygiene)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>13</td>
+<td>OP13</td>
+<td>Clean Ads conversion data: retract cancelled #1014, one primary purchase action, Enhanced Conversions</td>
+<td>Google Ads / Tracking</td>
+<td>FIX FIRST</td>
+<td>Accuracy only; no direct sales impact</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>14</td>
+<td>OP14</td>
+<td>PMax brand exclusion + negative list (measure non-brand honestly)</td>
+<td>Google Ads</td>
+<td>TEST WITH APPROVAL</td>
+<td>UNKNOWN (may lower reported ROAS; clarifies true non-brand return)</td>
+<td>MATCHED / ESTIMATE</td>
+</tr>
+<tr>
+<td>15</td>
+<td>OP15</td>
+<td>One Google feed source + Merchant Center diagnostics export</td>
+<td>Feed / Free listings</td>
+<td>FIX FIRST</td>
+<td>UNKNOWN</td>
+<td>HISTORICAL / UNKNOWN</td>
+</tr>
+<tr>
+<td>16</td>
+<td>OP16</td>
+<td>Export Google Ads PMax → Products (30 and 90 days)</td>
+<td>Google Ads</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Enables product-level ad decisions; £ UNKNOWN</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>17</td>
+<td>OP17</td>
+<td>Create /pages/trade from the Stage 7 draft (on an unpublished theme copy)</td>
+<td>Trade</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (inbound trade route)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>18</td>
+<td>OP18</td>
+<td>Hold trade emails at 80 a day; Companies House check of the 251 leads without company evidence</td>
+<td>Trade / Compliance</td>
+<td>HOLD</td>
+<td>Risk reduction; volume beyond 80/day has produced no quote</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>19</td>
+<td>OP19</td>
+<td>Get weekly workshop and delivery capacity (beds per week, delivery runs, lead time)</td>
+<td>Capacity</td>
+<td>FIX FIRST</td>
+<td>Gate for any scaling; no £ impact on its own</td>
+<td>UNKNOWN</td>
+</tr>
+<tr>
+<td>20</td>
+<td>OP20</td>
+<td>Owner-measured dimensions and storage depth on product pages</td>
+<td>Products</td>
+<td>FIX FIRST</td>
+<td>UNKNOWN (fewer pre-sale questions)</td>
+<td>VERIFIED (gap)</td>
+</tr>
+<tr>
+<td>21</td>
+<td>OP21</td>
+<td>Side Lift Ottoman Storage Base: keep it first in merchandising and organic work</td>
+<td>Products</td>
+<td>SCALE CANDIDATE</td>
+<td>UNKNOWN (no extra ad spend proposed)</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+<tr>
+<td>22</td>
+<td>OP22</td>
+<td>Fix live wording that owner facts do not support (refund policy 'two-man courier', mattress title with banned wording, size price ladder)</td>
+<td>Compliance</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Risk reduction</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>23</td>
+<td>OP23</td>
+<td>Route Shopify Inbox chats into HQ</td>
+<td>Customers</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (no lost chats)</td>
+<td>VERIFIED (gap)</td>
+</tr>
+<tr>
+<td>24</td>
+<td>OP24</td>
+<td>Correct the WhatsApp number with customer E002 and check quick replies</td>
+<td>Customers</td>
+<td>FIX FIRST</td>
+<td>Recovers one lost contact</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>25</td>
+<td>OP25</td>
+<td>Settle #1020 in PayPal (£273.59, cancelled 23 Sep, still PAID with £0 refunded)</td>
+<td>Finance</td>
+<td>FIX FIRST</td>
+<td>Removes a dispute risk; makes Shopify net match paid net</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>26</td>
+<td>OP26</td>
+<td>Stop scheduled-task waste: cinema task while autoCinema is false; move the Trading HQ watchdog</td>
+<td>Automations</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>ESTIMATE: 14–182 fewer wake-ups a week</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>27</td>
+<td>OP27</td>
+<td>Social post task: default model, drop the dead Supermetrics connector</td>
+<td>Automations</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Lower resource use; sales impact UNKNOWN</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>28</td>
+<td>OP28</td>
+<td>Send the 4 drafted PR pitches (earned mentions)</td>
+<td>Organic / AI search</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>UNKNOWN (inclusion cannot be promised)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>29</td>
+<td>OP29</td>
+<td>Matching mattress / headboard email to subscribed buyers</td>
+<td>Repeat sales</td>
+<td>HOLD</td>
+<td>UNKNOWN (small)</td>
+<td>VERIFIED / HYPOTHESIS</td>
+</tr>
+<tr>
+<td>30</td>
+<td>OP30</td>
+<td>Raise ad budget or re-enable Shopping UK / Search UK</td>
+<td>Google Ads</td>
+<td>NOT SUITABLE</td>
+<td>UNKNOWN; could lose money</td>
+<td>VERIFIED / MATCHED</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Top 10 in detail</h3>
+<p><strong>1. Keep Google Ads serving: fix the declined payment card</strong> (OP01, FIX FIRST)</p>
+<ul>
+<li>Evidence: Card Visa ••0882 declined 19 Nov 22:36 (insufficient funds); ads still serving at 01:00 20 Nov; last 7 days 2 real orders (#1040, #1042), both brand <span class="lb lb-verified">VERIFIED</span> / <span class="lb lb-matched">MATCHED</span></li>
+<li>Now: 30d real ROAS 3.78, CPA £102.05 (PMax £25/day)</li>
+<li>Impact: ESTIMATE: protects the 2–3 brand orders a fortnight that ads capture (02 §2.5); £ value UNKNOWN · Effort: 10 min · Risk: Low</li>
+<li>Owner action: Pay the balance or add a card in Google Ads → Billing</li>
+</ul>
+<p><strong>2. Answer the waiting pre-sale customers (E010, E011, E021, E022, E023)</strong> (OP02, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: E010 unanswered since 7 Nov; E011 quote overdue, delivery wanted 27–30 Nov; E022 storage depth due 20 Nov; E023 ready to buy; E021 asks about South West delivery <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 7 enquiries waiting on us; 1 with no reply at all</li>
+<li>Impact: ESTIMATE: 0–5 orders (one per waiting buyer); £ value UNKNOWN · Effort: 1–2 h · Risk: Low (replies must not invent facts)</li>
+<li>Owner action: Send the replies (drafts in HQ inbox); give the missing facts</li>
+</ul>
+<p><strong>3. Keep the open delivery promises (#1040 slot tonight; #1043 assembly price)</strong> (OP03, FIX FIRST)</p>
+<ul>
+<li>Evidence: #1040 (£556.19) promised delivery Sat 21 Nov, time slot due Fri 20 Nov evening, order has no customer email; #1043 quoted £50 cash assembly vs £69.99 list <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 2 open promises; 1 of 22 orders since 1 Oct has a real delivered date</li>
+<li>Impact: Protects 2 paid orders already taken; £ at risk UNKNOWN beyond #1040 £556.19 · Effort: 15 min · Risk: Low</li>
+<li>Owner action: Send the #1040 slot; decide £50 or £69.99 for #1043</li>
+</ul>
+<p><strong>4. First trade quote: reply to Ivywell Interiors (fabric metres, COM charge, where to send)</strong> (OP04, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: Interested reply 17 Nov; promised answer overdue; blocked on owner trade Q1–Q3 <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 1 interested lead of 314 emailed; 0 quotes; £0 trade revenue</li>
+<li>Impact: UNKNOWN (first trade quote; no trade order yet) · Effort: 15 min · Risk: Low</li>
+<li>Owner action: Answer trade questions Q1–Q3</li>
+</ul>
+<p><strong>5. Price truth on the high-traffic flagged ottoman beds (Line Bumper, Line Ambassador, Cloud Teddy, Grand Extra-Tall)</strong> (OP05, FIX FIRST)</p>
+<ul>
+<li>Evidence: Line Bumper 432 landings / 28 cart sessions / 0 orders; Line Ambassador 370 / 26 / 1; Cloud Teddy 109 / 14 / 2; Grand 118 / 18 / 1 (90d); Stage 5 F1/F6/F7 open <span class="lb lb-verified">VERIFIED</span> (mechanism) / <span class="lb lb-hypothesis">HYPOTHESIS</span> (cause)</li>
+<li>Now: 26 products in class H (blocked by a configuration or information issue)</li>
+<li>Impact: UNKNOWN (largest product lever per 01 §4; no forecast) · Effort: Owner decisions + 1–2 h edits · Risk: Medium (price changes need owner)</li>
+<li>Owner action: Choose A (base price in headline) or B (rename) per Stage 5 Q9; F6/F7 facts</li>
+</ul>
+<p><strong>6. Confirm the Ottoman Gas Lift Divan Base opening direction and fix the page</strong> (OP06, FIX FIRST)</p>
+<ul>
+<li>Evidence: Top product by 90d net (£2,666.63, 7 orders) but page says end-opening 23 times and side opening 8 times; options are left/right side <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: Class H (F8)</li>
+<li>Impact: UNKNOWN (removes a contradiction on the top seller page) · Effort: 5 min answer + edit · Risk: Low</li>
+<li>Owner action: Answer END / SIDE / BOTH</li>
+</ul>
+<p><strong>7. Remove or confirm the Clearpay claim</strong> (OP07, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: Clearpay text on 9 of 13 checked pages; 0 Clearpay payments in 43 orders; BRIEF corrected 20 Nov; autopilot caption: waits for the owner Clearpay decision (step dormant since 9 Nov) <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 9 of 13 pages</li>
+<li>Impact: Risk reduction; sales impact UNKNOWN · Effort: 5 min answer + edits · Risk: Low</li>
+<li>Owner action: Read Settings → Payments: ON or OFF</li>
+</ul>
+<p><strong>8. Confirm the abandoned-checkout automation is Active</strong> (OP08, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: Editor opened 19 Nov puts it in Draft; status not readable by API <span class="lb lb-unknown">UNKNOWN</span> / <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: Status UNKNOWN; 3 real abandoners in 73 days, 1 subscribed</li>
+<li>Impact: ESTIMATE: very small (≈0.4 eligible checkouts a month) · Effort: 2 min · Risk: Low</li>
+<li>Owner action: Open Marketing → Automations and tap Set to active if Draft</li>
+</ul>
+<p><strong>9. Record real delivered dates and fulfil on dispatch day</strong> (OP09, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: All 22 orders since 1 Oct marked Fulfilled within a median ~3 h; only #1038 has a real delivered date; 'on the way' email goes out on order day <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 1 real delivered date</li>
+<li>Impact: Unlocks review timing; fewer where-is-my-order chasers (UNKNOWN size) · Effort: 30 min, then 1 min per order · Risk: Low</li>
+<li>Owner action: Mark #1031–#1043 delivered dates; fulfil only when the van leaves</li>
+</ul>
+<p><strong>10. Genuine review requests after confirmed delivery (Judge.me Delivered + 5 days)</strong> (OP10, READY FOR OWNER APPROVAL)</p>
+<ul>
+<li>Evidence: 3 genuine reviews (all 5★), 0 replies; #1038 eligible from 22 Nov; #1034–#1042 after delivery confirmed <span class="lb lb-verified">VERIFIED</span></li>
+<li>Now: 3 reviews</li>
+<li>Impact: ESTIMATE: about 2–3 reviews a month · Effort: 30 min setup · Risk: Low (no incentives, no gating)</li>
+<li>Owner action: Approve S7-OA15/16 rules</li>
+</ul>
+<h2>21. Top 20 risks</h2>
+<p>Full detail: <code>business-risk-register.csv</code>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>ID</th>
+<th>Risk</th>
+<th>Severity</th>
+<th>Likelihood / impact</th>
+<th>Mitigation</th>
+<th>Owner</th>
+<th>Due</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>R01</td>
+<td>Google Ads stops serving because the card was declined</td>
+<td><span class="pr p0">P0</span></td>
+<td>High / High</td>
+<td>Update card / pay balance today; check Billing → Summary</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>2</td>
+<td>R02</td>
+<td>#1040 delivery promise broken (slot due tonight, no customer email on order)</td>
+<td><span class="pr p0">P0</span></td>
+<td>Medium / High</td>
+<td>Send the slot by phone/WhatsApp tonight</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>3</td>
+<td>R03</td>
+<td>Waiting customers lost (E010, E011, E021, E022, E023)</td>
+<td><span class="pr p0">P0</span></td>
+<td>High / Medium</td>
+<td>Reply today; holding line where a fact is missing</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>4</td>
+<td>R04</td>
+<td>Trade emails step up to 140/day on 25 Nov without the compliance gate</td>
+<td><span class="pr p0">P0</span></td>
+<td>High (automatic) / High</td>
+<td>Owner says HOLD at 80; Companies House check first</td>
+<td>Owner</td>
+<td>2026-11-24</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>5</td>
+<td>R05</td>
+<td>#1020 customer may be owed £273.59 (PayPal dispute)</td>
+<td><span class="pr p0">P0</span></td>
+<td>Medium / Medium</td>
+<td>Owner checks PayPal and records outcome</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>6</td>
+<td>R06</td>
+<td>Live claims not supported by owner facts (Clearpay 9/13 pages; 'end-opening' on Gas Lift Divan Base; 'two-man courier' in refund policy)</td>
+<td><span class="pr p1">P1</span></td>
+<td>High (live now) / Medium</td>
+<td>Owner answers Clearpay and opening direction; approve wording fixes</td>
+<td>Owner</td>
+<td>2026-11-23</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>7</td>
+<td>R07</td>
+<td>#1043 assembly price dispute (£50 quoted vs £69.99 list)</td>
+<td><span class="pr p1">P1</span></td>
+<td>Medium / Low</td>
+<td>Decide and note on the order before delivery</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>8</td>
+<td>R08</td>
+<td>Demand outruns the workshop (capacity UNKNOWN)</td>
+<td><span class="pr p1">P1</span></td>
+<td>Medium / High</td>
+<td>Owner gives beds/week, runs/week, lead time; no scaling until then</td>
+<td>Owner</td>
+<td>2026-11-23</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>9</td>
+<td>R09</td>
+<td>Ad spend may not be profitable (costs parked)</td>
+<td><span class="pr p1">P1</span></td>
+<td>UNKNOWN / High</td>
+<td>No budget increase; hold PMax at £25/day</td>
+<td>Owner</td>
+<td>When costs unparked</td>
+<td>PARKED</td>
+</tr>
+<tr>
+<td>10</td>
+<td>R10</td>
+<td>Non-brand paid search has stopped selling</td>
+<td><span class="pr p1">P1</span></td>
+<td>Medium / Medium</td>
+<td>Hold; brand exclusion test after approval; review 23 Nov (conversion lag up to ~20 days)</td>
+<td>Manager</td>
+<td>2026-11-23</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>11</td>
+<td>R11</td>
+<td>Delivery data is not real (fulfilled ≠ shipped)</td>
+<td><span class="pr p1">P1</span></td>
+<td>High / Medium</td>
+<td>Fulfil on dispatch; mark delivered on the day; back-fill #1031–#1043</td>
+<td>Owner</td>
+<td>2026-11-23</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>12</td>
+<td>R12</td>
+<td>Abandoned-checkout emails may be off (automation in Draft)</td>
+<td><span class="pr p1">P1</span></td>
+<td>Medium / Low</td>
+<td>Owner reads the badge and sets Active</td>
+<td>Owner</td>
+<td>2026-11-20</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>13</td>
+<td>R13</td>
+<td>Marketing consents before 19 Nov may be invalid (pre-ticked box)</td>
+<td><span class="pr p1">P1</span></td>
+<td>UNKNOWN / Medium</td>
+<td>No marketing to these until Q2 answered</td>
+<td>Owner + professional</td>
+<td>2026-11-27</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>14</td>
+<td>R14</td>
+<td>Christmas cut-off unknown while December demand cannot be read</td>
+<td><span class="pr p1">P1</span></td>
+<td>High / Medium</td>
+<td>Owner sets the last order date for Christmas delivery</td>
+<td>Owner</td>
+<td>2026-11-27</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>15</td>
+<td>R15</td>
+<td>Shopify records £0 tax though VAT registered</td>
+<td><span class="pr p1">P1</span></td>
+<td>High (current) / Medium</td>
+<td>Accountant item (parked); ex-VAT figures stay ESTIMATE</td>
+<td>Owner + accountant</td>
+<td>When VAT unparked</td>
+<td>PARKED</td>
+</tr>
+<tr>
+<td>16</td>
+<td>R16</td>
+<td>Revenue concentrated in two ottoman bases</td>
+<td>P2</td>
+<td>Medium / Medium</td>
+<td>Fix Gas Lift opening text; keep Side Lift healthy; price truth on other ottomans</td>
+<td>Owner</td>
+<td>2026-11-27</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>17</td>
+<td>R17</td>
+<td>Ads reports overstate results (#1014 still counted; 7 actions; Enhanced Conversions UNKNOWN)</td>
+<td>P2</td>
+<td>High (current) / Low</td>
+<td>Retract #1014; one primary action</td>
+<td>Owner</td>
+<td>2026-11-27</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>18</td>
+<td>R18</td>
+<td>Stale prompts and automations repeat old claims or waste runs</td>
+<td>P2</td>
+<td>High (current) / Low</td>
+<td>Autopilot session edits its caption; disable cinema; trim social task</td>
+<td>Manager + owner</td>
+<td>2026-11-23</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>19</td>
+<td>R19</td>
+<td>Trade enquiries land on a 404 trade page</td>
+<td>P2</td>
+<td>High (current) / Low</td>
+<td>Create page from draft after trade facts</td>
+<td>Owner</td>
+<td>2026-11-27</td>
+<td>OPEN</td>
+</tr>
+<tr>
+<td>20</td>
+<td>R20</td>
+<td>Weak trust signals: 3 reviews; not named in AI answers (0 of 4)</td>
+<td>P2</td>
+<td>High (current) / Medium</td>
+<td>Review requests after real delivery; publish owner facts; PR pitches</td>
+<td>Owner</td>
+<td>2026-12-03</td>
+<td>OPEN</td>
+</tr>
+</tbody>
+</table></div>
+<h2>22. Controlled scaling decisions</h2>
+<p>Labels: HOLD / FIX FIRST / TEST WITH APPROVAL / READY FOR OWNER APPROVAL / SCALE CANDIDATE / NOT SUITABLE. Conditions to change and review dates: <code>scaling-decisions.csv</code>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Decision</th>
+<th>Reason</th>
+<th>Next review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Ads PMax (£25/day)</td>
+<td>HOLD</td>
+<td>Only live campaign; 30d real ROAS 3.78, CPA £102.05, but 90d ROAS 2.32 and no non-brand order from 18 days of clicks; profitability not verified; card declined</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Google Ads Search UK (paused)</td>
+<td>NOT SUITABLE</td>
+<td>2 orders, both brand; ~£350 non-brand spend sold nothing</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>Google Ads Shopping UK (paused)</td>
+<td>NOT SUITABLE</td>
+<td>Real ROAS 0.70; PMax serves the same feed with priority</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>Ad budget increase above £25/day</td>
+<td>NOT SUITABLE</td>
+<td>PROFITABILITY NOT VERIFIED — COST DATA PARKED; capacity UNKNOWN; cap £30/day</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>PMax brand exclusion / negatives</td>
+<td>TEST WITH APPROVAL</td>
+<td>Brand ≈5% of spend, 38% of real Ads value; non-brand ROAS ≈1.52</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Ads conversion tracking clean-up</td>
+<td>FIX FIRST</td>
+<td>#1014 cancelled still counted; 7 actions; Enhanced Conversions UNKNOWN</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Merchant Center / feed (free listings)</td>
+<td>FIX FIRST</td>
+<td>Two feed sources; diagnostics UNKNOWN; free listings drive most product organic sessions</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Organic SEO quick wins (metas, snippets)</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>Positions 4–11 with few clicks; 0 organic orders in 30d; drafts ready</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Organic technical clean-up</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>T05/T06/T03 still open; 23 of 23 technical items open</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>AI search visibility</td>
+<td>HOLD</td>
+<td>Named 0 of 4, cited 0 of 4 today; answers reward published numbers Eagle Bed lacks</td>
+<td>2026-12-07</td>
+</tr>
+<tr>
+<td>Trade outreach email</td>
+<td>HOLD</td>
+<td>314 sent → 1 interested, 0 quotes, £0; 0 privacy lines on past sends; plan steps to 140/day on 25 Nov</td>
+<td>2026-11-24</td>
+</tr>
+<tr>
+<td>Trade page /pages/trade</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>404; draft ready; 8 of 32 requirements blocked</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Abandoned checkout recovery</td>
+<td>FIX FIRST</td>
+<td>Automation status UNKNOWN; ≈0.4 eligible a month</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Review requests</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>3 reviews; #1038 eligible 22 Nov once marked delivered</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Returning-customer emails</td>
+<td>HOLD</td>
+<td>Consent Q2 unresolved; 2 returning of 36</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Social posts (3 a day)</td>
+<td>HOLD</td>
+<td>0 direct social orders in 90 days (Stage 1); 21 runs/week on Opus with a dead connector</td>
+<td>2026-12-03</td>
+</tr>
+<tr>
+<td>Cinema videos</td>
+<td>NOT SUITABLE</td>
+<td>Paused (Gemini 402, autoCinema false) but task still fires 14×/week</td>
+<td>2026-12-03</td>
+</tr>
+<tr>
+<td>CRO theme 213270004043</td>
+<td>HOLD</td>
+<td>Published 19 Nov; 0 orders 19 Nov — too early to judge; 2-week watch</td>
+<td>2026-12-03</td>
+</tr>
+<tr>
+<td>Side Lift Ottoman Storage Base</td>
+<td>SCALE CANDIDATE</td>
+<td>2.25% on 267 landings, 6 orders, £1,603.38 90d net, class A, no blocker</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Ottoman Gas Lift Divan Base</td>
+<td>FIX FIRST</td>
+<td>Top 90d revenue £2,666.63 (7 orders) but opening direction contradicts itself</td>
+<td>2026-11-23</td>
+</tr>
+<tr>
+<td>Line Bumper Ottoman</td>
+<td>FIX FIRST</td>
+<td>432 landings, 28 cart sessions, 0 orders; F1 price truth</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Line Ambassador</td>
+<td>FIX FIRST</td>
+<td>370 landings, 26 cart sessions, 1 order; two colour pickers (F6)</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Cloud Teddy Bouclé Ottoman</td>
+<td>FIX FIRST</td>
+<td>109 landings, 14 carts, 2 orders; F1; organic 'cloud bed small double' pos 7.9</td>
+<td>2026-11-27</td>
+</tr>
+<tr>
+<td>Savoy Channel</td>
+<td>HOLD</td>
+<td>3.03% on 33 landings (small sample); 1 order</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>New products (70 drafts)</td>
+<td>HOLD</td>
+<td>Capacity UNKNOWN; costs parked; catalogue review deferred to 18 Dec</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>PR pitches (earned mentions)</td>
+<td>READY FOR OWNER APPROVAL</td>
+<td>0 independent mentions; 4 pitches drafted</td>
+<td>2026-12-07</td>
+</tr>
+<tr>
+<td>Landlord / HMO guide</td>
+<td>HOLD</td>
+<td>Draft has 6 blocked markers; fire answers missing</td>
+<td>2026-12-07</td>
+</tr>
+<tr>
+<td>Phone outreach to 18 local leads</td>
+<td>NOT SUITABLE</td>
+<td>TPS/CTPS screening cost UNKNOWN; Stage 7 recommends NO for now</td>
+<td>2026-12-18</td>
+</tr>
+<tr>
+<td>Meta ads</td>
+<td>NOT SUITABLE</td>
+<td>£0 spend since 8 Sep; pixel/catalogue issues open (C037, C044)</td>
+<td>2026-12-18</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>One SCALE CANDIDATE only — Side Lift Ottoman Storage Base — and only for merchandising and organic priority.</strong> No extra ad spend for anything until costs, capacity and the card are sorted.</li>
+</ul>
+<h2>23. Reporting cadence</h2>
+<p>Full design: <code>reporting-cadence.md</code>. It <strong>reuses the existing scheduled tasks</strong>; nothing new is created.</p>
+<ul>
+<li><strong>Daily:</strong> 23:59 daily report (orders, revenue, Ads spend and billing alerts, DQ score) + inbox agent every 2 h (customers waiting) + 07:47 autopilot (site and alert checks) + weekday Email Marketing (trade sends, bounces).</li>
+<li><strong>Weekly:</strong> Mon 08:52 Search Revenue report; Mon 11:17 Google growth (≤40 credits); CEO sprint Mon/Thu 10:23 (approval queue).</li>
+<li><strong>Monthly (PROPOSAL — needs owner approval, not created):</strong> first Monday of the month inside the Mon 08:52 task: month revenue vs previous, real ROAS, organic, AI test, reviews, trade, capacity, spam-link / Manual-actions check, credits.</li>
+<li><strong>Gaps:</strong> capacity and delivered dates (owner data), Ads balance (email only), automation status, trade pipeline stages, no task refreshes the <code>cmd/*</code> docs, monthly spam-link check not scheduled.</li>
+<li><strong>Waste (recommendation only):</strong> disable the cinema task while autoCinema is false (14/week); move the Trading HQ watchdog (168/week); social task on the default model without Supermetrics.</li>
+</ul>
+<h2>24. Consolidated owner approval queue</h2>
+<p>One queue from Stages 5–8, de-duplicated (for example, the #1020 refund appeared in Stages 5, 6 and 7 and is one row here). Full file: <code>owner-approval-queue.csv</code> — <strong>75 rows: P0 13 · P1 18 · P2 20 · P3 12 open · 2 parked · 10 decided.</strong></p>
+<h3>P0 — today</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>What the owner does</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQ01</td>
+<td>Google Ads payment card</td>
+<td>Google Ads → Billing → Payment methods: add funds or a new card, then check Summary for a balance</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ02</td>
+<td>#1040 delivery time slot (Sat 21 Nov) – due this evening</td>
+<td>Phone or WhatsApp the buyer the Saturday time slot tonight</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ03</td>
+<td>#1043 assembly: honour the written £50 or ask £69.99 (list price)</td>
+<td>Decide £50 or £69.99 and write it on the order notes</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ04</td>
+<td>Reply to E010 (made-to-measure 6ft × 6ft with front-lift ottoman)</td>
+<td>Send the HQ draft today (yes/no, price when known)</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ05</td>
+<td>Send E011 the itemised written quote (delivery wanted 27–30 Nov)</td>
+<td>Send the quote with assembly as optional £69.99; no date promise you cannot keep</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>AQ06</td>
+<td>Reply to E023 (ready to buy; can the ottoman open from the side?)</td>
+<td>Answer the opening question and send total, warranty and link</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ07</td>
+<td>Give E022 the King base storage depth (promised by today)</td>
+<td>Measure and send, or approve the holding line</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ08</td>
+<td>Answer E021 in Shopify Inbox (South West delivery)</td>
+<td>Confirm free delivery to South West England by our own team; day agreed by phone</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ09</td>
+<td>Ivywell Interiors: answer trade questions Q1–Q3 (fabric per size, COM charge, where to send)</td>
+<td>Fill in Q1–Q3 (one line each)</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ10</td>
+<td>Send E002 one corrected message with 07417 439197</td>
+<td>Send the correction and check quick replies/signatures</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ11</td>
+<td>Hold trade emails at 80/day (plan steps up to 140/day on 25 Nov)</td>
+<td>Reply HOLD AT 80 before Wed 25 Nov</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ12</td>
+<td>PayPal refund for #1020 (£273.59)</td>
+<td>Check PayPal; refund or tell us it was refunded</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ13</td>
+<td>Abandoned-cart automation is Active</td>
+<td>Marketing → Automations → Recover abandoned checkout → Set to active (send a screenshot)</td>
+<td>2 min</td>
+</tr>
+</tbody>
+</table></div>
+<h3>P1 — this week</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>What the owner does</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQ14</td>
+<td>Weekly workshop and delivery capacity; real lead time; is '3–5 working days' still right?</td>
+<td>Write: beds per week, delivery runs per week (days/areas), order-to-delivery days</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ15</td>
+<td>Clearpay: ON or OFF at checkout</td>
+<td>Read Settings → Payments and reply ON or OFF</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td>AQ16</td>
+<td>Ottoman Gas Lift Divan Base opening direction</td>
+<td>Reply END / SIDE / BOTH</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ17</td>
+<td>Workshop visiting rule (open hours or by appointment)</td>
+<td>Reply NO / BY APPOINTMENT / HOURS ___</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ18</td>
+<td>20-minute fact session: storage depth, lift height, outside dimensions, strut rating, old-bed removal</td>
+<td>Measure and send the facts list</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>AQ19</td>
+<td>Christmas last order date</td>
+<td>Write the date</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ20</td>
+<td>Mark real delivered dates #1031–#1043 (#1038 = 17 Nov) and fulfil only on dispatch</td>
+<td>Mark dates in Shopify by 23 Nov; approve the fulfil-on-dispatch rule</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>AQ21</td>
+<td>Ottoman price truth: headline A (base price) or B (rename); 'with Drawers' default; Ambassador colour picker; Grand height</td>
+<td>Choose A or B and answer F3/F6/F7</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>AQ22</td>
+<td>Trade questions Q4–Q16 and Q20–Q21 (price basis, minimum, VAT invoice, payment, lead times, returns)</td>
+<td>Fill in the sheet</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>AQ23</td>
+<td>Trade questions Q17–Q19 (fire labels and supplier test certificates)</td>
+<td>Answer YES / NO / DON'T KNOW</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ24</td>
+<td>Create /pages/trade from the Stage 7 draft (unpublished theme copy)</td>
+<td>Reply YES; publish after review</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ25</td>
+<td>Treat the 251 emailed leads without limited-company evidence as do-not-email until a Companies House check</td>
+<td>Reply YES</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td>AQ26</td>
+<td>Consent Q2 (was the box pre-ticked before 19 Nov?) and ICO fee</td>
+<td>Answer Q2; confirm ICO registration</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>AQ27</td>
+<td>Google Ads conversion hygiene: retract #1014, one primary purchase action, Enhanced Conversions</td>
+<td>Reply YES to Stage 5 E6/O9</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td>AQ28</td>
+<td>Owner exports: Ads PMax → Products (30/90d) and Merchant Center diagnostics</td>
+<td>Download both and drop in HQ</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>AQ29</td>
+<td>One Google feed source (keep one, pause the other)</td>
+<td>Choose which source stays</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ30</td>
+<td>Remove live wording owner facts do not support: refund-policy 'two-man courier', mattress title with banned wording, Clearpay in metas</td>
+<td>Reply YES and give the new mattress name</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>AQ31</td>
+<td>Reply to E008 (Cloud Teddy drawer bed in King; swatches)</td>
+<td>Send one reply or close</td>
+<td>10 min</td>
+</tr>
+</tbody>
+</table></div>
+<h3>P2 and P3</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>P</th>
+<th>Item</th>
+<th>What the owner does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQ32</td>
+<td>P2</td>
+<td>Stop the cinema task while autoCinema is false; move the Trading HQ watchdog</td>
+<td>Reply YES (Manager disables trig_016okuWup1wybjbpScFyxw4B; you move the watchdog)</td>
+</tr>
+<tr>
+<td>AQ33</td>
+<td>P2</td>
+<td>Registered office (via the accountant): move to the workshop with form AD01, then show it</td>
+<td>Ask the accountant to file AD01</td>
+</tr>
+<tr>
+<td>AQ34</td>
+<td>P2</td>
+<td>PMax brand exclusion + negative list + listing-group exclusions R1/R2</td>
+<td>Reply YES / NO</td>
+</tr>
+<tr>
+<td>AQ35</td>
+<td>P2</td>
+<td>Judge.me Delivered + 5 days, one reminder, reply to the 3 reviews; review rules (no incentives, no gating)</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ36</td>
+<td>P2</td>
+<td>Recommended abandoned-checkout setup (1 h + 24 h, subscribers only, no discount, no Clearpay)</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ37</td>
+<td>P2</td>
+<td>Route Shopify Inbox chats into HQ</td>
+<td>Reply YES and log the 12 and 15 Nov chats</td>
+</tr>
+<tr>
+<td>AQ38</td>
+<td>P2</td>
+<td>Apply the 19 product + 10 collection meta drafts</td>
+<td>Reply YES or list exceptions</td>
+</tr>
+<tr>
+<td>AQ39</td>
+<td>P2</td>
+<td>Technical SEO clean-up: sitemap (T05/T06), redirects, menu links, Article schema</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ40</td>
+<td>P2</td>
+<td>Size price fixes (Royal Chesterfield Super King £389.99 &lt; King £399.99; Prism King; Valentina Single)</td>
+<td>Set the prices</td>
+</tr>
+<tr>
+<td>AQ41</td>
+<td>P2</td>
+<td>Easify: running total, inline option data, mattress size tied to bed size</td>
+<td>Reply YES to a support ticket</td>
+</tr>
+<tr>
+<td>AQ42</td>
+<td>P2</td>
+<td>Checkout bot protection</td>
+<td>Settings → Checkout → turn on</td>
+</tr>
+<tr>
+<td>AQ43</td>
+<td>P2</td>
+<td>Trade quotes promise 'by the end of the next working day'</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ44</td>
+<td>P2</td>
+<td>Pipeline fields, suppression collection, LIA and retention schedule for trade</td>
+<td>Reply YES and sign the LIA</td>
+</tr>
+<tr>
+<td>AQ45</td>
+<td>P2</td>
+<td>Clear 'confirm your business details' in Google Business Profile</td>
+<td>Open GBP and confirm</td>
+</tr>
+<tr>
+<td>AQ46</td>
+<td>P2</td>
+<td>Schema: legalName ABBAS TRADE LTD + company number; physical-business schema on the workshop with the visiting rule</td>
+<td>Reply YES after AQ17</td>
+</tr>
+<tr>
+<td>AQ47</td>
+<td>P2</td>
+<td>Owner checks: GSC indexing/CWV exports, URL Inspection (3 products), Bing live test, bare-domain redirect</td>
+<td>Send screenshots</td>
+</tr>
+<tr>
+<td>AQ48</td>
+<td>P2</td>
+<td>Aftercare page fix and gas-strut facts for a help section</td>
+<td>Reply YES; give strut facts</td>
+</tr>
+<tr>
+<td>AQ49</td>
+<td>P2</td>
+<td>Base height 14 in on the Gas Lift Divan Base page</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ50</td>
+<td>P2</td>
+<td>Batley named as a delivery town on /pages/beds-west-yorkshire</td>
+<td>Reply KEEP or REMOVE</td>
+</tr>
+<tr>
+<td>AQ51</td>
+<td>P2</td>
+<td>GA4 property currency USD → GBP</td>
+<td>Change in GA4 admin</td>
+</tr>
+<tr>
+<td>AQ52</td>
+<td>P3</td>
+<td>Send the drafted PR pitches; lend a sample bed if asked</td>
+<td>Reply YES / NO</td>
+</tr>
+<tr>
+<td>AQ53</td>
+<td>P3</td>
+<td>Monthly checks: manual AI test (first Monday) and Search Console Manual actions / spam-link count</td>
+<td>Reply YES (added to the Monday Search Revenue task)</td>
+</tr>
+<tr>
+<td>AQ54</td>
+<td>P3</td>
+<td>Social post task on the default model with fewer connectors</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ55</td>
+<td>P3</td>
+<td>Matching mattress email to 9 subscribed buyers (after consent Q2)</td>
+<td>Reply YES after AQ26</td>
+</tr>
+<tr>
+<td>AQ56</td>
+<td>P3</td>
+<td>Headboard fit by base/height; headboards standalone or option</td>
+<td>Give the fit list</td>
+</tr>
+<tr>
+<td>AQ57</td>
+<td>P3</td>
+<td>#1016 Northern Ireland £0 delivery: intended?</td>
+<td>Reply YES / NO</td>
+</tr>
+<tr>
+<td>AQ58</td>
+<td>P3</td>
+<td>Remove BFPO from the free GB zone</td>
+<td>Reply YES / NO</td>
+</tr>
+<tr>
+<td>AQ59</td>
+<td>P3</td>
+<td>Yell categories; Apple Business name; FreeIndex activation</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ60</td>
+<td>P3</td>
+<td>New photos (Divan Base open, Stone); do the Gemini images show the real product?</td>
+<td>Take photos; answer YES / NO</td>
+</tr>
+<tr>
+<td>AQ61</td>
+<td>P3</td>
+<td>Feed hygiene: 36 blank SKUs, one inventory rule, one mattress price list, orphan products to collections, one chat widget</td>
+<td>Reply YES</td>
+</tr>
+<tr>
+<td>AQ62</td>
+<td>P3</td>
+<td>Trade segment rules: furniture-pack firms as partners; phone the 18 phone-only leads (after TPS/CTPS)</td>
+<td>Reply (recommended: NO phoning for now)</td>
+</tr>
+<tr>
+<td>AQ63</td>
+<td>P3</td>
+<td>Landlord/HMO guide only after the trade page and Q17–Q19</td>
+<td>Reply YES</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Parked and already decided (never re-asked)</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQ64</td>
+<td>Product costs, delivery cost per drop, VAT treatment, Shopify tax settings</td>
+<td>PARKED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ65</td>
+<td>Revisit the 25 'consider retiring' frames, 6 possible duplicates, chesterfield naming</td>
+<td>PARKED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ66</td>
+<td>CRO theme 213270004043 published</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ67</td>
+<td>Terms / Contact name ABBAS TRADE LTD 16410472; VAT reg 520 9622 06</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ68</td>
+<td>Phone / WhatsApp 07417 439197 only</td>
+<td>DECIDED</td>
+<td>2026-11-20</td>
+</tr>
+<tr>
+<td>AQ69</td>
+<td>No bought links: leave spam links, no disavow, monitor monthly</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ70</td>
+<td>Workshop address (Pepproyd Street, Dewsbury) on GBP; home address never</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ71</td>
+<td>Trade emails to limited companies only, with privacy line</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ72</td>
+<td>Assembly optional £69.99, never free (Room of Choice Drop Off £29.99)</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ73</td>
+<td>Gas Lift Divan Base base height 14 in</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ74</td>
+<td>UK only; marketing box unticked by default</td>
+<td>DECIDED</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>AQ75</td>
+<td>Customer-supplied fabric (COM) accepted</td>
+<td>DECIDED</td>
+<td>2026-11-17</td>
+</tr>
+</tbody>
+</table></div>
+<h2>25. Dashboard</h2>
+<ul>
+<li><strong>HQ CEO tab:</strong> <a href="https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki" target="_blank" rel="noopener">https://claude.ai/artifact/H8ECqvxQbUQSABuMUK1iki</a> — HQ db collection <code>cmd</code>: <code>ceo</code> (this report's summary), <code>revenue</code>, <code>products</code>, <code>delivery</code>, <code>ads</code>, <code>organic</code>, <code>customers</code>, <code>trade</code>, <code>quality</code>, <code>agents</code>, <code>resources</code>, <code>continuity</code>.</li>
+<li><strong>Test results:</strong> 12 of 12 PASS (20 Nov, Chromium, 390 px and 1366 px, real HQ data): CEO tab loads, all 18 sections render, UNKNOWN never shown as 0, 0 JS errors, no sideways scroll, timestamps and profitability banner shown, revenue matches the baseline to the penny, 63 open + 10 decided approval items, 20 risks, 30 opportunities. Details: <code>dashboard-test-results.csv</code>.</li>
+</ul>
+<h2>26. CEO VERDICT</h2>
+<h3>1. What is working</h3>
+<ul>
+<li>Sales: <strong>£6,857.57 net from 16 orders in the last 30 days, +142.6%</strong> on fewer visitors <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>PMax at £25/day: <strong>30-day real ROAS 3.78, CPA £102.05</strong> — revenue, not profit <span class="lb lb-matched">MATCHED</span>.</li>
+<li>Customer replies: median first reply <strong>1.5 hours</strong> since 12 Nov <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>The books reconcile: £15,241.97 paid net; 0 unmatched Ads conversions <span class="lb lb-verified">VERIFIED</span> / <span class="lb lb-matched">MATCHED</span>.</li>
+<li>Website fixes are live: CRO theme, ABBAS TRADE LTD on Terms, assembly shown as an optional £69.99 add-on <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h3>2. What is not working</h3>
+<ul>
+<li>Non-brand ads: <strong>no order from 18 days of clicks (£441.97)</strong>; 90-day non-brand ROAS ≈1.52 <span class="lb lb-matched">MATCHED</span> / <span class="lb lb-estimate">ESTIMATE</span>.</li>
+<li>Organic: <strong>0 orders in 30 days</strong>; AI answers name us <strong>0 of 4</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Trade email: <strong>314 sent → 1 interested, 0 quotes, £0</strong> <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>High-traffic ottomans lose buyers at the basket: Line Bumper 432 landings, 28 carts, 0 orders <span class="lb lb-verified">VERIFIED</span>.</li>
+<li>Delivery records: only <strong>1 real delivered date</strong> in 22 orders <span class="lb lb-verified">VERIFIED</span>.</li>
+</ul>
+<h3>3. What is unknown</h3>
+<ul>
+<li>Profit (costs and VAT parked) · weekly workshop and delivery capacity · whether abandoned-cart emails are on · whether Clearpay is on · Google Ads balance after the decline · Enhanced Conversions and Merchant Center health · consent validity before 19 Nov · the new theme's effect (too early).</li>
+</ul>
+<h3>4. Fix immediately</h3>
+<ul>
+<li>Google Ads card (today) · #1040 time slot (this evening) · #1043 assembly price (before delivery) · replies to E010, E011, E021, E022, E023, E002 and Ivywell · PayPal #1020 · abandoned-cart automation Active · say HOLD AT 80 before 25 Nov.</li>
+</ul>
+<h3>5. Safe to scale</h3>
+<ul>
+<li><strong>Nothing with money.</strong> Profitability is not verified and capacity is unknown.</li>
+<li>£0-cost work only: keep Side Lift first in merchandising and organic work (SCALE CANDIDATE, no extra spend); organic snippet drafts; review requests after real delivery.</li>
+</ul>
+<h3>6. Hold</h3>
+<ul>
+<li>PMax at £25/day (no increase; Search and Shopping stay paused) · trade emails at 80/day · social posts as they are · CRO theme until the 3 Dec read-out · new products until 18 Dec · returning-customer emails until consent Q2 · cinema task off while video is paused.</li>
+</ul>
+<h3>7. Owner's next steps (today first)</h3>
+<ol>
+<li><strong>Today:</strong> Google Ads → Billing: add funds or a new card; check for a balance due.</li>
+<li><strong>Today:</strong> reply to E010, E011, E021, E022, E023; send E002 the correct number (07417 439197); answer trade Q1–Q3 for Ivywell.</li>
+<li><strong>Today:</strong> decide #1043 assembly (£50 written or £69.99) and note it on the order.</li>
+<li><strong>Today:</strong> check the abandoned-cart automation badge says Active.</li>
+<li><strong>This evening:</strong> send the #1040 time slot for Saturday 21 Nov.</li>
+<li><strong>By Mon 23 Nov:</strong> check PayPal for #1020 (£273.59); mark delivered dates for #1031–#1043.</li>
+<li><strong>Before Wed 25 Nov:</strong> reply "HOLD AT 80" for trade emails.</li>
+<li><strong>This week:</strong> weekly capacity (beds, delivery runs, lead time); Christmas last order date; Clearpay ON/OFF; Gas Lift Divan Base opening direction; workshop visiting rule.</li>
+<li><strong>This week:</strong> approve stopping the cinema task while autoCinema is false.</li>
+<li><strong>When you see the accountant:</strong> registered office (form AD01 to the workshop), costs and VAT.</li>
+</ol>
+<h2>Limitations</h2>
+<ul>
+<li>Every £ figure is revenue; profit, contribution and break-even ROAS are UNKNOWN (costs and VAT parked by the owner).</li>
+<li>Search Console has no data after 17 Nov; Ads data for 19–20 Nov is preliminary; conversion lag of up to ~20 days may partly fill the non-brand drought.</li>
+<li>Ads-to-order links are inferred from click date and exact value; the brand split rests on search terms covering 28% of spend.</li>
+<li>Delivery, capacity and production status are not recorded anywhere; promises made by phone or WhatsApp are not visible.</li>
+<li>Abandoned-checkout automation status, Judge.me send log, Shopify Inbox content, Merchant Center, Enhanced Conversions, GA4 purchases and field Core Web Vitals are UNKNOWN.</li>
+<li>AI search was tested with one web-search tool on 4 questions; it is not a UK SERP or an AI assistant.</li>
+<li>The "since 20 Nov 00:00" customer window was about one hour, so customer deltas are 0 by construction.</li>
+<li>Data-quality counts: the specialist text (5 WARN / 5 UNKNOWN) and the register file (6 WARN / 4 UNKNOWN) differ by one row; the file is used.</li>
+</ul>
+<h2>Credits used</h2>
+<ul>
+<li><strong>Stage 8:</strong> 15 OpenRush credits (specialist 02: Ads campaigns, Ads by date, Ads by campaign, GSC by date, GSC by query — 3 each). Specialists 01, 03, 04 and the Manager: 0.</li>
+<li><strong>Month:</strong> <strong>236 of 2,001</strong>; protected reserve of 400 untouched.</li>
+<li>Manager: local file reads and writes, plus 1 HQ write (<code>cmd/ceo</code>).</li>
+</ul>
+</details>
+<footer>Labels: VERIFIED = read from the source 20 Nov; MATCHED = Ads conversion tied to a Shopify order by date and exact value; PLATFORM-REPORTED = platform figure; ESTIMATE = calculation on a stated rule; HYPOTHESIS = still to test; UNKNOWN = not available (never 0); HISTORICAL = earlier stage. Files in ops/rocket/stage8/. Nothing published live, nobody contacted, nothing committed.</footer></main>

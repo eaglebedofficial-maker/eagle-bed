@@ -1,0 +1,13 @@
+test_id,test,expected,result,status,notes
+T01,CEO tab loads,HQ opens on the CEO tab without a blank screen,Opened HQ in Chromium (stubbed db with the real cmd/* docs); CEO tab button present and opens the command centre,PASS,
+T02,All 18 sections render,18 command-centre sections visible with data or UNKNOWN,18/18 section chips; every section renders content at 390 px and 1366 px,PASS,tested 20 Nov 01:30 UTC
+T03,UNKNOWN shown not 0,"Capacity, profit, automation status, Enhanced Conversions show UNKNOWN","UNKNOWN tags shown for null values (e.g. 42 in Delivery & Capacity, 33 in Risk Register); £0.00 only where the source holds a real 0 (days with no orders, today, trade revenue)",PASS,checked every 0 in revenue/ads/trade/quality docs
+T04,No JS errors,Console has 0 errors on load and on tab switch,"0 page errors, 0 console errors across all 18 sections at both widths",PASS,
+T05,390 px no horizontal scroll,document width ≤ 390 px at 390 px viewport,scrollWidth 390 = clientWidth 390 on all 18 sections; Stage 8 report page also 390,PASS,tables scroll inside their own box
+T06,1366 px layout,"Cards in grid, tables readable, nothing clipped",scrollWidth 1366 = clientWidth on all 18 sections,PASS,screenshot s8test/ceo-1366.png
+T07,Each cmd doc timestamp shown,"cmd/ceo, revenue, products, delivery, ads, organic, customers, trade, quality, agents, resources, continuity show updatedAt/extractedAt","""Extracted <date time>"" shown on all 18 sections once cmd/ceo exists",PASS,
+T08,Profitability banner shown,'PROFITABILITY NOT VERIFIED — COST DATA PARKED' visible,"Banner ""Profitability: NOT VERIFIED — COST DATA PARKED"" in the tab header + CEO headline + Revenue card",PASS,
+T09,Revenue figures match ceo-revenue-baseline.csv,"30d net £6,857.57 / 16 orders; 90d £13,289.78; all-time £15,241.97 / 38",cmd/revenue last_30d net 6857.57 and all_time 15241.97 = ceo-revenue-baseline.csv,PASS,VERIFIED vs Shopify GraphQL
+T10,Approval queue count matches owner-approval-queue.csv,Open + parked + decided counts equal the CSV,"cmd/ceo decisions 63 + decided 10; CSV {'OPEN': 63, 'PARKED': 2, 'DECIDED': 10}",PASS,"2 PARKED rows (costs/VAT, 18 Dec catalogue) shown in the report, not in the HQ queue"
+T11,Risk count 20,20 risks listed,20 risks in cmd/ceo,PASS,
+T12,Opportunity count 30,30 opportunities listed,30 opportunities in cmd/ceo,PASS,

@@ -1,0 +1,30 @@
+item,decision,reason,evidence,condition_to_change,next_review_date
+Google Ads PMax (£25/day),HOLD,"Only live campaign; 30d real ROAS 3.78, CPA £102.05, but 90d ROAS 2.32 and no non-brand order from 18 days of clicks; profitability not verified; card declined",ads-performance.csv; 02 §2,Card fixed AND costs known AND capacity known AND non-brand orders return,2026-11-23
+Google Ads Search UK (paused),NOT SUITABLE,"2 orders, both brand; ~£350 non-brand spend sold nothing",02 §2.1,A brand-only test proposed with a budget decision,2026-12-18
+Google Ads Shopping UK (paused),NOT SUITABLE,Real ROAS 0.70; PMax serves the same feed with priority,02 §2.1,None foreseen,2026-12-18
+Ad budget increase above £25/day,NOT SUITABLE,PROFITABILITY NOT VERIFIED — COST DATA PARKED; capacity UNKNOWN; cap £30/day,01 §6; BRIEF,Costs unparked and break-even ROAS known,2026-12-18
+PMax brand exclusion / negatives,TEST WITH APPROVAL,"Brand ≈5% of spend, 38% of real Ads value; non-brand ROAS ≈1.52",02 §2.2,Owner YES (AQ34),2026-11-23
+Ads conversion tracking clean-up,FIX FIRST,#1014 cancelled still counted; 7 actions; Enhanced Conversions UNKNOWN,ads-order-reconciliation.csv,Owner YES (AQ27),2026-11-23
+Merchant Center / feed (free listings),FIX FIRST,Two feed sources; diagnostics UNKNOWN; free listings drive most product organic sessions,02 §2.4; product-performance.csv,Export received and one source chosen,2026-11-27
+"Organic SEO quick wins (metas, snippets)",READY FOR OWNER APPROVAL,Positions 4–11 with few clicks; 0 organic orders in 30d; drafts ready,organic-performance.csv; Stage 6 OA09,Owner YES (AQ38),2026-11-23
+Organic technical clean-up,READY FOR OWNER APPROVAL,T05/T06/T03 still open; 23 of 23 technical items open,organic-performance.csv,Owner YES (AQ39),2026-11-23
+AI search visibility,HOLD,"Named 0 of 4, cited 0 of 4 today; answers reward published numbers Eagle Bed lacks",ai-search-performance.csv,Owner facts published (AQ18) and PR mentions,2026-12-07
+Trade outreach email,HOLD,"314 sent → 1 interested, 0 quotes, £0; 0 privacy lines on past sends; plan steps to 140/day on 25 Nov",trade-sales-performance.csv; C006,First compliant sends checked; trade page live; quotes possible,2026-11-24
+Trade page /pages/trade,READY FOR OWNER APPROVAL,404; draft ready; 8 of 32 requirements blocked,trade-sales-performance.csv,Trade facts answered (AQ22),2026-11-27
+Abandoned checkout recovery,FIX FIRST,Automation status UNKNOWN; ≈0.4 eligible a month,customer-recovery-performance.csv,Owner confirms Active (AQ13),2026-11-23
+Review requests,READY FOR OWNER APPROVAL,3 reviews; #1038 eligible 22 Nov once marked delivered,03 §4,Real delivered dates recorded (AQ20),2026-11-23
+Returning-customer emails,HOLD,Consent Q2 unresolved; 2 returning of 36,customer-recovery-performance.csv,Consent answered (AQ26),2026-11-27
+Social posts (3 a day),HOLD,0 direct social orders in 90 days (Stage 1); 21 runs/week on Opus with a dead connector,agent-performance.csv,UTM-tagged sessions turn into orders,2026-12-03
+Cinema videos,NOT SUITABLE,"Paused (Gemini 402, autoCinema false) but task still fires 14×/week",resource-usage.csv,Video credit restored and owner restarts,2026-12-03
+CRO theme 213270004043,HOLD,Published 19 Nov; 0 orders 19 Nov — too early to judge; 2-week watch,01 §3; HQ cro/latest,2-week read-out,2026-12-03
+Side Lift Ottoman Storage Base,SCALE CANDIDATE,"2.25% on 267 landings, 6 orders, £1,603.38 90d net, class A, no blocker",product-performance.csv,Merchandising/organic priority only; ad spend needs costs + capacity,2026-11-23
+Ottoman Gas Lift Divan Base,FIX FIRST,"Top 90d revenue £2,666.63 (7 orders) but opening direction contradicts itself",product-performance.csv,Opening direction answered (AQ16),2026-11-23
+Line Bumper Ottoman,FIX FIRST,"432 landings, 28 cart sessions, 0 orders; F1 price truth",product-performance.csv,Headline A/B decided (AQ21),2026-11-27
+Line Ambassador,FIX FIRST,"370 landings, 26 cart sessions, 1 order; two colour pickers (F6)",product-performance.csv,F6 fixed,2026-11-27
+Cloud Teddy Bouclé Ottoman,FIX FIRST,"109 landings, 14 carts, 2 orders; F1; organic 'cloud bed small double' pos 7.9",product-performance.csv; 02 §5,F1 decided; snippet approved,2026-11-27
+Savoy Channel,HOLD,3.03% on 33 landings (small sample); 1 order,product-performance.csv,Larger sample,2026-12-18
+New products (70 drafts),HOLD,Capacity UNKNOWN; costs parked; catalogue review deferred to 18 Dec,01 §4; Stage 5 item 18,18 Dec read-out,2026-12-18
+PR pitches (earned mentions),READY FOR OWNER APPROVAL,0 independent mentions; 4 pitches drafted,Stage 6 OA23,Owner YES (AQ52),2026-12-07
+Landlord / HMO guide,HOLD,Draft has 6 blocked markers; fire answers missing,S7-OA34,Trade page live + Q17–Q19 answered,2026-12-07
+Phone outreach to 18 local leads,NOT SUITABLE,TPS/CTPS screening cost UNKNOWN; Stage 7 recommends NO for now,S7-OA40,Owner asks for it,2026-12-18
+Meta ads,NOT SUITABLE,"£0 spend since 8 Sep; pixel/catalogue issues open (C037, C044)",continuity-register.csv,Pixel fixed + costs known,2026-12-18

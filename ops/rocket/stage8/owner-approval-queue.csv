@@ -1,0 +1,76 @@
+id,priority,item,why,evidence,what_owner_does,time_needed,status,decided_on,source
+AQ01,P0,Google Ads payment card,Card declined 19 Nov 22:36; ads AT RISK of stopping,"Gmail billing emails 19 Nov 22:33 (£500 received) and 22:36 (declined, Visa ••0882)","Google Ads → Billing → Payment methods: add funds or a new card, then check Summary for a balance",10 min,OPEN,,S7-OA11; C108; stage8/02 §2.5
+AQ02,P0,#1040 delivery time slot (Sat 21 Nov) – due this evening,Written promise; order has no email so Shopify updates do not reach the buyer,delivery-capacity.csv #1040; E019; AC02,Phone or WhatsApp the buyer the Saturday time slot tonight,5 min,OPEN,,S7-OA01; stage8/01 §5
+AQ03,P0,#1043 assembly: honour the written £50 or ask £69.99 (list price),Off-list price in writing; order paid for drop-off only,Gmail 18 Nov; AC01; E020,Decide £50 or £69.99 and write it on the order notes,5 min,OPEN,,S7-OA02; stage8/01 §5
+AQ04,P0,Reply to E010 (made-to-measure 6ft × 6ft with front-lift ottoman),No reply since 7 Nov (chased 11 Nov),customer-enquiries E010,"Send the HQ draft today (yes/no, price when known)",10 min,OPEN,,S7-OA03
+AQ05,P0,Send E011 the itemised written quote (delivery wanted 27–30 Nov),"Quote promised 11 Nov, overdue",E011,Send the quote with assembly as optional £69.99; no date promise you cannot keep,15 min,OPEN,,S7-OA04
+AQ06,P0,Reply to E023 (ready to buy; can the ottoman open from the side?),Ready-to-buy lead found via ChatGPT,E023,"Answer the opening question and send total, warranty and link",10 min,OPEN,,S7-OA05
+AQ07,P0,Give E022 the King base storage depth (promised by today),Promised within one working day,E022; AC04,"Measure and send, or approve the holding line",10 min,OPEN,,S7-OA06
+AQ08,P0,Answer E021 in Shopify Inbox (South West delivery),Buyer moving house; first answer unclear,E021,Confirm free delivery to South West England by our own team; day agreed by phone,5 min,OPEN,,S7-OA07
+AQ09,P0,"Ivywell Interiors: answer trade questions Q1–Q3 (fabric per size, COM charge, where to send)",Promised 17 Nov; overdue; first trade quote,owner-trade-questions.md Q1–Q3,Fill in Q1–Q3 (one line each),10 min,OPEN,,S7-OA08; C007
+AQ10,P0,Send E002 one corrected message with 07417 439197,A live reply used the wrong number,E002; DQ Q32,Send the correction and check quick replies/signatures,5 min,OPEN,,S7-OA10
+AQ11,P0,Hold trade emails at 80/day (plan steps up to 140/day on 25 Nov),Compliance gate not proven; 1 interested of 314; 0 quotes,HQ outreach/plan; C006,Reply HOLD AT 80 before Wed 25 Nov,1 min,OPEN,,C006; S7-OA35; stage8/04 Rec 1
+AQ12,P0,PayPal refund for #1020 (£273.59),Cancelled 23 Sep but PAID with £0 refunded,Shopify 20 Nov; DQ Q02,Check PayPal; refund or tell us it was refunded,10 min,OPEN,,Stage 5 item 2 / Q1; S7-OA38; C014
+AQ13,P0,Abandoned-cart automation is Active,Editing on 19 Nov puts it in Draft; status UNKNOWN,automation-status.csv; C109,Marketing → Automations → Recover abandoned checkout → Set to active (send a screenshot),2 min,OPEN,,Stage 6 OA02; S7-OA09
+AQ14,P1,Weekly workshop and delivery capacity; real lead time; is '3–5 working days' still right?,Scaling cannot be planned; #1038 took 8 days,delivery-capacity.csv (capacity UNKNOWN),"Write: beds per week, delivery runs per week (days/areas), order-to-delivery days",10 min,OPEN,,Stage 5 Q6; C105; stage8/01 §5
+AQ15,P1,Clearpay: ON or OFF at checkout,Claim on 9 of 13 pages; 0 Clearpay payments,C002/C003; DQ Q15,Read Settings → Payments and reply ON or OFF,2 min,OPEN,,Stage 5 item 19 / Q5; C002
+AQ16,P1,Ottoman Gas Lift Divan Base opening direction,Page says end-opening 23× and side 8×; options left/right,product-performance.csv F8; C064,Reply END / SIDE / BOTH,1 min,OPEN,,Stage 5 item 4 / Q2; C064
+AQ17,P1,Workshop visiting rule (open hours or by appointment),"Blocks schema, trade page and replies; a reply already said yes",S7-OA22; Stage 6 OA06 revised,Reply NO / BY APPOINTMENT / HOURS ___,1 min,OPEN,,Q23; S7-OA17/22; C114
+AQ18,P1,"20-minute fact session: storage depth, lift height, outside dimensions, strut rating, old-bed removal","Top objection; blocks E022, E023 and templates",Stage 6 OA17; S7-OA17/36; C071/C120,Measure and send the facts list,20 min,OPEN,,OA17; S7-OA17; S7-OA36
+AQ19,P1,Christmas last order date,Customers will ask; December read-out depends on it,Stage 5 Q10; C106,Write the date,1 min,OPEN,,Stage 5 Q10
+AQ20,P1,Mark real delivered dates #1031–#1043 (#1038 = 17 Nov) and fulfil only on dispatch,Reviews and aftercare need real dates,delivery-capacity.csv; C016,Mark dates in Shopify by 23 Nov; approve the fulfil-on-dispatch rule,30 min,OPEN,,S7-OA13/14; C016
+AQ21,P1,Ottoman price truth: headline A (base price) or B (rename); 'with Drawers' default; Ambassador colour picker; Grand height,Highest-traffic products with carts but few orders,product-performance.csv class H; C011/C079/C085/C087,Choose A or B and answer F3/F6/F7,15 min,OPEN,,"Stage 5 items 6,7,12,13 / Q9; Stage 6 OA38"
+AQ22,P1,"Trade questions Q4–Q16 and Q20–Q21 (price basis, minimum, VAT invoice, payment, lead times, returns)",0 trade quotes possible without them,owner-trade-questions.md,Fill in the sheet,20 min,OPEN,,S7-OA20; C132
+AQ23,P1,Trade questions Q17–Q19 (fire labels and supplier test certificates),Landlords and agents will ask; we say nothing until answered,owner-trade-questions.md Q17–Q19,Answer YES / NO / DON'T KNOW,5 min,OPEN,,S7-OA23
+AQ24,P1,Create /pages/trade from the Stage 7 draft (unpublished theme copy),404 while emails invite replies,trade-page-draft.html; C121,Reply YES; publish after review,5 min,OPEN,,Stage 6 OA19; S7-OA19
+AQ25,P1,Treat the 251 emailed leads without limited-company evidence as do-not-email until a Companies House check,Lawful trade list,S7-OA25; C134,Reply YES,1 min,OPEN,,S7-OA25
+AQ26,P1,Consent Q2 (was the box pre-ticked before 19 Nov?) and ICO fee,38 subscribed records may not be valid,S7-OA28/29; C135,Answer Q2; confirm ICO registration,10 min,OPEN,,S7-OA28; S7-OA29
+AQ27,P1,"Google Ads conversion hygiene: retract #1014, one primary purchase action, Enhanced Conversions",Reports overstate results,ads-order-reconciliation.csv; C028,Reply YES to Stage 5 E6/O9,2 min,OPEN,,Stage 5 §19.2; C028
+AQ28,P1,Owner exports: Ads PMax → Products (30/90d) and Merchant Center diagnostics,Product spend and feed issues UNKNOWN,C092; C021,Download both and drop in HQ,15 min,OPEN,,Stage 5 item 20 / Q8; §19.2
+AQ29,P1,"One Google feed source (keep one, pause the other)",Two feed sources push the same products,C043/C049,Choose which source stays,5 min,OPEN,,Stage 5 F2; C043
+AQ30,P1,"Remove live wording owner facts do not support: refund-policy 'two-man courier', mattress title with banned wording, Clearpay in metas",Live claims,DQ Q16; Stage 6 OA05/OA10; C077/C116,Reply YES and give the new mattress name,5 min,OPEN,,"Stage 6 OA05, OA10"
+AQ31,P1,Reply to E008 (Cloud Teddy drawer bed in King; swatches),Stale since 29 Oct,03-customers-trade.md §3,Send one reply or close,10 min,OPEN,,stage8/03 §3
+AQ32,P2,Stop the cinema task while autoCinema is false; move the Trading HQ watchdog,14 + 168 wake-ups a week with no Eagle Bed output,resource-usage.csv; C033,Reply YES (Manager disables trig_016okuWup1wybjbpScFyxw4B; you move the watchdog),1 min,OPEN,,C033; stage8/04 Rec 4
+AQ33,P2,"Registered office (via the accountant): move to the workshop with form AD01, then show it",No registered-office line on the site; never the home address,Stage 6 OA07; C068,Ask the accountant to file AD01,10 min,OPEN,,Stage 6 OA07 (answered in part 19 Nov)
+AQ34,P2,PMax brand exclusion + negative list + listing-group exclusions R1/R2,Non-brand drought; brand flatters ROAS,C012/C101/C102,Reply YES / NO,2 min,OPEN,,Stage 5 item 22; Stage 6 OA22
+AQ35,P2,"Judge.me Delivered + 5 days, one reminder, reply to the 3 reviews; review rules (no incentives, no gating)","3 reviews, 0 replies",S7-OA15/16; C013,Reply YES,2 min,OPEN,,S7-OA15; S7-OA16; Stage 6 OA24
+AQ36,P2,"Recommended abandoned-checkout setup (1 h + 24 h, subscribers only, no discount, no Clearpay)",Corrected drafts ready,S7-OA12; C131,Reply YES,2 min,OPEN,,S7-OA12
+AQ37,P2,Route Shopify Inbox chats into HQ,E013/E016 content UNKNOWN,S7-OA18,Reply YES and log the 12 and 15 Nov chats,15 min,OPEN,,S7-OA18
+AQ38,P2,Apply the 19 product + 10 collection meta drafts,Pages at positions 4–11 with few clicks,Stage 6 OA09; C024,Reply YES or list exceptions,5 min,OPEN,,Stage 6 OA09
+AQ39,P2,"Technical SEO clean-up: sitemap (T05/T06), redirects, menu links, Article schema",23 of 23 technical items open,Stage 6 OA20/21/26/27/28; C122,Reply YES,2 min,OPEN,,Stage 6 OA20–OA28
+AQ40,P2,Size price fixes (Royal Chesterfield Super King £389.99 < King £399.99; Prism King; Valentina Single),Price ladder wrong,C078,Set the prices,10 min,OPEN,,Stage 5 item 14
+AQ41,P2,"Easify: running total, inline option data, mattress size tied to bed size",Product pages heavy (TBT ~2 s lab),Stage 6 OA11; C026/C027,Reply YES to a support ticket,2 min,OPEN,,"Stage 5 items 8,11; Stage 6 OA11"
+AQ42,P2,Checkout bot protection,12 of 21 abandoned checkouts are bots,S7-OA37; C004,Settings → Checkout → turn on,2 min,OPEN,,S7-OA37
+AQ43,P2,Trade quotes promise 'by the end of the next working day',Consistent promise,S7-OA21,Reply YES,1 min,OPEN,,S7-OA21
+AQ44,P2,"Pipeline fields, suppression collection, LIA and retention schedule for trade",No pipeline stages; accountability,S7-OA24/26/27; C018/C019/C133,Reply YES and sign the LIA,15 min,OPEN,,S7-OA24; S7-OA26; S7-OA27
+AQ45,P2,Clear 'confirm your business details' in Google Business Profile,Notice since 5 Nov,Stage 6 OA03; C112,Open GBP and confirm,10 min,OPEN,,Stage 6 OA03
+AQ46,P2,Schema: legalName ABBAS TRADE LTD + company number; physical-business schema on the workshop with the visiting rule,Entity accuracy,Stage 6 OA06/OA16; C114/C119,Reply YES after AQ17,2 min,OPEN,,Stage 6 OA06; OA16
+AQ47,P2,"Owner checks: GSC indexing/CWV exports, URL Inspection (3 products), Bing live test, bare-domain redirect",Indexing and CWV UNKNOWN,Stage 6 OA13/14/15/37; C118,Send screenshots,20 min,OPEN,,"Stage 6 OA13–OA15, OA37"
+AQ48,P2,Aftercare page fix and gas-strut facts for a help section,"Page out of date (Clearpay, reviews sentence)",S7-OA32/33; C065,Reply YES; give strut facts,10 min,OPEN,,S7-OA32; S7-OA33
+AQ49,P2,Base height 14 in on the Gas Lift Divan Base page,Owner fact already given to a customer,Stage 5 Q3,Reply YES,1 min,OPEN,,Stage 5 Q3
+AQ50,P2,Batley named as a delivery town on /pages/beds-west-yorkshire,BRIEF: say Dewsbury only,Stage 6 OA18,Reply KEEP or REMOVE,1 min,OPEN,,Stage 6 OA18
+AQ51,P2,GA4 property currency USD → GBP,GA4 purchases unreadable,C042; DQ Q22,Change in GA4 admin,5 min,OPEN,,Stage 2; C042
+AQ52,P3,Send the drafted PR pitches; lend a sample bed if asked,0 independent mentions,Stage 6 OA23; C123,Reply YES / NO,2 min,OPEN,,Stage 6 OA23
+AQ53,P3,Monthly checks: manual AI test (first Monday) and Search Console Manual actions / spam-link count,Agreed 19 Nov but not in any task,Stage 6 OA33; C111/C126,Reply YES (added to the Monday Search Revenue task),1 min,OPEN,,Stage 6 OA25/OA33
+AQ54,P3,Social post task on the default model with fewer connectors,21 runs/week with a dead connector,C141,Reply YES,1 min,OPEN,,C141
+AQ55,P3,Matching mattress email to 9 subscribed buyers (after consent Q2),Small repeat-sale step,S7-OA30,Reply YES after AQ26,1 min,OPEN,,S7-OA30
+AQ56,P3,Headboard fit by base/height; headboards standalone or option,Fit UNKNOWN,S7-OA31; Stage 5 item 17,Give the fit list,15 min,OPEN,,S7-OA31; Stage 5 item 17
+AQ57,P3,#1016 Northern Ireland £0 delivery: intended?,Check only; nobody contacted,Stage 5 Q7; C096,Reply YES / NO,1 min,OPEN,,Stage 5 item 28 / Q7
+AQ58,P3,Remove BFPO from the free GB zone,UK-only rule,Stage 6 OA34; C100,Reply YES / NO,1 min,OPEN,,Stage 5 F9; Stage 6 OA34
+AQ59,P3,Yell categories; Apple Business name; FreeIndex activation,Citations,Stage 6 OA08/OA32,Reply YES,10 min,OPEN,,"Stage 6 OA08, OA32"
+AQ60,P3,"New photos (Divan Base open, Stone); do the Gemini images show the real product?",Image accuracy,Stage 5 item 25; Stage 6 OA31; C075/C076,Take photos; answer YES / NO,30 min,OPEN,,Stage 5 item 25; Stage 6 OA31
+AQ61,P3,"Feed hygiene: 36 blank SKUs, one inventory rule, one mattress price list, orphan products to collections, one chat widget",Housekeeping,"Stage 6 OA12/OA30/OA36; Stage 5 items 23, 27",Reply YES,5 min,OPEN,,"Stage 5 items 23,27; Stage 6 OA12, OA30, OA36"
+AQ62,P3,Trade segment rules: furniture-pack firms as partners; phone the 18 phone-only leads (after TPS/CTPS),Low priority,S7-OA39/40,Reply (recommended: NO phoning for now),1 min,OPEN,,S7-OA39; S7-OA40
+AQ63,P3,Landlord/HMO guide only after the trade page and Q17–Q19,Draft has 6 blocked markers,S7-OA34,Reply YES,1 min,OPEN,,S7-OA34
+AQ64,P2,"Product costs, delivery cost per drop, VAT treatment, Shopify tax settings","Profit, break-even ROAS and ex-VAT basis",0 of 763 variants costed; £0 tax recorded,Nothing until you have spoken to the accountant,–,PARKED,2026-11-19,"Stage 5 items 3, 29, Q4; C052/C104"
+AQ65,P3,"Revisit the 25 'consider retiring' frames, 6 possible duplicates, chesterfield naming",Deferred to the 18 Dec read-out,"Stage 5 items 16,18; Stage 6 OA35",Nothing until 18 Dec,–,PARKED,2026-11-19,"Stage 5 items 16,18; Stage 6 OA35"
+AQ66,–,CRO theme 213270004043 published,Website fixes,Live role main (C001),Nothing,–,DECIDED,2026-11-19,Stage 5 X1; CHANGELOG 19 Nov
+AQ67,–,Terms / Contact name ABBAS TRADE LTD 16410472; VAT reg 520 9622 06,Trading entity,Live policies checked 20 Nov,Nothing,–,DECIDED,2026-11-19,Stage 5 item 1; BRIEF
+AQ68,–,Phone / WhatsApp 07417 439197 only,One number,13 of 13 pages correct,Nothing,–,DECIDED,2026-11-20,BRIEF
+AQ69,–,"No bought links: leave spam links, no disavow, monitor monthly",Backlinks,Owner answer,Nothing,–,DECIDED,2026-11-19,Stage 6 OA01/OA25 (§29)
+AQ70,–,"Workshop address (Pepproyd Street, Dewsbury) on GBP; home address never",Addresses,Owner answer,Nothing,–,DECIDED,2026-11-19,Stage 6 OA04 (§29)
+AQ71,–,"Trade emails to limited companies only, with privacy line",PECR,Trade brief updated 20 Nov 00:05,Nothing,–,DECIDED,2026-11-19,Stage 5 X4; CHANGELOG 20 Nov
+AQ72,–,"Assembly optional £69.99, never free (Room of Choice Drop Off £29.99)",Pricing,Live Easify £69.99 verified 20 Nov,Nothing,–,DECIDED,2026-11-19,Stage 5 X4; BRIEF
+AQ73,–,Gas Lift Divan Base base height 14 in,Product fact,Owner reply 19 Nov,Nothing (page wording = AQ49),–,DECIDED,2026-11-19,Stage 5 X3
+AQ74,–,UK only; marketing box unticked by default,Scope / consent,Owner 19 Nov,Nothing,–,DECIDED,2026-11-19,BRIEF; CHANGELOG 19 Nov
+AQ75,–,Customer-supplied fabric (COM) accepted,Trade,Owner reply 17 Nov,Nothing (metres = AQ09),–,DECIDED,2026-11-17,BRIEF

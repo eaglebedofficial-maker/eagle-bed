@@ -1,0 +1,1361 @@
+{
+ "updatedAt": "2026-11-20T01:25:38+00:00",
+ "headline": "Sales +142.6% (£6,857.57, 16 orders, 30d) but Ads card declined, customers waiting and capacity unknown — fix today, scale nothing yet. PROFITABILITY NOT VERIFIED — COST DATA PARKED.",
+ "banner": "PROFITABILITY NOT VERIFIED — COST DATA PARKED",
+ "source": "ops/rocket/stage8/STAGE8-REPORT.md",
+ "answers": {
+  "How much did we sell?": "£6,857.57 net from 16 paid orders in the last 30 days; £15,241.97 from 38 all-time (VERIFIED). Revenue only — PROFITABILITY NOT VERIFIED — COST DATA PARKED.",
+  "Is it growing?": "Yes: +142.6% on the previous 30 days, from better conversion (0.34% → 1.18%) on fewer sessions. 0 orders on 19 Nov — too early to judge the new theme (review 3 Dec).",
+  "Where are sales coming from?": "Google Ads PMax (7.70 real orders in 30d, mostly brand lately), direct and phone/draft orders; organic 0 orders in 30d; trade £0.",
+  "Are ads paying back?": "Revenue ROAS 3.78 (30d) and 2.32 (90d); non-brand has sold nothing from 18 days of clicks (£441.97). Profit UNKNOWN.",
+  "What is at risk today?": "Google Ads card declined; #1040 slot due this evening; #1043 assembly price; 7 customers waiting; trade ramp to 140/day on 25 Nov; #1020 £273.59 possibly owed.",
+  "Can we scale?": "No. Profit unverified, capacity UNKNOWN, card declined, non-brand dry. Only £0-cost work: Side Lift merchandising, organic snippets, reviews after delivery.",
+  "What must I do today?": "Fix the Ads card; send the #1040 slot; decide #1043; reply to E010, E011, E021, E022, E023, E002 and Ivywell; check abandoned-cart automation is Active; check PayPal #1020; say HOLD AT 80."
+ },
+ "kpis": [
+  {
+   "label": "Net sales",
+   "value": 6857.57,
+   "unit": "£",
+   "window": "Last 30d (21 Oct–19 Nov)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Net sales, previous 30d",
+   "value": 2826.41,
+   "unit": "£",
+   "window": "21 Sep–20 Oct",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Change in net sales",
+   "value": 142.6,
+   "unit": "%",
+   "window": "30d vs previous 30d",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Paid orders",
+   "value": 16,
+   "unit": "n",
+   "window": "Last 30d",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "AOV (net)",
+   "value": 428.6,
+   "unit": "£",
+   "window": "Last 30d",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Order conversion",
+   "value": 1.18,
+   "unit": "%",
+   "window": "Last 30d (orders ÷ UK human sessions)",
+   "confidence": "VERIFIED / PLATFORM-REPORTED"
+  },
+  {
+   "label": "UK human sessions",
+   "value": 1356,
+   "unit": "n",
+   "window": "Last 30d",
+   "confidence": "PLATFORM-REPORTED"
+  },
+  {
+   "label": "Net sales",
+   "value": 13289.78,
+   "unit": "£",
+   "window": "Last 90d (22 Aug–19 Nov)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Net sales, all-time",
+   "value": 15241.97,
+   "unit": "£",
+   "window": "13 Jul–20 Nov",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Paid orders, all-time",
+   "value": 38,
+   "unit": "n",
+   "window": "13 Jul–20 Nov",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Google Ads spend",
+   "value": 785.78,
+   "unit": "£",
+   "window": "Last 30d",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Real ROAS (revenue ÷ spend)",
+   "value": 3.78,
+   "unit": "n",
+   "window": "Last 30d",
+   "confidence": "MATCHED"
+  },
+  {
+   "label": "Real CPA",
+   "value": 102.05,
+   "unit": "£",
+   "window": "Last 30d",
+   "confidence": "MATCHED"
+  },
+  {
+   "label": "Real ROAS (revenue ÷ spend)",
+   "value": 2.32,
+   "unit": "n",
+   "window": "Last 90d (23 Aug–20 Nov)",
+   "confidence": "MATCHED"
+  },
+  {
+   "label": "Real CPA",
+   "value": 165.98,
+   "unit": "£",
+   "window": "Last 90d (23 Aug–20 Nov)",
+   "confidence": "MATCHED"
+  },
+  {
+   "label": "Non-brand Ads spend with no order",
+   "value": 441.97,
+   "unit": "£",
+   "window": "Clicks 3–20 Nov (18 days)",
+   "confidence": "MATCHED"
+  },
+  {
+   "label": "Organic orders",
+   "value": 0,
+   "unit": "n",
+   "window": "Last 30d",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "GSC clicks",
+   "value": 165,
+   "unit": "n",
+   "window": "28d to 19 Nov (data to 17 Nov)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "AI answers naming Eagle Bed (of 4)",
+   "value": 0,
+   "unit": "n",
+   "window": "20 Nov, WebSearch tool",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Customers waiting on us",
+   "value": 7,
+   "unit": "n",
+   "window": "20 Nov 01:05",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Trade revenue",
+   "value": 0.0,
+   "unit": "£",
+   "window": "10–20 Nov",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Genuine reviews",
+   "value": 3,
+   "unit": "n",
+   "window": "All-time",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Real delivered dates (of 22 orders since 1 Oct)",
+   "value": 1,
+   "unit": "n",
+   "window": "1 Oct–20 Nov",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Weekly workshop / delivery capacity",
+   "value": null,
+   "unit": "n",
+   "window": "–",
+   "confidence": "UNKNOWN"
+  },
+  {
+   "label": "Profit / contribution",
+   "value": null,
+   "unit": "£",
+   "window": "–",
+   "confidence": "UNKNOWN"
+  },
+  {
+   "label": "Abandoned-checkout recovery rate",
+   "value": null,
+   "unit": "%",
+   "window": "8 Sep–20 Nov",
+   "confidence": "UNKNOWN"
+  },
+  {
+   "label": "OpenRush credits used (of 2,001; reserve 400 untouched)",
+   "value": 236,
+   "unit": "n",
+   "window": "November",
+   "confidence": "VERIFIED"
+  },
+  {
+   "label": "Data-quality checks failing (of 34)",
+   "value": 18,
+   "unit": "n",
+   "window": "20 Nov",
+   "confidence": "VERIFIED"
+  }
+ ],
+ "todayActions": [
+  "AQ01: Google Ads payment card — Google Ads → Billing → Payment methods: add funds or a new card, then check Summary for a balance",
+  "AQ02: #1040 delivery time slot (Sat 21 Nov) – due this evening — Phone or WhatsApp the buyer the Saturday time slot tonight",
+  "AQ03: #1043 assembly: honour the written £50 or ask £69.99 (list price) — Decide £50 or £69.99 and write it on the order notes",
+  "AQ04: Reply to E010 (made-to-measure 6ft × 6ft with front-lift ottoman) — Send the HQ draft today (yes/no, price when known)",
+  "AQ05: Send E011 the itemised written quote (delivery wanted 27–30 Nov) — Send the quote with assembly as optional £69.99; no date promise you cannot keep",
+  "AQ06: Reply to E023 (ready to buy; can the ottoman open from the side?) — Answer the opening question and send total, warranty and link",
+  "AQ07: Give E022 the King base storage depth (promised by today) — Measure and send, or approve the holding line",
+  "AQ08: Answer E021 in Shopify Inbox (South West delivery) — Confirm free delivery to South West England by our own team; day agreed by phone",
+  "AQ09: Ivywell Interiors: answer trade questions Q1–Q3 (fabric per size, COM charge, where to send) — Fill in Q1–Q3 (one line each)",
+  "AQ10: Send E002 one corrected message with 07417 439197 — Send the correction and check quick replies/signatures",
+  "AQ11: Hold trade emails at 80/day (plan steps up to 140/day on 25 Nov) — Reply HOLD AT 80 before Wed 25 Nov",
+  "AQ12: PayPal refund for #1020 (£273.59) — Check PayPal; refund or tell us it was refunded",
+  "AQ13: Abandoned-cart automation is Active — Marketing → Automations → Recover abandoned checkout → Set to active (send a screenshot)"
+ ],
+ "verdict": {
+  "working": [
+   "Sales: £6,857.57 net from 16 orders in the last 30 days, +142.6% on fewer visitors VERIFIED.",
+   "PMax at £25/day: 30-day real ROAS 3.78, CPA £102.05 — revenue, not profit MATCHED.",
+   "Customer replies: median first reply 1.5 hours since 12 Nov VERIFIED.",
+   "The books reconcile: £15,241.97 paid net; 0 unmatched Ads conversions VERIFIED / MATCHED.",
+   "Website fixes are live: CRO theme, ABBAS TRADE LTD on Terms, assembly shown as an optional £69.99 add-on VERIFIED."
+  ],
+  "notWorking": [
+   "Non-brand ads: no order from 18 days of clicks (£441.97); 90-day non-brand ROAS ≈1.52 MATCHED / ESTIMATE.",
+   "Organic: 0 orders in 30 days; AI answers name us 0 of 4 VERIFIED.",
+   "Trade email: 314 sent → 1 interested, 0 quotes, £0 VERIFIED.",
+   "High-traffic ottomans lose buyers at the basket: Line Bumper 432 landings, 28 carts, 0 orders VERIFIED.",
+   "Delivery records: only 1 real delivered date in 22 orders VERIFIED."
+  ],
+  "unknown": [
+   "Profit (costs and VAT parked)",
+   "weekly workshop and delivery capacity",
+   "whether abandoned-cart emails are on",
+   "whether Clearpay is on",
+   "Google Ads balance after the decline",
+   "Enhanced Conversions and Merchant Center health",
+   "consent validity before 19 Nov",
+   "the new theme's effect (too early)."
+  ],
+  "fixNow": [
+   "Google Ads card (today)",
+   "#1040 time slot (this evening)",
+   "#1043 assembly price (before delivery)",
+   "replies to E010, E011, E021, E022, E023, E002 and Ivywell",
+   "PayPal #1020",
+   "abandoned-cart automation Active",
+   "say HOLD AT 80 before 25 Nov."
+  ],
+  "safeToScale": [
+   "Nothing with money. Profitability is not verified and capacity is unknown.",
+   "£0-cost work only: keep Side Lift first in merchandising and organic work (SCALE CANDIDATE, no extra spend); organic snippet drafts; review requests after real delivery."
+  ],
+  "hold": [
+   "PMax at £25/day (no increase; Search and Shopping stay paused)",
+   "trade emails at 80/day",
+   "social posts as they are",
+   "CRO theme until the 3 Dec read-out",
+   "new products until 18 Dec",
+   "returning-customer emails until consent Q2",
+   "cinema task off while video is paused."
+  ],
+  "nextSteps": [
+   "Today: Google Ads → Billing: add funds or a new card; check for a balance due.",
+   "Today: reply to E010, E011, E021, E022, E023; send E002 the correct number (07417 439197); answer trade Q1–Q3 for Ivywell.",
+   "Today: decide #1043 assembly (£50 written or £69.99) and note it on the order.",
+   "Today: check the abandoned-cart automation badge says Active.",
+   "This evening: send the #1040 time slot for Saturday 21 Nov.",
+   "By Mon 23 Nov: check PayPal for #1020 (£273.59); mark delivered dates for #1031–#1043.",
+   "Before Wed 25 Nov: reply \"HOLD AT 80\" for trade emails.",
+   "This week: weekly capacity (beds, delivery runs, lead time); Christmas last order date; Clearpay ON/OFF; Gas Lift Divan Base opening direction; workshop visiting rule.",
+   "This week: approve stopping the cinema task while autoCinema is false.",
+   "When you see the accountant: registered office (form AD01 to the workshop), costs and VAT."
+  ]
+ },
+ "decisions": [
+  {
+   "id": "AQ01",
+   "priority": "P0",
+   "item": "Google Ads payment card",
+   "what_owner_does": "Google Ads → Billing → Payment methods: add funds or a new card, then check Summary for a balance",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ02",
+   "priority": "P0",
+   "item": "#1040 delivery time slot (Sat 21 Nov) – due this evening",
+   "what_owner_does": "Phone or WhatsApp the buyer the Saturday time slot tonight",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ03",
+   "priority": "P0",
+   "item": "#1043 assembly: honour the written £50 or ask £69.99 (list price)",
+   "what_owner_does": "Decide £50 or £69.99 and write it on the order notes",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ04",
+   "priority": "P0",
+   "item": "Reply to E010 (made-to-measure 6ft × 6ft with front-lift ottoman)",
+   "what_owner_does": "Send the HQ draft today (yes/no, price when known)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ05",
+   "priority": "P0",
+   "item": "Send E011 the itemised written quote (delivery wanted 27–30 Nov)",
+   "what_owner_does": "Send the quote with assembly as optional £69.99; no date promise you cannot keep",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ06",
+   "priority": "P0",
+   "item": "Reply to E023 (ready to buy; can the ottoman open from the side?)",
+   "what_owner_does": "Answer the opening question and send total, warranty and link",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ07",
+   "priority": "P0",
+   "item": "Give E022 the King base storage depth (promised by today)",
+   "what_owner_does": "Measure and send, or approve the holding line",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ08",
+   "priority": "P0",
+   "item": "Answer E021 in Shopify Inbox (South West delivery)",
+   "what_owner_does": "Confirm free delivery to South West England by our own team; day agreed by phone",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ09",
+   "priority": "P0",
+   "item": "Ivywell Interiors: answer trade questions Q1–Q3 (fabric per size, COM charge, where to send)",
+   "what_owner_does": "Fill in Q1–Q3 (one line each)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ10",
+   "priority": "P0",
+   "item": "Send E002 one corrected message with 07417 439197",
+   "what_owner_does": "Send the correction and check quick replies/signatures",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ11",
+   "priority": "P0",
+   "item": "Hold trade emails at 80/day (plan steps up to 140/day on 25 Nov)",
+   "what_owner_does": "Reply HOLD AT 80 before Wed 25 Nov",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ12",
+   "priority": "P0",
+   "item": "PayPal refund for #1020 (£273.59)",
+   "what_owner_does": "Check PayPal; refund or tell us it was refunded",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ13",
+   "priority": "P0",
+   "item": "Abandoned-cart automation is Active",
+   "what_owner_does": "Marketing → Automations → Recover abandoned checkout → Set to active (send a screenshot)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ14",
+   "priority": "P1",
+   "item": "Weekly workshop and delivery capacity; real lead time; is '3–5 working days' still right?",
+   "what_owner_does": "Write: beds per week, delivery runs per week (days/areas), order-to-delivery days",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ15",
+   "priority": "P1",
+   "item": "Clearpay: ON or OFF at checkout",
+   "what_owner_does": "Read Settings → Payments and reply ON or OFF",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ16",
+   "priority": "P1",
+   "item": "Ottoman Gas Lift Divan Base opening direction",
+   "what_owner_does": "Reply END / SIDE / BOTH",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ17",
+   "priority": "P1",
+   "item": "Workshop visiting rule (open hours or by appointment)",
+   "what_owner_does": "Reply NO / BY APPOINTMENT / HOURS ___",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ18",
+   "priority": "P1",
+   "item": "20-minute fact session: storage depth, lift height, outside dimensions, strut rating, old-bed removal",
+   "what_owner_does": "Measure and send the facts list",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ19",
+   "priority": "P1",
+   "item": "Christmas last order date",
+   "what_owner_does": "Write the date",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ20",
+   "priority": "P1",
+   "item": "Mark real delivered dates #1031–#1043 (#1038 = 17 Nov) and fulfil only on dispatch",
+   "what_owner_does": "Mark dates in Shopify by 23 Nov; approve the fulfil-on-dispatch rule",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ21",
+   "priority": "P1",
+   "item": "Ottoman price truth: headline A (base price) or B (rename); 'with Drawers' default; Ambassador colour picker; Grand height",
+   "what_owner_does": "Choose A or B and answer F3/F6/F7",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ22",
+   "priority": "P1",
+   "item": "Trade questions Q4–Q16 and Q20–Q21 (price basis, minimum, VAT invoice, payment, lead times, returns)",
+   "what_owner_does": "Fill in the sheet",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ23",
+   "priority": "P1",
+   "item": "Trade questions Q17–Q19 (fire labels and supplier test certificates)",
+   "what_owner_does": "Answer YES / NO / DON'T KNOW",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ24",
+   "priority": "P1",
+   "item": "Create /pages/trade from the Stage 7 draft (unpublished theme copy)",
+   "what_owner_does": "Reply YES; publish after review",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ25",
+   "priority": "P1",
+   "item": "Treat the 251 emailed leads without limited-company evidence as do-not-email until a Companies House check",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ26",
+   "priority": "P1",
+   "item": "Consent Q2 (was the box pre-ticked before 19 Nov?) and ICO fee",
+   "what_owner_does": "Answer Q2; confirm ICO registration",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ27",
+   "priority": "P1",
+   "item": "Google Ads conversion hygiene: retract #1014, one primary purchase action, Enhanced Conversions",
+   "what_owner_does": "Reply YES to Stage 5 E6/O9",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ28",
+   "priority": "P1",
+   "item": "Owner exports: Ads PMax → Products (30/90d) and Merchant Center diagnostics",
+   "what_owner_does": "Download both and drop in HQ",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ29",
+   "priority": "P1",
+   "item": "One Google feed source (keep one, pause the other)",
+   "what_owner_does": "Choose which source stays",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ30",
+   "priority": "P1",
+   "item": "Remove live wording owner facts do not support: refund-policy 'two-man courier', mattress title with banned wording, Clearpay in metas",
+   "what_owner_does": "Reply YES and give the new mattress name",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ31",
+   "priority": "P1",
+   "item": "Reply to E008 (Cloud Teddy drawer bed in King; swatches)",
+   "what_owner_does": "Send one reply or close",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ32",
+   "priority": "P2",
+   "item": "Stop the cinema task while autoCinema is false; move the Trading HQ watchdog",
+   "what_owner_does": "Reply YES (Manager disables trig_016okuWup1wybjbpScFyxw4B; you move the watchdog)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ33",
+   "priority": "P2",
+   "item": "Registered office (via the accountant): move to the workshop with form AD01, then show it",
+   "what_owner_does": "Ask the accountant to file AD01",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ34",
+   "priority": "P2",
+   "item": "PMax brand exclusion + negative list + listing-group exclusions R1/R2",
+   "what_owner_does": "Reply YES / NO",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ35",
+   "priority": "P2",
+   "item": "Judge.me Delivered + 5 days, one reminder, reply to the 3 reviews; review rules (no incentives, no gating)",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ36",
+   "priority": "P2",
+   "item": "Recommended abandoned-checkout setup (1 h + 24 h, subscribers only, no discount, no Clearpay)",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ37",
+   "priority": "P2",
+   "item": "Route Shopify Inbox chats into HQ",
+   "what_owner_does": "Reply YES and log the 12 and 15 Nov chats",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ38",
+   "priority": "P2",
+   "item": "Apply the 19 product + 10 collection meta drafts",
+   "what_owner_does": "Reply YES or list exceptions",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ39",
+   "priority": "P2",
+   "item": "Technical SEO clean-up: sitemap (T05/T06), redirects, menu links, Article schema",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ40",
+   "priority": "P2",
+   "item": "Size price fixes (Royal Chesterfield Super King £389.99 < King £399.99; Prism King; Valentina Single)",
+   "what_owner_does": "Set the prices",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ41",
+   "priority": "P2",
+   "item": "Easify: running total, inline option data, mattress size tied to bed size",
+   "what_owner_does": "Reply YES to a support ticket",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ42",
+   "priority": "P2",
+   "item": "Checkout bot protection",
+   "what_owner_does": "Settings → Checkout → turn on",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ43",
+   "priority": "P2",
+   "item": "Trade quotes promise 'by the end of the next working day'",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ44",
+   "priority": "P2",
+   "item": "Pipeline fields, suppression collection, LIA and retention schedule for trade",
+   "what_owner_does": "Reply YES and sign the LIA",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ45",
+   "priority": "P2",
+   "item": "Clear 'confirm your business details' in Google Business Profile",
+   "what_owner_does": "Open GBP and confirm",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ46",
+   "priority": "P2",
+   "item": "Schema: legalName ABBAS TRADE LTD + company number; physical-business schema on the workshop with the visiting rule",
+   "what_owner_does": "Reply YES after AQ17",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ47",
+   "priority": "P2",
+   "item": "Owner checks: GSC indexing/CWV exports, URL Inspection (3 products), Bing live test, bare-domain redirect",
+   "what_owner_does": "Send screenshots",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ48",
+   "priority": "P2",
+   "item": "Aftercare page fix and gas-strut facts for a help section",
+   "what_owner_does": "Reply YES; give strut facts",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ49",
+   "priority": "P2",
+   "item": "Base height 14 in on the Gas Lift Divan Base page",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ50",
+   "priority": "P2",
+   "item": "Batley named as a delivery town on /pages/beds-west-yorkshire",
+   "what_owner_does": "Reply KEEP or REMOVE",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ51",
+   "priority": "P2",
+   "item": "GA4 property currency USD → GBP",
+   "what_owner_does": "Change in GA4 admin",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ52",
+   "priority": "P3",
+   "item": "Send the drafted PR pitches; lend a sample bed if asked",
+   "what_owner_does": "Reply YES / NO",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ53",
+   "priority": "P3",
+   "item": "Monthly checks: manual AI test (first Monday) and Search Console Manual actions / spam-link count",
+   "what_owner_does": "Reply YES (added to the Monday Search Revenue task)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ54",
+   "priority": "P3",
+   "item": "Social post task on the default model with fewer connectors",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ55",
+   "priority": "P3",
+   "item": "Matching mattress email to 9 subscribed buyers (after consent Q2)",
+   "what_owner_does": "Reply YES after AQ26",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ56",
+   "priority": "P3",
+   "item": "Headboard fit by base/height; headboards standalone or option",
+   "what_owner_does": "Give the fit list",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ57",
+   "priority": "P3",
+   "item": "#1016 Northern Ireland £0 delivery: intended?",
+   "what_owner_does": "Reply YES / NO",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ58",
+   "priority": "P3",
+   "item": "Remove BFPO from the free GB zone",
+   "what_owner_does": "Reply YES / NO",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ59",
+   "priority": "P3",
+   "item": "Yell categories; Apple Business name; FreeIndex activation",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ60",
+   "priority": "P3",
+   "item": "New photos (Divan Base open, Stone); do the Gemini images show the real product?",
+   "what_owner_does": "Take photos; answer YES / NO",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ61",
+   "priority": "P3",
+   "item": "Feed hygiene: 36 blank SKUs, one inventory rule, one mattress price list, orphan products to collections, one chat widget",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ62",
+   "priority": "P3",
+   "item": "Trade segment rules: furniture-pack firms as partners; phone the 18 phone-only leads (after TPS/CTPS)",
+   "what_owner_does": "Reply (recommended: NO phoning for now)",
+   "status": "OPEN"
+  },
+  {
+   "id": "AQ63",
+   "priority": "P3",
+   "item": "Landlord/HMO guide only after the trade page and Q17–Q19",
+   "what_owner_does": "Reply YES",
+   "status": "OPEN"
+  }
+ ],
+ "decided": [
+  {
+   "item": "CRO theme 213270004043 published",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Terms / Contact name ABBAS TRADE LTD 16410472; VAT reg 520 9622 06",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Phone / WhatsApp 07417 439197 only",
+   "decided_on": "2026-11-20"
+  },
+  {
+   "item": "No bought links: leave spam links, no disavow, monitor monthly",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Workshop address (Pepproyd Street, Dewsbury) on GBP; home address never",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Trade emails to limited companies only, with privacy line",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Assembly optional £69.99, never free (Room of Choice Drop Off £29.99)",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Gas Lift Divan Base base height 14 in",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "UK only; marketing box unticked by default",
+   "decided_on": "2026-11-19"
+  },
+  {
+   "item": "Customer-supplied fabric (COM) accepted",
+   "decided_on": "2026-11-17"
+  }
+ ],
+ "risks": [
+  {
+   "rank": 1,
+   "risk": "Google Ads stops serving because the card was declined",
+   "severity": "P0",
+   "mitigation": "Update card / pay balance today; check Billing → Summary",
+   "status": "OPEN"
+  },
+  {
+   "rank": 2,
+   "risk": "#1040 delivery promise broken (slot due tonight, no customer email on order)",
+   "severity": "P0",
+   "mitigation": "Send the slot by phone/WhatsApp tonight",
+   "status": "OPEN"
+  },
+  {
+   "rank": 3,
+   "risk": "Waiting customers lost (E010, E011, E021, E022, E023)",
+   "severity": "P0",
+   "mitigation": "Reply today; holding line where a fact is missing",
+   "status": "OPEN"
+  },
+  {
+   "rank": 4,
+   "risk": "Trade emails step up to 140/day on 25 Nov without the compliance gate",
+   "severity": "P0",
+   "mitigation": "Owner says HOLD at 80; Companies House check first",
+   "status": "OPEN"
+  },
+  {
+   "rank": 5,
+   "risk": "#1020 customer may be owed £273.59 (PayPal dispute)",
+   "severity": "P0",
+   "mitigation": "Owner checks PayPal and records outcome",
+   "status": "OPEN"
+  },
+  {
+   "rank": 6,
+   "risk": "Live claims not supported by owner facts (Clearpay 9/13 pages; 'end-opening' on Gas Lift Divan Base; 'two-man courier' in refund policy)",
+   "severity": "P1",
+   "mitigation": "Owner answers Clearpay and opening direction; approve wording fixes",
+   "status": "OPEN"
+  },
+  {
+   "rank": 7,
+   "risk": "#1043 assembly price dispute (£50 quoted vs £69.99 list)",
+   "severity": "P1",
+   "mitigation": "Decide and note on the order before delivery",
+   "status": "OPEN"
+  },
+  {
+   "rank": 8,
+   "risk": "Demand outruns the workshop (capacity UNKNOWN)",
+   "severity": "P1",
+   "mitigation": "Owner gives beds/week, runs/week, lead time; no scaling until then",
+   "status": "OPEN"
+  },
+  {
+   "rank": 9,
+   "risk": "Ad spend may not be profitable (costs parked)",
+   "severity": "P1",
+   "mitigation": "No budget increase; hold PMax at £25/day",
+   "status": "PARKED"
+  },
+  {
+   "rank": 10,
+   "risk": "Non-brand paid search has stopped selling",
+   "severity": "P1",
+   "mitigation": "Hold; brand exclusion test after approval; review 23 Nov (conversion lag up to ~20 days)",
+   "status": "OPEN"
+  },
+  {
+   "rank": 11,
+   "risk": "Delivery data is not real (fulfilled ≠ shipped)",
+   "severity": "P1",
+   "mitigation": "Fulfil on dispatch; mark delivered on the day; back-fill #1031–#1043",
+   "status": "OPEN"
+  },
+  {
+   "rank": 12,
+   "risk": "Abandoned-checkout emails may be off (automation in Draft)",
+   "severity": "P1",
+   "mitigation": "Owner reads the badge and sets Active",
+   "status": "OPEN"
+  },
+  {
+   "rank": 13,
+   "risk": "Marketing consents before 19 Nov may be invalid (pre-ticked box)",
+   "severity": "P1",
+   "mitigation": "No marketing to these until Q2 answered",
+   "status": "OPEN"
+  },
+  {
+   "rank": 14,
+   "risk": "Christmas cut-off unknown while December demand cannot be read",
+   "severity": "P1",
+   "mitigation": "Owner sets the last order date for Christmas delivery",
+   "status": "OPEN"
+  },
+  {
+   "rank": 15,
+   "risk": "Shopify records £0 tax though VAT registered",
+   "severity": "P1",
+   "mitigation": "Accountant item (parked); ex-VAT figures stay ESTIMATE",
+   "status": "PARKED"
+  },
+  {
+   "rank": 16,
+   "risk": "Revenue concentrated in two ottoman bases",
+   "severity": "P2",
+   "mitigation": "Fix Gas Lift opening text; keep Side Lift healthy; price truth on other ottomans",
+   "status": "OPEN"
+  },
+  {
+   "rank": 17,
+   "risk": "Ads reports overstate results (#1014 still counted; 7 actions; Enhanced Conversions UNKNOWN)",
+   "severity": "P2",
+   "mitigation": "Retract #1014; one primary action",
+   "status": "OPEN"
+  },
+  {
+   "rank": 18,
+   "risk": "Stale prompts and automations repeat old claims or waste runs",
+   "severity": "P2",
+   "mitigation": "Autopilot session edits its caption; disable cinema; trim social task",
+   "status": "OPEN"
+  },
+  {
+   "rank": 19,
+   "risk": "Trade enquiries land on a 404 trade page",
+   "severity": "P2",
+   "mitigation": "Create page from draft after trade facts",
+   "status": "OPEN"
+  },
+  {
+   "rank": 20,
+   "risk": "Weak trust signals: 3 reviews; not named in AI answers (0 of 4)",
+   "severity": "P2",
+   "mitigation": "Review requests after real delivery; publish owner facts; PR pitches",
+   "status": "OPEN"
+  }
+ ],
+ "scaling": [
+  {
+   "item": "Google Ads PMax (£25/day)",
+   "decision": "HOLD",
+   "reason": "Only live campaign; 30d real ROAS 3.78, CPA £102.05, but 90d ROAS 2.32 and no non-brand order from 18 days of clicks; profitability not verified; card declined"
+  },
+  {
+   "item": "Google Ads Search UK (paused)",
+   "decision": "NOT SUITABLE",
+   "reason": "2 orders, both brand; ~£350 non-brand spend sold nothing"
+  },
+  {
+   "item": "Google Ads Shopping UK (paused)",
+   "decision": "NOT SUITABLE",
+   "reason": "Real ROAS 0.70; PMax serves the same feed with priority"
+  },
+  {
+   "item": "Ad budget increase above £25/day",
+   "decision": "NOT SUITABLE",
+   "reason": "PROFITABILITY NOT VERIFIED — COST DATA PARKED; capacity UNKNOWN; cap £30/day"
+  },
+  {
+   "item": "PMax brand exclusion / negatives",
+   "decision": "TEST WITH APPROVAL",
+   "reason": "Brand ≈5% of spend, 38% of real Ads value; non-brand ROAS ≈1.52"
+  },
+  {
+   "item": "Ads conversion tracking clean-up",
+   "decision": "FIX FIRST",
+   "reason": "#1014 cancelled still counted; 7 actions; Enhanced Conversions UNKNOWN"
+  },
+  {
+   "item": "Merchant Center / feed (free listings)",
+   "decision": "FIX FIRST",
+   "reason": "Two feed sources; diagnostics UNKNOWN; free listings drive most product organic sessions"
+  },
+  {
+   "item": "Organic SEO quick wins (metas, snippets)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "reason": "Positions 4–11 with few clicks; 0 organic orders in 30d; drafts ready"
+  },
+  {
+   "item": "Organic technical clean-up",
+   "decision": "READY FOR OWNER APPROVAL",
+   "reason": "T05/T06/T03 still open; 23 of 23 technical items open"
+  },
+  {
+   "item": "AI search visibility",
+   "decision": "HOLD",
+   "reason": "Named 0 of 4, cited 0 of 4 today; answers reward published numbers Eagle Bed lacks"
+  },
+  {
+   "item": "Trade outreach email",
+   "decision": "HOLD",
+   "reason": "314 sent → 1 interested, 0 quotes, £0; 0 privacy lines on past sends; plan steps to 140/day on 25 Nov"
+  },
+  {
+   "item": "Trade page /pages/trade",
+   "decision": "READY FOR OWNER APPROVAL",
+   "reason": "404; draft ready; 8 of 32 requirements blocked"
+  },
+  {
+   "item": "Abandoned checkout recovery",
+   "decision": "FIX FIRST",
+   "reason": "Automation status UNKNOWN; ≈0.4 eligible a month"
+  },
+  {
+   "item": "Review requests",
+   "decision": "READY FOR OWNER APPROVAL",
+   "reason": "3 reviews; #1038 eligible 22 Nov once marked delivered"
+  },
+  {
+   "item": "Returning-customer emails",
+   "decision": "HOLD",
+   "reason": "Consent Q2 unresolved; 2 returning of 36"
+  },
+  {
+   "item": "Social posts (3 a day)",
+   "decision": "HOLD",
+   "reason": "0 direct social orders in 90 days (Stage 1); 21 runs/week on Opus with a dead connector"
+  },
+  {
+   "item": "Cinema videos",
+   "decision": "NOT SUITABLE",
+   "reason": "Paused (Gemini 402, autoCinema false) but task still fires 14×/week"
+  },
+  {
+   "item": "CRO theme 213270004043",
+   "decision": "HOLD",
+   "reason": "Published 19 Nov; 0 orders 19 Nov — too early to judge; 2-week watch"
+  },
+  {
+   "item": "Side Lift Ottoman Storage Base",
+   "decision": "SCALE CANDIDATE",
+   "reason": "2.25% on 267 landings, 6 orders, £1,603.38 90d net, class A, no blocker"
+  },
+  {
+   "item": "Ottoman Gas Lift Divan Base",
+   "decision": "FIX FIRST",
+   "reason": "Top 90d revenue £2,666.63 (7 orders) but opening direction contradicts itself"
+  },
+  {
+   "item": "Line Bumper Ottoman",
+   "decision": "FIX FIRST",
+   "reason": "432 landings, 28 cart sessions, 0 orders; F1 price truth"
+  },
+  {
+   "item": "Line Ambassador",
+   "decision": "FIX FIRST",
+   "reason": "370 landings, 26 cart sessions, 1 order; two colour pickers (F6)"
+  },
+  {
+   "item": "Cloud Teddy Bouclé Ottoman",
+   "decision": "FIX FIRST",
+   "reason": "109 landings, 14 carts, 2 orders; F1; organic 'cloud bed small double' pos 7.9"
+  },
+  {
+   "item": "Savoy Channel",
+   "decision": "HOLD",
+   "reason": "3.03% on 33 landings (small sample); 1 order"
+  },
+  {
+   "item": "New products (70 drafts)",
+   "decision": "HOLD",
+   "reason": "Capacity UNKNOWN; costs parked; catalogue review deferred to 18 Dec"
+  },
+  {
+   "item": "PR pitches (earned mentions)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "reason": "0 independent mentions; 4 pitches drafted"
+  },
+  {
+   "item": "Landlord / HMO guide",
+   "decision": "HOLD",
+   "reason": "Draft has 6 blocked markers; fire answers missing"
+  },
+  {
+   "item": "Phone outreach to 18 local leads",
+   "decision": "NOT SUITABLE",
+   "reason": "TPS/CTPS screening cost UNKNOWN; Stage 7 recommends NO for now"
+  },
+  {
+   "item": "Meta ads",
+   "decision": "NOT SUITABLE",
+   "reason": "£0 spend since 8 Sep; pixel/catalogue issues open (C037, C044)"
+  }
+ ],
+ "opportunities": [
+  {
+   "rank": 1,
+   "opportunity": "Keep Google Ads serving: fix the declined payment card",
+   "decision": "FIX FIRST",
+   "expected_impact": "ESTIMATE: protects the 2–3 brand orders a fortnight that ads capture (02 §2.5); £ value UNKNOWN",
+   "confidence": "VERIFIED / MATCHED"
+  },
+  {
+   "rank": 2,
+   "opportunity": "Answer the waiting pre-sale customers (E010, E011, E021, E022, E023)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "ESTIMATE: 0–5 orders (one per waiting buyer); £ value UNKNOWN",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 3,
+   "opportunity": "Keep the open delivery promises (#1040 slot tonight; #1043 assembly price)",
+   "decision": "FIX FIRST",
+   "expected_impact": "Protects 2 paid orders already taken; £ at risk UNKNOWN beyond #1040 £556.19",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 4,
+   "opportunity": "First trade quote: reply to Ivywell Interiors (fabric metres, COM charge, where to send)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (first trade quote; no trade order yet)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 5,
+   "opportunity": "Price truth on the high-traffic flagged ottoman beds (Line Bumper, Line Ambassador, Cloud Teddy, Grand Extra-Tall)",
+   "decision": "FIX FIRST",
+   "expected_impact": "UNKNOWN (largest product lever per 01 §4; no forecast)",
+   "confidence": "VERIFIED (mechanism) / HYPOTHESIS (cause)"
+  },
+  {
+   "rank": 6,
+   "opportunity": "Confirm the Ottoman Gas Lift Divan Base opening direction and fix the page",
+   "decision": "FIX FIRST",
+   "expected_impact": "UNKNOWN (removes a contradiction on the top seller page)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 7,
+   "opportunity": "Remove or confirm the Clearpay claim",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "Risk reduction; sales impact UNKNOWN",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 8,
+   "opportunity": "Confirm the abandoned-checkout automation is Active",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "ESTIMATE: very small (≈0.4 eligible checkouts a month)",
+   "confidence": "UNKNOWN / VERIFIED"
+  },
+  {
+   "rank": 9,
+   "opportunity": "Record real delivered dates and fulfil on dispatch day",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "Unlocks review timing; fewer where-is-my-order chasers (UNKNOWN size)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 10,
+   "opportunity": "Genuine review requests after confirmed delivery (Judge.me Delivered + 5 days)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "ESTIMATE: about 2–3 reviews a month",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 11,
+   "opportunity": "Organic snippet quick wins: Cloud Teddy, Panel Line Border, Square Panel",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (CTR uplift; no forecast)",
+   "confidence": "VERIFIED (GSC to 17 Nov)"
+  },
+  {
+   "rank": 12,
+   "opportunity": "Sitemap clean-up: hide 2 noindexed collections, remove 4 empty legacy blogs (301)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (crawl hygiene)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 13,
+   "opportunity": "Clean Ads conversion data: retract cancelled #1014, one primary purchase action, Enhanced Conversions",
+   "decision": "FIX FIRST",
+   "expected_impact": "Accuracy only; no direct sales impact",
+   "confidence": "VERIFIED / MATCHED"
+  },
+  {
+   "rank": 14,
+   "opportunity": "PMax brand exclusion + negative list (measure non-brand honestly)",
+   "decision": "TEST WITH APPROVAL",
+   "expected_impact": "UNKNOWN (may lower reported ROAS; clarifies true non-brand return)",
+   "confidence": "MATCHED / ESTIMATE"
+  },
+  {
+   "rank": 15,
+   "opportunity": "One Google feed source + Merchant Center diagnostics export",
+   "decision": "FIX FIRST",
+   "expected_impact": "UNKNOWN",
+   "confidence": "HISTORICAL / UNKNOWN"
+  },
+  {
+   "rank": 16,
+   "opportunity": "Export Google Ads PMax → Products (30 and 90 days)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "Enables product-level ad decisions; £ UNKNOWN",
+   "confidence": "UNKNOWN"
+  },
+  {
+   "rank": 17,
+   "opportunity": "Create /pages/trade from the Stage 7 draft (on an unpublished theme copy)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (inbound trade route)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 18,
+   "opportunity": "Hold trade emails at 80 a day; Companies House check of the 251 leads without company evidence",
+   "decision": "HOLD",
+   "expected_impact": "Risk reduction; volume beyond 80/day has produced no quote",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 19,
+   "opportunity": "Get weekly workshop and delivery capacity (beds per week, delivery runs, lead time)",
+   "decision": "FIX FIRST",
+   "expected_impact": "Gate for any scaling; no £ impact on its own",
+   "confidence": "UNKNOWN"
+  },
+  {
+   "rank": 20,
+   "opportunity": "Owner-measured dimensions and storage depth on product pages",
+   "decision": "FIX FIRST",
+   "expected_impact": "UNKNOWN (fewer pre-sale questions)",
+   "confidence": "VERIFIED (gap)"
+  },
+  {
+   "rank": 21,
+   "opportunity": "Side Lift Ottoman Storage Base: keep it first in merchandising and organic work",
+   "decision": "SCALE CANDIDATE",
+   "expected_impact": "UNKNOWN (no extra ad spend proposed)",
+   "confidence": "VERIFIED / MATCHED"
+  },
+  {
+   "rank": 22,
+   "opportunity": "Fix live wording that owner facts do not support (refund policy 'two-man courier', mattress title with banned wording, size price ladder)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "Risk reduction",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 23,
+   "opportunity": "Route Shopify Inbox chats into HQ",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (no lost chats)",
+   "confidence": "VERIFIED (gap)"
+  },
+  {
+   "rank": 24,
+   "opportunity": "Correct the WhatsApp number with customer E002 and check quick replies",
+   "decision": "FIX FIRST",
+   "expected_impact": "Recovers one lost contact",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 25,
+   "opportunity": "Settle #1020 in PayPal (£273.59, cancelled 23 Sep, still PAID with £0 refunded)",
+   "decision": "FIX FIRST",
+   "expected_impact": "Removes a dispute risk; makes Shopify net match paid net",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 26,
+   "opportunity": "Stop scheduled-task waste: cinema task while autoCinema is false; move the Trading HQ watchdog",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "ESTIMATE: 14–182 fewer wake-ups a week",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 27,
+   "opportunity": "Social post task: default model, drop the dead Supermetrics connector",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "Lower resource use; sales impact UNKNOWN",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 28,
+   "opportunity": "Send the 4 drafted PR pitches (earned mentions)",
+   "decision": "READY FOR OWNER APPROVAL",
+   "expected_impact": "UNKNOWN (inclusion cannot be promised)",
+   "confidence": "VERIFIED"
+  },
+  {
+   "rank": 29,
+   "opportunity": "Matching mattress / headboard email to subscribed buyers",
+   "decision": "HOLD",
+   "expected_impact": "UNKNOWN (small)",
+   "confidence": "VERIFIED / HYPOTHESIS"
+  },
+  {
+   "rank": 30,
+   "opportunity": "Raise ad budget or re-enable Shopping UK / Search UK",
+   "decision": "NOT SUITABLE",
+   "expected_impact": "UNKNOWN; could lose money",
+   "confidence": "VERIFIED / MATCHED"
+  }
+ ],
+ "automations": [
+  {
+   "name": "Inbox agent",
+   "schedule": "every 2 h 09:07–21:07",
+   "status": "active",
+   "note": "49/week; keep"
+  },
+  {
+   "name": "Email Marketing",
+   "schedule": "weekdays 09:53",
+   "status": "active",
+   "note": "plan steps to 140/day on 25 Nov — recommend hold at 80"
+  },
+  {
+   "name": "Email Marketing top-up",
+   "schedule": "weekdays 14:23",
+   "status": "active",
+   "note": "keep only if volume is kept"
+  },
+  {
+   "name": "Daily report incl. DQ",
+   "schedule": "23:59 daily",
+   "status": "active",
+   "note": "daily CEO report; feeds dq/latest"
+  },
+  {
+   "name": "Social posts",
+   "schedule": "08:41 / 12:41 / 17:41",
+   "status": "active",
+   "note": "21/week on Opus with 7 connectors incl. dead Supermetrics — trim"
+  },
+  {
+   "name": "Weekly Google growth",
+   "schedule": "Mon 11:17",
+   "status": "active (first run 23 Nov)",
+   "note": "≤40 OpenRush credits/week"
+  },
+  {
+   "name": "Weekly Search Revenue report",
+   "schedule": "Mon 08:52",
+   "status": "active",
+   "note": "weekly CEO report; proposed home of the monthly section"
+  },
+  {
+   "name": "CEO sprint",
+   "schedule": "Mon + Thu 10:23",
+   "status": "active",
+   "note": "overlaps autopilot as queue runner"
+  },
+  {
+   "name": "Daily autopilot",
+   "schedule": "07:47 daily",
+   "status": "active",
+   "note": "Clearpay caption change requested (pending)"
+  },
+  {
+   "name": "Cinema videos",
+   "schedule": "08:46 / 17:46",
+   "status": "firing while autoCinema false",
+   "note": "14/week wasted — recommend disable"
+  },
+  {
+   "name": "Trading HQ watchdog (not Eagle Bed)",
+   "schedule": "hourly",
+   "status": "active",
+   "note": "168 of 280 wake-ups/week — recommend move"
+  },
+  {
+   "name": "Abandoned-checkout automation (Shopify)",
+   "schedule": "event",
+   "status": "UNKNOWN",
+   "note": "owner checks badge is Active"
+  }
+ ],
+ "counts": {
+  "opportunities": 30,
+  "risks": 20,
+  "approvalOpen": {
+   "P0": 13,
+   "P1": 18,
+   "P2": 20,
+   "P3": 12
+  },
+  "parked": 2,
+  "decided": 10,
+  "approvalRows": 75
+ }
+}
