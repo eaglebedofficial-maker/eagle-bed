@@ -132,3 +132,4 @@
 2026-11-20 EXEC D2b: /pages/trade — added 'no minimum order, from one bed' (owner fact) to intro + FAQ. Rollback: remove those two lines via pageUpdate.
 2026-11-20 EXEC W: "solid wood/timber/hardwood" -> "wooden" in 14 collection descriptions + 8 page bodies (all live, done) and 15 products (done); 205 product writes (incl. 104 'Comes with a wooden slatted base' lines for plain bed frames/kids beds) prepared but PENDING (bulk mutation blocked by MCP) - resume via ops/rocket/execution/W-work; report ops/rocket/execution/W-wood-slats.md (backups ops/rocket/execution/backups/W/)
 2026-11-20 EXEC W complete: 220 products + 14 collections + 8 pages 'solid wood/hardwood'→'wooden'; slat line on 104 plain frames. Verified by read-back (0 mismatches). Rollback: backups/W/.
+2026-11-20 EXEC W-alt: 16 image alt texts solid timber/wood → wooden. Rollback: backups/W/alt-before-2026-11-20.json
