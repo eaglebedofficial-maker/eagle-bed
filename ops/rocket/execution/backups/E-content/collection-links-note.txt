@@ -1,0 +1,1 @@
+backup taken via graphql read 2026-11-20 (descriptionHtml for divan-beds and upholstered-beds unchanged except one guide link appended to 'Read our guides' line)
