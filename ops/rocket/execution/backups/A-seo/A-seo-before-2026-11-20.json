@@ -1,0 +1,334 @@
+{
+ "task": "A-seo",
+ "taken_at": "2026-11-20",
+ "source": "Shopify Admin GraphQL nodes() re-read immediately before writes",
+ "items": [
+  {
+   "id": "gid://shopify/Product/15524050239819",
+   "type": "Product",
+   "handle": "panel-line-border-upholstered-bed",
+   "seo": {
+    "title": "Panel Line Border Bed | Upholstered Bed | Eagle Bed",
+    "description": "Panel line border upholstered bed with a tall 54 inch padded headboard, handmade in Dewsbury from £285.99. Free GB delivery and free fabric swatches."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524050010443",
+   "type": "Product",
+   "handle": "square-panel-upholstered-bed-frame",
+   "seo": {
+    "title": "Square Panel Bed Frame | Upholstered Luxury Bed | Eagle Bed",
+    "description": "Square panel bed frame with a structured square-panel upholstered headboard, handmade in Dewsbury from £292.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524049387851",
+   "type": "Product",
+   "handle": "ottoman-gas-lift-divan-base",
+   "seo": {
+    "title": "Ottoman Divan Bed Base with Gas Lift Storage | Eagle Bed",
+    "description": "Ottoman divan bed base with gas lift storage under the whole mattress. Handmade to order in Dewsbury, Single to Super King, from £220.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524053451083",
+   "type": "Product",
+   "handle": "indigo-line-upholstered-bed-frame",
+   "seo": {
+    "title": "Indigo Line Bed | Upholstered Panel Bed | Eagle Bed",
+    "description": "Indigo Line upholstered bed with a clean line-panel headboard, handmade in Dewsbury from £311.99. Free delivery across Great Britain, 5-year warranty."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524053942603",
+   "type": "Product",
+   "handle": "3000-pocket-sprung-mattress-uk",
+   "seo": {
+    "title": "3000 Pocket Sprung Mattress | 5-Year Guarantee | Eagle Bed",
+    "description": "3000 pocket sprung mattress with individually pocketed springs, from £220.99. Single to super king, 5-year guarantee, free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524051091787",
+   "type": "Product",
+   "handle": "stone-upholstered-bed-frame",
+   "seo": {
+    "title": "Stone Premium Bed | Upholstered Bed Frame | Eagle Bed",
+    "description": "Stone Premium upholstered bed frame with an architectural stone-inspired headboard, handmade in Dewsbury from £467.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524048404811",
+   "type": "Product",
+   "handle": "line-kids-upholstered-bed",
+   "seo": {
+    "title": "Line Kids Velvet Bed | Kids Bed UK | Eagle Bed",
+    "description": "Line Kids Velvet Bed: kids upholstered bed with panel line headboard, handmade in Dewsbury from £285.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524047782219",
+   "type": "Product",
+   "handle": "side-lift-ottoman-gas-lift-storage-bed",
+   "seo": {
+    "title": "Side Lift Ottoman Bed | Gas Lift Storage | Eagle Bed",
+    "description": "Side lift ottoman bed that opens from the side, so the foot can sit against a wall. Handmade in Dewsbury from £249.99, free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524048601419",
+   "type": "Product",
+   "handle": "oxygen-upholstered-bed-frame",
+   "seo": {
+    "title": "Oxygen Luxury Bed | Upholstered Bed Frame | Eagle Bed",
+    "description": "Oxygen Luxury upholstered bed frame with a geometric padded headboard, handmade in Dewsbury from £428.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524047880523",
+   "type": "Product",
+   "handle": "mirror-strip-sunrise-upholstered-bed-frame",
+   "seo": {
+    "title": "Mirror Strip Sunrise Upholstered Bed Frame | Eagle Bed",
+    "description": "Mirror Strip Sunrise upholstered bed frame with reflective headboard detail, handmade in Dewsbury from £285.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524050370891",
+   "type": "Product",
+   "handle": "level-lines-upholstered-bed-frame",
+   "seo": {
+    "title": "Level Lines Luxury Bed | Upholstered Bed | Eagle Bed",
+    "description": "Level Lines upholstered bed frame with evenly spaced horizontal lines on a tall 54-inch padded headboard. Handmade in Dewsbury from £324.99. Free GB delivery."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524050207051",
+   "type": "Product",
+   "handle": "multi-mini-line-luxury-upholstered-bed",
+   "seo": {
+    "title": "Multi Mini Line Luxury Bed | Upholstered | Eagle Bed",
+    "description": "Multi Mini Line Luxury upholstered bed with a tall 54 inch panel-line headboard, handmade in Dewsbury from £298.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524049682763",
+   "type": "Product",
+   "handle": "chesterfield-upholstered-bed-frame",
+   "seo": {
+    "title": "Chesterfield Bed Frame | Tufted Bed UK | Eagle Bed",
+    "description": "Chesterfield bed frame with deep-button tufted headboard, handmade to order in Dewsbury from £324.99. 5-year warranty, free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524051026251",
+   "type": "Product",
+   "handle": "tower-upholstered-bed-frame",
+   "seo": {
+    "title": "Tower Bed | Tall Headboard Bed Frame | Eagle Bed",
+    "description": "Tower upholstered bed frame with a tall vertical panel headboard in tower style. Handmade in Dewsbury from £337.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524053352779",
+   "type": "Product",
+   "handle": "curved-wingback-upholstered-bed-frame",
+   "seo": {
+    "title": "Curved Wingback Bed | Upholstered Bed Frame | Eagle Bed",
+    "description": "Curved Wingback upholstered bed with a softly flowing winged headboard, handmade in Dewsbury from £337.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524053188939",
+   "type": "Product",
+   "handle": "princess-luxury-upholstered-bed-frame",
+   "seo": {
+    "title": "Princess Luxury Bed | Upholstered Bed Frame | Eagle Bed",
+    "description": "Princess Luxury upholstered bed frame with a tall, deeply padded headboard, handmade in Dewsbury from £454.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524050698571",
+   "type": "Product",
+   "handle": "mini-line-luxury-upholstered-bed",
+   "seo": {
+    "title": "Mini Line Luxury Bed | Upholstered Bed | Eagle Bed",
+    "description": "Mini Line Luxury upholstered bed with fine mini line panel detailing on the headboard. Handmade in Dewsbury from £324.99. Free delivery in Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524048830795",
+   "type": "Product",
+   "handle": "line-ambassador-upholstered-bed-frame",
+   "seo": {
+    "title": "Line Ambassador Bed | Upholstered Bed UK | Eagle Bed",
+    "description": "Line Ambassador upholstered bed with tall panel-line headboard, handmade in Dewsbury from £337.99. 12 colours, free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524051124555",
+   "type": "Product",
+   "handle": "star-upholstered-bed-frame",
+   "seo": {
+    "title": "Star Unique Bed | Upholstered Panel Bed | Eagle Bed",
+    "description": "Star Unique upholstered bed frame with a star-inspired panel headboard, handmade in Dewsbury from £350.99. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524052697419",
+   "type": "Product",
+   "handle": "pillow-top-mattress-uk",
+   "seo": {
+    "title": "Pillow Top Mattress UK | All Sizes | Eagle Bed",
+    "description": "Pillow top mattress with a plush comfort layer, Single to Super King from £311.99. 5-year guarantee, free delivery across Great Britain, Klarna and Clearpay."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524048208203",
+   "type": "Product",
+   "handle": "mini-line-wingback-kids-bed",
+   "seo": {
+    "title": "Mini Line Wingback Kids Bed | Kids Bed UK | Eagle Bed",
+    "description": "Mini Line wingback kids bed, handmade in Dewsbury from £285.99 with a low solid frame and padded headboard. Free delivery across Great Britain."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524053123403",
+   "type": "Product",
+   "handle": "grand-luxury-upholstered-bed-frame",
+   "seo": {
+    "title": "Grand Luxury Bed | Oversized Upholstered Bed | Eagle Bed",
+    "description": "Grand Luxury oversized upholstered bed frame with a tall, deeply padded headboard for large bedrooms. Handmade in Dewsbury from £519.99. Free GB delivery."
+   }
+  },
+  {
+   "id": "gid://shopify/Product/15524051353931",
+   "type": "Product",
+   "handle": "gold-v-cross-line-upholstered-bed",
+   "seo": {
+    "title": "Gold V Cross Line Bed | Metallic Strip Bed | Eagle Bed",
+    "description": "Gold V Cross Line upholstered bed frame with a V-cross headboard and gold and silver metallic strips. Handmade in Dewsbury from £415.99. Free GB delivery."
+   }
+  },
+  {
+   "id": "gid://shopify/Collection/694706766155",
+   "type": "Collection",
+   "handle": "storage-beds",
+   "seo": {
+    "title": "Storage Beds UK | Ottoman & Drawer Beds | Eagle Bed",
+    "description": "Storage beds UK: gas lift ottoman and drawer beds, handmade in Dewsbury. Single to Super King, free delivery across Great Britain, 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682711056715",
+   "type": "Collection",
+   "handle": "ottoman-beds",
+   "seo": {
+    "title": "Gas Lift Ottoman Beds UK | Handmade Storage Beds | Eagle Bed",
+    "description": "Ottoman beds UK: gas lift end and side opening storage beds handmade in Dewsbury, Single to Super King. Free delivery across Great Britain, 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/694706700619",
+   "type": "Collection",
+   "handle": "wingback-beds",
+   "seo": {
+    "title": "Wingback Beds UK | Wingback Panel Beds | Eagle Bed",
+    "description": "Wingback beds UK, including wingback panel beds with tall winged headboards, handmade in Dewsbury. Free delivery across Great Britain, 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682712793419",
+   "type": "Collection",
+   "handle": "divan-beds",
+   "seo": {
+    "title": "Upholstered Divan Beds with Storage UK | Eagle Bed",
+    "description": "Upholstered divan beds with storage, handmade in Dewsbury: drawer and gas lift ottoman bases, Single to Super King. Free delivery across Great Britain."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/694706733387",
+   "type": "Collection",
+   "handle": "chesterfield-beds",
+   "seo": {
+    "title": "Chesterfield Beds UK | Chesterfield Bed Frames | Eagle Bed",
+    "description": "Chesterfield beds UK: deep-buttoned Chesterfield bed frames in fabric and velvet, handmade in Dewsbury. Free delivery across Great Britain, 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682711941451",
+   "type": "Collection",
+   "handle": "divan-ottoman-beds",
+   "seo": {
+    "title": "Ottoman Divan Beds UK | King Size & Double | Eagle Bed",
+    "description": "Ottoman divan beds with a gas lift base that raises the whole mattress for storage. Handmade in Dewsbury. Free delivery across Great Britain."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/708786684235",
+   "type": "Collection",
+   "handle": "small-double-ottoman-beds",
+   "seo": {
+    "title": "Small Double Ottoman Beds (4ft) | Gas Lift | Eagle Bed",
+    "description": "Small double ottoman beds (4ft, 120 x 190 cm) with gas lift storage under the mattress, handmade in Dewsbury. Free delivery across Great Britain."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682715414859",
+   "type": "Collection",
+   "handle": "mattresses",
+   "seo": {
+    "title": "Mattresses UK | Pocket Sprung & Memory Foam | Eagle Bed",
+    "description": "Mattresses UK: pocket sprung, memory foam, orthopaedic, pillow top, Single to Super King. Free delivery across Great Britain, Klarna and Clearpay available."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682710696267",
+   "type": "Collection",
+   "handle": "upholstered-beds",
+   "seo": {
+    "title": "Upholstered Beds UK | Handmade Bed Frames | Eagle Bed",
+    "description": "Upholstered beds UK, handmade to order in Dewsbury on solid wood frames. Single to Super King, free delivery across Great Britain and a 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/705194000715",
+   "type": "Collection",
+   "handle": "panel-beds",
+   "seo": {
+    "title": "Panel Beds UK | Upholstered Panel Bed Frames | Eagle Bed",
+    "description": "Upholstered panel beds UK with vertical, fan and channel panel headboards. Handmade in Dewsbury, free delivery across Great Britain and a 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/697411043659",
+   "type": "Collection",
+   "handle": "new-trending",
+   "seo": {
+    "title": "New & Trending Beds UK | Handmade | Eagle Bed",
+    "description": "Featured Eagle Bed designs: panel, wingback, Chesterfield and statement beds, handmade in Dewsbury. Free delivery across Great Britain and a 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  },
+  {
+   "id": "gid://shopify/Collection/682286973259",
+   "type": "Collection",
+   "handle": "frontpage",
+   "seo": {
+    "title": "Handmade Upholstered Beds UK | Ottoman & Divan | Eagle Bed",
+    "description": "Shop Eagle Bed's handmade upholstered beds: wingback, ottoman, divan and Chesterfield. Single to Super King. Free delivery across Great Britain, 5-year warranty."
+   },
+   "metafield_seo_hidden": null
+  }
+ ]
+}
