@@ -1,0 +1,31 @@
+resource,item,value,unit,source,confidence,note,window,extracted_at_utc
+openrush,"allocation (purchased 19 Nov, renews 19 Dec)",2001,credits,HQ usage/openrush-2026-11,VERIFIED,,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,used (field),221,credits,HQ usage/openrush-2026-11 used,VERIFIED,= sum of 24 log entries (221),1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,remaining,1780,credits,2001 - 221,VERIFIED,,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,protected reserve,400,credits,HQ rules,VERIFIED,untouched,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,spendable outside reserve,1380,credits,1780 - 400,VERIFIED,,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,"pre-Rocket 19 Nov (SEO/ads/CRO page work, 10 calls)",31,credits,HQ log entries 1-10,VERIFIED,"gas lift, small rooms, Cloud Teddy, memory foam, Ads audit",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 1 (incl. gap closure),27,credits,HQ log,VERIFIED,"2 inspect_serp, 3 GSC, Ads x3, GA4 x1",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 2,18,credits,HQ log,VERIFIED,,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 3,4,credits,HQ log,VERIFIED,1 inspect_page,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 4,12,credits,HQ log,VERIFIED,4 get_ad_performance,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 5,24,credits,HQ log,VERIFIED,8 Ads reports,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 6,97,credits,HQ log (18+48+25+6),VERIFIED,"largest stage: keywords/backlinks 48, AI visibility 25",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 7,8,credits,HQ log,ESTIMATE,cost not reported by tool; recorded as 8,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,Stage 8 (this task),0,credits,this task,VERIFIED,no OpenRush calls,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,by agent: Google Ads / ads reports,54,credits,HQ log (3+3+9+3+12+24),ESTIMATE,Stage 2 Ads share taken as 3 of its 18,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,"repeated research: Google Ads campaign/performance pulled in S1, S4, S5 and pre-Rocket 01:34 on the same day",≈6 duplicated (54 total),credits,HQ log,ESTIMATE,"Different windows each time (28d, 3m, 7/30/90d); partial overlap only (28-day campaign view pulled twice: pre-Rocket 01:35 and Stage 1)",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,"repeated research: GSC queries/pages pulled pre-Rocket, S1, S2, S6",≈45 total GSC credits; ≈15 duplicated,credits,HQ log,ESTIMATE,"Rule ""never re-run within 7 days"" broken at least for the 28-day page/query pulls (00:25-00:26 and Stage 1 same day)",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,failed-task use,0,credits,HQ log,VERIFIED,no failed call logged,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+openrush,planned recurring: weekly Google growth task,≤40/week (≈160/month),credits,trigger prompt,PLATFORM-REPORTED,first run 23 Nov,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+zapier,cap,750,tasks/month,owner 10 Nov; HQ settings,VERIFIED,,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+zapier,counted used (10-19 Nov),156,tasks,HQ usage/zapier-2026-11,PLATFORM-REPORTED,"posts 108, video 21, pinterest 18, gbp 9; 1-9 Nov NOT counted",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+zapier,daily run-rate since 12 Nov,13,tasks/day,HQ days,VERIFIED,≈390/month at current rate (ESTIMATE),1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+zapier,limit hit,7 Nov,date,cinema trigger prompt,HISTORICAL,billing-cycle reset date UNKNOWN,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+claude_scheduled,Eagle Bed wake-ups,112,runs/week,list_triggers 20 Nov,VERIFIED,"inbox 49, social 21, cinema 14, autopilot 7, daily report 7, email 5+5, CEO sprint 2, weekly x2",1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+claude_scheduled,Trading HQ watchdog (not Eagle Bed),168,runs/week,list_triggers,VERIFIED,60% of all wake-ups,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+claude_scheduled,total,280,runs/week,list_triggers,VERIFIED,matches Stage 1 ESTIMATE ~280,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+claude_scheduled,wasted: cinema while paused,14,runs/week,list_triggers + CHANGELOG 19 Nov,VERIFIED,disable while Gemini 402,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+claude_scheduled,social post on Opus with 7 connectors,21,runs/week,list_triggers,VERIFIED,dead Supermetrics connector loaded every run,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+gemini,status,out of credit (HTTP 402),–,Stage 2 R14; CHANGELOG 19 Nov,VERIFIED,video paused,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
+supermetrics,status,trial expired 8 Sep,–,Stage 2,VERIFIED,GA4 purchases + FB/IG insights UNKNOWN,1-20 Nov 2026 (Europe/London),2026-11-20T01:03Z
