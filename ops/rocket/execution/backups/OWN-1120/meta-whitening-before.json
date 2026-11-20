@@ -1,0 +1,11 @@
+{
+  "catalog_id": "1311394936570400",
+  "captured": "2026-11-20",
+  "reason": "Owner approved 20 Nov 2026: Remove 4 whitening items (styleaba.com products, not Eagle Bed)",
+  "products": [
+    {"product_id": "8957361797674215", "retailer_id": "50030795260242", "name": "HiSmile Fast Whitening Bundle", "url": "https://styleaba.com/products/hismile-fast-whitening-bundle?utm_content=Facebook_UA&utm_source=facebook&variant=50030795260242"},
+    {"product_id": "9061980403886843", "retailer_id": "50030778614098", "name": "Teeth Whiteniing Strips", "url": "https://styleaba.com/products/teeth-whiteniing-strips?utm_content=Facebook_UA&utm_source=facebook&variant=50030778614098"},
+    {"product_id": "9405091392842881", "retailer_id": "50031708176722", "name": "Hismile Teeth Whitening", "url": "https://styleaba.com/products/hismile-teeth-whitening?utm_content=Facebook_UA&utm_source=facebook&variant=50031708176722"},
+    {"product_id": "9424774734219593", "retailer_id": "50029470908754", "name": "HISMILE V34 TEETH", "url": "https://styleaba.com/products/hismile-v34-teeth?utm_content=Facebook_UA&utm_source=facebook&variant=50029470908754"}
+  ]
+}
