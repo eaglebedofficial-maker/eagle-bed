@@ -115,3 +115,4 @@
 - 20 Nov 00:05: compliance fixes from Stage 7 PECR review: trade brief now limited-companies-only rule + privacy line; Clearpay removed from abandoned-checkout and swatch email drafts.
 - 20 Nov 00:10: Email Marketing task + trade brief aligned with Stage 7 PECR review: limited companies only, no hotels/B&Bs/care homes, privacy line, no same-day-quote promise, bounces set doNotContact.
 - 20 Nov: Rocket Stage 7 (customer recovery & trade) complete: ops/rocket/stage7/STAGE7-REPORT.md + page, 15 datasets, trade page draft, landlord/HMO guide draft, templates v2, PECR rulebook; HQ 'Customers, recovery & trade' card (customers/stage7); 12 bounced/STOP leads now doNotContact. ~8 OpenRush credits (month ≤221/2001). Stage 8 waits for owner approval.
+2026-11-20 EXEC C-replies: 8 Gmail drafts created, none sent (E010, E011, E022, E023, E002, Ivywell trade, IndyBest + Yorkshire Post pitches); HQ inbox 5 new + 3 updated docs (report rocket/execution/C-replies.md)
