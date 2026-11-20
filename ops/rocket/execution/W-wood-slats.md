@@ -45,3 +45,10 @@ Backups are in `ops/rocket/execution/backups/W/`: `product-<handle>.json` (220 f
 - products: `productUpdate(product:{id, descriptionHtml, seo:{title, description}})` with the values from the backup
 - collections: `collectionUpdate(collection:{id, descriptionHtml})`
 - pages: `pageUpdate(id, page:{body})`
+
+## Completion — 20 Nov 2026, 22:22 UTC
+- All 41 batches (b00–b40) sent; 220/220 products written, 0 userErrors (one b05 copy slip on Coca Designer Bed was resent with the exact payload).
+- Verification: Admin GraphQL read-back of all products updated since 21:00 UTC. 200/220 compared byte-for-byte (whitespace-normalised) against w-products.jsonl, including the SEO descriptions: 0 mismatches. The last 20 were read back and spot-checked by eye; the slat line is present or absent as planned on all 20, and none says "solid wood".
+- No product description now contains "solid wood" or "hardwood".
+- Leftovers not changed (in prepared payloads, wording acceptable): "solid slatted base" (2), "Sturdy solid frame construction" (3), "solid, sturdy wood frame" (1).
+- Still owner/theme: "The Eagle Bed promise" theme block says "solid wood frames"; some image alt text says "solid timber slatted base".
