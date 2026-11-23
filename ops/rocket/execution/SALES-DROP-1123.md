@@ -24,3 +24,12 @@
 ## Action taken (owner approved)
 - 10% off everything, automatic, from 23 Nov to 30 Nov.
 - Google Ads unchanged at £25/day. Review on 1 Dec.
+
+## Sister site check (owner, 23 Nov): www.sleepandbeds.com sells the same beds
+- Google search for "sleepandbeds.com" (UK live results): the site does not appear. A site: search also finds no indexed pages.
+- On the organic test query "gas lift ottoman divan base", Eagle Bed ranks #8 and #26. sleepandbeds.com does not rank.
+- So sleepandbeds.com is not competing with Eagle Bed in organic Google results.
+- UNKNOWN: whether sleepandbeds.com runs Google Ads or Merchant Center for the same products. Its accounts aren't connected to me.
+  - If it does, the two stores bid against each other.
+  - If it does, Google Shopping usually shows only one seller for identical products (same photos and titles).
+  - The owner should check in that site's Google Ads / Merchant Center, or connect them to OpenRush.
