@@ -146,3 +146,4 @@
 - 2026-11-23 Owner approved ("increase ... up to £50 per day" until 30 Nov 2026): the Eagle Bed PMax budget (campaignBudgets/15854162607) went from £25 to £50/day through the Zapier Google Ads API (v23). Verified at £50. Revert to £25 is scheduled for 1 Dec 00:05 (trig_01BvaByoEaKXeGNqAdj4UZxm).
 - 2026-11-23 Owner approved ("yes, change Eagle Bed prices to 10% sale until 30 Nov"): all active variants changed to 10% off, with compare-at set to the old price. Backup is at backups/BF-1123/prices-before.json. Restore is scheduled for 1 Dec.
 - 2026-11-23 BF sale prices live and verified: 187 products, 945 variants, 0 mismatches. Automatic discount 'Black Friday 10% off everything' deactivated so there is no double discount.
+- 2026-11-23 Owner: 'Remove summer sale'. Deactivated discount code 'Summer Sale 10% Off' (DiscountCodeNode/2238488084811), now EXPIRED. Rollback: reactivate it in Shopify > Discounts.
