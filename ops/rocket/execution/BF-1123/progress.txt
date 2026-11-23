@@ -10,3 +10,12 @@ batch07 done (products 71-80) userErrors=0
 batch08 done (products 81-90) userErrors=0
 batch09 done (products 91-100) userErrors=0
 batch10 done (products 101-110) userErrors=0
+batch11 done (products 111-120) userErrors=0
+batch12 done (products 121-130) userErrors=0
+batch13 done (products 131-140) userErrors=0
+batch14 done (products 141-150) userErrors=0
+batch15 done (products 151-160) userErrors=0
+batch16 done (products 161-170) userErrors=0
+batch17 done (products 171-180) userErrors=0
+batch18 done (products 181-187) userErrors=0; ALL APPLIED, verifying
+VERIFIED Mon Nov 23 11:16:41 UTC 2026: 187 products / 945 variants read back, 0 mismatches vs plan.jsonl
