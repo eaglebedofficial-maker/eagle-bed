@@ -26,3 +26,5 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - DELIVERY OPTIONS on product pages (19 Nov 2026, live): Downstairs Drop Off free; Room of Choice Drop Off +£29.99; Room of Choice Assembly +£69.99. "Free delivery" means to the door/downstairs. Do not say "we carry it to your room" or "we build it" for free.
 - Owner facts 20 Nov 2026 (chat): trade minimum order = ONE bed (no minimum). All bed frames are wood (owner: "all bed frame wood"). Mattress rename requested — owner's wording unclear ("me Atiq"); confirm exact new name before changing "Memory Orthopaedic Mattress".
 - Owner 20 Nov 2026 (late): keep Clearpay wording on product pages as is (owner indicates Clearpay is used). Owner will handle remaining items (theme 'Eagle Bed promise' solid wood text, app mattress option) themselves on their computer. Extra Firm Orthopaedic mattress rename NOT approved — leave.
+
+Owner 23 Nov 2026 (firm rule): Sleep&Bed (sleepandbeds.com, Google Ads 1432747258, Merchant 5712079817) is READ-ONLY. NEVER change anything in Sleep&Bed. Only work on Eagle Bed: the owner allows changes to Eagle Bed for better performance.
