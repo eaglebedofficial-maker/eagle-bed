@@ -48,3 +48,12 @@
 - Combined, the two shops spend about £1,834 a month on Google for the same products, bidding in the same auctions.
 - Sleep&Bed also runs 2 PMax campaigns on the same feed, so those two compete with each other.
 - Cost per conversion as Google reports it: Sleep&Bed about £84, Eagle Bed about £140. PROFIT NOT VERIFIED.
+
+## Eagle Bed Google Ads, root cause (last 28 days)
+- Searches for "eagle bed" / "eagle beds" (people already looking for us by name): £46 spent, 3 of the 5 conversions.
+- Everything else: about £647 spent for about 2 conversions, roughly £320 per sale. Most of this is generic bed searches where Sleep&Bed shows the SAME beds with a bigger budget (£37/day, 2 PMax campaigns) and wins.
+- Money also went on competitor-name searches (hale and hale, restium, moorcroft, zora, macba, bedscraft, bed heaven, bedroomking, lorinza, sosoft, elgen, style beds) and on off-target searches (toddler bed, "super king size bed size").
+- Spend by network: Search £657, YouTube £20, Display £8, other small amounts. None of the non-search networks produced a conversion.
+
+## Fix on the Eagle side (owner 23 Nov: "you are only allowed to change ... for the better performance ... in Eagle Bed, not Sleep&Bed")
+- Make the approved Black Friday 10% visible on Google Shopping and on product pages, so that in identical-product auctions Eagle shows a lower price with a sale badge. Do this as real sale prices (compare-at = old price) in place of the hidden automatic discount. Restore on 1 Dec.
