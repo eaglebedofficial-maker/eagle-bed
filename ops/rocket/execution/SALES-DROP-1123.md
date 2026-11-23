@@ -33,3 +33,18 @@
   - If it does, the two stores bid against each other.
   - If it does, Google Shopping usually shows only one seller for identical products (same photos and titles).
   - The owner should check in that site's Google Ads / Merchant Center, or connect them to OpenRush.
+
+## Sleep&Bed Google Ads (account 1432747258, via Zapier connection), last 30 days (read-only report, 23 Nov)
+| Campaign | Status | Type | Spend | Clicks | Conv | Conv value |
+|---|---|---|---|---|---|---|
+| All, All Product, PMAXX | ENABLED | PMax | £588.73 | 1,324 | 7.13 | £2,782 |
+| PMax: AP, Shopping, Focus | ENABLED | PMax | £535.63 | 1,374 | 6.47 | £3,295 |
+| Sleep&Bed, Brand, Search | ENABLED | Search | £16.74 | 18 | 0 | £0 |
+| 3 others | PAUSED | | £0 | | | |
+| **Total** | | | **£1,141** | **2,716** | **13.6** | **£6,078** |
+
+- Sleep&Bed uses Merchant Center 5712079817. Eagle Bed uses Merchant Center 5756953290. Both list the same beds.
+- Eagle Bed over 28 days: £693 spend, 1,086 clicks, 5 conversions, £1,972 value.
+- Combined, the two shops spend about £1,834 a month on Google for the same products, bidding in the same auctions.
+- Sleep&Bed also runs 2 PMax campaigns on the same feed, so those two compete with each other.
+- Cost per conversion as Google reports it: Sleep&Bed about £84, Eagle Bed about £140. PROFIT NOT VERIFIED.
