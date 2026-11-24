@@ -30,3 +30,6 @@ Store: Eagle Bed, www.eaglebed.co.uk (Shopify 0whctf-mu). HQ: https://claude.ai/
 - Photo posts at 09:00/13:00/18:00 alongside the 2 daily videos are intended (3 photos + 2 videos a day).
 - Instagram "still processing": wait ~60s, retry once. Use the 1080p copy for Instagram.
 - Run tools/cinema/autovideo.py with python3.13 (python3.11 PIL is broken in this container).
+
+## Black Friday 2026 (seen 24 Nov)
+Prices cut 10% with compare-at prices on 23 Nov (owner/HQ, not autopilot). Posts say: 10% off every bed and mattress until Monday 30 November, no code needed. Prices must go back after 30 Nov - owner's job; remind on 1 Dec.
