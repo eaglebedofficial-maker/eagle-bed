@@ -21,6 +21,8 @@ Eagle Bed HQ artifact (memory/business notes) and in git history. Keep this file
 - Google review link for customers.
 - Black Friday: is there a real offer to state? Christmas: last order date for delivery before Christmas? (asked 4 Nov)
 
+- PREPARED (26 Nov): new collections /collections/double-ottoman-beds (27,100 searches/mo) and /collections/single-ottoman-beds (22,200) built like small-double-ottoman-beds; waiting for owner yes.
+
 ## AUTOPILOT SCHEDULE (do when due, mark DONE here)
 - Every day 07:47: monitoring + apply HQ READY TO APPLY items + next due item below.
 - Every Monday: weekly organic revenue review + Google Ads review; first Monday of month: market-share review.
@@ -30,7 +32,8 @@ Eagle Bed HQ artifact (memory/business notes) and in git history. Keep this file
 - DONE 13 Nov: Black Friday intro lines (facts only) on /collections/ottoman-beds and /collections/small-double-beds. Remove on 1 Dec.
 - DONE 24 Nov (moved from 17 Nov): re-measure 19–20 Oct changes vs baselines; measure guest-bedroom-bed-guide-uk ('guest bedroom', 'best bed for guest room').
 - DONE 24 Nov: ottoman guide /blogs/news/how-do-ottoman-beds-work has 352 impressions at position 6.6 but 1 click (CTR 0.3%) — rewrite its SEO title + meta description only (facts only, back up first, log in CHANGELOG); measure on 8 Dec.
-- 26 Nov: Search Console review of the two new ottoman size collections; if they get impressions, add double (27,100) and single (22,200) ottoman pages.
+- DONE 26 Nov: Search Console review of ottoman size collections (29 Oct-25 Nov): small-double-ottoman-beds 393 impr, 0 clicks, pos 46.2; king-size-ottoman-beds 3 impr, pos 13.3. Some traction but weak, so double + single ottoman collections moved to PREPARED (new published pages need owner yes). Re-check 10 Dec.
+- 10 Dec: re-check small-double/king-size ottoman collection impressions and position.
 - 1 Dec: Black Friday 10% sale ends 30 Nov (compare-at prices set 23 Nov, not by autopilot) - remind owner to restore prices; never change prices ourselves. Remove Black Friday eb-seasonal paragraph from ottoman-beds + small-double-beds. Verify new-year article went live; add one link from /collections/ottoman-beds and the ottoman guide. Next HQ order from roadmap (Dec–Jan wave).
 - 15 Dec: Feb collection/guide prep (R23).
 - 20 Jan 2027: optional Valentine's refresh on /collections/headboards and /collections/upholstered-beds.
